@@ -3,6 +3,7 @@ package GUI.Login;
 public class TaiKhoan {
     private String Ten_dn;
     private String Mat_khau;
+    private String Quyen;
 
     public String getQuyen() {
         return Quyen;
@@ -11,13 +12,13 @@ public class TaiKhoan {
     public void setQuyen(String Quyen) {
         this.Quyen = Quyen;
     }
-    private String Quyen;
+
     private boolean tontai;
 
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String Ten_dn, String Mat_khau,String Quyen, boolean tontai) {
+    public TaiKhoan(String Ten_dn, String Mat_khau, String Quyen, boolean tontai) {
         this.Ten_dn = Ten_dn;
         this.Mat_khau = Mat_khau;
         this.Quyen = Quyen;
