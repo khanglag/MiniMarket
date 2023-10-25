@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2023 lúc 09:20 AM
+-- Thời gian đã tạo: Th10 25, 2023 lúc 11:42 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -175,8 +175,7 @@ CREATE TABLE `hoadon` (
   `MANV` char(7) NOT NULL,
   `THOIGIANLAP` datetime NOT NULL,
   `MAKH` char(7) NOT NULL,
-  `TONGHD` double NOT NULL,
-  `THANHTOAN` double NOT NULL,
+  `THANHTIEN` double NOT NULL,
   `TIENKHACHDUA` double NOT NULL,
   `TIENTRAKHACH` double NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
@@ -186,8 +185,8 @@ CREATE TABLE `hoadon` (
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `TONGHD`, `THANHTOAN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES
-(1, 'A070103', '2023-09-19 08:00:30', '0000001', 7000, 7000, 10000, 3000, 1);
+INSERT INTO `hoadon` (`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `THANHTIEN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES
+(1, 'A070103', '2023-09-19 08:00:30', '0000001', 7000, 10000, 3000, 1);
 
 -- --------------------------------------------------------
 
@@ -366,8 +365,8 @@ CREATE TABLE `phieunhap` (
   `VAT` double NOT NULL,
   `SOMATHANG` int(11) NOT NULL,
   `TONGTIEN` double NOT NULL,
-  `TRANGTHAI` tinyint(1) NOT NULL,
-  `TONTAI` int(11) NOT NULL
+  `TRANGTHAI` varchar(20) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -375,8 +374,8 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `MANCC`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
-('0000001', 'A038645', 'NCCDYQN', '2023-09-20 08:49:50', 0.08, 12, 11403720, 1, 1),
-('0000002', 'B041003', 'NCCDYQN', '2023-09-20 16:32:34', 0.08, 3, 4341600, 1, 1);
+('0000001', 'A038645', 'NCCDYQN', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
+('0000002', 'B041003', 'NCCDYQN', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1);
 
 -- --------------------------------------------------------
 
