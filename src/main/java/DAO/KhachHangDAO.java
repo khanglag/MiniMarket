@@ -13,7 +13,7 @@ public class KhachHangDAO {
     public ArrayList<KhachHang_DTO> ReadKhachHang() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<KhachHang_DTO> khArrayList = new ArrayList<>();
-        String qry = "SELECT * FROM khachhang WHERE TONTAI = 1"; 
+        String qry = "SELECT * FROM khachhang"; 
         ResultSet rSet = null;
 
         try {
