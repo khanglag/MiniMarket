@@ -4,19 +4,27 @@
  */
 package GUI.Saler;
 
+import javax.swing.Icon;
+
 /**
  *
  * @author acer
  */
 public class item extends javax.swing.JPanel {
-
+    private String MaSP;
     /**
      * Creates new form item
      */
     public item() {
         initComponents();
     }
-
+    
+    public void setLbImgIcon(String path) {
+        LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(path)));
+    }
+    public String MaSP(String masp){  
+        return  MaSP= masp;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,38 +34,57 @@ public class item extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        img = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        LbImg = new javax.swing.JLabel();
+        BtnAddProduct = new javax.swing.JButton();
 
-        img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btt.jpg"))); // NOI18N
+        LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gao.jpg"))); // NOI18N
 
-        jButton1.setText("Thêm vào giỏ");
+        BtnAddProduct.setText("Thêm vào giỏ");
+        BtnAddProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnAddProductMouseClicked(evt);
+            }
+        });
+        BtnAddProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddProductActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(img)
+                .addComponent(LbImg)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(BtnAddProduct)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(BtnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnAddProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAddProductMouseClicked
+       
+    }//GEN-LAST:event_BtnAddProductMouseClicked
+
+    private void BtnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddProductActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_BtnAddProductActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel img;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnAddProduct;
+    private javax.swing.JLabel LbImg;
     // End of variables declaration//GEN-END:variables
 }

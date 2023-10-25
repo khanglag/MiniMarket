@@ -28,7 +28,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         initComponents();
         createButtonGroup();
         //hiển thị sản phẩm vào table
-        showProductsInTable();
+//        showProductsInTable();
     }
 
     public void showProductsInTable() {
