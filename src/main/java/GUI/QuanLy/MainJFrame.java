@@ -401,7 +401,7 @@ public class MainJFrame extends javax.swing.JFrame {
         paneltk.setBackground(DefaultColor);
         panelct.setBackground(ClickedColor);
         paneldx.setBackground(DefaultColor);
-        QuanLyChiTieu qlct = new QuanLyChiTieu();
+        QuanLyNhapHang qlct = new QuanLyNhapHang();
         mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
