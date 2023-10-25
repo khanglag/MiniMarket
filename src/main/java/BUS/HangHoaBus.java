@@ -17,11 +17,9 @@ public class HangHoaBus {
     }
     ArrayList<HangHoa_DTO> ds;
     HangHoaDAO dao= new HangHoaDAO();
-    // Trả kiểu array list hàng hoá
     public ArrayList<HangHoa_DTO> itemData(){
         return dao.ReadHangHoa();
     }
-    //Vào: mã hàng Trả: số lượng hàng hoá
     public int ktSoLuong(String maHang){
         ds= dao.searchHangHoa(maHang, null, 0, null);
         return ds.get(0).getSoLuong();
