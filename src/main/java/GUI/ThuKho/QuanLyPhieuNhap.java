@@ -10,12 +10,12 @@ import GUI.QuanLy.*;
  *
  * @author acer
  */
-public class QuanLyNhapHang extends javax.swing.JPanel {
+public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLySanPham
      */
-    public QuanLyNhapHang() {
+    public QuanLyPhieuNhap() {
         initComponents();
     }
 
