@@ -24,7 +24,7 @@ public class PhieuNhapDAO {
      */
     public ArrayList<PhieuNhap_DTO> ReadPhieuNhap() {
         ConnectDB connectDB = new ConnectDB();
-        ArrayList<PhieuNhap_DTO> pxArrayList = new ArrayList<>();
+        ArrayList<PhieuNhap_DTO> pnArrayList = new ArrayList<>();
         String qry = "SELECT * FROM phieunhap WHERE TONTAI = 1";
         ResultSet rSet = null;
 
@@ -32,7 +32,7 @@ public class PhieuNhapDAO {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null) {
                 while (rSet.next()) {
-                    PhieuNhap_DTO px = new PhieuNhap_DTO(
+                    PhieuNhap_DTO pn = new PhieuNhap_DTO(
                             rSet.getString("MAPHIEUNHAP"),
                             rSet.getString("MANV"),
                             rSet.getString("MANCC"),
@@ -42,7 +42,7 @@ public class PhieuNhapDAO {
                             rSet.getDouble("TONGTIEN"),
                             rSet.getNString("TRANGTHAI"),
                             rSet.getBoolean("TONTAI"));
-                    pxArrayList.add(px);
+                    pnArrayList.add(pn);
                 }
             }
         } catch (Exception e) {
@@ -50,44 +50,44 @@ public class PhieuNhapDAO {
             e.printStackTrace();
         }
         connectDB.closeConnect();
-        return pxArrayList;
+        return pnArrayList;
     }
 
-    public boolean add(PhieuNhap_DTO px) {
+    public boolean add(PhieuNhap_DTO pn) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
                 "INSERT INTO `phieunhap`(`MAPHIEUNHAP`, `MANV`,`MANCC`, `THOIGIANLAP`,`VAT`,`SOMATHANG`,`TONGTIEN`,`TRANGTHAI`, `TONTAI`) VALUES "
-                        + "('" + px.getMaPhieuNhap()
-                        + "','" + px.getMaNV()
-                        + "','" + px.getMaNCC()
-                        + "','" + px.getThoiGianLap()
-                        + "','" + px.getVAT()
-                        + "','" + px.getSoMatHang()
-                        + "','" + px.getTongTien()
-                        + "','" + px.getTrangThai()
+                        + "('" + pn.getMaPhieuNhap()
+                        + "','" + pn.getMaNV()
+                        + "','" + pn.getMaNCC()
+                        + "','" + pn.getThoiGianLap()
+                        + "','" + pn.getVAT()
+                        + "','" + pn.getSoMatHang()
+                        + "','" + pn.getTongTien()
+                        + "','" + pn.getTrangThai()
                         + "',1)");
         connectDB.closeConnect();
         return success;
     }
 
-    public boolean delete(PhieuNhap_DTO px) {
+    public boolean delete(PhieuNhap_DTO pn) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE PHIEUNHAP SET TONTAI = 0 WHERE MAPHIEUNHAP ='" + px.getMaPhieuNhap() + "'");
+                .sqlUpdate("UPDATE PHIEUNHAP SET TONTAI = 0 WHERE MAPHIEUNHAP ='" + pn.getMaPhieuNhap() + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public boolean update(PhieuNhap_DTO px) {
+    public boolean update(PhieuNhap_DTO pn) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `phieunhap` SET "
-                        + "`VAT`=" + px.getVAT()
-                        + ",`SOMATHANG` =" + px.getSoMatHang()
-                        + ",`TONGTIEN` =" + px.getTongTien()
-                        + ",`TRANGTHAI` ='" + px.getTrangThai()
-                        + "' WHERE `MAPHIEUNHAP`='" + px.getMaPhieuNhap() + "'");
+                        + "`VAT`=" + pn.getVAT()
+                        + ",`SOMATHANG` =" + pn.getSoMatHang()
+                        + ",`TONGTIEN` =" + pn.getTongTien()
+                        + ",`TRANGTHAI` ='" + pn.getTrangThai()
+                        + "' WHERE `MAPHIEUNHAP`='" + pn.getMaPhieuNhap() + "'");
         connectDB.closeConnect();
         return success;
     }
