@@ -25,7 +25,7 @@ public class PhieuChiDAO {
     public ArrayList<PhieuChi_DTO> ReadPhieuChi() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<PhieuChi_DTO> pcArrayList = new ArrayList<>();
-        String qry = "SELECT * FROM phieuchi WHERE TONTAI = 1";
+        String qry = "SELECT * FROM `phieuchi` WHERE TONTAI = 1";
         ResultSet rSet = null;
 
         try {
@@ -68,9 +68,10 @@ public class PhieuChiDAO {
     }
 
     public boolean delete(PhieuChi_DTO pc) {
+        boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        boolean success = connectDB
-                .sqlUpdate("UPDATE PHIEUCHI SET TONTAI = 0 WHERE MAPHIEUCHI ='" + pc.getMaPhieuChi() + "'");
+        String sql = "UPDATE `phieuchi` SET TONTAI = 0 WHERE `MAPHIEUCHI` = '" + pc.getMaPhieuChi() + "'";
+        success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
     }
@@ -79,39 +80,32 @@ public class PhieuChiDAO {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `phieuchi` SET "
-                        + " `SOTIEN` = " + pc.getSoTien()
-                        + ", `LYDO` = '" + pc.getLyDo()
+                        + " `SOTIEN` = " + pc.getSoTien() + ","
+                        + " `LYDO` = '" + pc.getLyDo()
                         + "' WHERE `MAPHIEUCHI` = '" + pc.getMaPhieuChi() + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public ArrayList<PhieuChi_DTO> searchPhieuChi(String maPhieuChi, int soTien, String maNV,
-            LocalDate thoiGianChi) {
-        ArrayList<PhieuChi_DTO> phieuchi = new ArrayList<>();
+    public ArrayList<PhieuChi_DTO> searchPhieuChi(String maPhieuChi, LocalDate thoiGianChi) {
+        ArrayList<PhieuChi_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
         StringBuilder qry = new StringBuilder("SELECT * FROM `phieuchi` WHERE TONTAI = 1");
 
         if (maPhieuChi != null && !maPhieuChi.isEmpty()) {
             qry.append(" AND `MAPHIEUCHI` =  '" + maPhieuChi + "'");
         }
-        if (soTien > 0) {
-            qry.append(" AND DATE(`SOTIEN`) = '" + soTien + "'");
-        }
-
-        if (maNV != null && !maNV.isEmpty()) {
-            qry.append(" AND DATE(`MANV`) = '" + maNV + "'");
-        }
 
         if (thoiGianChi != null) {
             qry.append(" AND DATE(`THOIGIANCHI`) = '" + thoiGianChi + "'");
         }
+
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
 
         try {
             if (rSet != null) {
                 while (rSet.next()) {
-                    PhieuChi_DTO phieuChi = new PhieuChi_DTO(
+                    PhieuChi_DTO pc = new PhieuChi_DTO(
                             rSet.getString("MAPHIEUCHI"),
                             rSet.getDouble("SOTIEN"),
                             rSet.getString("MANV"),
@@ -119,7 +113,7 @@ public class PhieuChiDAO {
                             rSet.getNString("LYDO"),
                             rSet.getNString("GHICHU"),
                             rSet.getBoolean("TONTAI"));
-                    phieuchi.add(phieuChi);
+                    ds.add(pc);
                 }
 
             }
@@ -127,7 +121,7 @@ public class PhieuChiDAO {
             e.printStackTrace();
         }
 
-        return phieuchi;
+        return ds;
     }
 
 }

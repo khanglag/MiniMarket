@@ -9,19 +9,20 @@ import DTO.ChiTietPhieuXuat_DTO;
 import DTO.NhaCungCap_DTO;
 import DTO.PhanQuyen_DTO;
 import DTO.PhieuChi_DTO;
+import DTO.PhieuNhap_DTO;
 
 public class test {
     public static void main(String[] args) {
-        ChiTietPhieuNhapDAO chiTietPhieuNhapDAO = new ChiTietPhieuNhapDAO();
-        // ChiTietPhieuNhap_DTO pq = new ChiTietPhieuNhap_DTO("0000002","8935162895621","Gạo thơm đặc sản Neptune ST25 túi 5kg",0.08,"Việt Nam",null,15,"túi",120000,120000*5,true);
-        // boolean success = chiTietPhieuNhapDAO.updateCTPN(pq);
-        // System.out.println("Succes" + success);
+        PhieuNhapDAO phieuNhapDAO = new PhieuNhapDAO();
+        PhieuNhap_DTO pq = new PhieuNhap_DTO("0000003","A038645","NCCLADY",LocalDate.now(),0.08,15,15,"da duyet",true);
+        boolean success = phieuNhapDAO.add(pq);
+        System.out.println("Succes" + success);
         // Search
-        ArrayList <ChiTietPhieuNhap_DTO> searchResult = chiTietPhieuNhapDAO.searchCTPN(null,"8935162895621",null,null);
-        System.out.println("Search Result:");
-        for (ChiTietPhieuNhap_DTO product : searchResult) {
-        System.out.println(product);
-        }
+        // ArrayList <PhieuNhap_DTO> searchResult = phieuNhapDAO.searchPhieuNhap(null,null,null,null,"da duyet");
+        // System.out.println("Search Result:");
+        // for (PhieuNhap_DTO product : searchResult) {
+        // System.out.println(product);
+        // }
 
     }
 }
