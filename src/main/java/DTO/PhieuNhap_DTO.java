@@ -16,12 +16,13 @@ public class PhieuNhap_DTO {
     private double VAT;
     private int soMatHang;
     private double tongTien;
+    private String trangThai;
     private boolean tonTai;
 
     public PhieuNhap_DTO() {
     }
 
-    public PhieuNhap_DTO(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, boolean tonTai) {
+    public PhieuNhap_DTO(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, String trangThai, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maNV = maNV;
         this.maNCC = maNCC;
@@ -29,6 +30,7 @@ public class PhieuNhap_DTO {
         this.VAT = VAT;
         this.soMatHang = soMatHang;
         this.tongTien = tongTien;
+        this.trangThai = trangThai;
         this.tonTai = tonTai;
     }
 
@@ -88,6 +90,13 @@ public class PhieuNhap_DTO {
 
     public void setTongTien(double tongTien) {
         this.tongTien = tongTien;
+    }
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
 
     public boolean isTonTai() {
