@@ -24,7 +24,7 @@ public class PhieuKiemHangDAO {
      */
     public ArrayList<PhieuKiemHang_DTO> ReadPhieuKiemHang() {
         ConnectDB connectDB = new ConnectDB();
-        ArrayList<PhieuKiemHang_DTO> pxArrayList = new ArrayList<>();
+        ArrayList<PhieuKiemHang_DTO> pkhArrayList = new ArrayList<>();
         String qry = "SELECT * FROM phieukiemhang WHERE TONTAI = 1";
         ResultSet rSet = null;
 
@@ -32,12 +32,12 @@ public class PhieuKiemHangDAO {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null) {
                 while (rSet.next()) {
-                    PhieuKiemHang_DTO px = new PhieuKiemHang_DTO(
+                    PhieuKiemHang_DTO pkh = new PhieuKiemHang_DTO(
                             rSet.getString("MAPHIEU"),
                             rSet.getString("MANV"),
                             rSet.getDate("THOIGIANKIEMHANG").toLocalDate(),
                             rSet.getBoolean("TONTAI"));
-                    pxArrayList.add(px);
+                    pkhArrayList.add(pkh);
                 }
             }
         } catch (Exception e) {
@@ -45,37 +45,37 @@ public class PhieuKiemHangDAO {
             e.printStackTrace();
         }
         connectDB.closeConnect();
-        return pxArrayList;
+        return pkhArrayList;
     }
 
-    public boolean add(PhieuKiemHang_DTO px) {
+    public boolean add(PhieuKiemHang_DTO pkh) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
                 "INSERT INTO `phieukiemhang`(`MAPHIEU`,`MANV`, `THOIGIANKIEMHANG`, `TONTAI`) VALUES "
-                        + "('" + px.getMaPhieu()
-                        + "','" + px.getMaNV()
-                        + "','" + px.getThoiGianKiemHang()
+                        + "('" + pkh.getMaPhieu()
+                        + "','" + pkh.getMaNV()
+                        + "','" + pkh.getThoiGianKiemHang()
                         + "',1)");
         connectDB.closeConnect();
         return success;
     }
 
-    public boolean delete(PhieuKiemHang_DTO px) {
+    public boolean delete(PhieuKiemHang_DTO pkh) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE PHIEUKIEMHANG SET TONTAI = 0 WHERE MAPHIEU ='" + px.getMaPhieu() + "'");
+                .sqlUpdate("UPDATE PHIEUKIEMHANG SET TONTAI = 0 WHERE MAPHIEU ='" + pkh.getMaPhieu() + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    // public boolean update(PhieuKiemHang_DTO px) {
+    // public boolean update(PhieuKiemHang_DTO pkh) {
     // ConnectDB connectDB = new ConnectDB();
     // boolean success = connectDB
     // .sqlUpdate("UPDATE `phieukiemhang` SET "
-    // + "`SOTIEN`='" + px.getSoTien()
-    // + "','LYDO ='" + px.getLyDo()
-    // + "' WHERE `MAPHIEUCHI`='" + px.getMaPhieuChi() + "'");
+    // + "`SOTIEN`='" + pkh.getSoTien()
+    // + "','LYDO ='" + pkh.getLyDo()
+    // + "' WHERE `MAPHIEUCHI`='" + pkh.getMaPhieuChi() + "'");
     // connectDB.closeConnect();
     // return success;
     // }
