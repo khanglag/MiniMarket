@@ -8,12 +8,12 @@ package GUI.QuanLy;
  *
  * @author acer
  */
-public class QuanLyChiTieu extends javax.swing.JPanel {
+public class QuanLyNhapHang extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLyChiTieu
      */
-    public QuanLyChiTieu() {
+    public QuanLyNhapHang() {
         initComponents();
     }
 
@@ -31,7 +31,7 @@ public class QuanLyChiTieu extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("QUẢN LÝ CHI TIÊU");
+        jLabel2.setText("QUẢN LÝ NHẬP HÀNG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
