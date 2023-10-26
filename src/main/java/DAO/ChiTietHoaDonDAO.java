@@ -58,18 +58,18 @@ public class ChiTietHoaDonDAO {
     public boolean delete(ChiTietHoaDon_DTO ct) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `chitiet_hoadon` SET TONTAI = 0 WHERE `SOHD` = '" + ct.getSoHD() + "' AND `MASP` = '" + ct.getMaSP() + "'";
+        String sql = "UPDATE `chitiet_hoadon` SET TONTAI = 0 WHERE `SOHD` = '" + ct.getSoHD() + "' AND `MASP` = '"
+                + ct.getMaSP() + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
     }
-    
 
     public boolean update(ChiTietHoaDon_DTO ct) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql= "UPDATE `chitiet_hoadon` SET `SOLUONG` = " + ct.getSoLuong() +
-                    " WHERE `SOHD` = '" + ct.getSoHD() + "' AND `MASP` ='" + ct.getMaSP() + "'";
+        String sql = "UPDATE `chitiet_hoadon` SET `SOLUONG` = " + ct.getSoLuong() +
+                " WHERE `SOHD` = '" + ct.getSoHD() + "' AND `MASP` ='" + ct.getMaSP() + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
 
@@ -82,7 +82,7 @@ public class ChiTietHoaDonDAO {
         StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1");
 
         if (soHD >= 0) {
-            qry.append(" AND `SOHD` = " + soHD );
+            qry.append(" AND `SOHD` = " + soHD);
         }
 
         if (maSP != null && !maSP.isEmpty()) {

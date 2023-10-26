@@ -1,7 +1,5 @@
 package DAO;
 
-import DTO.KhachHang_DTO;
-import DTO.NhaCungCap_DTO;
 import DTO.PhieuXuat_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,11 +90,9 @@ public class PhieuXuatDAO {
         if (maNV != null && !maNV.isEmpty()) {
             qry.append(" AND `MANV` LIKE '%" + maNV + "%'");
         }
-        
+
         if (maKH != null && !maKH.isEmpty())
             qry.append(" AND `MAKH` = '" + maKH + "'");
-
-        
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
 

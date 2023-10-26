@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import ConnectDB.ConnectDB;
 import DTO.PhieuChi_DTO;
 import java.sql.ResultSet;
@@ -85,6 +86,7 @@ public class PhieuChiDAO {
         connectDB.closeConnect();
         return success;
     }
+
     public ArrayList<PhieuChi_DTO> searchPhieuChi(String maPhieuChi, LocalDate thoiGianChi) {
         ArrayList<PhieuChi_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -97,7 +99,6 @@ public class PhieuChiDAO {
         if (thoiGianChi != null) {
             qry.append(" AND DATE(`THOIGIANCHI`) = '" + thoiGianChi + "'");
         }
-        
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
 
@@ -114,8 +115,7 @@ public class PhieuChiDAO {
                             rSet.getBoolean("TONTAI"));
                     ds.add(pc);
                 }
-                
-            
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -123,5 +123,5 @@ public class PhieuChiDAO {
 
         return ds;
     }
-    
+
 }

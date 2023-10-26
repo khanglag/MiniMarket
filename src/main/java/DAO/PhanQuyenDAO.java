@@ -3,29 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import ConnectDB.ConnectDB;
 import java.util.ArrayList;
 import DTO.PhanQuyen_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 /**
  *
  * @author Admin
  */
 public class PhanQuyenDAO {
-    public PhanQuyenDAO(){
-        
+    public PhanQuyenDAO() {
+
     }
-    
-    public ArrayList<PhanQuyen_DTO> readBD(){
+
+    public ArrayList<PhanQuyen_DTO> readBD() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<PhanQuyen_DTO> List_pq = new ArrayList<>();
         String qry = "SELECT *FROM `phanquyen` WHERE TONTAI = 1";
         ResultSet rs = null;
-        try{
+        try {
             rs = connectDB.sqlQuery(qry);
-            if(rs !=null){
-                while(rs.next()){
+            if (rs != null) {
+                while (rs.next()) {
                     PhanQuyen_DTO qp = new PhanQuyen_DTO(
                             rs.getNString("MAQUYEN"),
                             rs.getNString("TENQUYEN"),
@@ -33,26 +35,26 @@ public class PhanQuyenDAO {
                     List_pq.add(qp);
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Lỗi truy vấn !!!");
             e.printStackTrace();
         }
         return List_pq;
     }
-    
-    public boolean add(PhanQuyen_DTO pq){
+
+    public boolean add(PhanQuyen_DTO pq) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(""
-         + "INSERT INTO `phanquyen`(`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES ("
+                + "INSERT INTO `phanquyen`(`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES ("
                 + "'" + pq.getMaQuyen() + "',"
                 + "'" + pq.getTenQuyen() + "',"
                 + "'1')");
         connectDB.closeConnect();
         return success;
-                
+
     }
-    
+
     public boolean delete(PhanQuyen_DTO pq) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
@@ -60,7 +62,7 @@ public class PhanQuyenDAO {
         connectDB.closeConnect();
         return success;
     }
-    
+
     public boolean update(PhanQuyen_DTO pq) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
@@ -70,7 +72,7 @@ public class PhanQuyenDAO {
         connectDB.closeConnect();
         return success;
     }
-    
+
     public ArrayList<PhanQuyen_DTO> search(String maQuyen, String tenQuyen) {
         ArrayList<PhanQuyen_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -83,7 +85,6 @@ public class PhanQuyenDAO {
         if (tenQuyen != null && !tenQuyen.isEmpty()) {
             qry.append(" AND `TENQUYEN` LIKE '%" + tenQuyen + "%'");
         }
-     
 
         ResultSet rs = connectDB.sqlQuery(qry.toString());
 
@@ -95,7 +96,7 @@ public class PhanQuyenDAO {
                             rs.getNString("TENQUYEN"),
                             rs.getBoolean("TONTAI"));
                     ds.add(pq);
-                   
+
                 }
             }
         } catch (SQLException e) {
@@ -104,7 +105,5 @@ public class PhanQuyenDAO {
 
         return ds;
     }
-    
-    
-    
+
 }

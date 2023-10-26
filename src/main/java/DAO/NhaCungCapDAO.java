@@ -1,7 +1,5 @@
 package DAO;
 
-import DTO.ChiTietHoaDon_DTO;
-import DTO.HangHoa_DTO;
 import DTO.NhaCungCap_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;

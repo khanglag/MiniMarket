@@ -33,7 +33,7 @@ public class ChiTietPhieuXuatDAO {
                             rSet.getInt("SOLUONGYEUCAU"),
                             rSet.getInt("SOLUONGTHUCXUAT"),
                             rSet.getNString("DONVI"),
-                            rSet.getDouble("DONGIA"),   
+                            rSet.getDouble("DONGIA"),
                             rSet.getDouble("THANHTIEN"),
                             rSet.getBoolean("TONTAI"));
                     chiTietPhieuXuat_DTOs.add(ctpxdto);
@@ -51,7 +51,7 @@ public class ChiTietPhieuXuatDAO {
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(""
                 + "INSERT INTO `chitiet_phieuxuat` (`MAPHIEUXUAT`, `MAHANGXUAT`, `SOLUONGYEUCAU`, `SOLUONGTHUCXUAT` , `DONVI` , `DONGIA` , `THANHTIEN` , `TONTAI`) VALUES ("
-                + "'" + ctpx.getMaPhieuXuat() 
+                + "'" + ctpx.getMaPhieuXuat()
                 + "','" + ctpx.getMaHangXuat()
                 + "'," + ctpx.getSoLuongYC()
                 + "," + ctpx.getSoLuongThucTe()
@@ -66,12 +66,12 @@ public class ChiTietPhieuXuatDAO {
     public boolean delete(ChiTietPhieuXuat_DTO ctpx) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `chitiet_phieuxuat` SET TONTAI = 0 WHERE `MAPHIEUXUAT` = '" + ctpx.getMaPhieuXuat() + "' AND `MAHANGXUAT` = '" + ctpx.getMaHangXuat() + "'";
+        String sql = "UPDATE `chitiet_phieuxuat` SET TONTAI = 0 WHERE `MAPHIEUXUAT` = '" + ctpx.getMaPhieuXuat()
+                + "' AND `MAHANGXUAT` = '" + ctpx.getMaHangXuat() + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
     }
-    
 
     public boolean update(ChiTietPhieuXuat_DTO ctpx) {
         boolean success = false;
@@ -81,7 +81,8 @@ public class ChiTietPhieuXuatDAO {
                 + " `SOLUONGTHUCXUAT` = " + ctpx.getSoLuongThucTe() + ","
                 + " `DONGIA` = " + ctpx.getDonGia() + ","
                 + " `THANHTIEN` = " + ctpx.getThanhTien() + ""
-                + " WHERE `MAPHIEUXUAT` = '" + ctpx.getMaPhieuXuat() + "' AND `MAHANGXUAT` = '" + ctpx.getMaHangXuat() + "'";
+                + " WHERE `MAPHIEUXUAT` = '" + ctpx.getMaPhieuXuat() + "' AND `MAHANGXUAT` = '" + ctpx.getMaHangXuat()
+                + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
@@ -97,7 +98,7 @@ public class ChiTietPhieuXuatDAO {
         }
 
         if (soLuongYC >= 0) {
-            qry.append(" AND `SOLUONGYEUCAU` = " + soLuongYC );
+            qry.append(" AND `SOLUONGYEUCAU` = " + soLuongYC);
         }
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
@@ -111,12 +112,12 @@ public class ChiTietPhieuXuatDAO {
                             rSet.getInt("SOLUONGYEUCAU"),
                             rSet.getInt("SOLUONGTHUCXUAT"),
                             rSet.getNString("DONVI"),
-                            rSet.getDouble("DONGIA"),   
+                            rSet.getDouble("DONGIA"),
                             rSet.getDouble("THANHTIEN"),
                             rSet.getBoolean("TONTAI"));
                     ds.add(ctpxdto);
                 }
-            
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
