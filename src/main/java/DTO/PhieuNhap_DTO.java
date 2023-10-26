@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -22,7 +24,12 @@ public class PhieuNhap_DTO {
     public PhieuNhap_DTO() {
     }
 
+<<<<<<< HEAD
     public PhieuNhap_DTO(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, String trangThai, boolean tonTai) {
+=======
+    public PhieuNhap_DTO(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, double VAT,
+            int soMatHang, double tongTien, String trangThai, boolean tonTai) {
+>>>>>>> main
         this.maPhieuNhap = maPhieuNhap;
         this.maNV = maNV;
         this.maNCC = maNCC;
@@ -66,8 +73,6 @@ public class PhieuNhap_DTO {
         this.thoiGianLap = thoiGianLap;
     }
 
-    
-
     public double getVAT() {
         return VAT;
     }
@@ -99,6 +104,14 @@ public class PhieuNhap_DTO {
         this.trangThai = trangThai;
     }
 
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public boolean isTonTai() {
         return tonTai;
     }
@@ -109,11 +122,9 @@ public class PhieuNhap_DTO {
 
     @Override
     public String toString() {
-        return "PhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maNV=" + maNV + ", maNCC=" + maNCC + ", thoiGianLap=" + thoiGianLap + ", VAT=" + VAT + ", soMatHang=" + soMatHang + ", tongTien=" + tongTien + ", tonTai=" + tonTai + '}';
+        return "PhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maNV=" + maNV + ", maNCC=" + maNCC
+                + ", thoiGianLap=" + thoiGianLap + ", VAT=" + VAT + ", soMatHang=" + soMatHang + ", tongTien="
+                + tongTien + ", trangThai=" + trangThai + ", tonTai=" + tonTai + '}';
     }
 
-    
-    
-    
-    
 }
