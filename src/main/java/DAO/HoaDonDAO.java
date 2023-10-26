@@ -49,7 +49,7 @@ public class HoaDonDAO {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                "INSERT INTO `hoadon`(`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `TONGHD`, `THANHTOAN`, `TIENKHACHDUA`, `TIENKHACHTRA`, `TONTAI`) VALUES "
+                "INSERT INTO `hoadon`(`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `TONGHD`, `THANHTOAN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES "
                         + "('" +hd.getSoHD()
                         + "','" + hd.getMaNV()
                         + "','" + Date.valueOf(hd.getThoiGianLap())

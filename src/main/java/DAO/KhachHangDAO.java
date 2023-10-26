@@ -13,7 +13,7 @@ public class KhachHangDAO {
     public ArrayList<KhachHang_DTO> ReadKhachHang() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<KhachHang_DTO> khArrayList = new ArrayList<>();
-        String qry = "SELECT * FROM khachhang WHERE TONTAI = 1"; 
+        String qry = "SELECT * FROM khachhang"; 
         ResultSet rSet = null;
 
         try {
@@ -72,7 +72,7 @@ public class KhachHangDAO {
     }
     public KhachHang_DTO searchKhachHang(String sdt) {
         KhachHang_DTO khachHang = null;
-        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `SDT`= ? '";
+        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `SDT`="+sdt;
         ConnectDB connectDB = new ConnectDB();
         ResultSet rSet = connectDB.sqlQuery(qry);
         try {
@@ -91,5 +91,26 @@ public class KhachHangDAO {
             e.printStackTrace();
         }
         return khachHang;
+    }
+    public int demKhachHang(){
+        int n=0;
+        ConnectDB connectDB=new ConnectDB();
+        String sql = "SELECT COUNT(*) FROM `khachhang`";
+        ResultSet rSet = connectDB.sqlQuery(sql);
+        try {
+            if(rSet.next()){
+                n=rSet.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        connectDB.closeConnect();
+        return n;
+    }
+//    Kiểm tra khách hàng có tồn tại chưa
+    public boolean ttKhachHang(String sdt){
+        if (searchKhachHang(sdt)==null) {
+            return false;
+        }
+        return true;
     }
 }
