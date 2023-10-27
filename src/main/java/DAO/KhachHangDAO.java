@@ -14,7 +14,6 @@ public class KhachHangDAO {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<KhachHang_DTO> khArrayList = new ArrayList<>();
         String qry = "SELECT * FROM khachhang WHERE TONTAI = 1"; 
-        
         ResultSet rSet = null;
 
         try {
