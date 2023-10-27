@@ -65,7 +65,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         btnDelCustomer = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        btnEditCustomer = new javax.swing.JButton();
         btnFindCustomer = new javax.swing.JButton();
         btnAddCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -113,8 +112,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         jButton17.setText("Clear");
 
-        btnEditCustomer.setText("Sửa");
-
         btnFindCustomer.setText("Tìm kiếm");
 
         btnAddCustomer.setText("Thêm");
@@ -134,8 +131,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(btnDelCustomer)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditCustomer)
-                .addGap(18, 18, 18)
                 .addComponent(btnFindCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(jButton17)
@@ -147,7 +142,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelCustomer)
-                    .addComponent(btnEditCustomer)
                     .addComponent(jButton17)
                     .addComponent(btnFindCustomer)
                     .addComponent(btnAddCustomer))
@@ -236,7 +230,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String numberId = "";
         LocalDate birthday = LocalDate.of(1990, 5, 15);
 
-        KhachHang_DTO khachHangCuoi = danhSachKhachHang.get(soLuongKH - 1);
+        KhachHang_DTO khachHangCuoi = danhSachKhachHang.get(soLuongKH -1);
+        System.out.print("Số "+Integer.parseInt(khachHangCuoi.getMaKH()));
         if (khachHangCuoi == null) {
             return;
         }
@@ -264,13 +259,23 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String numberPhone = txtNumberPhone.getText();
         ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
         int soLuongKH = danhSachKhachHang.size();
+
+        boolean timThay = false; // Sử dụng biến này để kiểm tra xem đã tìm thấy khách hàng hay chưa.
+
         for (int i = 0; i < soLuongKH; i++) {
             KhachHang_DTO khachHang = danhSachKhachHang.get(i);
             if (khachHang.getSdt().equals(numberPhone)) {
                 khd.delete(khachHang);
+                timThay = true; // Đánh dấu là đã tìm thấy khách hàng
                 break;
             }
         }
+
+        if (!timThay) { // Kiểm tra biến timThay để xem có tìm thấy hay không
+            JOptionPane.showMessageDialog(this, "Khách hàng không có trong hệ thống", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         showCustomerInTable();
     }//GEN-LAST:event_btnDelCustomerActionPerformed
 
@@ -298,7 +303,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private javax.swing.JTable TableCustomer;
     private javax.swing.JButton btnAddCustomer;
     private javax.swing.JButton btnDelCustomer;
-    private javax.swing.JButton btnEditCustomer;
     private javax.swing.JButton btnFindCustomer;
     private javax.swing.JButton jButton17;
     private javax.swing.JLabel jLabel13;
