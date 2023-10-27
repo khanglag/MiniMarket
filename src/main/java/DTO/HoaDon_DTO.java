@@ -13,8 +13,7 @@ public class HoaDon_DTO {
     private String maNV;
     private LocalDate thoiGianLap;
     private String maKH;
-    private double tongHD;
-    private double thanhToan;
+    private double thanhTien;
     private double tienKhachDua;
     private double tienTraKhach;
     private boolean tonTai;
@@ -22,13 +21,12 @@ public class HoaDon_DTO {
     public HoaDon_DTO() {
     }
 
-    public HoaDon_DTO(int soHD, String maNV, LocalDate thoiGianLap, String maKH, double tongHD, double thanhToan, double tienKhachDua, double tienTraKhach, boolean tonTai) {
+    public HoaDon_DTO(int soHD, String maNV, LocalDate thoiGianLap, String maKH, double thanhTien, double tienKhachDua, double tienTraKhach, boolean tonTai) {
         this.soHD = soHD;
         this.maNV = maNV;
         this.thoiGianLap = thoiGianLap;
         this.maKH = maKH;
-        this.tongHD = tongHD;
-        this.thanhToan = thanhToan;
+        this.thanhTien = thanhTien;
         this.tienKhachDua = tienKhachDua;
         this.tienTraKhach = tienTraKhach;
         this.tonTai = tonTai;
@@ -58,8 +56,6 @@ public class HoaDon_DTO {
         this.thoiGianLap = thoiGianLap;
     }
 
-    
-
     public String getMaKH() {
         return maKH;
     }
@@ -68,20 +64,12 @@ public class HoaDon_DTO {
         this.maKH = maKH;
     }
 
-    public double getTongHD() {
-        return tongHD;
+    public double getThanhTien() {
+        return thanhTien;
     }
 
-    public void setTongHD(double tongHD) {
-        this.tongHD = tongHD;
-    }
-
-    public double getThanhToan() {
-        return thanhToan;
-    }
-
-    public void setThanhToan(double thanhToan) {
-        this.thanhToan = thanhToan;
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
     }
 
     public double getTienKhachDua() {
@@ -110,9 +98,9 @@ public class HoaDon_DTO {
 
     @Override
     public String toString() {
-        return "HoaDon_DTO{" + "soHD=" + soHD + ", maNV=" + maNV + ", thoiGianLap=" + thoiGianLap + ", maKH=" + maKH + ", tongHD=" + tongHD + ", thanhToan=" + thanhToan + ", tienKhachDua=" + tienKhachDua + ", tienTraKhach=" + tienTraKhach + ", tonTai=" + tonTai + '}';
+        return "HoaDon_DTO{" + "soHD=" + soHD + ", maNV=" + maNV + ", thoiGianLap=" + thoiGianLap + ", maKH=" + maKH + ", thanhTien=" + thanhTien + ", tienKhachDua=" + tienKhachDua + ", tienTraKhach=" + tienTraKhach + ", tonTai=" + tonTai + '}';
     }
-    
+
     
     
 }
