@@ -34,8 +34,7 @@ public class HoaDonDAO {
                             rset.getNString("MAKH"), 
                             rset.getDouble("TIENKHACHDUA"), 
                             rset.getDouble("TIENTRAKHACH"), 
-                            rset.getDouble("CHIETKHAU"), 
-                            rset.getDouble("TONGHD"),
+                            rset.getDouble("THANHTIEN"),
                             rset.getBoolean("TONTAI"));
                      ds.add(hoaDon);
                  }
@@ -54,8 +53,7 @@ public class HoaDonDAO {
                         + "','" + hd.getMaNV()
                         + "','" + Date.valueOf(hd.getThoiGianLap())
                         + "','" + hd.getMaKH()
-                        + "','" + hd.getTongHD() 
-                        + "','" + hd.getThanhToan()
+                        + "','" + hd.getThanhTien()
                         + "','" + hd.getTienKhachDua()
                         + "','" + hd.getTienTraKhach()
                         + "','1')"
@@ -76,8 +74,7 @@ public class HoaDonDAO {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `hoadon` SET "
-                        + "`TONGHD`='" + hoaDon.getTongHD() 
-                        + "',`THANHTOAN`='" + hoaDon.getThanhToan()
+                        + "`THANHTIEN`='" + hoaDon.getThanhTien()
                         + "',`TIENKHACHDUA`='" + hoaDon.getTienKhachDua()
                         + "',`TIENTRAKHACH`='" + hoaDon.getTienTraKhach()
                         + "' WHERE `SOHD`='" + hoaDon.getSoHD() + "'");
@@ -111,8 +108,7 @@ public class HoaDonDAO {
                             rset.getNString("MAKH"), 
                             rset.getDouble("TIENKHACHDUA"), 
                             rset.getDouble("TIENTRAKHACH"), 
-                            rset.getDouble("CHIETKHAU"), 
-                            rset.getDouble("TONGHD"),
+                            rset.getDouble("THANHTIEN"),
                             rset.getBoolean("TONTAI"));
 
                     ds.add(hoadon);
