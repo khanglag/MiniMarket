@@ -9,10 +9,6 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-<<<<<<< Updated upstream
-        KhachHangBus bus=new KhachHangBus();
-        bus.themKhanhHang("Lê Duy Khang", LocalDate.now(), "099999999", "277 Âu Dương Lân", true);
-=======
         ChiTietPhieuXuatBus phieuXuatBus = new ChiTietPhieuXuatBus();
 
         // Đọc danh sách Phiếu Xuất
@@ -92,6 +88,5 @@ public class Test {
         // }
 
 
->>>>>>> Stashed changes
     }
 }
