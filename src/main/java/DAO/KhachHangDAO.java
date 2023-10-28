@@ -52,21 +52,19 @@ public class KhachHangDAO {
         connectDB.closeConnect();
         return success;
     }
-    public boolean delete(KhachHang_DTO khachHang) {
+    public boolean delete(String sdt) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE KHACHHANG SET TONTAI = 0 WHERE MAKH ='" + khachHang.getMaKH() + "'");
+                .sqlUpdate("UPDATE KHACHHANG SET TONTAI = 0 WHERE MAKH ='" + sdt + "'");
         connectDB.closeConnect();
         return success;
     }
-    public boolean update(KhachHang_DTO khachHang) {
+    public boolean update(String sdt, String diaChi) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `khachhang` SET "
-                        + "','TENKH ='" + khachHang.getTenKH()
-                        + "',`SDT`='" + khachHang.getSdt()
-                        + "',`DIACHI`='" + khachHang.getDiaChi()
-                        + "' WHERE `MAKH`='" + khachHang.getMaKH() + "'");
+                        + "',`DIACHI`='" + diaChi
+                        + "' WHERE `SDT`='" + sdt + "'");
         connectDB.closeConnect();
         return success;
     }

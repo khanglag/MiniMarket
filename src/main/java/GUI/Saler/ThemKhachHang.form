@@ -145,12 +145,12 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="Ng&#xe0;y sinh"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title value="&#x110;&#x1ecb;a ch&#x1ec9;"/>
+                  <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
@@ -160,6 +160,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TableCustomerMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

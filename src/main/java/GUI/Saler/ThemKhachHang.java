@@ -29,20 +29,20 @@ public class ThemKhachHang extends javax.swing.JPanel {
      * Creates new form ThemKhachHang
      */
     KhachHangDAO khd = new KhachHangDAO();
-
+     KhachHangBus khb = new KhachHangBus();
     public ThemKhachHang() {
         initComponents();
         createButtonGroup();
         showCustomerInTable();   
-         String dateStr = "13/03/2003";
-
-        // Định dạng của chuỗi ngày
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        // Chuyển đổi chuỗi thành LocalDate
-        LocalDate localDate = LocalDate.parse(dateStr, formatter);
-
-        System.out.println("LocalDate: " + localDate);
+//         String dateStr = "13/03/2003";
+//
+//        // Định dạng của chuỗi ngày
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//
+//        // Chuyển đổi chuỗi thành LocalDate
+//        LocalDate localDate = LocalDate.parse(dateStr, formatter);
+//
+//        System.out.println("LocalDate: " + localDate);
     }
 
     public void showCustomerInTable() {
@@ -165,11 +165,12 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        TableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableCustomerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableCustomer);
-        if (TableCustomer.getColumnModel().getColumnCount() > 0) {
-            TableCustomer.getColumnModel().getColumn(4).setHeaderValue("Ngày sinh");
-            TableCustomer.getColumnModel().getColumn(5).setHeaderValue("Địa chỉ");
-        }
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin khách hàng"));
 
@@ -294,15 +295,13 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
     private void btnAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCustomerMouseClicked
         // TODO add your handling code here:
-
         String hoTen = txtName.getText();
         String soDT = txtNumberPhone.getText();
         String ngaySinh = txtNgaySinh.getText();
         String diaChi = txtDiaChi.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
-        KhachHangBus khb = new KhachHangBus();
-        
+       
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
     }//GEN-LAST:event_btnAddCustomerMouseClicked
@@ -311,6 +310,8 @@ public class ThemKhachHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtName.setText("");
         txtNumberPhone.setText("");
+        txtNgaySinh.setText("");
+        txtDiaChi.setText("");
         showCustomerInTable();
     }//GEN-LAST:event_btnClearActionPerformed
 
@@ -327,8 +328,9 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 String maKH = khachHang.getMaKH();
                 String tenKH = khachHang.getTenKH();
                 String sdt = khachHang.getSdt();
-                System.out.print("Mã KH: " + maKH + " tên KH: " + tenKH + " sđt " + sdt);
-                model.addRow(new Object[]{1, maKH, tenKH, sdt});
+                LocalDate ngaySinh = khachHang.getNgaySinh();
+                String diaChi = khachHang.getDiaChi();
+                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
             }
         }
     }//GEN-LAST:event_btnFindCustomerActionPerformed
@@ -352,7 +354,9 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 String maKH = khachHang.getMaKH();
                 String tenKH = khachHang.getTenKH();
                 String sdt = khachHang.getSdt();
-                model.addRow(new Object[]{i + 1, maKH, tenKH, sdt});
+                LocalDate ngaySinh = khachHang.getNgaySinh();
+                String diaChi = khachHang.getDiaChi();
+                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
             }
         }
         if (chkArrangeZA.isSelected()) {
@@ -361,7 +365,9 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 String maKH = khachHang.getMaKH();
                 String tenKH = khachHang.getTenKH();
                 String sdt = khachHang.getSdt();
-                model.addRow(new Object[]{i + 1, maKH, tenKH, sdt});
+                LocalDate ngaySinh = khachHang.getNgaySinh();
+                String diaChi = khachHang.getDiaChi();
+                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
             }
         }
     }//GEN-LAST:event_btnArrangeMouseClicked
@@ -369,6 +375,30 @@ public class ThemKhachHang extends javax.swing.JPanel {
     private void txtNgaySinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgaySinhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNgaySinhActionPerformed
+
+    private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
+        // TODO add your handling code here:
+         Timeconvert timeConvert = new Timeconvert();
+        if (evt.getClickCount() == 1) { // Đảm bảo rằng đó là một lần click đơn, bạn có thể thay đổi số click cần thiết
+            int selectedRow = TableCustomer.getSelectedRow();
+            if (selectedRow != -1) {
+                String soDT = (String) TableCustomer.getValueAt(selectedRow, 3);
+                ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+                int soLuongKH = danhSachKhachHang.size();
+                for (int i = 0; i < soLuongKH; i++) {
+                    KhachHang_DTO khachHang = danhSachKhachHang.get(i);
+                    if (soDT.equals(khachHang.getSdt())) {
+                        txtName.setText(khachHang.getTenKH());
+                        txtNumberPhone.setText(khachHang.getSdt());
+                        String ngaySinh = timeConvert.convert(khachHang.getNgaySinh());
+                        txtNgaySinh.setText(ngaySinh);
+                        txtDiaChi.setText(khachHang.getDiaChi());
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_TableCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
