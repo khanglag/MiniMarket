@@ -95,7 +95,7 @@ public class HangHoaDAO {
 
         StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
         
-        if (maHH != null && !tenSP.isEmpty()) {
+        if (maHH != null || !maHH.isEmpty()) {
             qry.append(" AND `MASP` LIKE '%" + maHH + "%'");
         }
         if (tenSP != null && !tenSP.isEmpty()) {
