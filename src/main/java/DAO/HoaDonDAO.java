@@ -120,4 +120,18 @@ public class HoaDonDAO {
 
         return ds;
     }
+    public int demSoHoaDon(){
+        int n=0;
+        ConnectDB connectDB=new ConnectDB();
+        String sql = "SELECT COUNT(*) FROM `hoadon`";
+        ResultSet rSet = connectDB.sqlQuery(sql);
+        try {
+            if(rSet.next()){
+                n=rSet.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        connectDB.closeConnect();
+        return n;
+    }
 }

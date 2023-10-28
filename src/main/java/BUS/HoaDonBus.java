@@ -4,10 +4,17 @@
  */
 package BUS;
 
+import DAO.HoaDonDAO;
+
 /**
  *
- * @author khang
+ * @author pc
  */
-public class ThuKhoBUS {
-    
+public class HoaDonBus {
+    public HoaDonBus(){
+    }
+    HoaDonDAO dao =new HoaDonDAO();
+    public int maHoaDonMoi(){
+        return dao.demSoHoaDon()+1;
+    }
 }
