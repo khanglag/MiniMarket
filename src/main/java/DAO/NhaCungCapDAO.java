@@ -72,12 +72,14 @@ public class NhaCungCapDAO {
         return success;
     }
 
-    public ArrayList<NhaCungCap_DTO> searchNCC(String tenNCC, String sdt, String diaChi) {
+    public ArrayList<NhaCungCap_DTO> searchNCC(String maNCC,String tenNCC, String sdt, String diaChi) {
         ArrayList<NhaCungCap_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
         StringBuilder qry = new StringBuilder("SELECT * FROM `nhacungcap` WHERE TONTAI = 1");
-
+        if (maNCC != null && !maNCC.isEmpty()) {
+            qry.append(" AND `MANCC` LIKE '%" + maNCC + "%'");
+        }
         if (tenNCC != null && !tenNCC.isEmpty()) {
             qry.append(" AND `TENNCC` LIKE '%" + tenNCC + "%'");
         }

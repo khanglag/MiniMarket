@@ -63,10 +63,10 @@ public class HangHoaDAO {
         return success;
     }
 
-    public boolean delete(HangHoa_DTO hangHoa) {
+    public boolean delete(String maSP) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `hanghoa` SET TONTAI = 0 WHERE `MASP` = " + hangHoa.getMaSP();
+        String sql = "UPDATE `hanghoa` SET TONTAI = 0 WHERE `MASP` = " + maSP;
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
