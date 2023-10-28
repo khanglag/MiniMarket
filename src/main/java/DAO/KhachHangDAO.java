@@ -55,7 +55,7 @@ public class KhachHangDAO {
     public boolean delete(String sdt) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE KHACHHANG SET TONTAI = 0 WHERE MAKH ='" + sdt + "'");
+                .sqlUpdate("UPDATE KHACHHANG SET TONTAI = 0 WHERE SDT ='" + sdt + "'");
         connectDB.closeConnect();
         return success;
     }
@@ -63,7 +63,7 @@ public class KhachHangDAO {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `khachhang` SET "
-                        + "',`DIACHI`='" + diaChi
+                        + "'`DIACHI`='" + diaChi
                         + "' WHERE `SDT`='" + sdt + "'");
         connectDB.closeConnect();
         return success;
