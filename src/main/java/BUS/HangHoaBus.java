@@ -21,7 +21,13 @@ public class HangHoaBus {
         return dao.ReadHangHoa();
     }
     public int ktSoLuong(String maHang){
-        ds= dao.searchHangHoa(maHang, null, 0, null);
+        ds= dao.searchHangHoa(null, maHang, 0, null);
         return ds.get(0).getSoLuong();
+    }
+    public ArrayList<HangHoa_DTO> timHangHoa(String tenSP, String maNH, double giaBan, String xuatXu){
+        return dao.searchHangHoa(tenSP, maNH, giaBan, xuatXu);
+    }
+    public boolean xoaHangHoa(String maHH){
+        return dao.delete(maHH);
     }
 }
