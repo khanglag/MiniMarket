@@ -12,7 +12,7 @@ import java.time.LocalDate;
  */
 public class Test {
     public static void main(String[] args) {
-        KhachHangBus bus=new KhachHangBus();
-        bus.themKhanhHang("Lê Duy Khang", LocalDate.now(), "0974332227", "277 Âu Dương Lân", true);
+        HangHoaBus bus =new HangHoaBus();
+        bus.timHangHoa("", null, null, 0, null);
     }
 }
