@@ -101,5 +101,5 @@ public class HoaDon_DTO {
         return "HoaDon_DTO{" + "soHD=" + soHD + ", maNV=" + maNV + ", thoiGianLap=" + thoiGianLap + ", maKH=" + maKH + ", thanhTien=" + thanhTien + ", tienKhachDua=" + tienKhachDua + ", tienTraKhach=" + tienTraKhach + ", tonTai=" + tonTai + '}';
     }
 
-   
+
 }
