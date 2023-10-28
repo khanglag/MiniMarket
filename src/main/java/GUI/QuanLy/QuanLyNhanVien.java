@@ -49,10 +49,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
@@ -141,8 +139,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 
         jLabel30.setText("Ngày nghỉ");
 
-        jLabel31.setText("Hệ số lương");
-
         jLabel33.setText("Mã quyền");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -159,12 +155,10 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
-                            .addComponent(jLabel31)
                             .addComponent(jLabel33))
-                        .addGap(34, 34, 34)
+                        .addGap(45, 45, 45)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField3)
-                            .addComponent(jTextField10)
                             .addComponent(jTextField12))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -179,11 +173,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -380,7 +370,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
@@ -395,7 +384,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
