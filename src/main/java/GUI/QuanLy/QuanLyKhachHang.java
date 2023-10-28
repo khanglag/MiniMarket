@@ -6,7 +6,9 @@ package GUI.QuanLy;
 
 import DAO.KhachHangDAO;
 import DTO.KhachHang_DTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,11 +21,13 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
      * Creates new form QuanLyKhachHang
      */
     KhachHangDAO khd = new KhachHangDAO();
+
     public QuanLyKhachHang() {
         initComponents();
         showCustomerInTable();
     }
-     public void showCustomerInTable() {
+
+    public void showCustomerInTable() {
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
 
@@ -36,15 +40,16 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             String sdt = khachHang.getSdt();
             boolean tonTai = khachHang.isTonTai();
             String tinhTrang;
-            if(tonTai){
+            if (tonTai) {
                 tinhTrang = "Còn hoạt động";
-            }else{
+            } else {
                 tinhTrang = "Đã xóa";
             }
-            model.addRow(new Object[]{i + 1, maKH, tenKH, sdt,tinhTrang});
-           
+            model.addRow(new Object[]{i + 1, maKH, tenKH, sdt, tinhTrang});
+
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,18 +63,15 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TableCustomer = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jButton16 = new javax.swing.JButton();
+        btnDelCustomer = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
+        btnFindCustomer = new javax.swing.JButton();
+        btnAddCustomer = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtNumberPhone = new javax.swing.JTextField();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -92,22 +94,30 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        TableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableCustomerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableCustomer);
 
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton16.setText("Xóa");
+        btnDelCustomer.setText("Xóa");
+        btnDelCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelCustomerActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("Clear");
 
-        jButton18.setText("Sửa");
+        btnFindCustomer.setText("Tìm kiếm");
 
-        jButton19.setText("Tìm kiếm");
-
-        jButton20.setText("Thêm");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        btnAddCustomer.setText("Thêm");
+        btnAddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                btnAddCustomerActionPerformed(evt);
             }
         });
 
@@ -117,13 +127,11 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton20)
+                .addComponent(btnAddCustomer)
                 .addGap(18, 18, 18)
-                .addComponent(jButton16)
+                .addComponent(btnDelCustomer)
                 .addGap(18, 18, 18)
-                .addComponent(jButton18)
-                .addGap(18, 18, 18)
-                .addComponent(jButton19)
+                .addComponent(btnFindCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(jButton17)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -133,17 +141,14 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton16)
-                    .addComponent(jButton18)
+                    .addComponent(btnDelCustomer)
                     .addComponent(jButton17)
-                    .addComponent(jButton19)
-                    .addComponent(jButton20))
+                    .addComponent(btnFindCustomer)
+                    .addComponent(btnAddCustomer))
                 .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin khách hàng"));
-
-        jLabel4.setText("Mã khách hàng");
 
         jLabel5.setText("Họ tên");
 
@@ -156,33 +161,26 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel13))
-                .addGap(48, 48, 48)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                        .addComponent(jTextField4)))
+                    .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84))
+                    .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -207,33 +205,113 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
         );
 
         jPanel2.getAccessibleContext().setAccessibleName("Thông tin khác hàng");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+        int soLuongKH = danhSachKhachHang.size();
+        String name = txtName.getText();
+        String numberPhone = txtNumberPhone.getText();
+        if (name.isEmpty() || numberPhone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa điền đủ thông tin!", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return; // Không thêm khách hàng nếu thông tin không đủ
+        }
+        for (int i = 0; i < soLuongKH; i++) {
+            KhachHang_DTO kh = danhSachKhachHang.get(i);
+            if (numberPhone.equals(kh.getSdt())) {
+                JOptionPane.showMessageDialog(this, "Số điện thoại đã được sử dụng", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                return; // Không thêm khách hàng nếu trùng sđt
+            }
+        }
+        String numberId = "";
+        LocalDate birthday = LocalDate.of(1990, 5, 15);
+
+        KhachHang_DTO khachHangCuoi = danhSachKhachHang.get(soLuongKH -1);
+        System.out.print("Số "+Integer.parseInt(khachHangCuoi.getMaKH()));
+        if (khachHangCuoi == null) {
+            return;
+        }
+        int maKHInt = Integer.parseInt(khachHangCuoi.getMaKH());
+        if (maKHInt < 9) {
+            numberId = "000000" + (maKHInt + 1);
+        } else if (maKHInt >= 9 && maKHInt < 99) {
+            numberId = "00000" + (maKHInt + 1);
+        } else if (maKHInt >= 99 && maKHInt < 999) {
+            numberId = "0000" + (maKHInt + 1);
+        } else if (maKHInt >= 999 && maKHInt < 9999) {
+            numberId = "000" + (maKHInt + 1);
+        } else if (maKHInt >= 9999 && maKHInt < 99999) {
+            numberId = "00" + (maKHInt + 1);
+        } else if (maKHInt >= 99999 && maKHInt < 999999) {
+            numberId = "0" + (maKHInt + 1);
+        }
+        KhachHang_DTO newKH = new KhachHang_DTO(numberId, name, birthday, numberPhone, null, true);
+
+        khd.add(newKH);
+        showCustomerInTable();
+    }//GEN-LAST:event_btnAddCustomerActionPerformed
+
+    private void btnDelCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelCustomerActionPerformed
+        String numberPhone = txtNumberPhone.getText();
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+        int soLuongKH = danhSachKhachHang.size();
+
+        boolean timThay = false; // Sử dụng biến này để kiểm tra xem đã tìm thấy khách hàng hay chưa.
+
+        for (int i = 0; i < soLuongKH; i++) {
+            KhachHang_DTO khachHang = danhSachKhachHang.get(i);
+            if (khachHang.getSdt().equals(numberPhone)) {
+                khd.delete(khachHang);
+                timThay = true; // Đánh dấu là đã tìm thấy khách hàng
+                break;
+            }
+        }
+
+        if (!timThay) { // Kiểm tra biến timThay để xem có tìm thấy hay không
+            JOptionPane.showMessageDialog(this, "Khách hàng không có trong hệ thống", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        showCustomerInTable();
+    }//GEN-LAST:event_btnDelCustomerActionPerformed
+
+    private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
+        if (evt.getClickCount() == 1) { // Đảm bảo rằng đó là một lần click đơn, bạn có thể thay đổi số click cần thiết
+            int selectedRow = TableCustomer.getSelectedRow();
+            if (selectedRow != -1) {
+                String soDT = (String) TableCustomer.getValueAt(selectedRow, 3);
+                ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+                int soLuongKH = danhSachKhachHang.size();
+                for (int i = 0; i < soLuongKH; i++) {
+                    KhachHang_DTO khachHang = danhSachKhachHang.get(i);
+                    if (soDT.equals(khachHang.getSdt())) {
+                        txtName.setText(khachHang.getTenKH());
+                        txtNumberPhone.setText(khachHang.getSdt());
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_TableCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableCustomer;
-    private javax.swing.JButton jButton16;
+    private javax.swing.JButton btnAddCustomer;
+    private javax.swing.JButton btnDelCustomer;
+    private javax.swing.JButton btnFindCustomer;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNumberPhone;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,7 @@ package Controller;
 import BEAN.DanhMucBean;
 import GUI.ThuKho.PhieuNhapHang;
 import GUI.ThuKho.PhieuXuatHang;
-import GUI.ThuKho.QuanLyNhapHang;
+import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;
 import GUI.ThuKho.TrangChu;
 import java.awt.BorderLayout;
@@ -76,7 +76,7 @@ public class ThuKhoController {
                     System.out.println("PNH");
                     break;
                 case "QuanLyPhieuNhap":
-                    node = new QuanLyNhapHang();
+                    node = new QuanLyPhieuNhap();
                     break;
                 case "PhieuXuatHang":
                     node = new PhieuXuatHang();

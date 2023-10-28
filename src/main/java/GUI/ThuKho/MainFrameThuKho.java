@@ -24,7 +24,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         initComponents();
         jpnView.setLayout(new BorderLayout());
-        jpnView.add(new QuanLyNhapHang());
+        jpnView.add(new QuanLyPhieuNhap());
         TrinhDieuKhien();
         
 
@@ -36,7 +36,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         
         List<DanhMucBean> listItem = new ArrayList<>();
         //listItem.add(new DanhMucBean("TrangChinh",jpnTrangChu,jlbTrangChu));
-        listItem.add(new DanhMucBean("PhieuNhapHang",panelPhieuNhap,jLabelPhieuNhap));
+        //listItem.add(new DanhMucBean("PhieuNhapHang",panelPhieuNhap,jLabelPhieuNhap));
         listItem.add(new DanhMucBean("QuanLyPhieuNhap",panelQuanLyPhieuNhap,jLabelQuanLyPhieuNhap));
         listItem.add(new DanhMucBean("PhieuXuatHang",panelPhieuXuat,jLabelPhieuXuat));
         listItem.add(new DanhMucBean("QuanLyPhieuXuat",panelQuanLyPhieuXuat,jLabelQuanLyPhieuXuat));
@@ -69,8 +69,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         jLabelPhieuXuat = new javax.swing.JLabel();
         panelQuanLyPhieuXuat = new javax.swing.JPanel();
         jLabelQuanLyPhieuXuat = new javax.swing.JLabel();
-        panelPhieuNhap = new javax.swing.JPanel();
-        jLabelPhieuNhap = new javax.swing.JLabel();
         panelQuanLyPhieuNhap = new javax.swing.JPanel();
         jLabelQuanLyPhieuNhap = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
@@ -190,25 +188,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelPhieuNhap.setText("Phiếu nhập");
-
-        javax.swing.GroupLayout panelPhieuNhapLayout = new javax.swing.GroupLayout(panelPhieuNhap);
-        panelPhieuNhap.setLayout(panelPhieuNhapLayout);
-        panelPhieuNhapLayout.setHorizontalGroup(
-            panelPhieuNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPhieuNhapLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelPhieuNhapLayout.setVerticalGroup(
-            panelPhieuNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPhieuNhapLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         jLabelQuanLyPhieuNhap.setText("Quản lý phiếu nhập");
 
         javax.swing.GroupLayout panelQuanLyPhieuNhapLayout = new javax.swing.GroupLayout(panelQuanLyPhieuNhap);
@@ -233,24 +212,23 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelQuanLyPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelQuanLyPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelQuanLyPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(panelQuanLyPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(panelPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelQuanLyPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelQuanLyPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 83, Short.MAX_VALUE))
+                .addGap(0, 143, Short.MAX_VALUE))
         );
 
         jScrollPane10.setViewportView(panelMenu);
@@ -290,7 +268,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +335,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelDoiMatKhau;
     private javax.swing.JLabel jLabelLogout;
-    private javax.swing.JLabel jLabelPhieuNhap;
     private javax.swing.JLabel jLabelPhieuXuat;
     private javax.swing.JLabel jLabelQuanLyPhieuNhap;
     private javax.swing.JLabel jLabelQuanLyPhieuXuat;
@@ -370,7 +347,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogout;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelMenuI;
-    private javax.swing.JPanel panelPhieuNhap;
     private javax.swing.JPanel panelPhieuXuat;
     private javax.swing.JPanel panelQuanLyPhieuNhap;
     private javax.swing.JPanel panelQuanLyPhieuXuat;

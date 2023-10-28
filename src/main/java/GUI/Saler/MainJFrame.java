@@ -426,6 +426,7 @@ public class MainJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -436,10 +437,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelThongTinNhanVien;
-    private javax.swing.JLabel LabelThongTinNhanVien1;
-    private javax.swing.JPanel PanelThongTinNhanVien;
-    private javax.swing.JPanel PanelThongTinNhanVien1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -453,8 +450,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelsp;
     private javax.swing.JPanel paneltkh;
     private javax.swing.JPanel panelttcn;
-    private javax.swing.JPanel sideBar;
-    private javax.swing.JPanel sideBar1;
     private javax.swing.JPanel sideBar2;
     private javax.swing.JPanel title;
     // End of variables declaration//GEN-END:variables
