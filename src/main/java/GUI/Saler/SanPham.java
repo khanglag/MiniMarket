@@ -114,6 +114,11 @@ public class SanPham extends javax.swing.JPanel {
                 BtnArrangeMouseClicked(evt);
             }
         });
+        BtnArrange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnArrangeActionPerformed(evt);
+            }
+        });
 
         ChkArrangeByName.setText("Theo tên");
         ChkArrangeByName.addActionListener(new java.awt.event.ActionListener() {
@@ -320,6 +325,10 @@ public class SanPham extends javax.swing.JPanel {
     private void btnOffFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOffFindActionPerformed
        showProductsInTable();
     }//GEN-LAST:event_btnOffFindActionPerformed
+
+    private void BtnArrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnArrangeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnArrangeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
