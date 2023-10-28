@@ -5,6 +5,9 @@
 package BUS;
 
 import DAO.HoaDonDAO;
+import DTO.HangHoa_DTO;
+import static Handle.Convert.convertMa;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +17,7 @@ public class HoaDonBus {
     public HoaDonBus(){
     }
     HoaDonDAO dao =new HoaDonDAO();
-    public int maHoaDonMoi(){
-        return dao.demSoHoaDon()+1;
+    public String maHoaDonMoi(){
+        return convertMa(dao.demSoHoaDon()+1);
     }
 }
