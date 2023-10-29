@@ -63,7 +63,7 @@ public class KhachHangDAO {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `khachhang` SET "
-                        + "'`DIACHI`='" + diaChi
+                        + "`DIACHI`='" + diaChi
                         + "' WHERE `SDT`='" + sdt + "'");
         connectDB.closeConnect();
         return success;
