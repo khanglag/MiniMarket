@@ -20,32 +20,6 @@ public class HangHoa extends JDialog {
     public HangHoa_DTO getSelectedHangHoa(){
         return chonHangHoa;
     }
-//    private String maSp,tenSp,donVi;
-//    private String giaBan;
-//    public void setDonVi(String donVi){
-//        this.donVi = donVi;
-//    }
-//    public String getDonVi(){
-//        return donVi;
-//    }
-//    public void setGiaBan(String giaBan){
-//        this.giaBan = giaBan;
-//    }
-//    public String getGiaBan(){
-//        return giaBan;
-//    }
-//    public void setMaSp(String maSp) {
-//        this.maSp = maSp;
-//    }
-//     public String getMaSp() {
-//        return maSp;
-//    }
-//     public void setTenSp(String tenSp) {
-//        this.tenSp = tenSp;
-//    }
-//     public String getTenSp() {
-//        return tenSp;
-//    }
 
     /**
      * Creates new form HangHoa
@@ -239,16 +213,9 @@ public class HangHoa extends JDialog {
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
         // TODO add your handling code here:
-//        System.out.println(getMaSp());
-//        System.out.println(getTenSp());
-//        System.out.println(getDonVi());
-//        System.out.println(getGiaBan());
+
         int i = jTableHangHoa.getSelectedRow();
         if (i >= 0) {
-//            setMaSp(jTableHangHoa.getModel().getValueAt(i, 0).toString());
-//            setTenSp(jTableHangHoa.getModel().getValueAt(i, 1).toString());
-//            setGiaBan(jTableHangHoa.getModel().getValueAt(i, 3).toString());
-//            setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
             String masp = jTableHangHoa.getModel().getValueAt(i, 0).toString();
             String tensp = jTableHangHoa.getModel().getValueAt(i, 1).toString();
             String donvi = jTableHangHoa.getModel().getValueAt(i, 5).toString();
@@ -260,19 +227,7 @@ public class HangHoa extends JDialog {
     }//GEN-LAST:event_btnChonActionPerformed
 
     private void jTableHangHoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHangHoaMouseClicked
-        // TODO add your handling code here:
-//        int i = jTableHangHoa.getSelectedRow();
-//        if (i >= 0) {
-////            setMaSp(jTableHangHoa.getModel().getValueAt(i, 0).toString());
-////            setTenSp(jTableHangHoa.getModel().getValueAt(i, 1).toString());
-////            setGiaBan(jTableHangHoa.getModel().getValueAt(i, 3).toString());
-////            setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
-//            chonHangHoa.setMaSP(jTableHangHoa.getModel().getValueAt(i, 0).toString());
-//            chonHangHoa.setTenSP(jTableHangHoa.getModel().getValueAt(i, 1).toString());
-//            chonHangHoa.setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
-//            chonHangHoa.setGiaBan(Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 3).toString()));
-//        }
-        
+
     }//GEN-LAST:event_jTableHangHoaMouseClicked
 
     /**

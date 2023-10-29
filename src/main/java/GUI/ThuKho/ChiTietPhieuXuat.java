@@ -5,11 +5,13 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
+import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,13 +24,39 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
      * Creates new form ChiTietPhieuXuat
      */
     ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
+    PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
+    double thanhtien = 0;
     
-    public ChiTietPhieuXuat() {
+    public ChiTietPhieuXuat(String mapx) {
         initComponents();
+        jtfMaPhieuXuat.setText(mapx);
     }
+    
+    public void LoadData(){
+        model = (DefaultTableModel) jTablePhieuXuatHang.getModel();
+        model.setRowCount(0);
+        
+        int i = 0;
+        while (i <= list.size() - 1) {
+            ChiTietPhieuXuat_DTO px = list.get(i);
+            model.addRow(new Object[] {
+                    ++i, px.getMaPhieuXuat(),px.getMaHangXuat(),px.getSoLuongYC(),px.getSoLuongThucTe(),px.getDonVi(),px.getDonGia(),px.getThanhTien()
+            });
+            thanhtien+=px.getThanhTien();
+            jTablePhieuXuatHang.setModel(model);
 
+        }
+        model.addRow(new Object[] {
+                    null,null,null,null, null,null,null,null
+            });
+        jTablePhieuXuatHang.setModel(model);
+         model.addRow(new Object[] {
+                    null,null,null,null, null,null,"Tổng tiền: ",thanhtien
+            });
+         jTablePhieuXuatHang.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,6 +122,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
 
         jPanel4.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
+
+        jtfMaPhieuXuat.setEditable(false);
         jPanel4.add(jtfMaPhieuXuat);
 
         btnChonMaHang.setText("chọn");
@@ -102,6 +132,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 btnChonMaHangActionPerformed(evt);
             }
         });
+
+        jtfMaHang.setEditable(false);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -123,6 +155,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         );
 
         jPanel4.add(jPanel9);
+
+        jtfTenHang.setEditable(false);
         jPanel4.add(jtfTenHang);
         jPanel4.add(jtfSoLuongYeuCau);
         jPanel4.add(jtfSoLuongThucXuat);
@@ -140,8 +174,14 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         jPanel7.setPreferredSize(new java.awt.Dimension(215, 130));
         jPanel7.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
+
+        jtfDonViTinh.setEditable(false);
         jPanel7.add(jtfDonViTinh);
+
+        jtfDonGia.setEditable(false);
         jPanel7.add(jtfDonGia);
+
+        jtfThanhTien.setEditable(false);
         jPanel7.add(jtfThanhTien);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -166,11 +206,10 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 7, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -282,6 +321,11 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         });
 
         btnXuatHang.setText("Xuất hàng");
+        btnXuatHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,7 +342,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 662, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(12, 12, 12)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
@@ -326,18 +370,90 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+         //JOptionPane.showMessageDialog(null,  "Vui lòng nhập đầy đủ thông tin !");
+        boolean flag = false;
+        for(ChiTietPhieuXuat_DTO ctpx : list){
+            if(ctpx.getMaHangXuat().equals(jtfMaHang.getText())){
+                flag = true;
+            }        
+        }
+        if(jtfSoLuongYeuCau.getText().equals("") || jtfSoLuongThucXuat.equals("")  || jtfMaHang.equals("") ){
+            JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
+        }else if(flag){             
+            JOptionPane.showMessageDialog(this,  "Mã hàng đã được chọn, vui lòng chọn mã khác!");
+        }else{
+            double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
+            jtfThanhTien.setText(Double.toString(a));
+            String maPx = jtfMaPhieuXuat.getText();
+            String maHx = jtfMaHang.getText();
+            int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
+            int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
+            String donViTinh = jtfDonViTinh.getText();
+            double donGia = Double.parseDouble(jtfDonGia.getText());
+            double thanhTien = Double.parseDouble(jtfThanhTien.getText());
+            ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
+            list.add(ctpx);
+            LoadData();
+        }
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:int i = jTablePhieuXuatHang.getSelectedRow();
+        int i = jTablePhieuXuatHang.getSelectedRow();
+        int index=-1;
+        if(i>=0){
+            for(int j = 0;j<list.size();j++){
+                ChiTietPhieuXuat_DTO ctpx = list.get(j);
+                if(ctpx.getMaHangXuat().equals(jTablePhieuXuatHang
+                    .getModel().getValueAt(i, 2).toString())){
+                    index = i;
+                }
+            }
+        }
+        if(index>=0 ){
+            double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
+        jtfThanhTien.setText(Double.toString(a));
+        String maPx = jtfMaPhieuXuat.getText();
+        String maHx = jtfMaHang.getText();
+        int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
+        int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
+        String donViTinh = jtfDonViTinh.getText();
+        double donGia = Double.parseDouble(jtfDonGia.getText());
+        double thanhTien = Double.parseDouble(jtfThanhTien.getText());
+        ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
+        System.out.println(list.get(i));
+        list.set(index,ctpx);
+        }
+        
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        int i = jTablePhieuXuatHang.getSelectedRow();
+        if(i>=0){
+            for(ChiTietPhieuXuat_DTO ctpx : list){
+                if(ctpx.getMaHangXuat().equals(jTablePhieuXuatHang
+                    .getModel().getValueAt(i, 2).toString())){
+                    if(list.remove(ctpx)){
+                        JOptionPane.showMessageDialog(this,  "Đã xoá!");
+                    }else{
+                        JOptionPane.showMessageDialog(this,  "Lỗi !");
+                    }
+                }
+            }
+        }
+        if(list.isEmpty()){
+            model.setRowCount(0);
+        }
+        LoadData();
+        
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
+        LoadData();
+        
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
@@ -387,41 +503,59 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         System.out.println("Da in");
     }//GEN-LAST:event_btnChonMaHangActionPerformed
 
+    private void btnXuatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHangActionPerformed
+        // TODO add your handling code here:
+        boolean flag = false;
+        for(ChiTietPhieuXuat_DTO ctpx : list){
+            if(chitiet.themChiTietPhieuXuat(ctpx)){
+                flag = true;
+            }else{
+                flag = false;
+            }
+               
+        }
+        if(flag){
+            phieuXuatBus.suaPhieuXuat(jtfMaPhieuXuat.getText(), thanhtien);
+        }
+        
+        
+    }//GEN-LAST:event_btnXuatHangActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChiTietPhieuXuat().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ChiTietPhieuXuat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ChiTietPhieuXuat().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonMaHang;
