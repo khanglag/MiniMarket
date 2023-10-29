@@ -63,10 +63,10 @@ public class HangHoaDAO {
         return success;
     }
 
-    public boolean delete(HangHoa_DTO hangHoa) {
+    public boolean delete(String maSP) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `hanghoa` SET TONTAI = 0 WHERE `MASP` = " + hangHoa.getMaSP();
+        String sql = "UPDATE `hanghoa` SET TONTAI = 0 WHERE `MASP` = " + maSP;
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
         return success;
@@ -89,12 +89,15 @@ public class HangHoaDAO {
         return success;
     }
 
-    public ArrayList<HangHoa_DTO> searchHangHoa(String tenSP, String maNH, double giaBan, String xuatXu) {
+    public ArrayList<HangHoa_DTO> searchHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu) {
         ArrayList<HangHoa_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
         StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
-
+        
+        if (maHH != null || !maHH.isEmpty()) {
+            qry.append(" AND `MASP` LIKE '%" + maHH + "%'");
+        }
         if (tenSP != null && !tenSP.isEmpty()) {
             qry.append(" AND `TENSP` LIKE '%" + tenSP + "%'");
         }

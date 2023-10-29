@@ -2,6 +2,7 @@ package DAO;
 
 import ConnectDB.ConnectDB;
 import DTO.NhanVien_DTO;
+import com.sun.net.httpserver.Authenticator;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -17,16 +18,16 @@ public class NhanVienDAO {
             if (rset != null) {
                 while (rset.next()) {
                     NhanVien_DTO nhanvien = new NhanVien_DTO(
-                    rset.getString("MANV"),
-                    rset.getNString("TENNV"),
-                    rset.getDate("NGAYSINH").toLocalDate(),
-                    rset.getNString("GIOITINH"),
-                    rset.getString("CCCD"),
-                    rset.getString("SDT"),
-                    rset.getString("EMAIL"),
-                    rset.getNString("DIACHI"),
-                    rset.getString("MAQUYEN"),
-                    rset.getBoolean("TONTAI"));                           
+                            rset.getString("MANV"),
+                            rset.getNString("TENNV"),
+                            rset.getDate("NGAYSINH").toLocalDate(),
+                            rset.getNString("GIOITINH"),
+                            rset.getString("CCCD"),
+                            rset.getString("SDT"),
+                            rset.getString("EMAIL"),
+                            rset.getNString("DIACHI"),
+                            rset.getString("MAQUYEN"),
+                            rset.getBoolean("TONTAI"));
                     nvArrayList.add(nhanvien);
                 }
             }
@@ -43,41 +44,55 @@ public class NhanVienDAO {
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
                 "INSERT INTO `nhanvien`(`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `TONTAI`) VALUES "
-                        + "('" + nv.getMaNV() 
+                        + "('" + nv.getMaNV()
                         + "','" + nv.getTenNV()
                         + "','" + Date.valueOf(nv.getNgaySinh())
                         + "','" + nv.getGioiTinh()
                         + "','" + nv.getCccd()
-                        + "','" + nv.getSdt() 
-                        + "','" + nv.getEmail() 
-                        + "','" + nv.getDiaChi() 
+                        + "','" + nv.getSdt()
+                        + "','" + nv.getEmail()
+                        + "','" + nv.getDiaChi()
                         + "','" + nv.getMaQuyen()
-                        + "','1')"
-        );
-        connectDB.closeConnect();
-        return success;
-    }
-    
-
-    public boolean delete(NhanVien_DTO nhanVien) {
-        ConnectDB connectDB = new ConnectDB();
-        boolean success = connectDB
-                .sqlUpdate("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANV ='" + nhanVien.getMaNV() + "'");
+                        + "','1')");
         connectDB.closeConnect();
         return success;
     }
 
-
-    public boolean update(NhanVien_DTO nhanVien) {
+    public boolean delete(String maNV) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `nhanvien` SET "
-                        + "`TENNV`='" + nhanVien.getTenNV() 
-                        + "',`NGAYSINH`='" + Date.valueOf(nhanVien.getNgaySinh())
-                        + "',`SDT`='" + nhanVien.getSdt()
-                        + "',`EMAIL`='" + nhanVien.getEmail()
-                        + "',`DIACHI`='" + nhanVien.getDiaChi()
-                        + "' WHERE `MANV`='" + nhanVien.getMaNV() + "'");
+                .sqlUpdate("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANV ='" + maNV + "'");
+        connectDB.closeConnect();
+        return success;
+    }
+
+    public boolean update(String maNV, String sdt, String diaChi, String maPQ, String email) {
+        ConnectDB connectDB = new ConnectDB();
+        StringBuilder qry = new StringBuilder("UPDATE `nhanvien` SET");
+
+        if (sdt != null && !sdt.isEmpty()) {
+            qry.append(" `SDT` = '").append(sdt).append("',");
+        }
+
+        if (email != null && !email.isEmpty()) {
+            qry.append(" `EMAIL` = '").append(email).append("',");
+        }
+
+        if (diaChi != null && !diaChi.isEmpty()) {
+            qry.append(" `DIACHI` = '").append(diaChi).append("',");
+        }
+
+        if (maPQ != null && !maPQ.isEmpty()) {
+            qry.append(" `MAPQ` = '").append(maPQ).append("',");
+        }
+
+        // Loại bỏ dấu phẩy cuối cùng
+        qry.setLength(qry.length() - 1);
+
+        qry.append(" WHERE `MANV` = '").append(maNV).append("'");
+
+        String queryString = qry.toString();
+        boolean success=connectDB.sqlUpdate(queryString);
         connectDB.closeConnect();
         return success;
     }
@@ -87,44 +102,43 @@ public class NhanVienDAO {
         ConnectDB connectDB = new ConnectDB();
 
         StringBuilder qry = new StringBuilder("SELECT * FROM `nhanvien` WHERE TONTAI = 1");
-    
+
         if (maNV != null && !maNV.isEmpty()) {
             qry.append(" AND `MANV` = '").append(maNV).append("'");
         }
-    
+
         if (tenNV != null && !tenNV.isEmpty()) {
             qry.append(" AND `TENNV` LIKE '%").append(tenNV).append("%'");
         }
-    
+
         if (maQuyen != null && !maQuyen.isEmpty()) {
             qry.append(" AND `MAQUYEN` = '").append(maQuyen).append("'");
         }
-    
+
         ResultSet rset = connectDB.sqlQuery(qry.toString());
-    
+
         try {
             if (rset != null) {
                 while (rset.next()) {
                     NhanVien_DTO nhanVien = new NhanVien_DTO(
-                        rset.getString("MANV"),
-                        rset.getNString("TENNV"),
-                        rset.getDate("NGAYSINH").toLocalDate(),
-                        rset.getNString("GIOITINH"),
-                        rset.getString("CCCD"),
-                        rset.getString("SDT"),
-                        rset.getString("EMAIL"),
-                        rset.getNString("DIACHI"),
-                        rset.getString("MAQUYEN"),
-                        rset.getBoolean("TONTAI")
-                    );
+                            rset.getString("MANV"),
+                            rset.getNString("TENNV"),
+                            rset.getDate("NGAYSINH").toLocalDate(),
+                            rset.getNString("GIOITINH"),
+                            rset.getString("CCCD"),
+                            rset.getString("SDT"),
+                            rset.getString("EMAIL"),
+                            rset.getNString("DIACHI"),
+                            rset.getString("MAQUYEN"),
+                            rset.getBoolean("TONTAI"));
                     ds.add(nhanVien);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
+
         return ds;
     }
-    
+
 }

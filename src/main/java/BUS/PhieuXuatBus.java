@@ -24,16 +24,17 @@ public class PhieuXuatBus {
         }
     }
 
-    public boolean themPhieuXuat(String maNV, String maKH, double tongTien, String lyDo, String ghiChu) {
+
+    public boolean themPhieuXuat(PhieuXuat_DTO px) {
         // Kiểm tra null
-        if (maNV == null || maKH == null || lyDo == null || ghiChu == null) {
+        if (px.getMaNV() == null || px.getMaKH() == null || px.getLyDo() == null || px.getGhiChu() == null) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         // Thêm Phiếu Xuất
         String maPhieuXuat = Convert.convertMa(pxDAO.laySoLuongPhieuXuat() + 1);
-        PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, maNV, maKH, tongTien, lyDo, ghiChu, true);
+        PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, px.getMaNV(), px.getMaKH(), 0, px.getLyDo(), px.getGhiChu(), true);
 
         if (pxDAO.add(pxDTO)) {
             JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thành công");

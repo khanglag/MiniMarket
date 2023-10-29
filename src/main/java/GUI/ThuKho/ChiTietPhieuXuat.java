@@ -87,12 +87,6 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
 
         jPanel4.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
-
-        jtfMaPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfMaPhieuXuatActionPerformed(evt);
-            }
-        });
         jPanel4.add(jtfMaPhieuXuat);
 
         btnChonMaHang.setText("chọn");
