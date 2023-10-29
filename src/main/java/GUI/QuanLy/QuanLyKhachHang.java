@@ -303,6 +303,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         KhachHangBus khb = new KhachHangBus();
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
+        btnClearActionPerformed(null);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -310,6 +312,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         System.out.println(sdt);
         khb.xoaKhachHang(sdt);
         showCustomerInTable();
+         btnClearActionPerformed(null);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
@@ -341,6 +344,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String diaChi = txtDiaChi.getText();
         khb.suaKhachHang(sdt, diaChi);
         showCustomerInTable();
+         btnClearActionPerformed(null);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
