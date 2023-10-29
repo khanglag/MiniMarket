@@ -60,9 +60,9 @@ public class KhachHangBus {
         }
         return true;
     }
-    public KhachHang_DTO timKhachHang(String sdt){
+    public KhachHang_DTO timKhachHang(String maKH,String sdt){
         //Kiểm tra định dạng số điẹn thoại
-        return dAO.searchKhachHang(sdt);
+        return dAO.searchKhachHang(maKH,sdt);
     }
     public boolean xoaKhachHang(String sdt){
         return dAO.delete(sdt);
