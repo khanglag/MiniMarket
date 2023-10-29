@@ -4,26 +4,88 @@
  */
 package GUI.Saler;
 
+import BUS.HangHoaBus;
+import DAO.HangHoaDAO;
+import DTO.HangHoa_DTO;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author acer
  */
 public class item extends javax.swing.JPanel {
+
     private String MaSP;
+    HangHoaDAO hhd = new HangHoaDAO();
+    static HangHoaBus hhb = new HangHoaBus();
+    public static ArrayList<HangHoa_DTO> gioHang = new ArrayList<>();
+
     /**
      * Creates new form item
      */
     public item() {
         initComponents();
     }
-    
+
     public void setLbImgIcon(String path) {
         LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(path)));
     }
-    public String MaSP(String masp){  
-        return  MaSP= masp;
+
+    public String MaSP(String masp) {
+        return MaSP = masp;
+    }
+
+    public void setDisabledBtnAdd(boolean flag) {
+        if (flag == true) {
+            BtnAddProduct.setEnabled(false);
+        } else {
+            BtnAddProduct.setEnabled(true);
+        }
+    }
+    
+    public static void openPopup(JFrame parentFrame, String MaSP) {
+        JDialog popup = new JDialog(parentFrame, "Popup", true);
+        JLabel label = new JLabel("Số lượng:");
+        JTextField txtSoLuong = new JTextField(10);
+        JButton okButton = new JButton("OK");
+
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int soLuongTrenDB = hhb.ktSoLuong(MaSP);
+                int soLuong = Integer.parseInt(txtSoLuong.getText().trim());
+                if (soLuong > soLuongTrenDB) {
+                    JOptionPane.showMessageDialog(null,
+                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm");
+                    return;
+                }
+                popup.dispose();
+            }
+        });
+        JPanel panel = new JPanel(new FlowLayout());
+        panel.add(label);
+        panel.add(txtSoLuong);
+        panel.add(okButton);
+
+        popup.add(panel);
+        popup.setLocationRelativeTo(parentFrame);
+        popup.setSize(300, 100);
+        popup.setVisible(true);
+    }
+    public void refreshCartUI(){
+        BanHang bh = new BanHang();
+        bh.showItemCartInTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,12 +136,33 @@ public class item extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAddProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAddProductMouseClicked
-       
+
     }//GEN-LAST:event_BtnAddProductMouseClicked
 
     private void BtnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddProductActionPerformed
-        // TODO add your handling code here:
-      
+        // TODO add your handling code here:   
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        JFrame frame = new JFrame("Số lượng");
+//        openPopup(frame, MaSP);   
+        boolean daTonTai = false;
+        for (HangHoa_DTO sanPham : gioHang) {
+            if (MaSP.equals(sanPham.getMaSP())) {
+                daTonTai = true;
+                break;
+            }
+        }
+
+        if (!daTonTai) {
+            // Nếu sản phẩm chưa tồn tại trong gioHang, thêm nó vào gioHang
+            for (int i = 0; i < danhSachSanPham.size(); i++) {
+                HangHoa_DTO sanPham = danhSachSanPham.get(i);
+                if (MaSP.equals(sanPham.getMaSP())) {
+                    gioHang.add(sanPham);
+                    break; // Thêm sản phẩm và thoát khỏi vòng lặp
+                }
+            }
+        }     
+       
     }//GEN-LAST:event_BtnAddProductActionPerformed
 
 
