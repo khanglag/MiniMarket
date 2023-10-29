@@ -14,6 +14,7 @@ import Exception.InvalidPhoneNumberException;
 import Exception.PhoneNumberValidator;
 import Handle.Convert;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +26,9 @@ public class KhachHangBus {
     }
 
     KhachHangDAO dAO = new KhachHangDAO();
-
+    public ArrayList<KhachHang_DTO> dsKhachHang(){
+        return dAO.ReadKhachHang();
+    }
     public boolean themKhanhHang(String tenKH, LocalDate ngaySinh, String sdt, String diaChi, boolean tonTai) {
         PhoneNumberValidator validator = new PhoneNumberValidator();
         //Ngoại lệ số điện thoại
