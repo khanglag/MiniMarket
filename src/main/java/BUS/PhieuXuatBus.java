@@ -23,26 +23,7 @@ public class PhieuXuatBus {
             return new ArrayList<>();
         }
     }
-    public boolean themPhieuXuat(String maNV, String maKH, double tongTien, String lyDo, String ghiChu) {
-        // Kiểm tra null
-        if (maNV == null || maKH == null || lyDo == null || ghiChu == null) {
-            JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
 
-        // Thêm Phiếu Xuất
-        String maPhieuXuat = Convert.convertMa(pxDAO.laySoLuongPhieuXuat() + 1);
-        PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, maNV, maKH, tongTien, lyDo, ghiChu, true);
-
-        if (pxDAO.add(pxDTO)) {
-            JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thành công");
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thất bại", "Lỗi", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        
-    }
 
     public boolean themPhieuXuat(PhieuXuat_DTO px) {
         // Kiểm tra null

@@ -368,6 +368,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTablePhieuXuatHangMouseClicked
 
+
     private void btnChonMaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaHangActionPerformed
         // TODO add your handling code here:
         HangHoa hangHoa = new HangHoa(this);
@@ -385,6 +386,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         
         System.out.println("Da in");
     }//GEN-LAST:event_btnChonMaHangActionPerformed
+
 
     /**
      * @param args the command line arguments
