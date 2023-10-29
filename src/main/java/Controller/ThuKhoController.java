@@ -3,7 +3,7 @@ package Controller;
  
 import BEAN.DanhMucBean;
 import GUI.ThuKho.PhieuNhapHang;
-import GUI.ThuKho.PhieuXuatHang;
+import GUI.ThuKho.PhieuXuatHangBo;
 import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;
 import GUI.ThuKho.TrangChu;
@@ -79,7 +79,7 @@ public class ThuKhoController {
                     node = new QuanLyPhieuNhap();
                     break;
                 case "PhieuXuatHang":
-                    node = new PhieuXuatHang();
+                    node = new PhieuXuatHangBo();
                     break;
                 case "QuanLyPhieuXuat":
                     node = new QuanLyXuatHang();

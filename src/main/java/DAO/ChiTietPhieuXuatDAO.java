@@ -88,17 +88,17 @@ public class ChiTietPhieuXuatDAO {
         return success;
     }
 
-    public ArrayList<ChiTietPhieuXuat_DTO> search(String maHangXuat, int soLuongYC) {
+    public ArrayList<ChiTietPhieuXuat_DTO> search(String maPhieuXuat,String maHangXuat) {
         ArrayList<ChiTietPhieuXuat_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
         StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_phieuxuat` WHERE TONTAI = 1");
 
-        if (maHangXuat != null && !maHangXuat.isEmpty()) {
-            qry.append(" AND `MAHANGXUAT` =  '" + maHangXuat + "'");
+        if (maPhieuXuat != null && !maPhieuXuat.isEmpty()) {
+            qry.append(" AND `MAPHIEUXUAT` =  '" + maPhieuXuat + "'");
         }
 
-        if (soLuongYC >= 0) {
-            qry.append(" AND `SOLUONGYEUCAU` = " + soLuongYC);
+        if (maHangXuat != null && !maHangXuat.isEmpty()) {
+            qry.append(" AND `MAHANGXUAT` =  '" + maHangXuat + "'");
         }
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());

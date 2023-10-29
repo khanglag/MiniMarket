@@ -20,7 +20,15 @@ public class PhieuXuat_DTO {
     public PhieuXuat_DTO() {
     }
     
-    
+    public PhieuXuat_DTO(String maNV, String maKH, double tongTien, String lyDo, String ghiChu) {
+        
+        this.maNV = maNV;
+        this.maKH = maKH;
+        this.tongTien = tongTien;
+        this.lyDo = lyDo;
+        this.ghiChu = ghiChu;
+       
+    }
 
     public PhieuXuat_DTO(String maPhieuXuat, String maNV, String maKH, double tongTien, String lyDo, String ghiChu, boolean tonTai) {
         this.maPhieuXuat = maPhieuXuat;
