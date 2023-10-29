@@ -78,6 +78,16 @@ public class PhieuXuatDAO {
         return success;
     }
 
+    public boolean update(String mapx,double thanhtien) {
+        ConnectDB connectDB = new ConnectDB();
+        boolean success = connectDB
+                .sqlUpdate("UPDATE `phieuxuat` SET "       
+                        + " `TONGTIEN` = '" + thanhtien
+                        + "' WHERE `MAPHIEUXUAT`='" + mapx + "'");
+        connectDB.closeConnect();
+        return success;
+    }
+
     public ArrayList<PhieuXuat_DTO> searchPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
         ArrayList<PhieuXuat_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -115,5 +125,23 @@ public class PhieuXuatDAO {
         }
 
         return ds;
+    }
+    public int laySoLuongPhieuXuat() {
+        ConnectDB connectDB = new ConnectDB();
+        int soLuong = 0;
+        String qry = "SELECT COUNT(*) FROM `phieuxuat` WHERE TONTAI = 1";
+        ResultSet rSet = null;
+    
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null && rSet.next()) {
+                soLuong = rSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi truy vấn số lượng Phiếu Xuất!!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return soLuong;
     }
 }
