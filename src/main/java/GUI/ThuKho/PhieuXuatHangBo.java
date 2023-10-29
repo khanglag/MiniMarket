@@ -8,12 +8,12 @@ package GUI.ThuKho;
  *
  * @author khang
  */
-public class PhieuXuatHang extends javax.swing.JPanel {
+public class PhieuXuatHangBo extends javax.swing.JPanel {
 
     /**
      * Creates new form PhieuXuatHang
      */
-    public PhieuXuatHang() {
+    public PhieuXuatHangBo() {
         initComponents();
     }
 
@@ -54,7 +54,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jtfSoLuongYeuCau = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfSoLuongThucXuat = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jtfDonVi = new javax.swing.JTextField();
@@ -154,7 +154,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -180,13 +180,13 @@ public class PhieuXuatHang extends javax.swing.JPanel {
 
         tableChiTietPhieuXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "MPN", "MHX", "SL", "Đơn vị", "Đơn giá", "Thành tiền", "Ghi chú"
+                "Mã phiếu xuất", "Mã hàng xuất", "Số lượng yêu cầu", "Số lượng thực tế", "Đơn giá", "Đơn vị", "Thành tiền", "Ghi chú"
             }
         ));
         jScrollPane2.setViewportView(tableChiTietPhieuXuat);
@@ -203,15 +203,13 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jPanel9.add(jLabel2);
         jPanel9.add(jtfMaHangXuat);
 
-        jLabel3.setText("Số lượng");
+        jLabel3.setText("Số lượng yêu cầu");
         jPanel9.add(jLabel3);
         jPanel9.add(jtfSoLuongYeuCau);
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Số lượng thực xuất");
         jPanel9.add(jLabel4);
-
-        jTextField1.setText("jTextField1");
-        jPanel9.add(jTextField1);
+        jPanel9.add(jtfSoLuongThucXuat);
 
         jPanel1.add(jPanel9);
 
@@ -256,7 +254,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnXoa)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -327,7 +325,6 @@ public class PhieuXuatHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jtDonGia;
     private javax.swing.JTextField jtfDonGia;
     private javax.swing.JTextField jtfDonVi;
@@ -337,6 +334,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
     private javax.swing.JTextField jtfMaHangXuat;
     private javax.swing.JTextField jtfMaPhieuXuat;
     private javax.swing.JTextField jtfSoLuong;
+    private javax.swing.JTextField jtfSoLuongThucXuat;
     private javax.swing.JTextField jtfSoLuongYeuCau;
     private javax.swing.JTextField jtfTen;
     private javax.swing.JTextField jtfThanhTien;
