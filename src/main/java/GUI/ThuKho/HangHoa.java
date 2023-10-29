@@ -36,6 +36,7 @@ public class HangHoa extends JDialog {
     }
      public void LoadData(){
         model = (DefaultTableModel) jTableHangHoa.getModel();
+        model.setRowCount(0);
         list = hangHoaBus.itemData();
         int soLuongSP = list.size();
         for (int i = 0; i < soLuongSP; i++) {
