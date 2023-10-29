@@ -37,6 +37,12 @@ public class HangHoa_DTO {
         this.anhSP = anhSP;
         this.tonTai = tonTai;
     }
+    public HangHoa_DTO(String maSP, String tenSP,String donVi, double giaBan) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.donVi = donVi;
+        this.giaBan = giaBan;
+    }
 
     public String getMaSP() {
         return maSP;

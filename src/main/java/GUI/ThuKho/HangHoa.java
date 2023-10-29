@@ -4,20 +4,77 @@
  */
 package GUI.ThuKho;
 
+import BUS.HangHoaBus;
+import DTO.HangHoa_DTO;
+import java.awt.Frame;
+import java.util.ArrayList;
+import javax.swing.JDialog;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author khang
  */
-public class HangHoa extends javax.swing.JFrame {
+public class HangHoa extends JDialog {
+    private HangHoa_DTO chonHangHoa;
+    public HangHoa_DTO getSelectedHangHoa(){
+        return chonHangHoa;
+    }
+//    private String maSp,tenSp,donVi;
+//    private String giaBan;
+//    public void setDonVi(String donVi){
+//        this.donVi = donVi;
+//    }
+//    public String getDonVi(){
+//        return donVi;
+//    }
+//    public void setGiaBan(String giaBan){
+//        this.giaBan = giaBan;
+//    }
+//    public String getGiaBan(){
+//        return giaBan;
+//    }
+//    public void setMaSp(String maSp) {
+//        this.maSp = maSp;
+//    }
+//     public String getMaSp() {
+//        return maSp;
+//    }
+//     public void setTenSp(String tenSp) {
+//        this.tenSp = tenSp;
+//    }
+//     public String getTenSp() {
+//        return tenSp;
+//    }
 
     /**
      * Creates new form HangHoa
      */
-    public HangHoa() {
+    HangHoaBus hangHoaBus = new HangHoaBus();
+    DefaultTableModel model;
+    ArrayList<HangHoa_DTO> list = new ArrayList<HangHoa_DTO>();
+    public HangHoa(Frame owner) {
+        super(owner, "Select Product", true);
+        setSize(300, 200);
         initComponents();
+        LoadData();
+        
     }
      public void LoadData(){
-         
+        model = (DefaultTableModel) jTableHangHoa.getModel();
+        list = hangHoaBus.itemData();
+        int soLuongSP = list.size();
+        for (int i = 0; i < soLuongSP; i++) {
+            HangHoa_DTO sanPham = list.get(i);
+            String maSP = sanPham.getMaSP();
+            String tenSP = sanPham.getTenSP();
+            int soLuong = sanPham.getSoLuong();
+            double giaBan = sanPham.getGiaBan();
+            String xuatXu = sanPham.getXuatXu();
+            String donVi = sanPham.getDonVi();
+            model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+            jTableHangHoa.setModel(model);
+        }
      }
 
     /**
@@ -30,29 +87,16 @@ public class HangHoa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
         btnChon = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableHangHoa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Chọn sản phẩm");
@@ -87,15 +131,35 @@ public class HangHoa extends javax.swing.JFrame {
             }
         });
 
+        jTableHangHoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá", "Xuất xứ", "Đơn vị"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableHangHoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableHangHoaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableHangHoa);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnHuy)
@@ -113,8 +177,13 @@ public class HangHoa extends javax.swing.JFrame {
                                 .addComponent(btnTim)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnLamMoi)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,13 +196,16 @@ public class HangHoa extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnTim)
                         .addComponent(btnLamMoi)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(261, 261, 261)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnChon)
                     .addComponent(btnHuy))
                 .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(117, 117, 117)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(65, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,12 +222,14 @@ public class HangHoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
+        LoadData();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
@@ -165,42 +239,46 @@ public class HangHoa extends javax.swing.JFrame {
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
         // TODO add your handling code here:
+//        System.out.println(getMaSp());
+//        System.out.println(getTenSp());
+//        System.out.println(getDonVi());
+//        System.out.println(getGiaBan());
+        int i = jTableHangHoa.getSelectedRow();
+        if (i >= 0) {
+//            setMaSp(jTableHangHoa.getModel().getValueAt(i, 0).toString());
+//            setTenSp(jTableHangHoa.getModel().getValueAt(i, 1).toString());
+//            setGiaBan(jTableHangHoa.getModel().getValueAt(i, 3).toString());
+//            setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
+            String masp = jTableHangHoa.getModel().getValueAt(i, 0).toString();
+            String tensp = jTableHangHoa.getModel().getValueAt(i, 1).toString();
+            String donvi = jTableHangHoa.getModel().getValueAt(i, 5).toString();
+            double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 3).toString());
+            chonHangHoa = new HangHoa_DTO(masp,tensp,donvi,giaban);
+        }
+        
+        this.dispose();
     }//GEN-LAST:event_btnChonActionPerformed
+
+    private void jTableHangHoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHangHoaMouseClicked
+        // TODO add your handling code here:
+//        int i = jTableHangHoa.getSelectedRow();
+//        if (i >= 0) {
+////            setMaSp(jTableHangHoa.getModel().getValueAt(i, 0).toString());
+////            setTenSp(jTableHangHoa.getModel().getValueAt(i, 1).toString());
+////            setGiaBan(jTableHangHoa.getModel().getValueAt(i, 3).toString());
+////            setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
+//            chonHangHoa.setMaSP(jTableHangHoa.getModel().getValueAt(i, 0).toString());
+//            chonHangHoa.setTenSP(jTableHangHoa.getModel().getValueAt(i, 1).toString());
+//            chonHangHoa.setDonVi(jTableHangHoa.getModel().getValueAt(i, 5).toString());
+//            chonHangHoa.setGiaBan(Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 3).toString()));
+//        }
+        
+    }//GEN-LAST:event_jTableHangHoaMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HangHoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HangHoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HangHoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HangHoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HangHoa().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChon;
@@ -210,7 +288,7 @@ public class HangHoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHangHoa;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
