@@ -78,6 +78,16 @@ public class PhieuXuatDAO {
         return success;
     }
 
+    public boolean update(String mapx,double thanhtien) {
+        ConnectDB connectDB = new ConnectDB();
+        boolean success = connectDB
+                .sqlUpdate("UPDATE `phieuxuat` SET "       
+                        + " `TONGTIEN` = '" + thanhtien
+                        + "' WHERE `MAPHIEUXUAT`='" + mapx + "'");
+        connectDB.closeConnect();
+        return success;
+    }
+
     public ArrayList<PhieuXuat_DTO> searchPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
         ArrayList<PhieuXuat_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
