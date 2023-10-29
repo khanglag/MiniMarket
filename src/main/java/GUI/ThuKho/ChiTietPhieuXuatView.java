@@ -5,7 +5,9 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
+import BUS.KhachHangBus;
 import DTO.ChiTietPhieuXuat_DTO;
+import DTO.KhachHang_DTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +19,7 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
     ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
+    KhachHangBus kh = new KhachHangBus();
     /**
      * Creates new form ChiTietPhieuNhapView
      */
@@ -24,6 +27,8 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         initComponents();
         jtfMaPhieuXuat.setText(maPhieuXuat);
         jtfMaKH.setText(maKH);
+        KhachHang_DTO khD = kh.timKhachHang(maKH, null);
+        jtfTenKhachHang.setText(khD.getTenKH());
         LoadData(maPhieuXuat);
     }
 

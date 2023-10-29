@@ -8,13 +8,14 @@ import BUS.KhachHangBus;
 import DTO.KhachHang_DTO;
 import java.awt.Frame;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author khang
  */
-public class KhachHang extends javax.swing.JDialog {
+public class KhachHang extends JDialog {
 
     private String maKH;
     KhachHangBus khachHangBus = new KhachHangBus();
@@ -28,6 +29,7 @@ public class KhachHang extends javax.swing.JDialog {
     }
     /**
      * Creates new form KhachHang
+     * @param owner
      */
     public KhachHang(Frame owner) {
         super(owner, "Select Product", true);
@@ -37,12 +39,13 @@ public class KhachHang extends javax.swing.JDialog {
     }
     public void LoadData(){
         model = (DefaultTableModel) jTableKhachHang.getModel();
-        list = khachHangBus.itemData();
+        model.setRowCount(0);
+        list = khachHangBus.dsKhachHang();
         int soLuongSP = list.size();
         for (int i = 0; i < soLuongSP; i++) {
-            KhachHang_DTO sanPham = list.get(i);
+            KhachHang_DTO kh = list.get(i);
             
-            model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+            model.addRow(new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getNgaySinh(),kh.getSdt(),kh.getDiaChi()});
             jTableKhachHang.setModel(model);
         }
      }
@@ -65,7 +68,7 @@ public class KhachHang extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableKhachHang = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
