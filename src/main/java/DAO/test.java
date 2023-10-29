@@ -13,11 +13,5 @@ import DTO.PhieuNhap_DTO;
 
 public class test {
     public static void main(String[] args) {
-        int thanhtien = 0;
-        int mapx = 0;
-        System.out.println("UPDATE `phieuxuat` SET "       
-                        + " `TONGTIEN` = '" + thanhtien
-                        + "' WHERE `MAPHIEUXUAT`='" + mapx + "'");
-
     }
 }
