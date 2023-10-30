@@ -320,8 +320,13 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTaoPhieuXuatActionPerformed
 
     private void jMenuItemTaoChiTietPhieuXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTaoChiTietPhieuXuatActionPerformed
-        // TODO add your handling code here:
-        new ChiTietPhieuXuat().setVisible(true);
+        // TODO add your handling code here:int i = jTableQuanLyXuatHang.getSelectedRow();
+        int i =jTableQuanLyXuatHang.getSelectedRow();
+        if (i >= 0) {
+            jtfMaPhieuXuat.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 1).toString());
+            new ChiTietPhieuXuat(jtfMaPhieuXuat.getText()).setVisible(true);
+        }
+        
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuXuatActionPerformed
 
     private void jMenuItemXemChiTietPhieuXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemXemChiTietPhieuXuatActionPerformed
