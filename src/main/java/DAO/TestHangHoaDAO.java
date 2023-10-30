@@ -12,6 +12,6 @@ import DTO.NhanVien_DTO;
 public class TestHangHoaDAO {
     public static void main(String[] args) {
         KhachHangDAO dAO= new KhachHangDAO();
-        System.out.println(dAO.ttKhachHang("0358808913"));
+        System.out.println(dAO.searchKhachHang("0000002", "0358808913").toString());
     }
 }

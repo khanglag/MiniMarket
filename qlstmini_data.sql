@@ -58,6 +58,10 @@ CREATE TABLE `chitiet_kiemhang` (
   `TINHTRANGSP` text NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `chitiet_kiemhang` (`MAPHIEU`, `MASP`, `TENSP`, `SOLUONG`, `DONVI`, `TINHTRANGSP`, `TONTAI`) VALUES
+('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 1, 'gói', 'MAT', 1),
+('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 1, 'cái', 'HU HONG', 1);
+
 
 -- --------------------------------------------------------
 
@@ -362,6 +366,10 @@ CREATE TABLE `phieukiemhang` (
   `THOIGIANKIEMHANG` datetime NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `phieukiemhang` (`MAPHIEU`, `MANV`, `THOIGIANKIEMHANG`, `TONTAI`) VALUES
+('0000001', 'A038645', '2023-10-30 07:00:00', 1);
+
 
 -- --------------------------------------------------------
 
