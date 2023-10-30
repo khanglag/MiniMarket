@@ -83,7 +83,7 @@ public class NhanVienDAO {
         }
 
         if (maPQ != null && !maPQ.isEmpty()) {
-            qry.append(" `MAPQ` = '").append(maPQ).append("',");
+            qry.append(" `MAQUYEN` = '").append(maPQ).append("',");
         }
 
         // Loại bỏ dấu phẩy cuối cùng
@@ -140,5 +140,15 @@ public class NhanVienDAO {
 
         return ds;
     }
-
+    public boolean ttMaNV(String maNV){
+        NhanVien_DTO dTO= new NhanVien_DTO();
+        if (searchNhanVien(maNV, null, null).isEmpty()) {
+            return false;
+        }
+        dTO=searchNhanVien(maNV, null, null).get(0);
+        if (dTO.getMaNV().equals(maNV)) {
+            return true;
+        }
+        return false;
+    }
 }
