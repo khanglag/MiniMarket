@@ -20,8 +20,6 @@ public class Convert {
         else return false;
     }
     public static String convertMa(int number) {
-        // Sử dụng String.format để định dạng số thành chuỗi đủ 7 ký tự
-        // %07d nghĩa là dùng số nguyên với độ rộng 7 ký tự, thêm số 0 vào phía trước nếu cần
         return String.format("%07d", number);
     }
     public static String convertTien(String tien){
