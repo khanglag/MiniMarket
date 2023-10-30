@@ -92,9 +92,18 @@ public class PhieuNhapDAO {
         return success;
     }
 
-    public ArrayList<PhieuNhap_DTO> searchPhieuNhap(String maPhieuNhap, String maNV, String maNCC,
-            LocalDate thoiGianLap,
-            String trangThai) {
+    public boolean update(int maPhieuNhap, double tongTien, String trangThai) {
+        ConnectDB connectDB = new ConnectDB();
+        boolean success = connectDB.sqlUpdate("UPDATE `phieunhap` SET "
+            + "`TONGTIEN` =" + tongTien
+            + ",`TRANGTHAI` ='" + trangThai
+            + "' WHERE `MAPHIEUNHAP`='" + maPhieuNhap + "'");
+        connectDB.closeConnect();
+        return success;
+    }
+    
+
+    public ArrayList<PhieuNhap_DTO> searchPhieuNhap(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap) {
 
         ArrayList<PhieuNhap_DTO> phieunhap = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -116,9 +125,6 @@ public class PhieuNhapDAO {
             qry.append(" AND `THOIGIANLAP` = '" + thoiGianLap + "'");
         }
 
-        if (trangThai != null) {
-            qry.append(" AND `TRANGTHAI` = '" + trangThai + "'");
-        }
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
         try {
@@ -143,6 +149,24 @@ public class PhieuNhapDAO {
             e.printStackTrace();
         }
         return phieunhap;
+    }
+    public int laySoLuongPhieuNhap() {
+        ConnectDB connectDB = new ConnectDB();
+        int soLuong = 0;
+        String qry = "SELECT COUNT(*) FROM `phieunhap` WHERE TONTAI = 1";
+        ResultSet rSet = null;
+    
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null && rSet.next()) {
+                soLuong = rSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi truy vấn số lượng Phiếu Nhập!!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return soLuong;
     }
 
 }

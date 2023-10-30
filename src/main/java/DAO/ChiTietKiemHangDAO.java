@@ -11,7 +11,7 @@ public class ChiTietKiemHangDAO {
     public ChiTietKiemHangDAO() {
     }
 
-    ArrayList<ChiTietKiemHang_DTO> readDB() {
+    public ArrayList<ChiTietKiemHang_DTO> readDB() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<ChiTietKiemHang_DTO> ds = new ArrayList<>();
         String qry = "SELECT * FROM `chitiet_kiemhang` WHERE TONTAI = 1";
@@ -68,7 +68,6 @@ public class ChiTietKiemHangDAO {
                 .sqlUpdate("UPDATE `chitiet_kiemhang` SET "
                         + "`TENSP`='"+ct.getTenSP()+"',"
                         + "`SOLUONG`='"+ct.getSoLuong()+"',"
-                        + "`DONVI`='"+ct.getDonVi()+"',"
                         + "`TINHTRANGSP`='"+ct.getTinhTrangSP()+"',"
                         + "`TONTAI`='1' "
                         + "WHERE `MAPHIEU`='"+ct.getMaPhieu()+"' "
@@ -77,22 +76,25 @@ public class ChiTietKiemHangDAO {
         return success;
     }
 
-    public ArrayList<ChiTietKiemHang_DTO> searchHangHoa(String maPhieu, String maSP, String tenSP, int soLuong,
-            String donVi, String tinhTrangSP, boolean tonTai) {
+    public ArrayList<ChiTietKiemHang_DTO> search(String maPhieu, String maSP, String tenSP, String tinhTrangSP) {
         ArrayList<ChiTietKiemHang_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
         StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_kiemhang` WHERE TONTAI = 1");
 
         if (maPhieu != null && !maPhieu.isEmpty()) {
-            qry.append(" AND `MAPHIEU` LIKE '%").append(maPhieu).append("%'");
+            qry.append(" AND `MAPHIEU` = '" + maPhieu + "'");
         }
         if (maSP != null && !maSP.isEmpty()) {
-            qry.append(" AND `MASP` LIKE '%").append(maSP).append("%'");
+            qry.append(" AND `MASP` = '" + maSP + "'");
         }
         if (tenSP != null && !tenSP.isEmpty()) {
-            qry.append(" AND `TENSP` LIKE '%").append(tenSP).append("%'");
+            qry.append(" AND `TENSP` LIKE '%" + tenSP + "%'");
         }
+        if (tinhTrangSP != null && !tinhTrangSP.isEmpty()) {
+            qry.append(" AND `TINHTRANGSP` LIKE '%" + tinhTrangSP + "%'");
+        }
+
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
 
         try {
@@ -114,4 +116,21 @@ public class ChiTietKiemHangDAO {
         }
         return ds;
     }
+    public boolean isCTKHExisted(String maPhieu, String maSP) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `chitiet_kiemhang` WHERE `MAPHIEU` = '" + maPhieu + "' AND `MASP` = '" + maSP + "'";
+        
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        
+        if (rSet != null) {
+            try {
+                return rSet.next(); 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return false; 
+    }
+    
 }
