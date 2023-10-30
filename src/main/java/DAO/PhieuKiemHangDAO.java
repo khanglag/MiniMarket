@@ -125,10 +125,25 @@ public class PhieuKiemHangDAO {
     public boolean isMaPhieuExisted(String maPhieu) {
         ConnectDB connectDB = new ConnectDB();
         String qry = "SELECT 1 FROM `phieukiemhang` WHERE `MAPHIEU` = '" + maPhieu + "' AND `TONTAI` = 1";
-        
         ResultSet rSet = connectDB.sqlQuery(qry);
         if (rSet != null) {
             try {
+                System.out.println(rSet);
+                return rSet.next(); 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return false; 
+    }
+    public boolean CheckExistedCT(String maPhieu) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `chitiet_kiemhang` WHERE `MAPHIEU` = '" + maPhieu + "' AND `TONTAI` = 1";
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        if (rSet != null) {
+            try {
+                System.out.println(rSet);
                 return rSet.next(); 
             } catch (SQLException e) {
                 e.printStackTrace();

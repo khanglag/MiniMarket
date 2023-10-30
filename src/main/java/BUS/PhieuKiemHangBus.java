@@ -26,15 +26,11 @@ public class PhieuKiemHangBus {
     }
 
     public boolean themPhieu(PhieuKiemHang_DTO pkh) {
-        if (pkh.getMaPhieu() == null || pkh.getMaNV() == null || pkh.getThoiGianKiemHang() == null) {
+        if ( pkh.getMaNV() == null || pkh.getThoiGianKiemHang() == null) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
-        if (pDAO.isMaPhieuExisted(pkh.getMaPhieu())) {
-            JOptionPane.showMessageDialog(null, "Mã phiếu đã tồn tại", "Lỗi", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
         else {
             String maPhieu = Convert.convertMa(pDAO.laySoLuongPhieu() + 1);
 
@@ -73,5 +69,8 @@ public class PhieuKiemHangBus {
             JOptionPane.showMessageDialog(null, "Lỗi khi tìm kiếm !!!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return new ArrayList<>();
         }
+    }
+    public boolean checkExist(String mapx){
+        return pDAO.CheckExistedCT(mapx);
     }
 }
