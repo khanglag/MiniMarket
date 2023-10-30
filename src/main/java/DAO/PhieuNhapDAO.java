@@ -150,6 +150,7 @@ public class PhieuNhapDAO {
         }
         return phieunhap;
     }
+
     public int laySoLuongPhieuNhap() {
         ConnectDB connectDB = new ConnectDB();
         int soLuong = 0;
@@ -168,5 +169,6 @@ public class PhieuNhapDAO {
         connectDB.closeConnect();
         return soLuong;
     }
+
 
 }

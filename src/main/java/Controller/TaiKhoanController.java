@@ -50,6 +50,9 @@ public class TaiKhoanController {
     public static void setNgdn(int ngdn) {
         TaiKhoanController.ngdn = ngdn;
     }
+    public static void setTendnString(String n) {
+        TaiKhoanController.tendnString=n;
+    }
 
     public static String getTendnString() {
         return tendnString;
@@ -68,6 +71,7 @@ public class TaiKhoanController {
 
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
                 } else {
+                    
                     TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {
                         JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!");

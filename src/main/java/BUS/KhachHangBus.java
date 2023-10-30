@@ -64,6 +64,10 @@ public class KhachHangBus {
         //Kiểm tra định dạng số điẹn thoại
         return dAO.searchKhachHang(maKH,sdt);
     }
+    public KhachHang_DTO timKhachHangMaKH(String maKH){
+        //Kiểm tra định dạng số điẹn thoại
+        return dAO.searchKhachHangMaKH(maKH);
+    }
     public boolean xoaKhachHang(String sdt){
         return dAO.delete(sdt);
     }

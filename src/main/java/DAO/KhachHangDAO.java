@@ -97,6 +97,28 @@ public class KhachHangDAO {
         }
         return khachHang;
     }
+     public KhachHang_DTO searchKhachHangMaKH(String maKH) {
+        KhachHang_DTO khachHang = null;
+        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND MAKH = " + "'" + maKH + "'";
+        ConnectDB connectDB = new ConnectDB();
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        try {
+            if (rSet != null) {
+                while (rSet.next()) {
+                    khachHang = new KhachHang_DTO(
+                    rSet.getString("MAKH"),
+                    rSet.getNString("TENKH"),
+                    rSet.getDate("NGAYSINH").toLocalDate(),
+                    rSet.getString("SDT"),
+                    rSet.getNString("DIACHI"),
+                    rSet.getBoolean("TONTAI"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return khachHang;
+    }
     public int demKhachHang(){
         int n=0;
         ConnectDB connectDB=new ConnectDB();
