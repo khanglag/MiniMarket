@@ -32,6 +32,10 @@ public class NhanvienBus {
     public boolean suaNhanVien(String maNV, String sdt, String diaChi, String maPQ, String email) {
         return dAO.update(maNV, sdt, diaChi, maPQ, email);
     }
+    
+    public ArrayList<NhanVien_DTO> timNhanVien(String tenNV){
+        return dAO.searchNhanVien(null, tenNV, null);
+    }
 
     public boolean themNhanVien(String tenNV, LocalDate ngaySinh, String gioiTinh, String sdt, String cccd,
             String email, String diaChi, String maPQ) {

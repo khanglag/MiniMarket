@@ -65,6 +65,7 @@ public class NhanVienDAO {
         connectDB.closeConnect();
         return success;
     }
+    public boolean update
 
     public boolean update(String maNV, String sdt, String diaChi, String maPQ, String email) {
         ConnectDB connectDB = new ConnectDB();
