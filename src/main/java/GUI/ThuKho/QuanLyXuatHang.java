@@ -80,7 +80,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfTim = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnLoad = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -236,8 +236,13 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
 
-        jButton3.setText("Clear");
-        jPanel5.add(jButton3);
+        btnLoad.setText("Làm mới");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnLoad);
 
         jButton6.setText("Nhập Excel");
         jPanel5.add(jButton6);
@@ -383,6 +388,11 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnChonActionPerformed
 
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        // TODO add your handling code here:
+        refreshData();
+    }//GEN-LAST:event_btnLoadActionPerformed
+
       public void refreshData() {
         phieuXuatBus = new PhieuXuatBus();
         LoadData();
@@ -390,8 +400,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnTaoPhieuXuat;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
