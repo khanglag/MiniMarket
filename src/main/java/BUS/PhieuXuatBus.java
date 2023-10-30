@@ -74,6 +74,9 @@ public class PhieuXuatBus {
             return false;
         }
     }
+    public boolean checkExist(String mapx){
+        return pxDAO.checkExist(mapx);
+    }
 
     public ArrayList<PhieuXuat_DTO> timPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
         try {

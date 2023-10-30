@@ -2,18 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package GUI.ThuKho;
-
-import java.time.LocalDate;
+package GUI.Admin;
 
 /**
  *
  * @author khang
  */
-public class Test {
+public class test {
     public static void main(String[] argv){
-        LocalDate a = null;
-        System.out.println(a);
+        new DoiMatKhau().setVisible(true);
     }
-    
 }

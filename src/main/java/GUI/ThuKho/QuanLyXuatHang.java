@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.PhieuXuatBus;
+import Controller.TaiKhoanController;
 import DTO.PhieuXuat_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
      */
     public QuanLyXuatHang() {
         initComponents();
+        //jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
         LoadData();
     }
     public void LoadData() {
@@ -155,6 +157,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 btnChonActionPerformed(evt);
             }
         });
+
+        jtfMaKhachHang.setEditable(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -355,7 +359,10 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         int i =jTableQuanLyXuatHang.getSelectedRow();
         if (i >= 0) {
             jtfMaPhieuXuat.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 1).toString());
-            new ChiTietPhieuXuat(jtfMaPhieuXuat.getText()).setVisible(true);
+            if(phieuXuatBus.checkExist(jtfMaPhieuXuat.getText()))
+                new ChiTietPhieuXuat(jtfMaPhieuXuat.getText()).setVisible(true);
+            else
+                JOptionPane.showMessageDialog(this, "Đã tạo chi tiết phiếu xuất");
         }
         
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuXuatActionPerformed

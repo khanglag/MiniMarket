@@ -70,16 +70,16 @@ public class ThuKhoController {
                 case "TrangChu":
                     node = new TrangChu();
                     break;
-                case "PhieuNhapHang":
-                    node = new PhieuNhapHang();
+                case "PhieuKiemHang":
+                   // node = new PhieuNhapHang();
                     System.out.println("PNH");
                     break;
                 case "QuanLyPhieuNhap":
                     node = new QuanLyPhieuNhap();
                     break;
-//                case "PhieuXuatHang":
-//                    node = new PhieuXuatHang();
-//                    break;
+                case "DangXuat":
+                   // node = new PhieuXuatHang();
+                    break;
                 case "QuanLyPhieuXuat":
                     node = new QuanLyXuatHang();
                     break;

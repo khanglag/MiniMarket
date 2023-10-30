@@ -27,7 +27,7 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         initComponents();
         jtfMaPhieuXuat.setText(maPhieuXuat);
         jtfMaKH.setText(maKH);
-        KhachHang_DTO khD = kh.timKhachHang(maKH, null);
+        KhachHang_DTO khD = kh.timKhachHangMaKH(maKH);
         jtfTenKhachHang.setText(khD.getTenKH());
         LoadData(maPhieuXuat);
     }
