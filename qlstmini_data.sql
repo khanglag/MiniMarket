@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2023 lúc 11:42 AM
+-- Thời gian đã tạo: Th10 30, 2023 lúc 06:25 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `qlstmini`
+-- Cơ sở dữ liệu: `qlstmini_data`
 --
 
 -- --------------------------------------------------------
@@ -39,8 +39,8 @@ CREATE TABLE `chitiet_hoadon` (
 --
 
 INSERT INTO `chitiet_hoadon` (`SOHD`, `MASP`, `SOLUONG`, `TONTAI`) VALUES
-(1, '8809541033891', 3, 1),
 (1, '4902430556781', 12, 1),
+(1, '8809541033891', 3, 1),
 (2, '8835166023316', 5, 1);
 
 -- --------------------------------------------------------
@@ -58,10 +58,14 @@ CREATE TABLE `chitiet_kiemhang` (
   `TINHTRANGSP` text NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiet_kiemhang`
+--
+
 INSERT INTO `chitiet_kiemhang` (`MAPHIEU`, `MASP`, `TENSP`, `SOLUONG`, `DONVI`, `TINHTRANGSP`, `TONTAI`) VALUES
 ('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 1, 'gói', 'MAT', 1),
 ('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 1, 'cái', 'HU HONG', 1);
-
 
 -- --------------------------------------------------------
 
@@ -73,6 +77,7 @@ CREATE TABLE `chitiet_phieunhap` (
   `MAPHIEUNHAP` char(7) NOT NULL,
   `MAHANGNHAP` char(13) NOT NULL,
   `TENHANGNHAP` text NOT NULL,
+  `MANCC` char(7) NOT NULL,
   `VAT` double NOT NULL,
   `XUATXU` text NOT NULL,
   `ANHSP` text NOT NULL,
@@ -87,22 +92,22 @@ CREATE TABLE `chitiet_phieunhap` (
 -- Đang đổ dữ liệu cho bảng `chitiet_phieunhap`
 --
 
-INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES
-('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 0.08, 'Việt Nam', '', 10, 'gói', 165000, 1650000, 1),
-('0000001', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 0.08, 'Việt Nam', '', 20, 'túi', 89400, 1788000, 1),
-('0000001', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 0.08, 'Việt Nam', '', 100, 'miếng', 12000, 1200000, 1),
-('0000001', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 0.08, 'Việt Nam', '', 50, 'lốc', 24500, 1225000, 1),
-('0000001', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 'Việt Nam', '', 5, 'thùng', 194600, 973000, 1),
-('0000001', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 0.08, 'Việt Nam', '', 10, 'túi', 86300, 863000, 1),
-('0000001', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 0.08, 'Việt Nam', '', 50, 'chai', 36100, 1805000, 1),
-('0000001', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 0.08, 'Việt Nam', '', 10, 'thùng', 83900, 839000, 1),
-('0000001', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 0.08, 'Việt Nam', '', 10, 'thùng', 186300, 1863000, 1),
-('0000001', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 0.08, 'Việt Nam', '', 10, 'túi', 112700, 1127000, 1),
-('0000001', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 0.08, 'Việt Nam', '', 40, 'gói', 36400, 1456000, 1),
-('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 0.08, 'Việt Nam', '', 10, 'cái', 27000, 270000, 1),
-('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 0.08, 'Việt Nam', '', 300, 'gói', 3200, 960000, 1),
-('0000002', '8934822220112', 'Lon bia Việt 330ml', 0.08, 'Việt Nam', '', 300, 'lon', 8500, 255000, 1),
-('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 'Việt Nam', '', 300, 'bịch', 5900, 1770000, 1);
+INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC`, `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES
+('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\tadan.jpg', 10, 'gói', 165000, 1650000, 1),
+('0000001', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\nuocgiat.jpg', 20, 'túi', 89400, 1788000, 1),
+('0000001', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\matna.jpg', 100, 'miếng', 12000, 1200000, 1),
+('0000001', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\tuirac.jpg', 50, 'lốc', 24500, 1225000, 1),
+('0000001', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\thung24bichsua.jpg\r\n', 5, 'thùng', 194600, 973000, 1),
+('0000001', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\thucancho.jpg', 10, 'túi', 86300, 863000, 1),
+('0000001', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\dauan.jpg', 50, 'chai', 36100, 1805000, 1),
+('0000001', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\thung30goimihaohao.jpg', 10, 'thùng', 83900, 839000, 1),
+('0000001', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\thung12lonbiaviet.jpg', 10, 'thùng', 186300, 1863000, 1),
+('0000001', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\gao.jpg', 10, 'túi', 112700, 1127000, 1),
+('0000001', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\suachua.jpg', 40, 'gói', 36400, 1456000, 1),
+('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\btt.jpg', 10, 'cái', 27000, 270000, 1),
+('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\mihaohao.jpg', 300, 'gói', 3200, 960000, 1),
+('0000002', '8934822220112', 'Lon bia Việt 330ml', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\biaviet.jpg', 300, 'lon', 8500, 255000, 1),
+('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', '\\images\\suatiettrung.jpg', 300, 'bịch', 5900, 1770000, 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +159,7 @@ CREATE TABLE `hanghoa` (
 --
 
 INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `ANHSP`, `TONTAI`) VALUES
-('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 165000, 210000, 64, 'Việt Nam', '\\images\\tadan.jpg', 1),
+('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 165000, 210000, 63, 'Việt Nam', '\\images\\tadan.jpg', 1),
 ('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', 'NCCDYQN', 'túi', 89400, 125000, 50, 'Việt Nam', '\\images\\nuocgiat.jpg', 1),
 ('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', 'NCCDYQN', 'miếng', 12000, 19800, 100, 'Việt Nam', '\\images\\matna.jpg', 1),
 ('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', '0000002', 'NCCDYQN', 'lốc', 24500, 35600, 50, 'Việt Nam', '\\images\\tuirac.jpg', 1),
@@ -168,7 +173,7 @@ INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GI
 ('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCLADY', 'bịch', 5900, 7200, 300, 'Việt Nam', '\\images\\suatiettrung.jpg', 1),
 ('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 112700, 153600, 10, 'Việt Nam', '\\images\\gao.jpg', 1),
 ('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 36400, 47800, 50, 'Việt Nam', '\\images\\suachua.jpg', 1),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 10, 'Việt Nam', '\\images\\btt.jpg', 1);
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 9, 'Việt Nam', '\\images\\btt.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -193,10 +198,10 @@ CREATE TABLE `hoadon` (
 
 INSERT INTO `hoadon` (`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `THANHTIEN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES
 (1, 'A070103', '2023-09-19 08:00:30', '0000001', 7000, 10000, 3000, 1),
-(2, 'A140403', '2023-09-20 08:39:34', '0000001',150000, 150000, 0, 1),
-(3, 'A140403', '2023-10-19 12:10:04', '0000001',35400, 50000, 14600, 1),
-(4, 'A070103', '2023-10-23 17:43:51', '0000001',980000, 1000000, 20000, 1),
-(5, 'A140403', '2023-10-30 21:03:34', '0000001',46800, 70000, 23200, 1);
+(2, 'A140403', '2023-09-20 08:39:34', '0000001', 150000, 150000, 0, 1),
+(3, 'A140403', '2023-10-19 12:10:04', '0000001', 35400, 50000, 14600, 1),
+(4, 'A070103', '2023-10-23 17:43:51', '0000001', 980000, 1000000, 20000, 1),
+(5, 'A140403', '2023-10-30 21:03:34', '0000001', 46800, 70000, 23200, 1);
 
 -- --------------------------------------------------------
 
@@ -242,10 +247,10 @@ CREATE TABLE `nhacungcap` (
 --
 
 INSERT INTO `nhacungcap` (`MANCC`, `TENNCC`, `SDT`, `DIACHI`, `TONTAI`) VALUES
-('NCCCOOK', 'Công ty Acecook Việt Nam', '02838154064', 'TP Hồ Chí Minh', 1),
+('NCCBIAV', 'Công ty TNHH Nhà Máy Bia HEINEKEN Việt Nam', '0300831132', 'TP Hồ Chí Minh', 1),
+('NCCCOOK', 'Công ty Acecook Việt Nam', '0283815406', 'TP Hồ Chí Minh', 1),
 ('NCCDYQN', 'Công ty cung cấp thực phẩm', '0283615622', '36 Nguyễn Thị Thập', 1),
-('NCCLADY', 'FrieslandCampina Việt Nam', '0283754422', 'Tỉnh Bình Dương', 1),
-('NCCBIAV', 'Công ty TNHH Nhà Máy Bia HEINEKEN Việt Nam', '0300831132 ', 'TP Hồ Chí Minh', 1);
+('NCCLADY', 'FrieslandCampina Việt Nam', '0283754422', 'Tỉnh Bình Dương', 1);
 
 -- --------------------------------------------------------
 
@@ -295,7 +300,6 @@ CREATE TABLE `nhomhang` (
 --
 
 INSERT INTO `nhomhang` (`MANH`, `TENNH`, `TONTAI`) VALUES
-('', '', 1),
 ('0000001', 'Chăm sóc thú cưng', 1),
 ('0000002', 'Đồ dùng gia đình', 1),
 ('0000003', 'Vệ sinh nhà cửa', 1),
@@ -367,9 +371,12 @@ CREATE TABLE `phieukiemhang` (
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `phieukiemhang`
+--
+
 INSERT INTO `phieukiemhang` (`MAPHIEU`, `MANV`, `THOIGIANKIEMHANG`, `TONTAI`) VALUES
 ('0000001', 'A038645', '2023-10-30 07:00:00', 1);
-
 
 -- --------------------------------------------------------
 
@@ -380,7 +387,6 @@ INSERT INTO `phieukiemhang` (`MAPHIEU`, `MANV`, `THOIGIANKIEMHANG`, `TONTAI`) VA
 CREATE TABLE `phieunhap` (
   `MAPHIEUNHAP` char(7) NOT NULL,
   `MANV` char(7) NOT NULL,
-  `MANCC` char(7) NOT NULL,
   `THOIGIANLAP` datetime NOT NULL,
   `VAT` double NOT NULL,
   `SOMATHANG` int(11) NOT NULL,
@@ -393,9 +399,9 @@ CREATE TABLE `phieunhap` (
 -- Đang đổ dữ liệu cho bảng `phieunhap`
 --
 
-INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `MANCC`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
-('0000001', 'A038645', 'NCCLADY', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
-('0000002', 'B041003', 'NCCBIAV', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1);
+INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
+('0000001', 'A038645', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
+('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1);
 
 -- --------------------------------------------------------
 
@@ -468,7 +474,8 @@ ALTER TABLE `chitiet_kiemhang`
 --
 ALTER TABLE `chitiet_phieunhap`
   ADD PRIMARY KEY (`MAPHIEUNHAP`,`MAHANGNHAP`),
-  ADD KEY `MAHANGNHAP` (`MAHANGNHAP`);
+  ADD KEY `MAHANGNHAP` (`MAHANGNHAP`),
+  ADD KEY `MANCC` (`MANCC`);
 
 --
 -- Chỉ mục cho bảng `chitiet_phieuxuat`
@@ -543,8 +550,7 @@ ALTER TABLE `phieukiemhang`
 --
 ALTER TABLE `phieunhap`
   ADD PRIMARY KEY (`MAPHIEUNHAP`),
-  ADD KEY `MANV` (`MANV`),
-  ADD KEY `MANCC` (`MANCC`);
+  ADD KEY `MANV` (`MANV`);
 
 --
 -- Chỉ mục cho bảng `phieuxuat`
@@ -584,7 +590,8 @@ ALTER TABLE `chitiet_kiemhang`
 --
 ALTER TABLE `chitiet_phieunhap`
   ADD CONSTRAINT `chitiet_phieunhap_ibfk_1` FOREIGN KEY (`MAPHIEUNHAP`) REFERENCES `phieunhap` (`MAPHIEUNHAP`),
-  ADD CONSTRAINT `chitiet_phieunhap_ibfk_2` FOREIGN KEY (`MAHANGNHAP`) REFERENCES `hanghoa` (`MASP`);
+  ADD CONSTRAINT `chitiet_phieunhap_ibfk_2` FOREIGN KEY (`MAHANGNHAP`) REFERENCES `hanghoa` (`MASP`),
+  ADD CONSTRAINT `chitiet_phieunhap_ibfk_3` FOREIGN KEY (`MANCC`) REFERENCES `nhacungcap` (`MANCC`);
 
 --
 -- Các ràng buộc cho bảng `chitiet_phieuxuat`
@@ -628,8 +635,7 @@ ALTER TABLE `phieukiemhang`
 -- Các ràng buộc cho bảng `phieunhap`
 --
 ALTER TABLE `phieunhap`
-  ADD CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`),
-  ADD CONSTRAINT `phieunhap_ibfk_2` FOREIGN KEY (`MANCC`) REFERENCES `nhacungcap` (`MANCC`);
+  ADD CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
 
 --
 -- Các ràng buộc cho bảng `phieuxuat`
