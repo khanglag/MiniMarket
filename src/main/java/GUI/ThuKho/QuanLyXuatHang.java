@@ -4,7 +4,7 @@
  */
 package GUI.ThuKho;
 
-import BUS.PhieuXuatBus;
+import BUS.PhieuXuat_BUS;
 import DTO.PhieuXuat_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyXuatHang extends javax.swing.JPanel {
 
-    PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
+    PhieuXuat_BUS phieuXuatBus = new PhieuXuat_BUS();
     DefaultTableModel model;
     ArrayList<PhieuXuat_DTO> list = new ArrayList<PhieuXuat_DTO>();
     /**
@@ -335,7 +335,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jMenuItemXemChiTietPhieuXuatActionPerformed
 
       public void refreshData() {
-        phieuXuatBus = new PhieuXuatBus();
+        phieuXuatBus = new PhieuXuat_BUS();
         LoadData();
     }
 

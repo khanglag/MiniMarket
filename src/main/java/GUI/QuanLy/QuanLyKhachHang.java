@@ -4,7 +4,7 @@
  */
 package GUI.QuanLy;
 
-import BUS.KhachHangBus;
+import BUS.KhachHang_BUS;
 import DAO.KhachHangDAO;
 import DTO.KhachHang_DTO;
 import Handle.Timeconvert;
@@ -27,7 +27,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
      * Creates new form QuanLyKhachHang
      */
     KhachHangDAO khd = new KhachHangDAO();
-    KhachHangBus khb = new KhachHangBus();
+    KhachHang_BUS khb = new KhachHang_BUS();
 
     public QuanLyKhachHang() {
         initComponents();
@@ -300,7 +300,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String diaChi = txtDiaChi.getText();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
-        KhachHangBus khb = new KhachHangBus();
+        KhachHang_BUS khb = new KhachHang_BUS();
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
     }//GEN-LAST:event_btnAddActionPerformed

@@ -6,10 +6,10 @@ import DTO.ChiTietPhieuXuat_DTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class ChiTietPhieuXuatBus {
+public class ChiTietPhieuXuat_BUS {
     private final ChiTietPhieuXuatDAO ctpxDAO;
 
-    public ChiTietPhieuXuatBus() {
+    public ChiTietPhieuXuat_BUS() {
         ctpxDAO = new ChiTietPhieuXuatDAO();
     }
 

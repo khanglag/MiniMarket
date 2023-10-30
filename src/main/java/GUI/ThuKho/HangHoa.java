@@ -4,7 +4,7 @@
  */
 package GUI.ThuKho;
 
-import BUS.HangHoaBus;
+import BUS.HangHoa_BUS;
 import DTO.HangHoa_DTO;
 import java.awt.Frame;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class HangHoa extends JDialog {
     /**
      * Creates new form HangHoa
      */
-    HangHoaBus hangHoaBus = new HangHoaBus();
+    HangHoa_BUS hangHoaBus = new HangHoa_BUS();
     DefaultTableModel model;
     ArrayList<HangHoa_DTO> list = new ArrayList<HangHoa_DTO>();
     public HangHoa(Frame owner) {

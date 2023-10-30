@@ -4,7 +4,7 @@
  */
 package GUI.ThuKho;
 
-import BUS.ChiTietPhieuXuatBus;
+import BUS.ChiTietPhieuXuat_BUS;
 import DTO.ChiTietPhieuXuat_DTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author khang
  */
 public class ChiTietPhieuXuatView extends javax.swing.JFrame {
-    ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
+    ChiTietPhieuXuat_BUS chitiet = new ChiTietPhieuXuat_BUS();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
     /**

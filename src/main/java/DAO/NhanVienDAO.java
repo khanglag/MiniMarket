@@ -140,5 +140,12 @@ public class NhanVienDAO {
 
         return ds;
     }
-
+    public boolean ttMaNV(String maNV){
+        NhanVien_DTO dTO= new NhanVien_DTO();
+        dTO=searchNhanVien(maNV, null, null).get(0);
+        if (dTO.getMaNV().equals(maNV)) {
+            return true;
+        }
+        return false;
+    }
 }

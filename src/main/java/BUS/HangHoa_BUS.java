@@ -12,8 +12,8 @@ import java.util.ArrayList;
  *
  * @author pc
  */
-public class HangHoaBus {
-    public HangHoaBus(){
+public class HangHoa_BUS {
+    public HangHoa_BUS(){
     }
     ArrayList<HangHoa_DTO> ds;
     HangHoaDAO dao= new HangHoaDAO();

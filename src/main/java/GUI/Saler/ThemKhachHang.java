@@ -4,7 +4,7 @@
  */
 package GUI.Saler;
 
-import BUS.KhachHangBus;
+import BUS.KhachHang_BUS;
 import DAO.KhachHangDAO;
 import DTO.KhachHang_DTO;
 import Handle.Timeconvert;
@@ -29,7 +29,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
      * Creates new form ThemKhachHang
      */
     KhachHangDAO khd = new KhachHangDAO();
-     KhachHangBus khb = new KhachHangBus();
+     KhachHang_BUS khb = new KhachHang_BUS();
     public ThemKhachHang() {
         initComponents();
         createButtonGroup();

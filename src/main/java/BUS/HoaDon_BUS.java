@@ -13,8 +13,8 @@ import java.util.ArrayList;
  *
  * @author pc
  */
-public class HoaDonBus {
-    public HoaDonBus(){
+public class HoaDon_BUS {
+    public HoaDon_BUS(){
     }
     HoaDonDAO dao =new HoaDonDAO();
     public String maHoaDonMoi(){
