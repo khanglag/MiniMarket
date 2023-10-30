@@ -317,22 +317,16 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
     private void btnFindCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCustomerActionPerformed
         // TODO add your handling code here:
-        String numberPhone = txtNumberPhone.getText().trim();
-        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
-        int soLuongKH = danhSachKhachHang.size();
-        for (int i = 0; i < soLuongKH; i++) {
-            KhachHang_DTO khachHang = danhSachKhachHang.get(i);
-            if (numberPhone.equals(khachHang.getSdt())) {
-                DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
-                model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
-                String maKH = khachHang.getMaKH();
-                String tenKH = khachHang.getTenKH();
-                String sdt = khachHang.getSdt();
-                LocalDate ngaySinh = khachHang.getNgaySinh();
-                String diaChi = khachHang.getDiaChi();
-                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
-            }
-        }
+       String sdt = txtNumberPhone.getText();
+        KhachHang_DTO khachHang = khb.timKhachHang(null,sdt);
+        DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
+        String maKH = khachHang.getMaKH();
+        String tenKH = khachHang.getTenKH();
+        String soDienThoai = khachHang.getSdt();
+        LocalDate ngaySinh = khachHang.getNgaySinh();
+        String diaChi = khachHang.getDiaChi();
+        model.addRow(new Object[]{1, maKH, tenKH, soDienThoai, ngaySinh, diaChi});
     }//GEN-LAST:event_btnFindCustomerActionPerformed
 
     private void btnArrangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArrangeMouseClicked

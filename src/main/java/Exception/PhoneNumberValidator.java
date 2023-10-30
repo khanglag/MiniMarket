@@ -20,7 +20,7 @@ public class PhoneNumberValidator {
         }
     }
 
-    private boolean isValidPhoneNumberFormat(String phoneNumber) {
+    public boolean isValidPhoneNumberFormat(String phoneNumber) {
         Pattern pattern = Pattern.compile(phoneNumberRegex);
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
