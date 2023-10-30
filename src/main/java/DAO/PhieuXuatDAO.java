@@ -144,4 +144,23 @@ public class PhieuXuatDAO {
         connectDB.closeConnect();
         return soLuong;
     }
+    public boolean checkExist(String mapx) {
+        ConnectDB connectDB = new ConnectDB();
+        boolean flag = false;
+        String qry = "SELECT COUNT(*) FROM `chitiet_phieuxuat` WHERE TONTAI = 1 AND MAPHIEUXUAT = '" + mapx +"'";
+        ResultSet rSet = null;
+    
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null && rSet.next()) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi truy vấn số lượng Phiếu Xuất!!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return flag;
+    }
+    
 }

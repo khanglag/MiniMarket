@@ -355,7 +355,10 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         int i =jTableQuanLyXuatHang.getSelectedRow();
         if (i >= 0) {
             jtfMaPhieuXuat.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 1).toString());
-            new ChiTietPhieuXuat(jtfMaPhieuXuat.getText()).setVisible(true);
+            if(!phieuXuatBus.checkExist(jtfMaPhieuXuat.getText()))
+                new ChiTietPhieuXuat(jtfMaPhieuXuat.getText()).setVisible(true);
+            else
+                JOptionPane.showMessageDialog(this, "Đã tạo chi tiết phiếu xuất");
         }
         
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuXuatActionPerformed
