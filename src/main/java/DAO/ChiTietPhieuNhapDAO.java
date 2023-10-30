@@ -87,7 +87,6 @@ public class ChiTietPhieuNhapDAO {
                 + " XUATXU = '" + ctpn.getXuatXu() + "',"
                 + " ANHSP = '" + ctpn.getAnhSP() + "',"
                 + " SOLUONG = '" + ctpn.getSoLuong() + "',"
-                + " DONVI = '" + ctpn.getDonVi() + "',"
                 + " GIANHAP = '" + ctpn.getGiaNhap() + "',"
                 + " TONGTIENNHAP = '" + ctpn.getTongTienNhap() + "'"
                 + " WHERE `MAPHIEUNHAP` = '" + ctpn.getMaPhieuNhap() + "' AND `MAHANGNHAP` = '" + ctpn.getMaHangNhap()
@@ -96,8 +95,7 @@ public class ChiTietPhieuNhapDAO {
         return kq;
     }
 
-    public ArrayList<ChiTietPhieuNhap_DTO> searchCTPN(String maPhieuNhap, String maHangNhap, String tenHangNhap,
-            String xuatXu) {
+    public ArrayList<ChiTietPhieuNhap_DTO> searchCTPN(String maPhieuNhap, String maHangNhap, String tenHangNhap,String xuatXu) {
         ArrayList<ChiTietPhieuNhap_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
         StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_phieunhap` WHERE TONTAI = 1");
@@ -143,6 +141,22 @@ public class ChiTietPhieuNhapDAO {
         }
         return ds;
 
+    }
+    public boolean isCTPN_Existed(String maPhieu, String maSP) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `chitiet_phieunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `MAHANGNHAP` = '" + maSP + "'";
+        
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        
+        if (rSet != null) {
+            try {
+                return rSet.next(); 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return false; 
     }
 
 }
