@@ -103,7 +103,7 @@ public class PhieuNhapDAO {
     }
     
 
-    public ArrayList<PhieuNhap_DTO> searchPhieuNhap(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap) {
+    public ArrayList<PhieuNhap_DTO> searchPhieuNhap(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap,String trangThai) {
 
         ArrayList<PhieuNhap_DTO> phieunhap = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -125,6 +125,9 @@ public class PhieuNhapDAO {
             qry.append(" AND `THOIGIANLAP` = '" + thoiGianLap + "'");
         }
 
+        if (trangThai != null && !trangThai.isEmpty()) {
+            qry.append(" AND `TRANGTHAI ` LIKE '%" + trangThai + "%'");
+        }
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
         try {
@@ -167,6 +170,21 @@ public class PhieuNhapDAO {
         }
         connectDB.closeConnect();
         return soLuong;
+    }
+    public boolean isMaPhieuExisted(String maPhieu) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `phieunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `TONTAI` = 1";
+        
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        if (rSet != null) {
+            try {
+                return rSet.next(); 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return false; 
     }
 
 }
