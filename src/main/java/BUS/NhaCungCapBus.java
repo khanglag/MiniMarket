@@ -11,9 +11,9 @@ import DTO.NhaCungCap_DTO;
  *
  * @author pc
  */
-public class NhaCungCap_BUS {
+public class NhaCungCapBus {
 
-    public NhaCungCap_BUS() {
+    public NhaCungCapBus() {
     }
     
     NhaCungCapDAO dAO=new NhaCungCapDAO();

@@ -4,7 +4,7 @@
  */
 package GUI.ThuKho;
 
-import BUS.KhachHang_BUS;
+import BUS.KhachHangBus;
 import DTO.KhachHang_DTO;
 import java.awt.Frame;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class KhachHang extends javax.swing.JDialog {
 
     private String maKH;
-    KhachHang_BUS khachHangBus = new KhachHang_BUS();
+    KhachHangBus khachHangBus = new KhachHangBus();
     DefaultTableModel model;
     ArrayList<KhachHang_DTO> list = new ArrayList<KhachHang_DTO>();
     public void setMaKH(String maKH){

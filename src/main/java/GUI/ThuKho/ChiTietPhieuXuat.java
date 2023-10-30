@@ -4,8 +4,8 @@
  */
 package GUI.ThuKho;
 
-import BUS.ChiTietPhieuXuat_BUS;
-import BUS.PhieuXuat_BUS;
+import BUS.ChiTietPhieuXuatBus;
+import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
     /**
      * Creates new form ChiTietPhieuXuat
      */
-    ChiTietPhieuXuat_BUS chitiet = new ChiTietPhieuXuat_BUS();
-    PhieuXuat_BUS phieuXuatBus = new PhieuXuat_BUS();
+    ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
+    PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
     double thanhtien = 0;

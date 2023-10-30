@@ -7,10 +7,10 @@ import Handle.Convert;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
-public class PhieuXuat_BUS {
+public class PhieuXuatBus {
     private final PhieuXuatDAO pxDAO;
 
-    public PhieuXuat_BUS() {
+    public PhieuXuatBus() {
         pxDAO = new PhieuXuatDAO();
     }
 

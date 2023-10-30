@@ -21,8 +21,8 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-public class KhachHang_BUS {
-    public KhachHang_BUS() {
+public class KhachHangBus {
+    public KhachHangBus() {
     }
 
     KhachHangDAO dAO = new KhachHangDAO();

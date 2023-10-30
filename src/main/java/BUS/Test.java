@@ -1,6 +1,6 @@
 package BUS;
 
-import BUS.PhieuXuat_BUS;
+import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.PhieuXuat_DTO;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        ChiTietPhieuXuat_BUS phieuXuatBus = new ChiTietPhieuXuat_BUS();
+        ChiTietPhieuXuatBus phieuXuatBus = new ChiTietPhieuXuatBus();
 
     }
 }
