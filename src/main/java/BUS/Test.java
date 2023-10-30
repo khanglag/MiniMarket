@@ -14,9 +14,11 @@ import org.apache.poi.ss.usermodel.DateUtil;
 
 public class Test {
     public static void main(String[] args) {
-        NhanvienBus bus = new NhanvienBus();
-        bus.themNhanVien("Le Duy Khang",Timeconvert.convert("04-10-2003"), "nam", "0358808913", "091203002454","lehasdhqwdjabwsdha@com", "277 âu dương lân", "NVTK203");
-        ChiTietPhieuXuatBus phieuXuatBus = new ChiTietPhieuXuatBus();
+//        HoaDonBus bus= new HoaDonBus();
+//        bus.taoHoaDon("0000001");
+          KhachHangBus bus =new KhachHangBus();
+//          bus.themKhanhHang("Lee Duy Khang", Timeconvert.convert("04-10-2003"), "0358808913", "hehee", true);
+          bus.suaKhachHang("0000005","0358808913", "277 Âu Dương Lân");
     }
 }
 

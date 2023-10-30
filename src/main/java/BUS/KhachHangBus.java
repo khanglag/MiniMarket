@@ -71,7 +71,7 @@ public class KhachHangBus {
     public boolean xoaKhachHang(String sdt){
         return dAO.delete(sdt);
     }
-    public boolean suaKhachHang(String sdt, String diaChi){
-        return dAO.update(sdt, diaChi);
+    public boolean suaKhachHang(String maKH,String sdt, String diaChi){
+        return dAO.update(maKH,sdt, diaChi);
     }
 }
