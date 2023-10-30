@@ -252,7 +252,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabelPhieuKiemHang">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Phi&#x1ebf;u ki&#x1ec3;m h&#xe0;ng"/>
+                        <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; ki&#x1ec3;m h&#xe0;ng"/>
                       </Properties>
                     </Component>
                   </SubComponents>

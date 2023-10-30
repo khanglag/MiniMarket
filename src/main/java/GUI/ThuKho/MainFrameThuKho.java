@@ -41,7 +41,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         //listItem.add(new DanhMucBean("TrangChinh",jpnTrangChu,jlbTrangChu));
         //listItem.add(new DanhMucBean("PhieuNhapHang",panelPhieuNhap,jLabelPhieuNhap));
         listItem.add(new DanhMucBean("QuanLyPhieuNhap",panelQuanLyPhieuNhap,jLabelQuanLyPhieuNhap));
-        listItem.add(new DanhMucBean("PhieuKiemHang",panelPhieuKiemHang,jLabelPhieuKiemHang));
+        listItem.add(new DanhMucBean("QuanLyKiemHang",panelPhieuKiemHang,jLabelPhieuKiemHang));
         listItem.add(new DanhMucBean("QuanLyPhieuXuat",panelQuanLyPhieuXuat,jLabelQuanLyPhieuXuat));
         listItem.add(new DanhMucBean("DangXuat",panelDangXuat,jLabelDangXuat));
   
@@ -158,7 +158,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         panelMenu.setBackground(new java.awt.Color(189, 205, 214));
 
-        jLabelPhieuKiemHang.setText("Phiếu kiểm hàng");
+        jLabelPhieuKiemHang.setText("Quản lý kiểm hàng");
 
         javax.swing.GroupLayout panelPhieuKiemHangLayout = new javax.swing.GroupLayout(panelPhieuKiemHang);
         panelPhieuKiemHang.setLayout(panelPhieuKiemHangLayout);
