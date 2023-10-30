@@ -6,9 +6,15 @@ package BUS;
 
 import DAO.NhanVienDAO;
 import DTO.NhanVien_DTO;
+import Exception.DateOfBirthValidator;
+import static Exception.EmailValidator.isEmailValid;
+import Exception.InvalidDateOfBirthException;
+import Exception.InvalidPhoneNumberException;
+import Exception.PhoneNumberValidator;
 import static Handle.Convert.convertMa;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,7 +36,21 @@ public class NhanvienBus {
     }
 
     public boolean suaNhanVien(String maNV, String sdt, String diaChi, String maPQ, String email) {
-        return dAO.update(maNV, sdt, diaChi, maPQ, email);
+        PhoneNumberValidator phoneNumberValidator=new PhoneNumberValidator();
+        try {
+            phoneNumberValidator.validatePhoneNumber(sdt);
+            try {
+                if (isEmailValid(email)) {
+                    return dAO.update(maNV, sdt, diaChi, maPQ, email);
+                }
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null,e.getMessage());
+            }
+        } catch (InvalidPhoneNumberException e) {
+             JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        
+        return false;
     }
     
     public ArrayList<NhanVien_DTO> timNhanVien(String tenNV){
@@ -39,9 +59,30 @@ public class NhanvienBus {
 
     public boolean themNhanVien(String tenNV, LocalDate ngaySinh, String gioiTinh, String sdt, String cccd,
             String email, String diaChi, String maPQ) {
-        NhanVien_DTO dTO = new NhanVien_DTO(taoMaNV(sdt, maPQ), tenNV, ngaySinh, gioiTinh, cccd, sdt, email, diaChi,
+        PhoneNumberValidator phoneNumberValidator=new PhoneNumberValidator();
+        try {
+            phoneNumberValidator.validatePhoneNumber(sdt);
+            try {
+                if (isEmailValid(email)) {
+                    try {
+                     DateOfBirthValidator dateOfBirthValidator = new DateOfBirthValidator();
+                    dateOfBirthValidator.validateDateOfBirth(ngaySinh);
+                         NhanVien_DTO dTO = new NhanVien_DTO(taoMaNV(sdt, maPQ), tenNV, ngaySinh, gioiTinh, cccd, sdt, email, diaChi,
                 maPQ, true);
-        return dAO.add(dTO);
+                         return dAO.add(dTO);
+                    } catch (InvalidDateOfBirthException e) {
+                    JOptionPane.showMessageDialog(null,e.getMessage());
+                }
+                }
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null,e.getMessage());
+            }
+        } catch (InvalidPhoneNumberException e) {
+             JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+        
+        return false;
+       
     }
 
     public String taoMaNV(String sdt, String maPQ) {
