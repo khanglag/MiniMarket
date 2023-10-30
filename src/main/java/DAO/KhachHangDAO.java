@@ -63,16 +63,23 @@ public class KhachHangDAO {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `khachhang` SET "
-                        + "'`DIACHI`='" + diaChi
+                        + "`DIACHI`='" + diaChi
                         + "' WHERE `SDT`='" + sdt + "'");
         connectDB.closeConnect();
         return success;
     }
-    public KhachHang_DTO searchKhachHang(String sdt) {
+    public KhachHang_DTO searchKhachHang(String maKH,String sdt) {
         KhachHang_DTO khachHang = null;
-        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `SDT`="+sdt;
+        StringBuilder qry = new StringBuilder("SELECT * FROM `khachhang` WHERE TONTAI= 1 ");
+        if (maKH != null && !maKH.isEmpty()) {
+             qry.append(" AND `MAKH` = '").append(maKH).append("'");
+        }
+        if (sdt != null && !sdt.isEmpty()) {
+             qry.append(" AND `SDT` = '").append(sdt).append("'");
+        }
+        System.out.println(qry.toString());
         ConnectDB connectDB = new ConnectDB();
-        ResultSet rSet = connectDB.sqlQuery(qry);
+        ResultSet rSet = connectDB.sqlQuery(qry.toString());
         try {
             if (rSet != null) {
                 while (rSet.next()) {
@@ -106,7 +113,7 @@ public class KhachHangDAO {
     }
 //    Kiểm tra khách hàng có tồn tại chưa
     public boolean ttKhachHang(String sdt){
-        if (searchKhachHang(sdt)==null) {
+        if (searchKhachHang(null,sdt)==null) {
             return false;
         }
         return true;

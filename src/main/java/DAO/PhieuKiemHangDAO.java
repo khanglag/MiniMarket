@@ -69,17 +69,6 @@ public class PhieuKiemHangDAO {
         return success;
     }
 
-    // public boolean update(PhieuKiemHang_DTO pkh) {
-    // ConnectDB connectDB = new ConnectDB();
-    // boolean success = connectDB
-    // .sqlUpdate("UPDATE `phieukiemhang` SET "
-    // + "`SOTIEN`='" + pkh.getSoTien()
-    // + "','LYDO ='" + pkh.getLyDo()
-    // + "' WHERE `MAPHIEUCHI`='" + pkh.getMaPhieuChi() + "'");
-    // connectDB.closeConnect();
-    // return success;
-    // }
-
     public ArrayList<PhieuKiemHang_DTO> searchPhieuKiemHang(String maPhieu, String maNV, LocalDate thoiGianKiemHang) {
         ArrayList<PhieuKiemHang_DTO> phieukiemhang = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
@@ -115,4 +104,41 @@ public class PhieuKiemHangDAO {
         }
         return phieukiemhang;
     }
+    public int laySoLuongPhieu() {
+        ConnectDB connectDB = new ConnectDB();
+        int soLuong = 0;
+        String qry = "SELECT COUNT(*) FROM `phieukiemhang` WHERE TONTAI = 1";
+        ResultSet rSet = null;
+    
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null && rSet.next()) {
+                soLuong = rSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Lỗi truy vấn số lượng Phiếu !!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return soLuong;
+    }
+    public boolean isMaPhieuExisted(String maPhieu) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `phieukiemhang` WHERE `MAPHIEU` = '" + maPhieu + "' AND `TONTAI` = 1";
+        
+        ResultSet rSet = connectDB.sqlQuery(qry);
+        if (rSet != null) {
+            try {
+                return rSet.next(); 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return false; 
+    }
+
+    
 }
+
+

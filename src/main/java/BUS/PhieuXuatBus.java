@@ -65,6 +65,15 @@ public class PhieuXuatBus {
             return false;
         }
     }
+    public boolean suaPhieuXuat(String mapx, double thanhtien) {
+        try {
+            return pxDAO.update(mapx,thanhtien);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi khi sửa Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 
     public ArrayList<PhieuXuat_DTO> timPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
         try {

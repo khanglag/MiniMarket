@@ -47,6 +47,30 @@ public class ChiTietPhieuXuatBus {
             return false;
         }
     }
+    public boolean themChiTietPhieuXuat(ChiTietPhieuXuat_DTO ctpx) {
+        try {
+            if (ctpx.getMaPhieuXuat() == null ||ctpx.getMaHangXuat() == null || ctpx.getDonVi() == null || ctpx.getSoLuongYC() < 0 || ctpx.getSoLuongThucTe() < 0 || ctpx.getDonGia() < 0 || ctpx.getThanhTien() < 0) {
+                throw new IllegalArgumentException("Dữ liệu không hợp lệ");
+            }
+
+            
+            if (ctpxDAO.add(ctpx)) {
+                JOptionPane.showMessageDialog(null, "Thêm Chi Tiết Phiếu Xuất thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            } else {
+                throw new Exception("Thêm Chi Tiết Phiếu Xuất thất bại");
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Dữ liệu không hợp lệ.", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi khi thêm Chi Tiết Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+
 
     public boolean xoaChiTietPhieuXuat(ChiTietPhieuXuat_DTO ctpx) {
         try {

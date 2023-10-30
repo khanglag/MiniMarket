@@ -29,7 +29,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
      * Creates new form ThemKhachHang
      */
     KhachHangDAO khd = new KhachHangDAO();
-     KhachHangBus khb = new KhachHangBus();
+    KhachHangBus khb = new KhachHangBus();
     public ThemKhachHang() {
         initComponents();
         createButtonGroup();
