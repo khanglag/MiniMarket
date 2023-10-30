@@ -59,12 +59,22 @@ public class KhachHangDAO {
         connectDB.closeConnect();
         return success;
     }
-    public boolean update(String sdt, String diaChi) {
+    public boolean update(String maKH,String sdt, String diaChi) {
         ConnectDB connectDB = new ConnectDB();
+        StringBuilder qry = new StringBuilder("UPDATE `khachhang` SET ");
+
+        if (diaChi != null && !diaChi.isEmpty()) {
+            qry.append("  `DIACHI` = '").append(diaChi).append("',");
+        }
+
+        if (sdt != null && !sdt.isEmpty()) {
+            qry.append(" `SDT` = '").append(sdt).append("',");
+        }
+        qry.setLength(qry.length() - 1);
+        qry.append(" WHERE MAKH = ").append(maKH);
+        System.out.println(qry.toString());
         boolean success = connectDB
-                .sqlUpdate("UPDATE `khachhang` SET "
-                        + "`DIACHI`='" + diaChi
-                        + "' WHERE `SDT`='" + sdt + "'");
+                .sqlUpdate(qry.toString());
         connectDB.closeConnect();
         return success;
     }
@@ -77,7 +87,6 @@ public class KhachHangDAO {
         if (sdt != null && !sdt.isEmpty()) {
              qry.append(" AND `SDT` = '").append(sdt).append("'");
         }
-        System.out.println(qry.toString());
         ConnectDB connectDB = new ConnectDB();
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
         try {
