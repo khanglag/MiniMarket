@@ -70,13 +70,14 @@ public class KhachHangDAO {
     }
     public KhachHang_DTO searchKhachHang(String maKH,String sdt) {
         KhachHang_DTO khachHang = null;
-        StringBuilder qry = new StringBuilder("SELECT * FROM `khachhang` WHERE TONTAI= 1");
-        if (maKH != null && !sdt.isEmpty()) {
-             qry.append(" `MAKH` = '").append(maKH).append("',");
+        StringBuilder qry = new StringBuilder("SELECT * FROM `khachhang` WHERE TONTAI= 1 ");
+        if (maKH != null && !maKH.isEmpty()) {
+             qry.append(" AND `MAKH` = '").append(maKH).append("'");
         }
         if (sdt != null && !sdt.isEmpty()) {
-             qry.append(" `SDT` = '").append(sdt).append("',");
+             qry.append(" AND `SDT` = '").append(sdt).append("'");
         }
+        System.out.println(qry.toString());
         ConnectDB connectDB = new ConnectDB();
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
         try {
