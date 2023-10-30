@@ -94,10 +94,7 @@
                 <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField1"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="jtfMaNhanVien">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>

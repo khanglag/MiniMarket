@@ -29,7 +29,7 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfMaNhanVien = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jcbMaQuyen = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -47,9 +47,7 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
 
         jLabel4.setText("Mã nhân viên");
         jPanel2.add(jLabel4);
-
-        jTextField1.setText("jTextField1");
-        jPanel2.add(jTextField1);
+        jPanel2.add(jtfMaNhanVien);
 
         jLabel1.setText("Mã quyền");
         jPanel2.add(jLabel1);
@@ -161,8 +159,8 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcbMaQuyen;
+    private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfTenQuyen;
     private javax.swing.JTextField jtfTonTai;
     private javax.swing.JTable tableQuanLyPhanQuyen;
