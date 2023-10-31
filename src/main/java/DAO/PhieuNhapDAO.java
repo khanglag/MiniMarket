@@ -35,7 +35,7 @@ public class PhieuNhapDAO {
                     PhieuNhap_DTO pn = new PhieuNhap_DTO(
                             rSet.getString("MAPHIEUNHAP"),
                             rSet.getString("MANV"),
-                            rSet.getString("MANCC"),
+                          
                             rSet.getDate("THOIGIANLAP").toLocalDate(),
                             rSet.getDouble("VAT"),
                             rSet.getInt("SOMATHANG"),
@@ -57,10 +57,10 @@ public class PhieuNhapDAO {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                "INSERT INTO `phieunhap`(`MAPHIEUNHAP`, `MANV`,`MANCC`, `THOIGIANLAP`,`VAT`,`SOMATHANG`,`TONGTIEN`,`TRANGTHAI`, `TONTAI`) VALUES "
+                "INSERT INTO `phieunhap`(`MAPHIEUNHAP`, `MANV`, `THOIGIANLAP`,`VAT`,`SOMATHANG`,`TONGTIEN`,`TRANGTHAI`, `TONTAI`) VALUES "
                         + "('" + pn.getMaPhieuNhap()
                         + "','" + pn.getMaNV()
-                        + "','" + pn.getMaNCC()
+                        
                         + "','" + pn.getThoiGianLap()
                         + "','" + pn.getVAT()
                         + "','" + pn.getSoMatHang()
@@ -136,7 +136,7 @@ public class PhieuNhapDAO {
                     PhieuNhap_DTO phieuNhap = new PhieuNhap_DTO(
                             rSet.getString("MAPHIEUNHAP"),
                             rSet.getString("MANV"),
-                            rSet.getString("MANCC"),
+                         
                             rSet.getDate("THOIGIANLAP").toLocalDate(),
                             rSet.getDouble("VAT"),
                             rSet.getInt("SOMATHANG"),

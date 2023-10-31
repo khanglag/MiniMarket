@@ -4,17 +4,47 @@
  */
 package GUI.QuanLy;
 
+import BUS.PhieuNhapBus;
+import DTO.PhieuNhap_DTO;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
  */
 public class QuanLyNhapHang extends javax.swing.JPanel {
 
-    /**
-     * Creates new form QuanLyChiTieu
-     */
+    PhieuNhapBus pnBus = new PhieuNhapBus();
+
     public QuanLyNhapHang() {
         initComponents();
+        showReceiptInTable();
+    }
+
+    public void showReceiptInTable() {
+        try {
+            ArrayList<PhieuNhap_DTO> danhSachPhieuNhap = pnBus.rPhieuNhap_DTOs();
+            int soLuongPhieuNhap = danhSachPhieuNhap.size();
+            DefaultTableModel model = (DefaultTableModel) tablePhieuNhap.getModel();
+            model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+            for (int i = 0; i < soLuongPhieuNhap; i++) {
+               PhieuNhap_DTO phieuNhap = danhSachPhieuNhap.get(i);
+               String maPN = phieuNhap.getMaPhieuNhap();
+               String maNV = phieuNhap.getMaNV();
+                LocalDate tgNhap = phieuNhap.getThoiGianLap();
+                double VAT = phieuNhap.getVAT();
+                int soMH = phieuNhap.getSoMatHang();
+                double tongTien = phieuNhap.getTongTien();
+                String tt = phieuNhap.getTrangThai();
+                
+                model.addRow(new Object[]{i + 1, maPN, maNV,  tgNhap, VAT, soMH, tongTien, tt});
+            }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Lỗi khi đọc dữ liệu Phiếu Nhập !!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -30,7 +60,7 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePhieuNhap = new javax.swing.JTable();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -39,46 +69,51 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
 
         jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
 
-        jButton1.setText("Yêu cầu");
+        jButton1.setText("Kiểm tra");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã phiếu nhập", "Mã nhân viên", "Thời gian lập", "VAT", "Số mặt hàng", "Tổng tiền", "Trạng thái"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablePhieuNhap);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -88,6 +123,6 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablePhieuNhap;
     // End of variables declaration//GEN-END:variables
 }
