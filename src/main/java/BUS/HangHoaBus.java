@@ -22,11 +22,11 @@ public class HangHoaBus {
         return dao.ReadHangHoa();
     }
     public int ktSoLuong(String maHang){
-        ds= dao.searchHangHoa(maHang, null, null, 0, null);
+        ds= dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getSoLuong();
     }
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu){
-        return dao.searchHangHoa(maHH, tenSP, maNH, giaBan, xuatXu);
+        return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
     }
     public boolean themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, boolean tonTai){
         String anhSP=ImageChooserAndMover.formatString(tenSP);

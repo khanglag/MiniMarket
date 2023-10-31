@@ -60,7 +60,7 @@ public class ImageChooserAndMover {
         return parameter+".jpg";
     }
     public static String formatStringFile(String file){
-         String input = "\\images\\%s";
+         String input = "/images/%s";
          System.out.println(String.format(input, file));
         return StringUtils.stripAccents(String.format(input, file));
     }
