@@ -12,13 +12,27 @@ import DTO.NhaCungCap_DTO;
 import DTO.PhanQuyen_DTO;
 import DTO.PhieuChi_DTO;
 import DTO.PhieuNhap_DTO;
+import java.sql.ResultSet;
 
 public class test {
     public static void main(String[] args) {
-        KhachHangBus khb = new KhachHangBus();
-      
-        KhachHang_DTO kh = khb.timKhachHangMaKH("0000001");
-        System.out.println(kh);
+        String maPhieuXuat="000001";
+        String maNV="A03856";
+        String maKH="000001";
+        StringBuilder qry = new StringBuilder("SELECT * FROM `phieuxuat` WHERE TONTAI = 1");
+
+        if (maPhieuXuat != null && !maPhieuXuat.isEmpty()) {
+            qry.append(" or `MAPHIEUXUAT` =  '" + maPhieuXuat + "'");
+        }
+        if (maNV != null && !maNV.isEmpty()) {
+            qry.append(" or `MANV` LIKE '%" + maNV + "%'");
+        }
+
+        if (maKH != null && !maKH.isEmpty())
+            qry.append(" or `MAKH` = '" + maKH + "'");
+
+        System.out.println(qry.toString());
+
        
     }
 }
