@@ -20,7 +20,8 @@ public class ImageChooserAndMover {
     public static boolean chooseAndMoveImage( String newFileName) {
         // Tạo cửa sổ JFileChooser
         String sourceFolderPath = "path/to/source/folder"; 
-        String destinationFolderPath="/Users/pc/Documents/GitHub/MiniMarket/src/main/java/images";
+        String destinationFolderPath="/MiniMarket/src/main/java/images";
+        String destinationFolderPath_1 = "/Users/pc/Documents/GitHub/MiniMarket/src/main/resources/images"; // Đường dẫn đến thư mục đích
         JFileChooser fileChooser = new JFileChooser(sourceFolderPath);
         fileChooser.setFileFilter(new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif"));
 
@@ -34,10 +35,11 @@ public class ImageChooserAndMover {
 
             // Đường dẫn tới tệp đích
             String destinationFilePath = destinationFolderPath + File.separator + newFileName;
-
+            String destinationFilePath_1=destinationFolderPath_1+File.separator+newFileName;
             try {
                 // Di chuyển tệp ảnh đến thư mục đích
                 Files.copy(selectedFile.toPath(), new File(destinationFilePath).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(selectedFile.toPath(), new File(destinationFilePath_1).toPath(), StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("Đã di chuyển tệp ảnh thành công.");
 
                 // Lưu tên mới của ảnh vào biến dạng String

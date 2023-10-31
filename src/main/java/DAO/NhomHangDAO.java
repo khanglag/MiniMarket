@@ -65,7 +65,7 @@ public class NhomHangDAO {
     public boolean update(String maNH, String tenNH) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `nhomhang` SET `TENNH`='" + nh.getTenNH() + "' WHERE `MANH`='" + nh.getMaNH() + "'");
+                .sqlUpdate("UPDATE `nhomhang` SET `TENNH`='" + tenNH + "' WHERE `MANH`='" + maNH + "'");
         connectDB.closeConnect();
         return success;
     }

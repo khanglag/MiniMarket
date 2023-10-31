@@ -24,5 +24,7 @@ public class NhomHangBus {
     public boolean themNH(String maNH,String tenNH){
         return dAO.add(maNH, tenNH, true);
     }
-    public boolean 
+    public boolean suaNH(String maNH, String tenNH){
+        return dAO.update(maNH, maNH);
+    }
 }
