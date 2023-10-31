@@ -43,8 +43,9 @@ public class HangHoaDAO {
         return hhArrayList;
     }
 
-    public boolean add(HangHoa_DTO hh) {
+    public boolean add(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
         boolean success = false;
+        HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
                 "INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `ANHSP`, `TONTAI`) VALUES ("
@@ -72,15 +73,16 @@ public class HangHoaDAO {
         return success;
     }
 
-    public boolean update(HangHoa_DTO hangHoa) {
+    public boolean update(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu) {
         boolean success = false;
+        HangHoa_DTO hangHoa=new HangHoa_DTO(maSP, tenSP, null, maNCC, null, giaNhap, giaBan, 0, xuatXu, null, true);
         ConnectDB connectDB = new ConnectDB();
         String sql = "UPDATE `hanghoa` SET "
+                + " `TENSP` = " + hangHoa.getTenSP() + ","
+                + " `MANCC` = " + hangHoa.getMaNCC() + ","
                 + " `GIANHAP` = " + hangHoa.getGiaNhap() + ","
                 + " `GIABAN` = " + hangHoa.getGiaBan() + ","
-                + " `SOLUONG` = " + hangHoa.getSoLuong() + ","
                 + " `XUATXU` = '" + hangHoa.getXuatXu() + "',"
-                + " `ANHSP` = '" + hangHoa.getAnhSP() + "'"
                 + " WHERE `MASP` = '" + hangHoa.getMaSP() + "'";
 
         success = connectDB.sqlUpdate(sql);
@@ -89,7 +91,7 @@ public class HangHoaDAO {
         return success;
     }
 
-    public ArrayList<HangHoa_DTO> searchHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu) {
+    public ArrayList<HangHoa_DTO> searchHangHoa(String maHH,String tenSP, String maNH, String xuatXu) {
         ArrayList<HangHoa_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
@@ -104,10 +106,6 @@ public class HangHoaDAO {
 
         if (maNH != null && !maNH.isEmpty()) {
             qry.append(" AND `MANH` = '" + maNH + "'");
-        }
-
-        if (giaBan > 0) {
-            qry.append(" AND `GIABAN` = " + giaBan);
         }
 
         if (xuatXu != null && !xuatXu.isEmpty()) {

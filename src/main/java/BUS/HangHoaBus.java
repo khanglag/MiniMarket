@@ -6,6 +6,7 @@ package BUS;
 
 import DAO.HangHoaDAO;
 import DTO.HangHoa_DTO;
+import File.ImageChooserAndMover;
 import java.util.ArrayList;
 
 /**
@@ -21,13 +22,27 @@ public class HangHoaBus {
         return dao.ReadHangHoa();
     }
     public int ktSoLuong(String maHang){
-        ds= dao.searchHangHoa(maHang, null, null, 0, null);
+        ds= dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getSoLuong();
     }
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu){
-        return dao.searchHangHoa(maHH, tenSP, maNH, giaBan, xuatXu);
+        return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
+    }
+    public boolean themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, boolean tonTai){
+        String anhSP=ImageChooserAndMover.formatString(tenSP);
+        if (!ImageChooserAndMover.chooseAndMoveImage(anhSP)) {
+            return false;
+        }
+        anhSP=ImageChooserAndMover.formatStringFile(anhSP);
+        return dao.add(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
     }
     public boolean xoaHangHoa(String maHH){
         return dao.delete(maHH);
+    }
+    public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa,String maNH,String maNCC){
+        return dao.searchHangHoa(maHH, maNCC, maNH, maNCC);
+    }
+    public boolean suaHangHoa(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu){
+        return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
     }
 }
