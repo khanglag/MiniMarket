@@ -73,15 +73,16 @@ public class HangHoaDAO {
         return success;
     }
 
-    public boolean update(HangHoa_DTO hangHoa) {
+    public boolean update(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu) {
         boolean success = false;
+        HangHoa_DTO hangHoa=new HangHoa_DTO(maSP, tenSP, null, maNCC, null, giaNhap, giaBan, 0, xuatXu, null, true);
         ConnectDB connectDB = new ConnectDB();
         String sql = "UPDATE `hanghoa` SET "
+                + " `TENSP` = " + hangHoa.getTenSP() + ","
+                + " `MANCC` = " + hangHoa.getMaNCC() + ","
                 + " `GIANHAP` = " + hangHoa.getGiaNhap() + ","
                 + " `GIABAN` = " + hangHoa.getGiaBan() + ","
-                + " `SOLUONG` = " + hangHoa.getSoLuong() + ","
                 + " `XUATXU` = '" + hangHoa.getXuatXu() + "',"
-                + " `ANHSP` = '" + hangHoa.getAnhSP() + "'"
                 + " WHERE `MASP` = '" + hangHoa.getMaSP() + "'";
 
         success = connectDB.sqlUpdate(sql);
