@@ -299,7 +299,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
         String soDT = txtNumberPhone.getText();
         String ngaySinh = txtNgaySinh.getText();
         String diaChi = txtDiaChi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
        
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
