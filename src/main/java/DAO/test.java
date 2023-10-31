@@ -15,10 +15,7 @@ import DTO.PhieuNhap_DTO;
 
 public class test {
     public static void main(String[] args) {
-        KhachHangBus khb = new KhachHangBus();
-      
-        KhachHang_DTO kh = khb.timKhachHangMaKH("0000001");
-        System.out.println(kh);
-       
+        HangHoaDAO dAO=new HangHoaDAO();
+        dAO.add("4902430556782", "Biển vô cực","0000004", "NCCDYQN", "gói", 0, 0, 0,"VietNam", "/images/bienvocuc.jpg", true);
     }
 }
