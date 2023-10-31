@@ -78,7 +78,8 @@ public class testGUI extends javax.swing.JFrame {
                 testGUI a = new testGUI();
                 a.setVisible(true);
                 a.setLayout(new BorderLayout());
-                a.add(new QuanLyXuatHang());
+               // a.add(new QuanLyXuatHang());
+                a.add(new QuanLyKiemHang());
             }
         });
     }

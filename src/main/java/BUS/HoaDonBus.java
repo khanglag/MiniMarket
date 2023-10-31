@@ -4,9 +4,12 @@
  */
 package BUS;
 
+import Controller.TaiKhoanController;
 import DAO.HoaDonDAO;
 import DTO.HangHoa_DTO;
+import DTO.HoaDon_DTO;
 import static Handle.Convert.convertMa;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +20,10 @@ public class HoaDonBus {
     public HoaDonBus(){
     }
     HoaDonDAO dao =new HoaDonDAO();
-    public String maHoaDonMoi(){
-        return convertMa(dao.demSoHoaDon()+1);
+    public ArrayList<HoaDon_DTO> dsHoaDon(){
+        return dao.ReadHoadons();
+    }
+    public boolean taoHoaDon(String maKH){
+        return dao.add(dao.demSoHoaDon()+1, "A070103", LocalDate.now(), "0000001", 0, 0, 0, true);
     }
 }

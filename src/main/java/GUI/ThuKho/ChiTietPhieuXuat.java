@@ -516,6 +516,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         }
         if(flag){
             phieuXuatBus.suaPhieuXuat(jtfMaPhieuXuat.getText(), thanhtien);
+            System.out.println(thanhtien);
             this.dispose();
         }
         
