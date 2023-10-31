@@ -24,10 +24,9 @@ public class PhieuNhap_DTO {
     public PhieuNhap_DTO() {
     }
 
-    public PhieuNhap_DTO(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, String trangThai, boolean tonTai) {
+    public PhieuNhap_DTO(String maPhieuNhap, String maNV, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, String trangThai, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maNV = maNV;
-        this.maNCC = maNCC;
         this.thoiGianLap = thoiGianLap;
         this.VAT = VAT;
         this.soMatHang = soMatHang;
@@ -50,14 +49,6 @@ public class PhieuNhap_DTO {
 
     public void setMaNV(String maNV) {
         this.maNV = maNV;
-    }
-
-    public String getMaNCC() {
-        return maNCC;
-    }
-
-    public void setMaNCC(String maNCC) {
-        this.maNCC = maNCC;
     }
 
     public LocalDate getThoiGianLap() {

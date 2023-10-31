@@ -26,7 +26,7 @@ public class PhieuNhapBus {
     }
 
     public boolean themPhieuNhap(PhieuNhap_DTO pn) {
-        if (pn.getMaPhieuNhap() == null || pn.getMaNV() == null || pn.getMaNCC() == null || pn.getThoiGianLap() == null || pn.getVAT() < 0 || pn.getSoMatHang() < 0 || pn.getTongTien() < 0 || pn.getTrangThai() == null) {
+        if (pn.getMaPhieuNhap() == null || pn.getMaNV() == null || pn.getThoiGianLap() == null || pn.getVAT() < 0 || pn.getSoMatHang() < 0 || pn.getTongTien() < 0 || pn.getTrangThai() == null) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -38,7 +38,7 @@ public class PhieuNhapBus {
         else {
             String maPhieu = Convert.convertMa(pnDAO.laySoLuongPhieuNhap() + 1);
 
-            PhieuNhap_DTO pnDTO = new PhieuNhap_DTO(maPhieu, pn.getMaNV(), pn.getMaNCC(), pn.getThoiGianLap(),pn.getVAT(),pn.getSoMatHang(),0,pn.getTrangThai(),true);
+            PhieuNhap_DTO pnDTO = new PhieuNhap_DTO(maPhieu, pn.getMaNV(), pn.getThoiGianLap(),pn.getVAT(),pn.getSoMatHang(),0,pn.getTrangThai(),true);
             if (pnDAO.add(pnDTO)) {
                 JOptionPane.showMessageDialog(null, "Thêm thành công");
                 return true;
@@ -65,10 +65,10 @@ public class PhieuNhapBus {
         }
     }
     
-    public boolean suaPhieuNhap(PhieuNhap_DTO pn) {
+    public boolean suaPhieuNhap(String maPhieuNhap,int soMatHang, double tongTien, String trangThai) {
     try {
-        if (pnDAO.isMaPhieuExisted(pn.getMaPhieuNhap())) {
-            return pnDAO.update(pn);
+        if (pnDAO.isMaPhieuExisted(maPhieuNhap)) {
+            return pnDAO.update(maPhieuNhap,soMatHang,tongTien,trangThai);
         } else {
             JOptionPane.showMessageDialog(null, "Phiếu không tồn tại.", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
@@ -80,9 +80,9 @@ public class PhieuNhapBus {
     }
 }
 
-    public ArrayList<PhieuNhap_DTO> timPhieuNhap(String maPhieuNhap, String maNV, String maNCC, LocalDate thoiGianLap, String trangThai) {
+    public ArrayList<PhieuNhap_DTO> timPhieuNhap(String maPhieuNhap, String maNV, LocalDate thoiGianLap, String trangThai) {
         try {
-            return pnDAO.searchPhieuNhap(maPhieuNhap, maNV, maNCC,thoiGianLap,trangThai);
+            return pnDAO.searchPhieuNhap(maPhieuNhap, maNV, thoiGianLap,trangThai);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi khi tìm kiếm !!!!", "Lỗi", JOptionPane.ERROR_MESSAGE);

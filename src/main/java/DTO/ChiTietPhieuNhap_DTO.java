@@ -12,6 +12,7 @@ public class ChiTietPhieuNhap_DTO {
     private String maPhieuNhap;
     private String maHangNhap;
     private String tenHangNhap;
+    private String maNCC;
     private double VAT;
     private String xuatXu;
     private String anhSP;
@@ -24,10 +25,11 @@ public class ChiTietPhieuNhap_DTO {
     public ChiTietPhieuNhap_DTO() {
     }
 
-    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenHangNhap, double VAT, String xuatXu, String anhSP, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
+    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenHangNhap,String maNCC, double VAT, String xuatXu, String anhSP, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maHangNhap = maHangNhap;
         this.tenHangNhap = tenHangNhap;
+        this.maNCC = maNCC;
         this.VAT = VAT;
         this.xuatXu = xuatXu;
         this.anhSP = anhSP;
@@ -60,6 +62,14 @@ public class ChiTietPhieuNhap_DTO {
 
     public void setTenHangNhap(String tenHangNhap) {
         this.tenHangNhap = tenHangNhap;
+    }
+
+    public String getMaNCC() {
+        return maNCC;
+    }
+
+    public void setMaNCC(String maNCC) {
+        this.maNCC = maNCC;
     }
 
     
