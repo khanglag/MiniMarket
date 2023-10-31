@@ -10,6 +10,7 @@ import DTO.KhachHang_DTO;
 import Handle.Timeconvert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -321,10 +322,17 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         String hoTen = txtName.getText();
         String soDT = txtNumberPhone.getText();
-        String ngaySinh = txtNgaySinh.getText();
+
         String diaChi = txtDiaChi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
+        String ngaySinh = txtNgaySinh.getText().trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(ngaySinh, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            return; // Dừng xử lý tiếp theo
+        }
         KhachHangBus khb = new KhachHangBus();
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
@@ -362,6 +370,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                     if (soDT.equals(khachHang.getSdt())) {
                         txtName.setEnabled(false);
                         txtNgaySinh.setEnabled(false);
+                        txtMaKh.setEnabled(false);
                         txtName.setText(khachHang.getTenKH());
                         txtNumberPhone.setText(khachHang.getSdt());
                         String ngaySinh = timeConvert.convert(khachHang.getNgaySinh());
@@ -380,7 +389,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String maKH = txtMaKh.getText();
         String sdt = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
-        khb.suaKhachHang(maKH,sdt, diaChi);
+        khb.suaKhachHang(maKH, sdt, diaChi);
         showCustomerInTable();
         clearAll();
     }//GEN-LAST:event_btnUpdateActionPerformed
