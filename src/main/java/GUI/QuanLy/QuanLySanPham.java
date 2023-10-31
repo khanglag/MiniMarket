@@ -69,7 +69,17 @@ public class QuanLySanPham extends javax.swing.JPanel {
         arrangeGroup.add(ChkArrangeByName);
         arrangeGroup.add(ChkArrangeByPrice);
     }
-
+    public void clearALL(){
+        txtMaSP.setText("");
+        txtTenSP.setText("");
+        txtSoLuongSP.setText("");
+        txtNhaCC.setText("");
+        txtGiaBan.setText("");
+        txtGiaNhap.setText("");
+        txtXuatXu.setText("");
+        txtDonVi.setText("");
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -331,8 +341,18 @@ public class QuanLySanPham extends javax.swing.JPanel {
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton2.setText("Xóa SP");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Clear");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Sửa TTSP");
 
@@ -623,12 +643,39 @@ public class QuanLySanPham extends javax.swing.JPanel {
             hhBus.themHH(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, true);
              JOptionPane.showMessageDialog(null,
                         "Thêm hàng hóa thành công");
+             showProductsInTable();
                 
         } catch (Exception e) {
              JOptionPane.showMessageDialog(null,
                         "Thêm hàng thất bại");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String tenSP = txtTenSP.getText();
+             int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa sản phẩm " + tenSP + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            String maSP = txtMaSP.getText();
+        try {
+            hhBus.xoaHangHoa(maSP);
+            JOptionPane.showMessageDialog(null,
+                        "Xóa hàng hóa thành công");
+             showProductsInTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                        "Xóa hàng hóa thất bại");
+        }
+        } else {
+            return;
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        clearALL();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
