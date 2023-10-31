@@ -41,7 +41,8 @@ public class NhomHangDAO {
         return dsnh;
     }
 
-    public boolean add(NhomHang_DTO nh) {
+    public boolean add(String maNH, String tenNH, boolean tonTai) {
+        NhomHang_DTO nh=new NhomHang_DTO(maNH, tenNH, tonTai);
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(""
@@ -53,15 +54,15 @@ public class NhomHangDAO {
         return success;
     }
 
-    public boolean delete(NhomHang_DTO nh) {
+    public boolean delete(String getMaNH) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `nhomhang` SET TONTAI = 0 WHERE `MANH`='" + nh.getMaNH() + "'");
+                .sqlUpdate("UPDATE `nhomhang` SET TONTAI = 0 WHERE `MANH`='" + getMaNH + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public boolean update(NhomHang_DTO nh) {
+    public boolean update(String maNH, String tenNH) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `nhomhang` SET `TENNH`='" + nh.getTenNH() + "' WHERE `MANH`='" + nh.getMaNH() + "'");
