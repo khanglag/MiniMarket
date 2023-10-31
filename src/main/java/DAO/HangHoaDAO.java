@@ -90,7 +90,7 @@ public class HangHoaDAO {
         return success;
     }
 
-    public ArrayList<HangHoa_DTO> searchHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu) {
+    public ArrayList<HangHoa_DTO> searchHangHoa(String maHH,String tenSP, String maNH, String xuatXu) {
         ArrayList<HangHoa_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
@@ -105,10 +105,6 @@ public class HangHoaDAO {
 
         if (maNH != null && !maNH.isEmpty()) {
             qry.append(" AND `MANH` = '" + maNH + "'");
-        }
-
-        if (giaBan > 0) {
-            qry.append(" AND `GIABAN` = " + giaBan);
         }
 
         if (xuatXu != null && !xuatXu.isEmpty()) {
