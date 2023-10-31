@@ -39,4 +39,10 @@ public class HangHoaBus {
     public boolean xoaHangHoa(String maHH){
         return dao.delete(maHH);
     }
+    public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa,String maNH,String maNCC){
+        return dao.searchHangHoa(maHH, maNCC, maNH, maNCC);
+    }
+    public boolean suaHangHoa(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu){
+        return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
+    }
 }
