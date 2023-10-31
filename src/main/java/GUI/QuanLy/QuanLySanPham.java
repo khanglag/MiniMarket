@@ -104,7 +104,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         txtSoLuongSP = new javax.swing.JTextField();
         txtNhaCC = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        btnOpenFile = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbbMaNhomHang = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -225,13 +224,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel7.setText("Nhà cung cấp");
 
-        btnOpenFile.setText("Chọn ảnh");
-        btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpenFileActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Mã nhóm hàng");
 
         cbbMaNhomHang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chăm sóc thú cưng", "Đồ dùng gia đình", "Vệ sinh nhà cửa", "Sản phẩm cho mẹ và bé", "Chăm sóc cá nhân", "Bánh kẹo các loại", "Sữa các loại", "Bia, nước các loại", "Gạo, bột, đồ khô", "Mì, miến, cháo, phở", "Kem, thực phẩm đông mát", "Dầu ăn, nước chấm, gia vị" }));
@@ -284,11 +276,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbbMaNhomHang, 0, 1, Short.MAX_VALUE)
-                    .addComponent(cbbMaNCC, 0, 142, Short.MAX_VALUE))
+                    .addComponent(cbbMaNCC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOpenFile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -334,9 +324,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                         .addGap(10, 10, 10)))
                 .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnOpenFile)
-                    .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -578,14 +566,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_BtnArrangeActionPerformed
 
-    private void btnOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileActionPerformed
-        // TODO add your handling code here:
-        if(evt.getSource() == btnOpenFile){
-            JFileChooser fileChooser = new  JFileChooser();
-            fileChooser.showOpenDialog(null);
-        }
-    }//GEN-LAST:event_btnOpenFileActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 //           themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, boolean tonTai)
@@ -656,7 +636,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private javax.swing.JRadioButton ChkArrangeByName;
     private javax.swing.JRadioButton ChkArrangeByPrice;
     private javax.swing.JTable TableProducts;
-    private javax.swing.JButton btnOpenFile;
     private javax.swing.JComboBox<String> cbbMaNCC;
     private javax.swing.JComboBox<String> cbbMaNhomHang;
     private javax.swing.JButton jButton1;
