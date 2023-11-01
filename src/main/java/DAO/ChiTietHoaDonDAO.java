@@ -42,6 +42,29 @@ public class ChiTietHoaDonDAO {
         return chiTietHoaDon_DTOs;
     }
 
+    public ArrayList<ChiTietHoaDon_DTO> readBD(String maHD) {
+        ConnectDB connectDB = new ConnectDB();
+        ArrayList<ChiTietHoaDon_DTO> chiTietHoaDon_DTOs = new ArrayList<>();
+        String qry = "SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1 AND 'sohd'="+maHD;
+        ResultSet rSet = null;
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null) {
+                while (rSet.next()) {
+                    ChiTietHoaDon_DTO cthddto = new ChiTietHoaDon_DTO(
+                            rSet.getInt("SOHD"),
+                            rSet.getString("MASP"),
+                            rSet.getInt("SOLUONG"),
+                            rSet.getBoolean("TONTAI"));
+                    chiTietHoaDon_DTOs.add(cthddto);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi truy vấn !!!");
+            e.printStackTrace();
+        }
+        return chiTietHoaDon_DTOs;
+    }
     public boolean add(ChiTietHoaDon_DTO ct) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
