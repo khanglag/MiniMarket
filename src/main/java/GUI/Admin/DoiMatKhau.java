@@ -191,7 +191,8 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         // TODO add your handling code here:
-        TaiKhoan_DTO tk = tkBus.checkPass(TaiKhoanController.getTendnString(), jpfMatKhau.getText());
+        TaiKhoan_DTO tk = tkBus.checkPass(TaiKhoanController.getTendnString());
+        System.out.println(tk);
         if(jpfMatKhau.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
         }else if( jpfMatKhauMoi.getText().equals("")){
@@ -199,11 +200,11 @@ public class DoiMatKhau extends javax.swing.JFrame {
         }else if( jpfXacNhan.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Vui lòng xác nhận mật khẩu!");
         }else if( !jpfXacNhan.getText().equals(jpfMatKhauMoi.getText())){
-            JOptionPane.showMessageDialog(this, "Vui lòng xác nhận mật khẩu!");
+            JOptionPane.showMessageDialog(this, "Mật khẩu không khớp!");
         }else if(!jpfMatKhau.getText().equals(tk.getMatKhau())){
             JOptionPane.showMessageDialog(this, "Mật khẩu không chính xác!");
         }
-        if(tkBus.doiMatKhau(TaiKhoanController.getTendnString(), jpfXacNhan.getText())){
+        else if(tkBus.doiMatKhau(TaiKhoanController.getTendnString(), jpfXacNhan.getText())){
             JOptionPane.showMessageDialog(this, "Đã đổi mật khẩu!");
             this.dispose();
         }else

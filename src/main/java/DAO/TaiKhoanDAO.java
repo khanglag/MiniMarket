@@ -85,10 +85,10 @@ public class TaiKhoanDAO {
          }
          return false;
     } 
-    public TaiKhoan_DTO Account(String manv, String mk) {
+    public TaiKhoan_DTO Account(String manv) {
         ConnectDB connectDB = new ConnectDB();
         TaiKhoan_DTO tk = null;
-        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1 and MANV = '" + manv +"' and MATKHAU ='"+mk+"'";
+        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1 and MANV = '" + manv +"'";
         ResultSet rSet = null;
 
         try {

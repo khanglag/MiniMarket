@@ -79,6 +79,7 @@ public class ThuKhoController {
                     break;
                 case "DangXuat":
                    // node = new PhieuXuatHang();
+                    //dispose();
                     break;
                 case "QuanLyPhieuXuat":
                     node = new QuanLyXuatHang();

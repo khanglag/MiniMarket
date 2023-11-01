@@ -64,8 +64,8 @@ public class TaiKhoanBus {
             return tkDAO.doiMatKhau(maNV, matKhau);
         return false;
     }
-    public TaiKhoan_DTO checkPass(String maNV, String matkhau){
-        return tkDAO.Account(maNV, matkhau);
+    public TaiKhoan_DTO checkPass(String maNV){
+        return tkDAO.Account(maNV);
         
     }
 }
