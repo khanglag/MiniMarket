@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BEAN.DanhMucBean;
+import BUS.NhanvienBus;
 import Controller.TaiKhoanController;
 import Controller.ThuKhoController;
 import GUI.Admin.DoiMatKhau;
@@ -22,12 +23,13 @@ public class MainFrameThuKho extends javax.swing.JFrame {
     /**
      * Creates new form MainFrameThuKho
      */
+    NhanvienBus nv = new NhanvienBus();
     public MainFrameThuKho() {
 
         initComponents();
         jpnView.setLayout(new BorderLayout());
         jpnView.add(new QuanLyPhieuNhap());
-        jLabelTen.setText(TaiKhoanController.getTendnString());
+        jLabelTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
         TrinhDieuKhien();
         
 
@@ -353,7 +355,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
     private void jLabelTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTenMouseClicked
         // TODO add your handling code here:
-        new DoiMatKhau().setVisible(true);
+        new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
     }//GEN-LAST:event_jLabelTenMouseClicked
   
     public static void main(String args[]) {

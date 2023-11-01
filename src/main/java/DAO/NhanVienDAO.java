@@ -163,4 +163,33 @@ public class NhanVienDAO {
         }
         return false;
     }
+    public String TenNV(String manv){
+        ConnectDB connectDB = new ConnectDB();
+
+        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI = 1 and manv = '"+manv +"'" ;
+        ResultSet rset = connectDB.sqlQuery(qry.toString());
+
+        try {
+            if (rset != null) {
+                while (rset.next()) {
+                    NhanVien_DTO nhanVien = new NhanVien_DTO(
+                            rset.getString("MANV"),
+                            rset.getNString("TENNV"),
+                            rset.getDate("NGAYSINH").toLocalDate(),
+                            rset.getNString("GIOITINH"),
+                            rset.getString("CCCD"),
+                            rset.getString("SDT"),
+                            rset.getString("EMAIL"),
+                            rset.getNString("DIACHI"),
+                            rset.getString("MAQUYEN"),
+                            rset.getBoolean("TONTAI"));
+                    return nhanVien.getTenNV();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "Không tìm thấy";
+    }
+    
 }
