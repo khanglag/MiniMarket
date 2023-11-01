@@ -45,7 +45,6 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         int i = 0;
         while (i <= list.size() - 1) {
             ChiTietPhieuXuat_DTO px = list.get(i);
-            HangHoa_DTO hh = listHH.get(i);
             model.addRow(new Object[] {
                     ++i, px.getMaPhieuXuat(),px.getMaHangXuat(),px.getSoLuongYC(),px.getSoLuongThucTe(),px.getDonVi(),px.getDonGia(),px.getThanhTien()
             });
@@ -448,9 +447,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 }
             }
         }
-        if(list.isEmpty()){
-            model.setRowCount(0);
-        }
+        
         LoadData();
         
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -473,7 +470,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         if (i >= 0) {
             jtfMaPhieuXuat.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 1).toString());
-            listHH = hhBus.timHangHoa(jtfMaPhieuXuat.getText(),null, null, null);
+            String t = hhBus.timHangHoa(jTablePhieuXuatHang.getModel().getValueAt(i, 2).toString());
+            jtfTenHang.setText(t);
             jtfMaHang.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 2).toString());
             jtfSoLuongYeuCau.setText(jTablePhieuXuatHang

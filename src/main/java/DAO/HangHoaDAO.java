@@ -139,4 +139,41 @@ public class HangHoaDAO {
 
         return ds;
     }
+    public String searchHangHoa(String maHH) {
+        HangHoa_DTO hanghoa = null;
+        ConnectDB connectDB = new ConnectDB();
+
+        StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
+        
+        if (maHH != null || !maHH.isEmpty()) {
+            qry.append(" AND `MASP` LIKE '%" + maHH + "%'");
+        }
+
+        ResultSet rSet = connectDB.sqlQuery(qry.toString());
+
+        try {
+            if (rSet != null) {
+                while (rSet.next()) {
+                    hanghoa = new HangHoa_DTO(
+                            rSet.getString("MASP"),
+                            rSet.getNString("TENSP"),
+                            rSet.getString("MANH"),
+                            rSet.getString("MANCC"),
+                            rSet.getNString("DONVI"),
+                            rSet.getDouble("GIANHAP"),
+                            rSet.getDouble("GIABAN"),
+                            rSet.getInt("SOLUONG"),
+                            rSet.getNString("XUATXU"),
+                            rSet.getString("ANHSP"),
+                            rSet.getBoolean("TONTAI"));
+
+                    
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return hanghoa.getTenSP();
+    }
 }

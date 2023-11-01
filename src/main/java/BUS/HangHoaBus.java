@@ -45,4 +45,7 @@ public class HangHoaBus {
     public boolean suaHangHoa(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu){
         return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
     }
+     public String timHangHoa(String maHH){
+        return dao.searchHangHoa(maHH);
+    }
 }
