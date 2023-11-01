@@ -36,8 +36,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jtfMaPhieuNhap = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jtfMaNCC = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jtfMaNhanVien = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -67,14 +65,14 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã phiếu nhập", "Mã nhà cung cấp", "Mã nhân viên", "Ngày nhập", "Giờ nhập", "Tổng tiền"
+                "Mã phiếu nhập", "Mã nhân viên", "Ngày nhập", "Giờ nhập", "Tổng tiền"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, true
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -86,9 +84,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tableQlnv);
-        if (tableQlnv.getColumnModel().getColumnCount() > 0) {
-            tableQlnv.getColumnModel().getColumn(0).setPreferredWidth(20);
-        }
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin phiếu nhập"));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,10 +93,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jLabel4.setText("Mã Phiếu nhập");
         jPanel2.add(jLabel4);
         jPanel2.add(jtfMaPhieuNhap);
-
-        jLabel5.setText("Mã nhà cung cáp");
-        jPanel2.add(jLabel5);
-        jPanel2.add(jtfMaNCC);
 
         jLabel8.setText("Mã nhân viên");
         jPanel2.add(jLabel8);
@@ -234,7 +225,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -247,7 +237,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jtfGioNhap;
-    private javax.swing.JTextField jtfMaNCC;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuNhap;
     private javax.swing.JTextField jtfNgayNhap;
