@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
+import BUS.HangHoaBus;
 import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
@@ -25,8 +26,10 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
      */
     ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
     PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
+    HangHoaBus hhBus = new HangHoaBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
+    ArrayList<HangHoa_DTO> listHH = new ArrayList<HangHoa_DTO>();
     double thanhtien = 0;
     
     public ChiTietPhieuXuat(String mapx) {
@@ -42,6 +45,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         int i = 0;
         while (i <= list.size() - 1) {
             ChiTietPhieuXuat_DTO px = list.get(i);
+            HangHoa_DTO hh = listHH.get(i);
             model.addRow(new Object[] {
                     ++i, px.getMaPhieuXuat(),px.getMaHangXuat(),px.getSoLuongYC(),px.getSoLuongThucTe(),px.getDonVi(),px.getDonGia(),px.getThanhTien()
             });
@@ -469,6 +473,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         if (i >= 0) {
             jtfMaPhieuXuat.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 1).toString());
+            listHH = hhBus.timHangHoa(jtfMaPhieuXuat.getText(),null, null, null);
             jtfMaHang.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 2).toString());
             jtfSoLuongYeuCau.setText(jTablePhieuXuatHang
@@ -491,6 +496,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         HangHoa hangHoa = new HangHoa(this);
         hangHoa.setVisible(true);
         HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
+        listHH.add(selectedHangHoa);
         if(selectedHangHoa!=null){
             System.out.println(selectedHangHoa.getMaSP());
             jtfMaHang.setText(selectedHangHoa.getMaSP());
