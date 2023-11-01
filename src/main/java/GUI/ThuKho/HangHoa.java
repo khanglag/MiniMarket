@@ -63,7 +63,7 @@ public class HangHoa extends JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfTim = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
         btnChon = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
@@ -76,7 +76,7 @@ public class HangHoa extends JDialog {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Chọn sản phẩm");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
+        jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -147,12 +147,12 @@ public class HangHoa extends JDialog {
                                 .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnTim)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnLamMoi)))
-                        .addGap(0, 92, Short.MAX_VALUE)))
+                        .addGap(0, 98, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -166,11 +166,10 @@ public class HangHoa extends JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnTim)
-                        .addComponent(btnLamMoi)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTim)
+                    .addComponent(btnLamMoi))
                 .addGap(261, 261, 261)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnChon)
@@ -200,13 +199,30 @@ public class HangHoa extends JDialog {
     
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
+//        ArrayList<HangHoa_DTO> listS = new ArrayList<HangHoa_DTO>();
+//        listS = hangHoaBus.timHangHoa(jtfTim.getText(),jtfTim.getText(),null, null, null);
+//        model = (DefaultTableModel) jTableQuanLyXuatHang.getModel();
+//        model.setRowCount(0);
+//        int i = 0;
+//        while (i <= listS.size() - 1) {
+//            PhieuXuat_DTO px = listS.get(i);
+//            model.addRow(new Object[] {
+//                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+//            });
+//            jTableQuanLyXuatHang.setModel(model);
+//
+//        }
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
-        LoadData();
+        refreshData();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
+    public void refreshData(){
+        hangHoaBus = new HangHoaBus();
+        LoadData();
+    }
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -245,6 +261,6 @@ public class HangHoa extends JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableHangHoa;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtfTim;
     // End of variables declaration//GEN-END:variables
 }
