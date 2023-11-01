@@ -100,6 +100,11 @@ public class LoginForm extends javax.swing.JFrame {
                 jtfUserFocusLost(evt);
             }
         });
+        jtfUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfUserActionPerformed(evt);
+            }
+        });
 
         jpfPass.setText("Password");
         jpfPass.setEchoChar('\u0000');
@@ -211,6 +216,10 @@ public class LoginForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtfUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfUserActionPerformed
+     // TODO add your handling code here:
+    }//GEN-LAST:event_jtfUserActionPerformed
 
     private void jtfUserFocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jtfUserFocusGained
         // TODO add your handling code here:

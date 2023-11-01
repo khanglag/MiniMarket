@@ -4,11 +4,13 @@ import BUS.KhachHangBus;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import DTO.PhieuXuat_DTO;
+import DTO.TaiKhoan_DTO;
 import DTO.ChiTietHoaDon_DTO;
 import DTO.ChiTietPhieuNhap_DTO;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.KhachHang_DTO;
 import DTO.NhaCungCap_DTO;
+import DTO.NhanVien_DTO;
 import DTO.PhanQuyen_DTO;
 import DTO.PhieuChi_DTO;
 import DTO.PhieuNhap_DTO;
@@ -36,8 +38,14 @@ public class test {
 
        
 // =======
-        HangHoaDAO dAO=new HangHoaDAO();
-        dAO.add("4902430556782", "Biển vô cực","0000004", "NCCDYQN", "gói", 0, 0, 0,"VietNam", "/images/bienvocuc.jpg", true);
+        // NhanVienDAO nv = new NhanVienDAO();
+        // NhanVien_DTO d = new NhanVien_DTO("A000004","Ke",LocalDate.now(),"nam","068000000011","0339708977","cuong@gmail.com","Tan son","NVTK203",true);
+        // nv.add(d);
+        TaiKhoanDAO tk = new TaiKhoanDAO();
+        String maNV = "A038645";
+        String mk = "051203";
+        TaiKhoan_DTO  dto = new TaiKhoan_DTO(maNV,mk ,null, true);
+        tk.add(dto);
 // >>>>>>> main
     }
 }
