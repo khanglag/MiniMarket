@@ -56,15 +56,6 @@ public class PhieuXuatBus {
         }
     }
 
-    public boolean suaPhieuXuat(PhieuXuat_DTO px) {
-        try {
-            return pxDAO.update(px);
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Lỗi khi sửa Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-    }
     public boolean suaPhieuXuat(String mapx, double thanhtien) {
         try {
             return pxDAO.update(mapx,thanhtien);

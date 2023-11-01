@@ -32,7 +32,6 @@ public class ChiTietPhieuXuatBus {
             ChiTietPhieuXuat_DTO ctpxDTO = new ChiTietPhieuXuat_DTO(maPhieuXuat, maHangXuat, soLuongYC, soLuongThucTe, donVi, donGia, thanhTien, true);
 
             if (ctpxDAO.add(ctpxDTO)) {
-                JOptionPane.showMessageDialog(null, "Thêm Chi Tiết Phiếu Xuất thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
                 throw new Exception("Thêm Chi Tiết Phiếu Xuất thất bại");
@@ -52,8 +51,6 @@ public class ChiTietPhieuXuatBus {
             if (ctpx.getMaPhieuXuat() == null ||ctpx.getMaHangXuat() == null || ctpx.getDonVi() == null || ctpx.getSoLuongYC() < 0 || ctpx.getSoLuongThucTe() < 0 || ctpx.getDonGia() < 0 || ctpx.getThanhTien() < 0) {
                 throw new IllegalArgumentException("Dữ liệu không hợp lệ");
             }
-
-            
             if (ctpxDAO.add(ctpx)) {
                 JOptionPane.showMessageDialog(null, "Thêm Chi Tiết Phiếu Xuất thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 return true;

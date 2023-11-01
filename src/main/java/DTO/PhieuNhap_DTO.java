@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class PhieuNhap_DTO {
     private String maPhieuNhap;
     private String maNV;
-    
+    private String maNCC;
     private LocalDate thoiGianLap;
     private double VAT;
     private int soMatHang;
@@ -27,7 +27,6 @@ public class PhieuNhap_DTO {
     public PhieuNhap_DTO(String maPhieuNhap, String maNV, LocalDate thoiGianLap, double VAT, int soMatHang, double tongTien, String trangThai, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maNV = maNV;
-        
         this.thoiGianLap = thoiGianLap;
         this.VAT = VAT;
         this.soMatHang = soMatHang;
@@ -52,7 +51,6 @@ public class PhieuNhap_DTO {
         this.maNV = maNV;
     }
 
-   
     public LocalDate getThoiGianLap() {
         return thoiGianLap;
     }
@@ -102,7 +100,7 @@ public class PhieuNhap_DTO {
 
     @Override
     public String toString() {
-        return "PhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maNV=" + maNV 
+        return "PhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maNV=" + maNV + ", maNCC=" + maNCC
                 + ", thoiGianLap=" + thoiGianLap + ", VAT=" + VAT + ", soMatHang=" + soMatHang + ", tongTien="
                 + tongTien + ", trangThai=" + trangThai + ", tonTai=" + tonTai + '}';
     }
