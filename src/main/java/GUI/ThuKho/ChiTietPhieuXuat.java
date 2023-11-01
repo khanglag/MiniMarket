@@ -35,6 +35,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
     }
     
     public void LoadData(){
+        thanhtien=0;
         model = (DefaultTableModel) jTablePhieuXuatHang.getModel();
         model.setRowCount(0);
         
@@ -413,19 +414,19 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         }
         if(index>=0 ){
             double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
-        jtfThanhTien.setText(Double.toString(a));
-        String maPx = jtfMaPhieuXuat.getText();
-        String maHx = jtfMaHang.getText();
-        int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
-        int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
-        String donViTinh = jtfDonViTinh.getText();
-        double donGia = Double.parseDouble(jtfDonGia.getText());
-        double thanhTien = Double.parseDouble(jtfThanhTien.getText());
-        ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
-        System.out.println(list.get(i));
-        list.set(index,ctpx);
+            jtfThanhTien.setText(Double.toString(a));
+            String maPx = jtfMaPhieuXuat.getText();
+            String maHx = jtfMaHang.getText();
+            int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
+            int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
+            String donViTinh = jtfDonViTinh.getText();
+            double donGia = Double.parseDouble(jtfDonGia.getText());
+            double thanhTien = Double.parseDouble(jtfThanhTien.getText());
+            ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
+            System.out.println(list.get(i));
+            list.set(index,ctpx);
         }
-        
+        LoadData();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -497,6 +498,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
             jtfDonViTinh.setText(selectedHangHoa.getDonVi());
             double gia = selectedHangHoa.getGiaBan();
             jtfDonGia.setText(Double.toString(gia));
+            jtfSoLuongYeuCau.setText("");
+            jtfSoLuongThucXuat.setText("");
         }
            
         
