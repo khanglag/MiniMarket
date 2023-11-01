@@ -59,7 +59,7 @@ public class KhachHang extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        jtfTim = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
@@ -70,7 +70,7 @@ public class KhachHang extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
+        jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class KhachHang extends JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(6, 6, 6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(btnTim)
                     .addGap(18, 18, 18)
@@ -167,7 +167,7 @@ public class KhachHang extends JDialog {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(53, 53, 53)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnTim)
                             .addComponent(btnLamMoi)))
@@ -179,13 +179,26 @@ public class KhachHang extends JDialog {
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
+        KhachHang_DTO kh = new KhachHang_DTO();
+        kh = khachHangBus.timKhachHang(null, jtfTim.getText());
+        model = (DefaultTableModel) jTableKhachHang.getModel();
+        model.setRowCount(0);
+        model.addRow(new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getNgaySinh(),kh.getSdt(),kh.getDiaChi()});
+        jTableKhachHang.setModel(model);
+        
+
+        
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
-        LoadData();
+        refreshData();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
+    public void refreshData(){
+        khachHangBus = new KhachHangBus();
+        LoadData();
+    }
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -216,6 +229,6 @@ public class KhachHang extends JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableKhachHang;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtfTim;
     // End of variables declaration//GEN-END:variables
 }
