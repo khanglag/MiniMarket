@@ -97,6 +97,18 @@ public class NhanVienDAO {
         return success;
     }
 
+    public boolean update(String maNV,String maPQ) {
+        ConnectDB connectDB = new ConnectDB();
+        StringBuilder qry = new StringBuilder("UPDATE `nhanvien` SET");
+        qry.append(" `MAQUYEN` = '").append(maPQ);
+        
+        qry.append(" WHERE `MANV` = '").append(maNV).append("'");
+
+        String queryString = qry.toString();
+        boolean success=connectDB.sqlUpdate(queryString);
+        connectDB.closeConnect();
+        return success;
+    }
     public ArrayList<NhanVien_DTO> searchNhanVien(String maNV, String tenNV, String maQuyen) {
         ArrayList<NhanVien_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();

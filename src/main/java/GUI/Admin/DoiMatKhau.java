@@ -4,6 +4,9 @@
  */
 package GUI.Admin;
 
+import BUS.TaiKhoanBus;
+import DTO.TaiKhoan_DTO;
+
 /**
  *
  * @author khang
@@ -44,6 +47,11 @@ public class DoiMatKhau extends javax.swing.JFrame {
         jLabel1.setText("Đổi mật khẩu");
 
         btnDoiMatKhau.setText("Đổi mật khẩu");
+        btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoiMatKhauActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Huỷ");
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +183,11 @@ public class DoiMatKhau extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     /**
      * @param args the command line arguments

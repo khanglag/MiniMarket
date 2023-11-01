@@ -4,17 +4,26 @@
  */
 package GUI.Admin;
 
+import BUS.TaiKhoanBus;
+import DTO.TaiKhoan_DTO;
+import java.awt.Frame;
+
 /**
  *
  * @author khang
  */
-public class ThemTaiKhoan extends javax.swing.JFrame {
+public class ThemTaiKhoan extends javax.swing.JDialog {
 
     /**
      * Creates new form ThemTaiKhoan
      */
-    public ThemTaiKhoan() {
+    public ThemTaiKhoan(Frame owner,String taikhoan, String quyen) {
+        super(owner, "Select Product", true);
+        setSize(300, 200);
         initComponents();
+        jtfTaiKhoan.setText(taikhoan);
+        jtfMatKhau.setText("Abc@123");
+        jtfQuyen.setText(quyen);
     }
 
     /**
@@ -34,7 +43,7 @@ public class ThemTaiKhoan extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jtfMatKhau = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jcbQuyen = new javax.swing.JComboBox<>();
+        jtfQuyen = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
@@ -47,26 +56,26 @@ public class ThemTaiKhoan extends javax.swing.JFrame {
 
         jLabel2.setText("Tài khoản");
         jPanel2.add(jLabel2);
+
+        jtfTaiKhoan.setEditable(false);
         jPanel2.add(jtfTaiKhoan);
 
         jLabel3.setText("Mật khẩu");
         jPanel2.add(jLabel3);
+
+        jtfMatKhau.setEditable(false);
         jPanel2.add(jtfMatKhau);
 
         jLabel4.setText("Quyền");
         jPanel2.add(jLabel4);
-
-        jcbQuyen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Quản lý", "Thủ kho", "Saler", "Vui lòng chọn" }));
-        jcbQuyen.setSelectedIndex(4);
-        jcbQuyen.setToolTipText("");
-        jcbQuyen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbQuyenActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jcbQuyen);
+        jPanel2.add(jtfQuyen);
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnHuy.setText("Huỷ");
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -131,44 +140,17 @@ public class ThemTaiKhoan extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
 
-    private void jcbQuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbQuyenActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbQuyenActionPerformed
+        TaiKhoanBus tkBus = new TaiKhoanBus();
+        tkBus.themTaiKhoan(new TaiKhoan_DTO(jtfTaiKhoan.getText(),jtfMatKhau.getText(),jtfQuyen.getText(),true));
+        this.dispose();
+    }//GEN-LAST:event_btnThemActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThemTaiKhoan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThemTaiKhoan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThemTaiKhoan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThemTaiKhoan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ThemTaiKhoan().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuy;
@@ -179,8 +161,8 @@ public class ThemTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JComboBox<String> jcbQuyen;
     private javax.swing.JTextField jtfMatKhau;
+    private javax.swing.JTextField jtfQuyen;
     private javax.swing.JTextField jtfTaiKhoan;
     // End of variables declaration//GEN-END:variables
 }

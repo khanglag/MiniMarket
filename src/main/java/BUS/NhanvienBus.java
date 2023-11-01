@@ -52,6 +52,11 @@ public class NhanvienBus {
         
         return false;
     }
+    public boolean suaNhanVien(String maNV, String maPQ) {
+       
+        return dAO.update(maNV, maPQ);
+                
+    }
     
     public ArrayList<NhanVien_DTO> timNhanVien(String tenNV){
         return dAO.searchNhanVien(null, tenNV, null);
