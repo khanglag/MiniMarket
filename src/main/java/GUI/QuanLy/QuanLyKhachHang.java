@@ -10,6 +10,7 @@ import DTO.KhachHang_DTO;
 import Handle.Timeconvert;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,9 +32,9 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     public QuanLyKhachHang() {
         initComponents();
-         createButtonGroup();
+        createButtonGroup();
         showCustomerInTable();
-       
+
     }
 
     public void showCustomerInTable() {
@@ -59,11 +60,23 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             model.addRow(new Object[]{i + 1, maKH, tenKH, sdt, ngaySinh, diaChi, tinhTrang});
         }
     }
-     public void createButtonGroup() {
+
+    public void createButtonGroup() {
         ButtonGroup arrangeGroup = new ButtonGroup();
         arrangeGroup.add(chkArrangeAZ);
         arrangeGroup.add(chkArrangeZA);
     }
+
+    public void clearAll() {
+        txtName.setText("");
+        txtNumberPhone.setText("");
+        txtNgaySinh.setText("");
+        txtDiaChi.setText("");
+        txtName.setEnabled(true);
+        txtNgaySinh.setEnabled(true);
+        showCustomerInTable();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,6 +107,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         btnArrange = new javax.swing.JButton();
         chkArrangeAZ = new javax.swing.JRadioButton();
         chkArrangeZA = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtMaKh = new javax.swing.JTextField();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -211,6 +226,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         chkArrangeZA.setText("Z - A");
 
+        jLabel4.setText("Mã khách hàng");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -218,7 +235,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -229,13 +245,21 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                             .addComponent(txtNumberPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                             .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                             .addComponent(txtDiaChi)
-                            .addComponent(txtNgaySinh))
+                            .addComponent(txtNgaySinh)))
+                    .addComponent(jLabel1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(btnArrange)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(chkArrangeAZ)
                         .addGap(18, 18, 18)
-                        .addComponent(chkArrangeZA)))
+                        .addComponent(chkArrangeZA))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -256,7 +280,9 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -296,23 +322,39 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         String hoTen = txtName.getText();
         String soDT = txtNumberPhone.getText();
-        String ngaySinh = txtNgaySinh.getText();
+
         String diaChi = txtDiaChi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
+        String ngaySinh = txtNgaySinh.getText().trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(ngaySinh, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            return; // Dừng xử lý tiếp theo
+        }
         KhachHangBus khb = new KhachHangBus();
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
         btnClearActionPerformed(null);
-        
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        String sdt = txtNumberPhone.getText();
-        System.out.println(sdt);
-        khb.xoaKhachHang(sdt);
-        showCustomerInTable();
-         btnClearActionPerformed(null);
+        String sdt = txtNumberPhone.getText().trim();
+        if (sdt.equals("")) {
+            return;
+        }
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            khb.xoaKhachHang(sdt);
+            showCustomerInTable();
+            clearAll();
+        } else {
+            return;
+        }
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
@@ -326,11 +368,15 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 for (int i = 0; i < soLuongKH; i++) {
                     KhachHang_DTO khachHang = danhSachKhachHang.get(i);
                     if (soDT.equals(khachHang.getSdt())) {
+                        txtName.setEnabled(false);
+                        txtNgaySinh.setEnabled(false);
+                        txtMaKh.setEnabled(false);
                         txtName.setText(khachHang.getTenKH());
                         txtNumberPhone.setText(khachHang.getSdt());
                         String ngaySinh = timeConvert.convert(khachHang.getNgaySinh());
                         txtNgaySinh.setText(ngaySinh);
                         txtDiaChi.setText(khachHang.getDiaChi());
+                        txtMaKh.setText(khachHang.getMaKH());
                         break;
                     }
                 }
@@ -340,17 +386,18 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        String maKH = txtMaKh.getText();
         String sdt = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
-        khb.suaKhachHang(sdt, diaChi);
+        khb.suaKhachHang(maKH, sdt, diaChi);
         showCustomerInTable();
-         btnClearActionPerformed(null);
+        clearAll();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
         String sdt = txtNumberPhone.getText();
-        KhachHang_DTO khachHang = khb.timKhachHang(sdt);
+        KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
         String maKH = khachHang.getMaKH();
@@ -363,11 +410,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-         txtName.setText("");
-        txtNumberPhone.setText("");
-        txtNgaySinh.setText("");
-        txtDiaChi.setText("");
-        showCustomerInTable();
+        clearAll();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnArrangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArrangeMouseClicked
@@ -418,11 +461,13 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtMaKh;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtNumberPhone;

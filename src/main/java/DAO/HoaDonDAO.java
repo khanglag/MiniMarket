@@ -46,19 +46,20 @@ public class HoaDonDAO {
         return ds;
     }
 
-    public boolean add(HoaDon_DTO hd) {
+    public boolean add(int soHD, String maNV, LocalDate thoiGianLap, String maKH, double thanhTien, double tienKhachDua, double tienTraKhach, boolean tonTai) {
         boolean success = false;
+        HoaDon_DTO hd=new HoaDon_DTO(soHD, maNV, thoiGianLap, maKH, thanhTien, tienKhachDua, tienTraKhach, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                "INSERT INTO `hoadon`(`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `TONGHD`, `THANHTOAN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES "
-                        + "('" + hd.getSoHD()
-                        + "','" + hd.getMaNV()
-                        + "','" + Date.valueOf(hd.getThoiGianLap())
-                        + "','" + hd.getMaKH()
-                        + "','" + hd.getThanhTien()
-                        + "','" + hd.getTienKhachDua()
-                        + "','" + hd.getTienTraKhach()
-                        + "','1')");
+                "INSERT INTO `hoadon`(`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `THANHTIEN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES ("
+                        + "'"+hd.getSoHD()+"',"
+                        + "'"+hd.getMaNV()+"',"
+                        + "'"+hd.getThoiGianLap()+"',"
+                        + "'"+hd.getMaKH()+"',"
+                        + "'"+hd.getThanhTien()+"',"
+                        + "'"+hd.getTienKhachDua()+"',"
+                        + "'"+hd.getTienTraKhach()+"',"
+                        + "'1')");
         connectDB.closeConnect();
         return success;
     }

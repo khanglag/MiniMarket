@@ -6,6 +6,7 @@ package BUS;
 
 import DAO.NhaCungCapDAO;
 import DTO.NhaCungCap_DTO;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +18,9 @@ public class NhaCungCapBus {
     }
     
     NhaCungCapDAO dAO=new NhaCungCapDAO();
-    
+    public ArrayList<NhaCungCap_DTO> dsNCC(){
+        return dAO.ReadNhaCungCap();
+    }
     public String timTenNCC(String maNCC){
         NhaCungCap_DTO dto= new NhaCungCap_DTO();
         dto=dAO.searchNCC(maNCC,null, null,null).get(0);
