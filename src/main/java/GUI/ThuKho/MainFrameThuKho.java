@@ -9,6 +9,7 @@ import BUS.NhanvienBus;
 import Controller.TaiKhoanController;
 import Controller.ThuKhoController;
 import GUI.Admin.DoiMatKhau;
+import static GUI.Login.LoginForm.login;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -218,6 +219,11 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         );
 
         jLabelDangXuat.setText("Đăng xuất");
+        jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelDangXuatMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDangXuatLayout = new javax.swing.GroupLayout(panelDangXuat);
         panelDangXuat.setLayout(panelDangXuatLayout);
@@ -357,6 +363,12 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         // TODO add your handling code here:
         new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
     }//GEN-LAST:event_jLabelTenMouseClicked
+
+    private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        login();
+    }//GEN-LAST:event_jLabelDangXuatMouseClicked
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
