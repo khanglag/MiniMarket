@@ -5,7 +5,9 @@
 package GUI.Admin;
 
 import BUS.TaiKhoanBus;
+import Controller.TaiKhoanController;
 import DTO.TaiKhoan_DTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +18,10 @@ public class DoiMatKhau extends javax.swing.JFrame {
     /**
      * Creates new form DoiMatKhauFrame
      */
-    public DoiMatKhau() {
+    String MaNV;
+    TaiKhoanBus tkBus = new TaiKhoanBus();
+   
+    public DoiMatKhau(String MaNV) {
         initComponents();
     }
 
@@ -186,44 +191,29 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         // TODO add your handling code here:
-        
+        TaiKhoan_DTO tk = tkBus.checkPass(TaiKhoanController.getTendnString(), jpfMatKhau.getText());
+        if(jpfMatKhau.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
+        }else if( jpfMatKhauMoi.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu mới!");
+        }else if( jpfXacNhan.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Vui lòng xác nhận mật khẩu!");
+        }else if( !jpfXacNhan.getText().equals(jpfMatKhauMoi.getText())){
+            JOptionPane.showMessageDialog(this, "Vui lòng xác nhận mật khẩu!");
+        }else if(!jpfMatKhau.getText().equals(tk.getMatKhau())){
+            JOptionPane.showMessageDialog(this, "Mật khẩu không chính xác!");
+        }
+        if(tkBus.doiMatKhau(TaiKhoanController.getTendnString(), jpfXacNhan.getText())){
+            JOptionPane.showMessageDialog(this, "Đã đổi mật khẩu!");
+            this.dispose();
+        }else
+            JOptionPane.showMessageDialog(this, "Lỗi!");
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DoiMatKhau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DoiMatKhau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DoiMatKhau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DoiMatKhau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DoiMatKhau().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDoiMatKhau;

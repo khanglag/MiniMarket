@@ -85,6 +85,31 @@ public class TaiKhoanDAO {
          }
          return false;
     } 
-   
+    public TaiKhoan_DTO Account(String manv, String mk) {
+        ConnectDB connectDB = new ConnectDB();
+        TaiKhoan_DTO tk = null;
+        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1 and MANV = '" + manv +"' and MATKHAU ='"+mk+"'";
+        ResultSet rSet = null;
+
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null) {
+                while (rSet.next()) {
+                    tk = new TaiKhoan_DTO(
+                            rSet.getNString("MANV"),
+                            rSet.getNString("MATKHAU"),
+                            rSet.getNString("MAPQ"),
+                            rSet.getBoolean("TONTAI"));
+                    return tk;
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi truy vấn !!!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return tk;
+    }
 
 }

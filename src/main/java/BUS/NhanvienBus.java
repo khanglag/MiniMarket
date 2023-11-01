@@ -109,4 +109,7 @@ public class NhanvienBus {
         }
         return (ma += subsdt);
     }
+    public String tenNV(String manv){
+        return dAO.TenNV(manv);
+    }
 }
