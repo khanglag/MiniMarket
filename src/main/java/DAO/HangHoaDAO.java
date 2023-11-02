@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import ConnectDB.ConnectDB;
+import javax.swing.JOptionPane;
 
 public class HangHoaDAO {
     public HangHoaDAO() {
@@ -44,7 +45,9 @@ public class HangHoaDAO {
     }
 
     public boolean add(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
-        boolean success = false;
+      
+        try {
+              boolean success = false;
         HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
@@ -61,7 +64,14 @@ public class HangHoaDAO {
                         + "','" + hh.getAnhSP()
                         + "', 1)");
         connectDB.closeConnect();
+        JOptionPane.showMessageDialog(null,
+                "Thêm hàng hóa thành công");
         return success;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Thêm hàng hóa thất bại");
+        }
+        return true;
     }
 
     public boolean delete(String maSP) {

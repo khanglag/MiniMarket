@@ -6,10 +6,18 @@ package GUI.QuanLy;
 
 import BUS.PhieuNhapBus;
 import DTO.PhieuNhap_DTO;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -31,21 +39,23 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) tablePhieuNhap.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
             for (int i = 0; i < soLuongPhieuNhap; i++) {
-               PhieuNhap_DTO phieuNhap = danhSachPhieuNhap.get(i);
-               String maPN = phieuNhap.getMaPhieuNhap();
-               String maNV = phieuNhap.getMaNV();
+                PhieuNhap_DTO phieuNhap = danhSachPhieuNhap.get(i);
+                String maPN = phieuNhap.getMaPhieuNhap();
+                String maNV = phieuNhap.getMaNV();
                 LocalDate tgNhap = phieuNhap.getThoiGianLap();
                 double VAT = phieuNhap.getVAT();
                 int soMH = phieuNhap.getSoMatHang();
                 double tongTien = phieuNhap.getTongTien();
                 String tt = phieuNhap.getTrangThai();
                 
-                model.addRow(new Object[]{i + 1, maPN, maNV,  tgNhap, VAT, soMH, tongTien, tt});
+                model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien, tt});
             }
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Lỗi khi đọc dữ liệu Phiếu Nhập !!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Lỗi khi đọc dữ liệu Phiếu Nhập !!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +68,7 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCheckNhapHang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
@@ -69,27 +79,29 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
 
         jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
 
-        jButton1.setText("Kiểm tra");
+        btnCheckNhapHang.setText("Kiểm tra");
 
         tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã phiếu nhập", "Mã nhân viên", "Thời gian lập", "VAT", "Số mặt hàng", "Tổng tiền", "Trạng thái"
+                "STT", "Mã phiếu nhập", "Mã nhân viên", "Thời gian lập", "VAT", "Số mặt hàng", "Tổng tiền", "Trạng thái", "Chi tiết phiếu nhập"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+        tablePhieuNhap.setRowHeight(50);
+        tablePhieuNhap.setRowMargin(10);
         jScrollPane1.setViewportView(tablePhieuNhap);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -101,7 +113,7 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCheckNhapHang)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,7 +123,7 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnCheckNhapHang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
         );
@@ -119,7 +131,7 @@ public class QuanLyNhapHang extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCheckNhapHang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -27,6 +27,8 @@ import javax.swing.JTextField;
 public class item extends javax.swing.JPanel {
 
     private String MaSP;
+    private static int soLuong;
+//    private static double price;
     HangHoaDAO hhd = new HangHoaDAO();
     static HangHoaBus hhb = new HangHoaBus();
     public static ArrayList<HangHoa_DTO> gioHang = new ArrayList<>();
@@ -53,7 +55,7 @@ public class item extends javax.swing.JPanel {
             BtnAddProduct.setEnabled(true);
         }
     }
-    
+
     public static void openPopup(JFrame parentFrame, String MaSP) {
         JDialog popup = new JDialog(parentFrame, "Popup", true);
         JLabel label = new JLabel("Số lượng:");
@@ -70,6 +72,8 @@ public class item extends javax.swing.JPanel {
                             "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm");
                     return;
                 }
+                item it = new item();
+                it.soLuongSP(soLuong);
                 popup.dispose();
             }
         });
@@ -83,10 +87,11 @@ public class item extends javax.swing.JPanel {
         popup.setSize(300, 100);
         popup.setVisible(true);
     }
-    public void refreshCartUI(){
-        BanHang bh = new BanHang();
-        bh.showItemCartInTable();
+
+    public int soLuongSP(int sl) {
+        return soLuong = sl;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,7 +148,7 @@ public class item extends javax.swing.JPanel {
         // TODO add your handling code here:   
         ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
         JFrame frame = new JFrame("Số lượng");
-//        openPopup(frame, MaSP);   
+        openPopup(frame, MaSP);
         boolean daTonTai = false;
         for (HangHoa_DTO sanPham : gioHang) {
             if (MaSP.equals(sanPham.getMaSP())) {
@@ -157,12 +162,15 @@ public class item extends javax.swing.JPanel {
             for (int i = 0; i < danhSachSanPham.size(); i++) {
                 HangHoa_DTO sanPham = danhSachSanPham.get(i);
                 if (MaSP.equals(sanPham.getMaSP())) {
+                    sanPham.setSoLuong(soLuong);
+                    double price = soLuong * hhb.giaBanSP(sanPham.getMaSP());
+                    sanPham.setGiaBan(price);
                     gioHang.add(sanPham);
                     break; // Thêm sản phẩm và thoát khỏi vòng lặp
                 }
             }
-        }     
-       
+        }
+        BanHang.showItemCartInTable();
     }//GEN-LAST:event_BtnAddProductActionPerformed
 
 
