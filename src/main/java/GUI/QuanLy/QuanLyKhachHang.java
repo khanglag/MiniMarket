@@ -59,6 +59,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             }
             model.addRow(new Object[]{i + 1, maKH, tenKH, sdt, ngaySinh, diaChi, tinhTrang});
         }
+        txtMaKh.setEnabled(false);
     }
 
     public void createButtonGroup() {
@@ -74,6 +75,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         txtDiaChi.setText("");
         txtName.setEnabled(true);
         txtNgaySinh.setEnabled(true);
+        txtMaKh.setText("");
         showCustomerInTable();
     }
 
@@ -353,8 +355,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         } else {
             return;
         }
-
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
@@ -371,6 +371,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                         txtName.setEnabled(false);
                         txtNgaySinh.setEnabled(false);
                         txtMaKh.setEnabled(false);
+              
                         txtName.setText(khachHang.getTenKH());
                         txtNumberPhone.setText(khachHang.getSdt());
                         String ngaySinh = timeConvert.convert(khachHang.getNgaySinh());
@@ -386,12 +387,18 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        String maKH = txtMaKh.getText();
+       
+         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa thông tin khách hàng này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            String maKH = txtMaKh.getText();
         String sdt = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
         khb.suaKhachHang(maKH, sdt, diaChi);
         showCustomerInTable();
         clearAll();
+        } else {
+            return;
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
