@@ -1,3 +1,4 @@
+
 package DAO;
 
 import ConnectDB.ConnectDB;
@@ -5,7 +6,6 @@ import DTO.TaiKhoan_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 
 public class TaiKhoanDAO {
     public TaiKhoanDAO() {
@@ -50,7 +50,6 @@ public class TaiKhoanDAO {
         connectDB.closeConnect();
         return success;
     }
-
     public boolean doiMatKhau(String maNV, String matKhau) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = false;
@@ -111,5 +110,4 @@ public class TaiKhoanDAO {
         connectDB.closeConnect();
         return tk;
     }
-
 }
