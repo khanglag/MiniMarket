@@ -25,19 +25,17 @@ public class ChiTietPhieuNhapBus {
 
     public boolean themCTPN(ChiTietPhieuNhap_DTO ctn) {
         try {
-            if (ctn.getMaPhieuNhap() == null || ctn.getMaHangNhap() == null || ctn.getTenHangNhap() == null || ctn.getVAT() < 0 || ctn.getXuatXu() == null || ctn.getAnhSP() == null || ctn.getSoLuong() < 0 || ctn.getDonVi() == null || ctn.getGiaNhap() < 0 || ctn.getTongTienNhap() < 0) {
+            if (ctn.getMaPhieuNhap() == null || ctn.getMaHangNhap() == null || ctn.getTenHangNhap() == null || ctn.getMaNCC() == null || ctn.getVAT() < 0 || ctn.getXuatXu() == null || ctn.getAnhSP() == null || ctn.getSoLuong() < 0 || ctn.getDonVi() == null || ctn.getGiaNhap() < 0 || ctn.getTongTienNhap() < 0) {
                 throw new IllegalArgumentException("Dữ liệu không hợp lệ");
             }
     
             if (ctnDAO.isCTPN_Existed(ctn.getMaPhieuNhap(), ctn.getMaHangNhap())) {
-                JOptionPane.showMessageDialog(null, "Sản phẩm đã tồn tại trong phiếu", "Lỗi", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
     
-            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getVAT(),ctn.getXuatXu(),ctn.getAnhSP(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
+            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getMaNCC(),ctn.getVAT(),ctn.getXuatXu(),ctn.getAnhSP(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
     
             if (ctnDAO.addCTPN(ct)) {
-                JOptionPane.showMessageDialog(null, "Thêm Chi Tiết Phiếu Nhập thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             } else {
                 throw new Exception("Thêm Chi Tiết Phiếu Nhập thất bại");

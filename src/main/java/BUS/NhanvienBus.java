@@ -53,6 +53,11 @@ public class NhanvienBus {
         
         return false;
     }
+    public boolean suaNhanVien(String maNV, String maPQ) {
+       
+        return dAO.update(maNV, maPQ);
+                
+    }
     
     public ArrayList<NhanVien_DTO> timNhanVien(String tenNV){
         return dAO.searchNhanVien(null, tenNV, null);
@@ -104,6 +109,9 @@ public class NhanvienBus {
             System.out.println("sub sdt" + subsdt);
         }
         return (ma += subsdt);
+    }
+    public String tenNV(String manv){
+        return dAO.TenNV(manv);
     }
     public String kiemtraTK(String maNV){
         TaiKhoanDAO dAO= new TaiKhoanDAO();

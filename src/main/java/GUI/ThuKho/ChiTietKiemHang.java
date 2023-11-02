@@ -98,6 +98,11 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chi tiết kiểm hàng"));
@@ -389,6 +394,20 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnTaoActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+        int i = jTable.getSelectedRow();
+        if (i >= 0) {
+            jtfMaPhieu.setText(jTable.getModel().getValueAt(i, 0).toString());
+            jtfMaSanPham.setText(jTable.getModel().getValueAt(i, 1).toString());
+            jtfTenSanPham.setText(jTable.getModel().getValueAt(i, 2).toString());
+            jtfSoLuong.setText(jTable.getModel().getValueAt(i, 3).toString());
+            jtfDonVi.setText(jTable.getModel().getValueAt(i, 4).toString());
+            jtfTinhTrang.setText(jTable.getModel().getValueAt(i, 5).toString());
+            
+        }
+    }//GEN-LAST:event_jTableMouseClicked
 
     /**
      * @param args the command line arguments

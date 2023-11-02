@@ -25,7 +25,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
      */
     public QuanLyXuatHang() {
         initComponents();
-        //jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
+        jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
         LoadData();
     }
     public void LoadData() {
@@ -78,7 +78,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfGhiChu = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jtfTim = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnTim = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnLoad = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -146,6 +146,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jLabel8.setText("Mã nhân viên");
         jPanel3.add(jLabel8);
+
+        jtfMaNhanVien.setEditable(false);
         jPanel3.add(jtfMaNhanVien);
 
         jLabel13.setText("Mã khách hàng");
@@ -212,7 +214,12 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
-        jButton5.setText("Tìm kiếm");
+        btnTim.setText("Tìm kiếm");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -220,17 +227,17 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(btnTim))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -350,7 +357,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 nv.setMaKH(jtfMaKhachHang.getText());
                 nv.setLyDo(jtfLyDo.getText());
                 nv.setGhiChu(jtfGhiChu.getText());
-                JOptionPane.showMessageDialog(this, phieuXuatBus.themPhieuXuat(nv));
+                phieuXuatBus.themPhieuXuat(nv);
                 jTableQuanLyXuatHang.repaint();
                 refreshData();
             }
@@ -393,6 +400,23 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         refreshData();
     }//GEN-LAST:event_btnLoadActionPerformed
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        ArrayList<PhieuXuat_DTO> listS = new ArrayList<PhieuXuat_DTO>();
+        listS = phieuXuatBus.timPhieuXuat(jtfTim.getText(), null, null);
+        model = (DefaultTableModel) jTableQuanLyXuatHang.getModel();
+        model.setRowCount(0);
+        int i = 0;
+        while (i <= listS.size() - 1) {
+            PhieuXuat_DTO px = listS.get(i);
+            model.addRow(new Object[] {
+                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+            });
+            jTableQuanLyXuatHang.setModel(model);
+
+        }
+    }//GEN-LAST:event_btnTimActionPerformed
+
       public void refreshData() {
         phieuXuatBus = new PhieuXuatBus();
         LoadData();
@@ -402,7 +426,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JButton btnChon;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnTaoPhieuXuat;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnTim;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

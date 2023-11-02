@@ -75,10 +75,8 @@
         <Component class="javax.swing.JTable" name="tableQlnv">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="0">
-                <Column editable="false" title="STT" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="M&#xe3; phi&#x1ebf;u nh&#x1ead;p" type="java.lang.Object"/>
-                <Column editable="true" title="M&#xe3; nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object"/>
                 <Column editable="false" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                 <Column editable="false" title="Ng&#xe0;y nh&#x1ead;p" type="java.lang.Object"/>
                 <Column editable="false" title="Gi&#x1edd; nh&#x1ead;p" type="java.lang.Object"/>
@@ -87,16 +85,6 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -177,13 +165,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfMaPhieuNhap">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe0; cung c&#xe1;p"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtfMaNCC">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>

@@ -66,17 +66,6 @@ public class PhieuXuatDAO {
         return success;
     }
 
-    public boolean update(PhieuXuat_DTO px) {
-        ConnectDB connectDB = new ConnectDB();
-        boolean success = connectDB
-                .sqlUpdate("UPDATE `phieuxuat` SET "
-                        + " `MAKH` = '" + px.getMaKH()
-                        + "', `TONGTIEN` = " + px.getTongTien()
-                        + ", `LYDO`  = '" + px.getLyDo()
-                        + "' WHERE `MAPHIEUXUAT`='" + px.getMaPhieuXuat() + "'");
-        connectDB.closeConnect();
-        return success;
-    }
 
     public boolean update(String mapx,double thanhtien) {
         ConnectDB connectDB = new ConnectDB();

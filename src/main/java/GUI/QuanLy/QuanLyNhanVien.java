@@ -413,16 +413,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String sdt = (String) txtSDT.getText().trim();
         String tenNV = txtHoTen.getText().trim();
-        String ngaySinh = txtNgaySinh.getText().trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate;
-        try {
-            localDate = LocalDate.parse(ngaySinh, formatter);
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
-            return; // Dừng xử lý tiếp theo
-        }
-
         Object selectedValue = cbbGioiTinh.getSelectedItem();
         String gioiTinh = selectedValue.toString();
         String cccd = txtCanCuoc.getText().trim();
@@ -439,10 +429,19 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         if (viTri == 2) {
             maPQ = "QL20003";
         }
-        if (sdt.equals("") || tenNV.equals("") || cccd.equals("") || ngaySinh.equals("") || email.equals("") || diaChi.equals("")) {
+        if (sdt.equals("") || tenNV.equals("") || cccd.equals("")|| email.equals("") || diaChi.equals("")) {
             JOptionPane.showMessageDialog(null,
                     "Thông tin chưa đầy đủ");
             return;
+        }
+        String ngaySinh = txtNgaySinh.getText().trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(ngaySinh, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            return; // Dừng xử lý tiếp theo
         }
         nvBus.themNhanVien(tenNV, localDate, gioiTinh, sdt, cccd, email, diaChi, maPQ);
         showStaffInTable();

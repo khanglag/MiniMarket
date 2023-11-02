@@ -107,6 +107,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfTaiKhoan">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -114,32 +117,16 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtfMatKhau">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quy&#x1ec1;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jcbQuyen">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Admin"/>
-                    <StringItem index="1" value="Qu&#x1ea3;n l&#xfd;"/>
-                    <StringItem index="2" value="Th&#x1ee7; kho"/>
-                    <StringItem index="3" value="Saler"/>
-                    <StringItem index="4" value="Vui l&#xf2;ng ch&#x1ecd;n"/>
-                  </StringArray>
-                </Property>
-                <Property name="selectedIndex" type="int" value="4"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbQuyenActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
+            <Component class="javax.swing.JTextField" name="jtfQuyen">
             </Component>
           </SubComponents>
         </Container>
@@ -147,6 +134,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnHuy">
           <Properties>

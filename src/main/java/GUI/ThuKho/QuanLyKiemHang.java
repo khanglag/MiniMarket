@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.PhieuKiemHangBus;
+import Controller.TaiKhoanController;
 import DTO.PhieuKiemHang_DTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
     ArrayList<PhieuKiemHang_DTO> list = new ArrayList<PhieuKiemHang_DTO>();
     public QuanLyKiemHang() {
         initComponents();
+        jtfMaNV.setText(TaiKhoanController.getTendnString());
         LoadData();
     }
 
@@ -121,6 +123,8 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
         jLabel3.setText("Thời gian");
 
         jtfMaPhieu.setEditable(false);
+
+        jtfMaNV.setEditable(false);
 
         jtfThoiGian.setEditable(false);
 
@@ -254,7 +258,7 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
                 nv.setMaNV(jtfMaNV.getText());
                 nv.setThoiGianKiemHang(LocalDate.now());
                 System.out.println(nv);
-                JOptionPane.showMessageDialog(this, phieuKiemHangBus.themPhieu(nv));
+                phieuKiemHangBus.themPhieu(nv);
                 jTablePhieuKiemHang.repaint();
                 refreshData();
             

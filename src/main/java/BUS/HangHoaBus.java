@@ -25,6 +25,10 @@ public class HangHoaBus {
         ds= dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getSoLuong();
     }
+    public double giaBanSP(String maHang){
+        ds= dao.searchHangHoa(maHang, null, null, null);
+        return ds.get(0).getGiaBan();
+    }
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu){
         return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
     }
@@ -44,5 +48,8 @@ public class HangHoaBus {
     }
     public boolean suaHangHoa(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu){
         return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
+    }
+     public String timHangHoa(String maHH){
+        return dao.searchHangHoa(maHH);
     }
 }

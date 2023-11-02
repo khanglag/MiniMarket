@@ -4,6 +4,7 @@
  */
 package GUI.ThuKho;
 
+import GUI.Admin.QuanLyUser;
 import java.awt.BorderLayout;
 
 /**
@@ -79,7 +80,8 @@ public class testGUI extends javax.swing.JFrame {
                 a.setVisible(true);
                 a.setLayout(new BorderLayout());
                // a.add(new QuanLyXuatHang());
-                a.add(new QuanLyKiemHang());
+                //a.add(new QuanLyKiemHang());
+                a.add(new QuanLyUser());
             }
         });
     }

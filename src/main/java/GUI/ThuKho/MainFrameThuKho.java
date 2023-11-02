@@ -5,9 +5,11 @@
 package GUI.ThuKho;
 
 import BEAN.DanhMucBean;
+import BUS.NhanvienBus;
 import Controller.TaiKhoanController;
 import Controller.ThuKhoController;
 import GUI.Admin.DoiMatKhau;
+import static GUI.Login.LoginForm.login;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,13 @@ public class MainFrameThuKho extends javax.swing.JFrame {
     /**
      * Creates new form MainFrameThuKho
      */
+    NhanvienBus nv = new NhanvienBus();
     public MainFrameThuKho() {
 
         initComponents();
         jpnView.setLayout(new BorderLayout());
         jpnView.add(new QuanLyPhieuNhap());
-        jLabelTen.setText(TaiKhoanController.getTendnString());
+        jLabelTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
         TrinhDieuKhien();
         
 
@@ -216,6 +219,11 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         );
 
         jLabelDangXuat.setText("Đăng xuất");
+        jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelDangXuatMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDangXuatLayout = new javax.swing.GroupLayout(panelDangXuat);
         panelDangXuat.setLayout(panelDangXuatLayout);
@@ -353,8 +361,14 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
     private void jLabelTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTenMouseClicked
         // TODO add your handling code here:
-        new DoiMatKhau().setVisible(true);
+        new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
     }//GEN-LAST:event_jLabelTenMouseClicked
+
+    private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        login();
+    }//GEN-LAST:event_jLabelDangXuatMouseClicked
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

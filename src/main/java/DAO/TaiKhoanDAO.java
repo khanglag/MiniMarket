@@ -1,141 +1,113 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
+
 import ConnectDB.ConnectDB;
-import GUI.Login.TaiKhoan;
+import DTO.TaiKhoan_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author pc
- */
 public class TaiKhoanDAO {
-
     public TaiKhoanDAO() {
     }
-    
-    public ArrayList<TaiKhoan> readBD(){
+
+    public ArrayList<TaiKhoan_DTO> ReadTaiKhoan() {
         ConnectDB connectDB = new ConnectDB();
-        ArrayList<TaiKhoan> tkArrayList = new ArrayList<>();
+        ArrayList<TaiKhoan_DTO> tkArrayList = new ArrayList<>();
         String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1";
         ResultSet rSet = null;
-         try {
+
+        try {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null) {
                 while (rSet.next()) {
-                    TaiKhoan tk = new TaiKhoan(
-                            rSet.getString("MANV"),
-                            rSet.getString("MATKHAU"),
-                            rSet.getString("MAPQ"),
+                    TaiKhoan_DTO tk = new TaiKhoan_DTO(
+                            rSet.getNString("MANV"),
+                            rSet.getNString("MATKHAU"),
+                            rSet.getNString("MAPQ"),
                             rSet.getBoolean("TONTAI"));
                     tkArrayList.add(tk);
+
                 }
             }
         } catch (Exception e) {
-            System.out.println("Lỗi truy vấn tài khoản !!!!");
+            System.out.println("Lỗi truy vấn !!!!");
             e.printStackTrace();
         }
         connectDB.closeConnect();
         return tkArrayList;
     }
 
-    public boolean add(TaiKhoan tk) {
+    public boolean add(TaiKhoan_DTO taiKhoan) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                "INSERT INTO `taikhoan`(`MANV`, `MATKHAU`, `MAPQ`, `TONTAI`) VALUES ("
-                        + "'"+tk.getTen_dn()+"',"
-                        + "'"+tk.getMat_khau()+"',"
-                        + "'"+tk.getQuyen()+"',"
-                        + "'1')");
+                " INSERT INTO `taikhoan` (`MANV` , `MATKHAU`, `MAPQ`, `TONTAI`) VALUES "
+                        + "( '" + taiKhoan.getMaNV()
+                        + "','" + taiKhoan.getMatKhau()
+                        + "','" + taiKhoan.getMaPQ()
+                        + "','1')");
         connectDB.closeConnect();
         return success;
     }
-
-    public boolean delete(TaiKhoan tk) {
+    public boolean doiMatKhau(String maNV, String matKhau) {
         ConnectDB connectDB = new ConnectDB();
-        boolean success = connectDB
-                .sqlUpdate("UPDATE `phieuxuat` SET TONTAI = 0 WHERE `MANV`= '" + tk.getTen_dn() + "'");
+        boolean success = false;
+        String updateQuery = "UPDATE `taikhoan` SET `MATKHAU` = '" + matKhau + "' WHERE `MANV` = '" + maNV + "'";
+        success = connectDB.sqlUpdate(updateQuery);
         connectDB.closeConnect();
+
         return success;
     }
 
-    public boolean update(TaiKhoan tk) {
+    public boolean delete(TaiKhoan_DTO taiKhoan) {
+        boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        boolean success = connectDB
-                .sqlUpdate("UPDATE `taikhoan` SET "
-                        + "`MATKHAU`='"+tk.getMat_khau()+"',"
-                        + "`MAPQ`='"+tk.getQuyen()+"',"
-                        + " WHERE `MANV`='"+tk.getTen_dn()+"'");
+        success = connectDB
+                .sqlUpdate(" UPDATE `taikhoan`  SET `TONTAI` = 0 WHERE `MANV` = '" + taiKhoan.getMaNV() + "'");
         connectDB.closeConnect();
         return success;
+
     }
-
-
-    public ArrayList<TaiKhoan> searchTaiKhoan(TaiKhoan tk) {
-        ArrayList<TaiKhoan> ds = new ArrayList<>();
+    
+    public boolean isTaiKhoanExisted(String maNV){
         ConnectDB connectDB = new ConnectDB();
-
-        StringBuilder qry = new StringBuilder("SELECT * FROM `taikhoan` WHERE TONTAI = 1");
-
-        if (tk.getTen_dn() != null && !tk.getTen_dn().isEmpty()) {
-            qry.append(" AND `MANV` =  '" + tk.getTen_dn() + "'");
-        }
-        if (tk.getMat_khau() != null && !tk.getMat_khau().isEmpty()) {
-            qry.append(" AND `MATKHAU` LIKE '%" + tk.getMat_khau() + "%'");
-        }
-
-        if (tk.getQuyen() != null && !tk.getMat_khau().isEmpty())
-            qry.append(" AND `MAPQ` = '" + tk.getMat_khau() + "'");
-
-        ResultSet rSet = connectDB.sqlQuery(qry.toString());
+        String qry = "SELECT 1 FROM `taikhoan` WHERE `MANV` = '" + maNV  + "' AND `TONTAI` = 1";
+         ResultSet rSet = connectDB.sqlQuery(qry);
+         if( rSet != null) {
+            try {
+                return rSet.next();
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+            }
+         }
+         return false;
+    } 
+    public TaiKhoan_DTO Account(String manv) {
+        ConnectDB connectDB = new ConnectDB();
+        TaiKhoan_DTO tk = null;
+        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1 and MANV = '" + manv +"'";
+        ResultSet rSet = null;
 
         try {
+            rSet = connectDB.sqlQuery(qry);
             if (rSet != null) {
                 while (rSet.next()) {
-                    TaiKhoan tkt = new TaiKhoan(
-                            rSet.getString("MANV"),
-                            rSet.getString("MATKHAU"),
-                            rSet.getString("MAPQ"),
+                    tk = new TaiKhoan_DTO(
+                            rSet.getNString("MANV"),
+                            rSet.getNString("MATKHAU"),
+                            rSet.getNString("MAPQ"),
                             rSet.getBoolean("TONTAI"));
-                    ds.add(tkt);
+                    return tk;
+
                 }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            System.out.println("Lỗi truy vấn !!!!");
             e.printStackTrace();
         }
-
-        return ds;
-    }
-    public TaiKhoan searchTaiKhoan(String tenDN) {
-        ArrayList<TaiKhoan> ds = new ArrayList<>();
-        ConnectDB connectDB = new ConnectDB();
-
-        StringBuilder qry = new StringBuilder("SELECT * FROM `taikhoan` ");
-
-        if (tenDN != null && !tenDN.isEmpty()) {
-            qry.append(" AND `MANV` =  '" + tenDN + "'");
-        }
-        ResultSet rSet = connectDB.sqlQuery(qry.toString());
-        TaiKhoan tkt = new TaiKhoan();
-        try {
-            if (rSet != null) {
-                while (rSet.next()) {
-                            tkt = new TaiKhoan(
-                            rSet.getString("MANV"),
-                            rSet.getString("MATKHAU"),
-                            rSet.getString("MAPQ"),
-                            rSet.getBoolean("TONTAI"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return tkt;
+        connectDB.closeConnect();
+        return tk;
     }
 }

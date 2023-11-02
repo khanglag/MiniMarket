@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
+import BUS.HangHoaBus;
 import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
@@ -25,8 +26,10 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
      */
     ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
     PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
+    HangHoaBus hhBus = new HangHoaBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
+    ArrayList<HangHoa_DTO> listHH = new ArrayList<HangHoa_DTO>();
     double thanhtien = 0;
     
     public ChiTietPhieuXuat(String mapx) {
@@ -35,6 +38,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
     }
     
     public void LoadData(){
+        thanhtien=0;
         model = (DefaultTableModel) jTablePhieuXuatHang.getModel();
         model.setRowCount(0);
         
@@ -413,19 +417,19 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         }
         if(index>=0 ){
             double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
-        jtfThanhTien.setText(Double.toString(a));
-        String maPx = jtfMaPhieuXuat.getText();
-        String maHx = jtfMaHang.getText();
-        int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
-        int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
-        String donViTinh = jtfDonViTinh.getText();
-        double donGia = Double.parseDouble(jtfDonGia.getText());
-        double thanhTien = Double.parseDouble(jtfThanhTien.getText());
-        ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
-        System.out.println(list.get(i));
-        list.set(index,ctpx);
+            jtfThanhTien.setText(Double.toString(a));
+            String maPx = jtfMaPhieuXuat.getText();
+            String maHx = jtfMaHang.getText();
+            int soLuongYC = Integer.parseInt(jtfSoLuongYeuCau.getText());
+            int soLuongTX = Integer.parseInt(jtfSoLuongThucXuat.getText());
+            String donViTinh = jtfDonViTinh.getText();
+            double donGia = Double.parseDouble(jtfDonGia.getText());
+            double thanhTien = Double.parseDouble(jtfThanhTien.getText());
+            ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
+            System.out.println(list.get(i));
+            list.set(index,ctpx);
         }
-        
+        LoadData();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -443,9 +447,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 }
             }
         }
-        if(list.isEmpty()){
-            model.setRowCount(0);
-        }
+        
         LoadData();
         
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -468,6 +470,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         if (i >= 0) {
             jtfMaPhieuXuat.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 1).toString());
+            String t = hhBus.timHangHoa(jTablePhieuXuatHang.getModel().getValueAt(i, 2).toString());
+            jtfTenHang.setText(t);
             jtfMaHang.setText(jTablePhieuXuatHang
                     .getModel().getValueAt(i, 2).toString());
             jtfSoLuongYeuCau.setText(jTablePhieuXuatHang
@@ -490,6 +494,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
         HangHoa hangHoa = new HangHoa(this);
         hangHoa.setVisible(true);
         HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
+        listHH.add(selectedHangHoa);
         if(selectedHangHoa!=null){
             System.out.println(selectedHangHoa.getMaSP());
             jtfMaHang.setText(selectedHangHoa.getMaSP());
@@ -497,6 +502,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
             jtfDonViTinh.setText(selectedHangHoa.getDonVi());
             double gia = selectedHangHoa.getGiaBan();
             jtfDonGia.setText(Double.toString(gia));
+            jtfSoLuongYeuCau.setText("");
+            jtfSoLuongThucXuat.setText("");
         }
            
         

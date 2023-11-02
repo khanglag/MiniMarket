@@ -30,7 +30,6 @@ public class ChiTietKiemHangBus {
             }
     
             if (ctDAO.isCTKHExisted(ct.getMaPhieu(), ct.getMaSP())) {
-                JOptionPane.showMessageDialog(null, "Sản phẩm đã tồn tại trong phiếu", "Lỗi", JOptionPane.WARNING_MESSAGE);
                 return false;
             }
     

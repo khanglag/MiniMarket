@@ -66,11 +66,17 @@ public class TaiKhoanController {
         btnSubmit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (jtfTenDangNhap.getText().length() == 0 || jtfMatKhau.getText().length() == 0
-                        || jtfTenDangNhap.getText().equals("Username") || jtfMatKhau.getText().equals("Password")) {
+                
+                if (jtfTenDangNhap.getText().equals("Username") && jtfMatKhau.getText().equals("Password")) {
 
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
-                } else {
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên đăng nhập và mật khẩu.");
+                } else if(jtfTenDangNhap.getText().equals("Username")){
+                    JOptionPane.showMessageDialog(null, "Vui lòng nhập tên đăng nhập.");
+
+                } else if(jtfMatKhau.getText().equals("Password")){
+                     JOptionPane.showMessageDialog(null, "Vui lòng nhập mật khẩu.");
+                }
+                else {
                     
                     TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {

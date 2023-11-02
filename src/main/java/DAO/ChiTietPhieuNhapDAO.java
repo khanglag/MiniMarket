@@ -32,6 +32,7 @@ public class ChiTietPhieuNhapDAO {
                             rs.getNString("MAPHIEUNHAP"),
                             rs.getNString("MAHANGNHAP"),
                             rs.getNString("TENHANGNHAP"),
+                            rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
                             rs.getNString("ANHSP"),
@@ -54,10 +55,11 @@ public class ChiTietPhieuNhapDAO {
         boolean kq = false;
         ConnectDB connectBD = new ConnectDB();
         kq = connectBD.sqlUpdate(""
-                + "INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
+                + "INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
                 + "'" + ctpn.getMaPhieuNhap() + "',"
                 + "'" + ctpn.getMaHangNhap() + "',"
                 + "'" + ctpn.getTenHangNhap() + "',"
+                + "'" + ctpn.getMaNCC() + "',"
                 + "'" + ctpn.getVAT() + "',"
                 + "'" + ctpn.getXuatXu() + "',"
                 + "'" + ctpn.getAnhSP() + "',"
@@ -124,6 +126,7 @@ public class ChiTietPhieuNhapDAO {
                             rs.getNString("MAPHIEUNHAP"),
                             rs.getNString("MAHANGNHAP"),
                             rs.getNString("TENHANGNHAP"),
+                            rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
                             rs.getNString("ANHSP"),

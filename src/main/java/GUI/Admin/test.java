@@ -10,6 +10,6 @@ package GUI.Admin;
  */
 public class test {
     public static void main(String[] argv){
-        new DoiMatKhau().setVisible(true);
+        
     }
 }
