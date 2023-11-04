@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 04, 2023 lúc 06:50 PM
+-- Thời gian đã tạo: Th10 04, 2023 lúc 07:59 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -119,8 +119,7 @@ INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MA
 ('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1),
 ('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'gói', 3200, 960000, 1),
 ('0000002', '8934822220112', 'Lon bia Việt 330ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'lon', 8500, 255000, 1),
-('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1),
-('0000003', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1);
+('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1);
 
 -- --------------------------------------------------------
 
@@ -429,8 +428,7 @@ CREATE TABLE `phieunhap` (
 
 INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
 ('0000001', 'A038645', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
-('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1),
-('0000003', 'B041003', '2023-11-04 08:30:00', 0.08, 1, 270000, 'DA DUYET', 1);
+('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1);
 
 -- --------------------------------------------------------
 
@@ -635,8 +633,7 @@ ALTER TABLE `phieuxuat`
 -- Chỉ mục cho bảng `phieuyeucaunhap`
 --
 ALTER TABLE `phieuyeucaunhap`
-  ADD PRIMARY KEY (`MAPHIEUNHAP`,`MAHANGNHAP`),
-  ADD KEY `phieuyeucaunhap_ibfk_1` (`MAHANGNHAP`);
+  ADD PRIMARY KEY (`MAPHIEUNHAP`,`MAHANGNHAP`);
 
 --
 -- Chỉ mục cho bảng `taikhoan`
@@ -668,7 +665,7 @@ ALTER TABLE `chitiet_kiemhang`
 --
 ALTER TABLE `chitiet_phieunhap`
   ADD CONSTRAINT `chitiet_phieunhap_ibfk_1` FOREIGN KEY (`MAPHIEUNHAP`) REFERENCES `phieunhap` (`MAPHIEUNHAP`),
-  ADD CONSTRAINT `chitiet_phieunhap_ibfk_2` FOREIGN KEY (`MAHANGNHAP`) REFERENCES `phieuyeucaunhap` (`MAHANGNHAP`),
+  ADD CONSTRAINT `chitiet_phieunhap_ibfk_2` FOREIGN KEY (`MAHANGNHAP`) REFERENCES `hanghoa` (`MASP`),
   ADD CONSTRAINT `chitiet_phieunhap_ibfk_3` FOREIGN KEY (`MANCC`) REFERENCES `nhacungcap` (`MANCC`);
 
 --
