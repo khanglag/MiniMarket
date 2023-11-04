@@ -31,7 +31,6 @@ public class PhieuYeuCauNhapDAO {
                             rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
-                            rs.getNString("ANHSP"),
                             rs.getInt("SOLUONG"),
                             rs.getNString("DONVI"),
                             rs.getDouble("GIANHAP"),
@@ -51,14 +50,13 @@ public class PhieuYeuCauNhapDAO {
         boolean kq = false;
         ConnectDB connectBD = new ConnectDB();
         kq = connectBD.sqlUpdate(""
-                + "INSERT INTO `phieuyeucaunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
+                + "INSERT INTO `phieuyeucaunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
                 + "'" + ctpn.getMaPhieuNhap() + "',"
                 + "'" + ctpn.getMaHangNhap() + "',"
                 + "'" + ctpn.getTenHangNhap() + "',"
                 + "'" + ctpn.getMaNCC() + "',"
                 + "'" + ctpn.getVAT() + "',"
                 + "'" + ctpn.getXuatXu() + "',"
-                + "'" + ctpn.getAnhSP() + "',"
                 + "'" + ctpn.getSoLuong() + "',"
                 + "'" + ctpn.getDonVi() + "',"
                 + "'" + ctpn.getGiaNhap() + "',"
@@ -83,7 +81,6 @@ public class PhieuYeuCauNhapDAO {
         boolean kq = connectDB.sqlUpdate("UPDATE `phieuyeucaunhap` SET"
                 + " TENHANGNHAP = '" + ctpn.getTenHangNhap() + "',"
                 + " XUATXU = '" + ctpn.getXuatXu() + "',"
-                + " ANHSP = '" + ctpn.getAnhSP() + "',"
                 + " SOLUONG = '" + ctpn.getSoLuong() + "',"
                 + " GIANHAP = '" + ctpn.getGiaNhap() + "',"
                 + " TONGTIENNHAP = '" + ctpn.getTongTienNhap() + "'"
@@ -125,7 +122,6 @@ public class PhieuYeuCauNhapDAO {
                             rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
-                            rs.getNString("ANHSP"),
                             rs.getInt("SOLUONG"),
                             rs.getNString("DONVI"),
                             rs.getDouble("GIANHAP"),

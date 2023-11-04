@@ -35,7 +35,6 @@ public class ChiTietPhieuNhapDAO {
                             rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
-                            rs.getNString("ANHSP"),
                             rs.getInt("SOLUONG"),
                             rs.getNString("DONVI"),
                             rs.getDouble("GIANHAP"),
@@ -62,7 +61,6 @@ public class ChiTietPhieuNhapDAO {
                 + "'" + ctpn.getMaNCC() + "',"
                 + "'" + ctpn.getVAT() + "',"
                 + "'" + ctpn.getXuatXu() + "',"
-                + "'" + ctpn.getAnhSP() + "',"
                 + "'" + ctpn.getSoLuong() + "',"
                 + "'" + ctpn.getDonVi() + "',"
                 + "'" + ctpn.getGiaNhap() + "',"
@@ -87,7 +85,6 @@ public class ChiTietPhieuNhapDAO {
         boolean kq = connectDB.sqlUpdate("UPDATE `chitiet_phieunhap` SET"
                 + " TENHANGNHAP = '" + ctpn.getTenHangNhap() + "',"
                 + " XUATXU = '" + ctpn.getXuatXu() + "',"
-                + " ANHSP = '" + ctpn.getAnhSP() + "',"
                 + " SOLUONG = '" + ctpn.getSoLuong() + "',"
                 + " GIANHAP = '" + ctpn.getGiaNhap() + "',"
                 + " TONGTIENNHAP = '" + ctpn.getTongTienNhap() + "'"
@@ -129,7 +126,6 @@ public class ChiTietPhieuNhapDAO {
                             rs.getString("MANCC"),
                             rs.getDouble("VAT"),
                             rs.getNString("XUATXU"),
-                            rs.getNString("ANHSP"),
                             rs.getInt("SOLUONG"),
                             rs.getNString("DONVI"),
                             rs.getDouble("GIANHAP"),

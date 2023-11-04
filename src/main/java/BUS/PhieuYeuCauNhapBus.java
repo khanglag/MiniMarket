@@ -31,7 +31,7 @@ public class PhieuYeuCauNhapBus {
 
     public boolean themCTPN(ChiTietPhieuNhap_DTO ctn) {
         try {
-            if (ctn.getMaPhieuNhap() == null || ctn.getMaHangNhap() == null || ctn.getTenHangNhap() == null || ctn.getMaNCC() == null || ctn.getVAT() < 0 || ctn.getXuatXu() == null || ctn.getAnhSP() == null || ctn.getSoLuong() < 0 || ctn.getDonVi() == null || ctn.getGiaNhap() < 0 || ctn.getTongTienNhap() < 0) {
+            if (ctn.getMaPhieuNhap() == null || ctn.getMaHangNhap() == null || ctn.getTenHangNhap() == null || ctn.getMaNCC() == null || ctn.getVAT() < 0 || ctn.getXuatXu() == null || ctn.getSoLuong() < 0 || ctn.getDonVi() == null || ctn.getGiaNhap() < 0 || ctn.getTongTienNhap() < 0) {
                 throw new IllegalArgumentException("Dữ liệu không hợp lệ");
             }
     
@@ -39,7 +39,7 @@ public class PhieuYeuCauNhapBus {
                 return false;
             }
     
-            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getMaNCC(),ctn.getVAT(),ctn.getXuatXu(),ctn.getAnhSP(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
+            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getMaNCC(),ctn.getVAT(),ctn.getXuatXu(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
     
             if (ctnDAO.addCTPN(ct)) {
                 return true;
