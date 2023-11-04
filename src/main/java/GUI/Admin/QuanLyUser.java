@@ -38,9 +38,9 @@ public class QuanLyUser extends javax.swing.JPanel {
         int i = 0;
         while (i <= list.size() - 1) {
             NhanVien_DTO px = list.get(i);
-            
+            String str = nhanVienBus.kiemtraTK(px.getMaNV());
             model.addRow(new Object[] {
-                    px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen()
+                    px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
             });
             jTable.setModel(model);
             ++i;
@@ -135,7 +135,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                     .addComponent(jLabel33))
                 .addGap(62, 62, 62)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfMaNV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(jtfMaNV, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtfTen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtfNgaySinh)
                     .addComponent(jtfMaQuyen)
@@ -293,10 +293,9 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1)
+                        .addGap(42, 42, 42))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -373,7 +372,10 @@ public class QuanLyUser extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
-        taiKhoanBus.xoaTaiKhoan(tk);
+        if(taiKhoanBus.xoaTaiKhoan(tk)){
+            JOptionPane.showMessageDialog(null, "Đã xoá tài khoản");
+        }
+        
         LoadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 

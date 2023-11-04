@@ -28,8 +28,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
     public MainFrameThuKho() {
 
         initComponents();
-        jpnView.setLayout(new BorderLayout());
-        jpnView.add(new QuanLyPhieuNhap());
         jLabelTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
         TrinhDieuKhien();
         
@@ -47,10 +45,6 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         listItem.add(new DanhMucBean("QuanLyKiemHang",panelPhieuKiemHang,jLabelPhieuKiemHang));
         listItem.add(new DanhMucBean("QuanLyPhieuXuat",panelQuanLyPhieuXuat,jLabelQuanLyPhieuXuat));
         listItem.add(new DanhMucBean("DangXuat",panelDangXuat,jLabelDangXuat));
-  
-        System.out.println("hang44");
-        controller.setEvent(listItem);
-        System.out.println("hang46");
     }
 
     /**

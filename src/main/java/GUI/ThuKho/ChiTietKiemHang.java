@@ -284,7 +284,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
         // TODO add your handling code here:
-        HangHoa hangHoa = new HangHoa(this);
+        HangHoa hangHoa = new HangHoa(this,0);
         hangHoa.setVisible(true);
         HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
         if(selectedHangHoa!=null){

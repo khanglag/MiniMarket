@@ -11,12 +11,12 @@ import static Exception.EmailValidator.isEmailValid;
 import Exception.InvalidDateOfBirthException;
 import Exception.InvalidPhoneNumberException;
 import Exception.PhoneNumberValidator;
-import GUI.Login.TaiKhoan;
 import static Handle.Convert.convertMa;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import DAO.TaiKhoanDAO;
+import DTO.TaiKhoan_DTO;
 /**
  *
  * @author pc
@@ -115,13 +115,16 @@ public class NhanvienBus {
     }
     public String kiemtraTK(String maNV){
         TaiKhoanDAO dAO= new TaiKhoanDAO();
-        TaiKhoan dto=new TaiKhoan();
+        TaiKhoan_DTO dto=new TaiKhoan_DTO();
         dto=dAO.searchTaiKhoan(maNV);
-        if (dto.isTontai()==true) {
+        if(dto==null){
+            return "Chưa có tài khoản";
+        }
+        if (dto.isTonTai()==true) {
             return "Đã có tài khoản";
-        }else if (dto.getTontai()==false) {
+        }else if (dto.isTonTai()==false) {
             return "Tài khoản bị khoá";
         }
-        return "Chưa có tài khoản";
+        return "Lỗi truy xuất";
     }
 }

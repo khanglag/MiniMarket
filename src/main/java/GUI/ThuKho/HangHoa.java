@@ -27,27 +27,35 @@ public class HangHoa extends JDialog {
     HangHoaBus hangHoaBus = new HangHoaBus();
     DefaultTableModel model;
     ArrayList<HangHoa_DTO> list = new ArrayList<HangHoa_DTO>();
-    public HangHoa(Frame owner) {
+    int number;
+    public HangHoa(Frame owner, int number) {
         super(owner, "Select Product", true);
         setSize(300, 200);
+        this.number=number;
         initComponents();
-        LoadData();
+        LoadData(number);
         
     }
-     public void LoadData(){
+     public void LoadData(int number){
         model = (DefaultTableModel) jTableHangHoa.getModel();
         model.setRowCount(0);
         list = hangHoaBus.itemData();
         int soLuongSP = list.size();
+        double giaBan;
         for (int i = 0; i < soLuongSP; i++) {
             HangHoa_DTO sanPham = list.get(i);
             String maSP = sanPham.getMaSP();
             String tenSP = sanPham.getTenSP();
+            String mancc = sanPham.getMaNCC();
             int soLuong = sanPham.getSoLuong();
-            double giaBan = sanPham.getGiaBan();
+            if(number ==0){
+                giaBan = sanPham.getGiaBan();
+            }else
+                giaBan = sanPham.getGiaNhap();
+            
             String xuatXu = sanPham.getXuatXu();
             String donVi = sanPham.getDonVi();
-            model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+            model.addRow(new Object[]{maSP, tenSP,mancc, soLuong, giaBan, xuatXu, donVi});
             jTableHangHoa.setModel(model);
         }
      }
@@ -111,11 +119,11 @@ public class HangHoa extends JDialog {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá", "Xuất xứ", "Đơn vị"
+                "Mã sản phẩm", "Tên sản phẩm", "Mã nhà cung cấp", "Số lượng", "Giá", "Xuất xứ", "Đơn vị"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -221,7 +229,7 @@ public class HangHoa extends JDialog {
 
     public void refreshData(){
         hangHoaBus = new HangHoaBus();
-        LoadData();
+        LoadData(number);
     }
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
@@ -235,9 +243,12 @@ public class HangHoa extends JDialog {
         if (i >= 0) {
             String masp = jTableHangHoa.getModel().getValueAt(i, 0).toString();
             String tensp = jTableHangHoa.getModel().getValueAt(i, 1).toString();
-            String donvi = jTableHangHoa.getModel().getValueAt(i, 5).toString();
-            double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 3).toString());
-            chonHangHoa = new HangHoa_DTO(masp,tensp,donvi,giaban);
+            String mancc =jTableHangHoa.getModel().getValueAt(i, 2).toString();
+            String xuatxu =jTableHangHoa.getModel().getValueAt(i, 2).toString();
+            String donvi = jTableHangHoa.getModel().getValueAt(i, 6).toString();
+         
+            double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 4).toString());
+            chonHangHoa = new HangHoa_DTO(masp,tensp,mancc,donvi,giaban,xuatxu);
         }
         
         this.dispose();

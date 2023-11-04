@@ -46,7 +46,7 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
             jTableChiTietPhieuXuat.setModel(model);
         }
         
-         model.addRow(new Object[] {
+        model.addRow(new Object[] {
                     null,null,null,null, null,null,null
             });
         jTableChiTietPhieuXuat.setModel(model);

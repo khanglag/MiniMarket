@@ -4,9 +4,13 @@
  */
 package GUI.Admin;
 
+import BEAN.DanhMucBean;
 import BUS.NhanvienBus;
+import Controller.AdminController;
 import Controller.TaiKhoanController;
 import static GUI.Login.LoginForm.login;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,8 +25,22 @@ public class MainJFrameAd extends javax.swing.JFrame {
     public MainJFrameAd() {
         initComponents();
         jlbTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+        TrinhDieuKhien();
     }
-
+private void TrinhDieuKhien() {
+        AdminController controller = new AdminController(jpnView);
+        //controller.setView(panelTrangChu, jLabelTrangChu);
+        
+        List<DanhMucBean> listItem = new ArrayList<>();
+        //listItem.add(new DanhMucBean("TrangChinh",jpnTrangChu,jlbTrangChu));
+        //listItem.add(new DanhMucBean("PhieuNhapHang",panelPhieuNhap,jLabelPhieuNhap));
+        listItem.add(new DanhMucBean("QuanLyUser",panelQuanLyUser,jLabelQuanLyUser));
+        listItem.add(new DanhMucBean("DangXuat",jPanelDangXuat,jLabelDangXuat));
+  
+        System.out.println("hang44");
+        controller.setEvent(listItem);
+        System.out.println("hang46");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,11 +54,9 @@ public class MainJFrameAd extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         panelMenu = new javax.swing.JPanel();
         panelQuanLyUser = new javax.swing.JPanel();
-        jLabelPhieuXuat = new javax.swing.JLabel();
-        panelQuanLyPhanQuyen = new javax.swing.JPanel();
-        jLabelQuanLyPhanQuyen = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelQuanLyUser = new javax.swing.JLabel();
+        jPanelDangXuat = new javax.swing.JPanel();
+        jLabelDangXuat = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -56,7 +72,7 @@ public class MainJFrameAd extends javax.swing.JFrame {
 
         panelMenu.setBackground(new java.awt.Color(189, 205, 214));
 
-        jLabelPhieuXuat.setText("Quản lý user");
+        jLabelQuanLyUser.setText("Quản lý user");
 
         javax.swing.GroupLayout panelQuanLyUserLayout = new javax.swing.GroupLayout(panelQuanLyUser);
         panelQuanLyUser.setLayout(panelQuanLyUserLayout);
@@ -64,57 +80,38 @@ public class MainJFrameAd extends javax.swing.JFrame {
             panelQuanLyUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelQuanLyUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelPhieuXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelQuanLyUserLayout.setVerticalGroup(
             panelQuanLyUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelQuanLyUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelPhieuXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(jLabelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jLabelQuanLyPhanQuyen.setText("Quản lý phân quyền");
-
-        javax.swing.GroupLayout panelQuanLyPhanQuyenLayout = new javax.swing.GroupLayout(panelQuanLyPhanQuyen);
-        panelQuanLyPhanQuyen.setLayout(panelQuanLyPhanQuyenLayout);
-        panelQuanLyPhanQuyenLayout.setHorizontalGroup(
-            panelQuanLyPhanQuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQuanLyPhanQuyenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelQuanLyPhanQuyen, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelQuanLyPhanQuyenLayout.setVerticalGroup(
-            panelQuanLyPhanQuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelQuanLyPhanQuyenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelQuanLyPhanQuyen, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jLabel1.setText("Đăng xuất");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelDangXuat.setText("Đăng xuất");
+        jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jLabelDangXuatMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelDangXuatLayout = new javax.swing.GroupLayout(jPanelDangXuat);
+        jPanelDangXuat.setLayout(jPanelDangXuatLayout);
+        jPanelDangXuatLayout.setHorizontalGroup(
+            jPanelDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDangXuatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelDangXuatLayout.setVerticalGroup(
+            jPanelDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDangXuatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addComponent(jLabelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -125,8 +122,7 @@ public class MainJFrameAd extends javax.swing.JFrame {
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelQuanLyPhanQuyen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
@@ -134,10 +130,8 @@ public class MainJFrameAd extends javax.swing.JFrame {
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addComponent(panelQuanLyUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelQuanLyPhanQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 163, Short.MAX_VALUE))
+                .addComponent(jPanelDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 158, Short.MAX_VALUE))
         );
 
         jScrollPane10.setViewportView(panelMenu);
@@ -221,14 +215,14 @@ public class MainJFrameAd extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnRoot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jpnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnRoot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jpnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -239,11 +233,11 @@ public class MainJFrameAd extends javax.swing.JFrame {
         new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
     }//GEN-LAST:event_jlbTenMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
         // TODO add your handling code here:
         this.dispose();
         login();
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_jLabelDangXuatMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,18 +276,16 @@ public class MainJFrameAd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelPhieuXuat;
-    private javax.swing.JLabel jLabelQuanLyPhanQuyen;
+    private javax.swing.JLabel jLabelDangXuat;
+    private javax.swing.JLabel jLabelQuanLyUser;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelDangXuat;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JLabel jlbTen;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnView;
     private javax.swing.JPanel panelMenu;
-    private javax.swing.JPanel panelQuanLyPhanQuyen;
     private javax.swing.JPanel panelQuanLyUser;
     // End of variables declaration//GEN-END:variables
 }

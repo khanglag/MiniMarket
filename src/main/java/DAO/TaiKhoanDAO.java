@@ -110,4 +110,30 @@ public class TaiKhoanDAO {
         connectDB.closeConnect();
         return tk;
     }
+    public TaiKhoan_DTO searchTaiKhoan(String manv) {
+        ConnectDB connectDB = new ConnectDB();
+        TaiKhoan_DTO tk = null;
+        String qry = "SELECT * FROM `taikhoan` WHERE MANV = '" + manv +"'";
+        ResultSet rSet = null;
+
+        try {
+            rSet = connectDB.sqlQuery(qry);
+            if (rSet != null) {
+                while (rSet.next()) {
+                    tk = new TaiKhoan_DTO(
+                            rSet.getNString("MANV"),
+                            rSet.getNString("MATKHAU"),
+                            rSet.getNString("MAPQ"),
+                            rSet.getBoolean("TONTAI"));
+                    return tk;
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi truy vấn !!!!");
+            e.printStackTrace();
+        }
+        connectDB.closeConnect();
+        return tk;
+    }
 }

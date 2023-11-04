@@ -5,24 +5,20 @@
 package DAO;
 
 import ConnectDB.ConnectDB;
-import java.util.ArrayList;
 import DTO.ChiTietPhieuNhap_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
- * @author Admin
+ * @author khang
  */
-public class ChiTietPhieuNhapDAO {
-    public ChiTietPhieuNhapDAO() {
-
-    }
-
-    public ArrayList<ChiTietPhieuNhap_DTO> readBD() {
+public class PhieuYeuCauNhapDAO {
+     public ArrayList<ChiTietPhieuNhap_DTO> readBD() {
         ConnectDB connectBD = new ConnectDB();
         ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap_DTOs = new ArrayList<>();
-        String qry = "SELECT * FROM `chitiet_phieunhap` WHERE TONTAI = 1";
+        String qry = "SELECT * FROM `phieuyeucaunhap` WHERE TONTAI = 1";
         ResultSet rs = null;
         try {
             rs = connectBD.sqlQuery(qry);
@@ -54,7 +50,7 @@ public class ChiTietPhieuNhapDAO {
         boolean kq = false;
         ConnectDB connectBD = new ConnectDB();
         kq = connectBD.sqlUpdate(""
-                + "INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
+                + "INSERT INTO `phieuyeucaunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
                 + "'" + ctpn.getMaPhieuNhap() + "',"
                 + "'" + ctpn.getMaHangNhap() + "',"
                 + "'" + ctpn.getTenHangNhap() + "',"
@@ -73,7 +69,7 @@ public class ChiTietPhieuNhapDAO {
     public boolean deleteCTPN(ChiTietPhieuNhap_DTO ctpn) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `chitiet_phieunhap` SET TONTAI = 0 WHERE `MAPHIEUNHAP` = '" + ctpn.getMaPhieuNhap()
+        String sql = "UPDATE `phieuyeucaunhap` SET TONTAI = 0 WHERE `MAPHIEUNHAP` = '" + ctpn.getMaPhieuNhap()
                 + "' AND `MAHANGNHAP` = '" + ctpn.getMaHangNhap() + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
@@ -82,7 +78,7 @@ public class ChiTietPhieuNhapDAO {
 
     public boolean updateCTPN(ChiTietPhieuNhap_DTO ctpn) {
         ConnectDB connectDB = new ConnectDB();
-        boolean kq = connectDB.sqlUpdate("UPDATE `chitiet_phieunhap` SET"
+        boolean kq = connectDB.sqlUpdate("UPDATE `phieuyeucaunhap` SET"
                 + " TENHANGNHAP = '" + ctpn.getTenHangNhap() + "',"
                 + " XUATXU = '" + ctpn.getXuatXu() + "',"
                 + " SOLUONG = '" + ctpn.getSoLuong() + "',"
@@ -97,7 +93,7 @@ public class ChiTietPhieuNhapDAO {
     public ArrayList<ChiTietPhieuNhap_DTO> searchCTPN(String maPhieuNhap, String maHangNhap, String tenHangNhap,String xuatXu) {
         ArrayList<ChiTietPhieuNhap_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
-        StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_phieunhap` WHERE TONTAI = 1");
+        StringBuilder qry = new StringBuilder("SELECT * FROM `phieuyeucaunhap` WHERE TONTAI = 1");
 
         if (maPhieuNhap != null && !maPhieuNhap.isEmpty()) {
             qry.append(" AND `MAPHIEUNHAP` =  '" + maPhieuNhap + "'");
@@ -143,7 +139,7 @@ public class ChiTietPhieuNhapDAO {
     }
     public boolean isCTPN_Existed(String maPhieu, String maSP) {
         ConnectDB connectDB = new ConnectDB();
-        String qry = "SELECT 1 FROM `chitiet_phieunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `MAHANGNHAP` = '" + maSP + "'";
+        String qry = "SELECT 1 FROM `phieuyeucaunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `MAHANGNHAP` = '" + maSP + "'";
         
         ResultSet rSet = connectDB.sqlQuery(qry);
         

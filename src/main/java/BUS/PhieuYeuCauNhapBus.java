@@ -1,18 +1,24 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package BUS;
 
-import DAO.ChiTietPhieuNhapDAO;
+import DAO.PhieuYeuCauNhapDAO;
 import DTO.ChiTietPhieuNhap_DTO;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class ChiTietPhieuNhapBus {
-    private final ChiTietPhieuNhapDAO ctnDAO;
+/**
+ *
+ * @author khang
+ */
+public class PhieuYeuCauNhapBus {
+    private final PhieuYeuCauNhapDAO ctnDAO;
 
-    public ChiTietPhieuNhapBus() {
-        ctnDAO = new ChiTietPhieuNhapDAO();
+    public PhieuYeuCauNhapBus() {
+        ctnDAO = new PhieuYeuCauNhapDAO();
     }
-
     public ArrayList<ChiTietPhieuNhap_DTO> rChiTietPhieuNhap_DTOs() {
         try {
             return ctnDAO.readBD();
@@ -33,8 +39,7 @@ public class ChiTietPhieuNhapBus {
                 return false;
             }
     
-            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getMaNCC(),ctn.getVAT(),
-                    ctn.getXuatXu(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
+            ChiTietPhieuNhap_DTO ct = new ChiTietPhieuNhap_DTO(ctn.getMaPhieuNhap(), ctn.getMaHangNhap(),ctn.getTenHangNhap(),ctn.getMaNCC(),ctn.getVAT(),ctn.getXuatXu(),ctn.getSoLuong(),ctn.getDonVi(),ctn.getGiaNhap(),ctn.getTongTienNhap(),true);
     
             if (ctnDAO.addCTPN(ct)) {
                 return true;

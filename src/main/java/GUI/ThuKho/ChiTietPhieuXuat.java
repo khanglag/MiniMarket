@@ -491,7 +491,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
     private void btnChonMaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaHangActionPerformed
         // TODO add your handling code here:
-        HangHoa hangHoa = new HangHoa(this);
+        HangHoa hangHoa = new HangHoa(this,0);
         hangHoa.setVisible(true);
         HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
         listHH.add(selectedHangHoa);
