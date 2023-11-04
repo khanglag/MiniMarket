@@ -4,24 +4,30 @@
  */
 package GUI.ThuKho;
 
+import BUS.ChiTietPhieuNhapBus;
+import BUS.PhieuNhapBus;
 import BUS.PhieuYeuCauNhapBus;
 import DTO.ChiTietPhieuNhap_DTO;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author khang
  */
-public class ChiTietPhieuNhapView extends javax.swing.JFrame {
+public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
 
     /**
      * Creates new form ChiTietPhieuNhapView
      */
     PhieuYeuCauNhapBus phieuYeuCauNhapBus = new  PhieuYeuCauNhapBus();
+    ChiTietPhieuNhapBus chiTietPhieuNhapBus = new ChiTietPhieuNhapBus();
+    PhieuNhapBus phieuNhapBus = new PhieuNhapBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuNhap_DTO> list = new ArrayList<ChiTietPhieuNhap_DTO>();
     double thanhtien =0;
+    int somathang=0;
     String trangthai;
     
     public ChiTietPhieuNhapView(String ma, String trangthai) {
@@ -34,11 +40,13 @@ public class ChiTietPhieuNhapView extends javax.swing.JFrame {
         LoadData(ma);
     }
     public void setButton(String trangthai){
-        if(trangthai.equals("Da duyet")){
+        if(trangthai.toUpperCase().equals("DA DUYET")){
             btnNhapHang.setVisible(true);
         }else{
-            btnNhapHang.setVisible(false);
+             btnNhapHang.setVisible(false);
         }
+        
+           
     }
 
     public void LoadData(String ma) {
@@ -54,6 +62,7 @@ public class ChiTietPhieuNhapView extends javax.swing.JFrame {
             });
             jTable.setModel(model);
             ++i;
+            somathang++;
             thanhtien+=px.getTongTienNhap();
         }
         model.addRow(new Object[] {
@@ -64,7 +73,7 @@ public class ChiTietPhieuNhapView extends javax.swing.JFrame {
                     null,null,null,null, null,null,null,null,"Tổng tiền: ",Handle.Convert.soqualon(thanhtien)
             });
          jTable.setModel(model);
-
+         System.out.println(somathang);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -286,6 +295,18 @@ public class ChiTietPhieuNhapView extends javax.swing.JFrame {
 
     private void btnNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapHangActionPerformed
         // TODO add your handling code here:
+        boolean flag = false;
+        for(ChiTietPhieuNhap_DTO ctpn: list){
+            if(chiTietPhieuNhapBus.themCTPN(ctpn))
+                flag = true;
+            else
+                flag = false;
+        }
+        
+        if(flag){
+           JOptionPane.showMessageDialog(this,"Nhập hàng thành công");
+           phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, somathang, thanhtien, "DA NHAP");
+        }
     }//GEN-LAST:event_btnNhapHangActionPerformed
 
     /**
