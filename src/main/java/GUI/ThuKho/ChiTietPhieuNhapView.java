@@ -40,7 +40,7 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
         LoadData(ma);
     }
     public void setButton(String trangthai){
-        if(trangthai.toUpperCase().equals("DA DUYET")){
+        if(trangthai.toUpperCase().equals("DA DUYET")||trangthai.toUpperCase().equals("ĐÃ DUYỆT")){
             btnNhapHang.setVisible(true);
         }else{
              btnNhapHang.setVisible(false);
@@ -296,6 +296,7 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
     private void btnNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapHangActionPerformed
         // TODO add your handling code here:
         boolean flag = false;
+        System.out.println(list.size());
         for(ChiTietPhieuNhap_DTO ctpn: list){
             if(chiTietPhieuNhapBus.themCTPN(ctpn))
                 flag = true;
@@ -305,7 +306,8 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
         
         if(flag){
            JOptionPane.showMessageDialog(this,"Nhập hàng thành công");
-           phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, somathang, thanhtien, "DA NHAP");
+           phieuNhapBus.suaPhieuNhap(jTable.getModel().getValueAt(0, 0).toString(), 0.08, somathang, thanhtien, "DA NHAP");
+           this.dispose();
         }
     }//GEN-LAST:event_btnNhapHangActionPerformed
 

@@ -81,12 +81,13 @@ public class PhieuNhapDAO {
     public boolean update(String maPhieuNhap,double VAT,int soMatHang, double tongTien, String trangThai) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB.sqlUpdate("UPDATE `phieunhap` SET "
-            + " `SOMATHANG ` = " + VAT
-            + " `SOMATHANG ` = " + soMatHang
+            + " `VAT` = '" + VAT
+            + "' ,`SOMATHANG` = " + soMatHang
             + ", `TONGTIEN` = " + tongTien
             + ",`TRANGTHAI` ='" + trangThai
             + "' WHERE `MAPHIEUNHAP`='" + maPhieuNhap + "'");
         connectDB.closeConnect();
+        
         return success;
     }
     

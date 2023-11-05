@@ -54,7 +54,7 @@ public class ChiTietPhieuNhapDAO {
         boolean kq = false;
         ConnectDB connectBD = new ConnectDB();
         kq = connectBD.sqlUpdate(""
-                + "INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `ANHSP`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
+                + "INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC` , `VAT`, `XUATXU`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES ("
                 + "'" + ctpn.getMaPhieuNhap() + "',"
                 + "'" + ctpn.getMaHangNhap() + "',"
                 + "'" + ctpn.getTenHangNhap() + "',"
@@ -65,7 +65,7 @@ public class ChiTietPhieuNhapDAO {
                 + "'" + ctpn.getDonVi() + "',"
                 + "'" + ctpn.getGiaNhap() + "',"
                 + "'" + ctpn.getTongTienNhap() + "',"
-                + "'1')");
+                + "1)");
         connectBD.closeConnect();
         return kq;
     }
