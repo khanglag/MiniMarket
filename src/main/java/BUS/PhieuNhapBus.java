@@ -62,6 +62,13 @@ public class PhieuNhapBus {
     }
     
     public boolean suaPhieuNhap(String maPhieuNhap,double VAT, int soMatHang, double tongTien, String trangThai) {
+        String str ="UPDATE `phieunhap` SET "
+            + " `VAT ` = " + VAT
+            + " ,`SOMATHANG ` = " + soMatHang
+            + ", `TONGTIEN` = " + tongTien
+            + ",`TRANGTHAI` ='" + trangThai
+            + "' WHERE `MAPHIEUNHAP`='" + maPhieuNhap + "'";
+        System.out.println(str);
     try {
         if (pnDAO.isMaPhieuExisted(maPhieuNhap)) {
             return pnDAO.update(maPhieuNhap,VAT,soMatHang,tongTien,trangThai);
