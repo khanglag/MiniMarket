@@ -40,6 +40,8 @@ public class HangHoa extends JDialog {
         model = (DefaultTableModel) jTableHangHoa.getModel();
         model.setRowCount(0);
         list = hangHoaBus.itemData();
+//        if(number ==1)
+//            list = hangHoaBus.sapXep(list);
         int soLuongSP = list.size();
         double giaBan;
         for (int i = 0; i < soLuongSP; i++) {
@@ -207,19 +209,29 @@ public class HangHoa extends JDialog {
     
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
-//        ArrayList<HangHoa_DTO> listS = new ArrayList<HangHoa_DTO>();
-//        listS = hangHoaBus.timHangHoa(jtfTim.getText(),jtfTim.getText(),null, null, null);
-//        model = (DefaultTableModel) jTableQuanLyXuatHang.getModel();
-//        model.setRowCount(0);
-//        int i = 0;
-//        while (i <= listS.size() - 1) {
-//            PhieuXuat_DTO px = listS.get(i);
-//            model.addRow(new Object[] {
-//                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
-//            });
-//            jTableQuanLyXuatHang.setModel(model);
-//
-//        }
+        ArrayList<HangHoa_DTO> listS = new ArrayList<HangHoa_DTO>();
+        listS = hangHoaBus.timHangHoa(jtfTim.getText(),null,null, null);
+        model = (DefaultTableModel) jTableHangHoa.getModel();
+        model.setRowCount(0);
+        int i = 0;
+        double giaBan;
+        while (i <= listS.size() - 1) {
+            HangHoa_DTO sanPham = listS.get(i);
+            String maSP = sanPham.getMaSP();
+            String tenSP = sanPham.getTenSP();
+            String mancc = sanPham.getMaNCC();
+            int soLuong = sanPham.getSoLuong();
+            if(number ==0){
+                giaBan = sanPham.getGiaBan();
+            }else
+                giaBan = sanPham.getGiaNhap();
+            
+            String xuatXu = sanPham.getXuatXu();
+            String donVi = sanPham.getDonVi();
+            model.addRow(new Object[]{maSP, tenSP,mancc, soLuong, giaBan, xuatXu, donVi});
+            jTableHangHoa.setModel(model);
+            ++i;
+        }
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed

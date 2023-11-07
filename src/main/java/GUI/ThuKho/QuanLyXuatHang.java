@@ -56,7 +56,6 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPopupMenu = new javax.swing.JPopupMenu();
         jMenuItemTaoChiTietPhieuXuat = new javax.swing.JMenuItem();
         jMenuItemXemChiTietPhieuXuat = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableQuanLyXuatHang = new javax.swing.JTable();
@@ -80,11 +79,11 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfTim = new javax.swing.JTextField();
         btnTim = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        btnTaoPhieuXuat = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        btnTaoPhieuXuat = new javax.swing.JButton();
 
         jMenuItemTaoChiTietPhieuXuat.setText("Tạo chi tiết phiếu xuất");
         jMenuItemTaoChiTietPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +100,6 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
             }
         });
         jPopupMenu.add(jMenuItemXemChiTietPhieuXuat);
-
-        jMenuItem3.setText("jMenuItem3");
-        jPopupMenu.add(jMenuItem3);
 
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -243,6 +239,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
 
+        btnTaoPhieuXuat.setText("Tạo phiếu xuất");
+        btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoPhieuXuatActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnTaoPhieuXuat);
+
         btnLoad.setText("Làm mới");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,14 +268,6 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jButton8.setText("In");
         jPanel5.add(jButton8);
-
-        btnTaoPhieuXuat.setText("Tạo phiếu xuất");
-        btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaoPhieuXuatActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnTaoPhieuXuat);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -436,7 +432,6 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemTaoChiTietPhieuXuat;
     private javax.swing.JMenuItem jMenuItemXemChiTietPhieuXuat;
     private javax.swing.JPanel jPanel1;

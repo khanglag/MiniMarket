@@ -60,8 +60,6 @@ public class NhaCungCap extends javax.swing.JDialog {
         btnChon = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -86,6 +84,11 @@ public class NhaCungCap extends javax.swing.JDialog {
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
         btnTim.setText("Tìm");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         btnLamMoi.setText("Làm mới");
 
@@ -122,8 +125,7 @@ public class NhaCungCap extends javax.swing.JDialog {
                         .addComponent(btnHuy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnChon))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,6 +166,19 @@ public class NhaCungCap extends javax.swing.JDialog {
         
         this.dispose();
     }//GEN-LAST:event_btnChonActionPerformed
+
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        list = nccBus.timNCC(jtfTim.getText());
+        int soLuongSP = list.size();
+        for (int i = 0; i < soLuongSP; i++) {
+            NhaCungCap_DTO nc = list.get(i);
+            model.addRow(new Object[]{nc.getMaNCC(),nc.getTenNCC(),nc.getSdt(),nc.getDiaChi()});
+            table.setModel(model);
+        }
+    }//GEN-LAST:event_btnTimActionPerformed
 
     /**
      * @param args the command line arguments

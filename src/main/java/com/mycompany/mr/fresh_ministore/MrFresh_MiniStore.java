@@ -5,6 +5,7 @@
 package com.mycompany.mr.fresh_ministore;
 
 import ConnectDB.ConnectDB;
+import static GUI.Login.LoginForm.login;
 
 /**
  *
@@ -13,8 +14,6 @@ import ConnectDB.ConnectDB;
 public class MrFresh_MiniStore {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        ConnectDB cn = new ConnectDB();
-        cn.checkConnect();
+        login();
     }
 }
