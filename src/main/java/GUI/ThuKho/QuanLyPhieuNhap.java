@@ -28,7 +28,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     
     public QuanLyPhieuNhap() {
         initComponents();
-        //jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
+        jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
         LoadData();
     }
     public void LoadData() {
@@ -78,8 +78,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jtfTrangThai = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        jtfTim = new javax.swing.JTextField();
+        btnTim = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnTaoPhieuXuat = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
@@ -148,6 +148,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jLabel8.setText("Mã nhân viên");
         jPanel2.add(jLabel8);
+
+        jtfMaNhanVien.setEditable(false);
         jPanel2.add(jtfMaNhanVien);
 
         jLabel13.setText("Thời gian");
@@ -197,9 +199,14 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
+        jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
 
-        jButton5.setText("Tìm kiếm");
+        btnTim.setText("Tìm kiếm");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -207,9 +214,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -217,8 +224,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtfTim, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(btnTim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10))
         );
 
@@ -350,11 +357,28 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuNhapActionPerformed
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        list = phieuNhapBus.timPhieuNhap(jtfTim.getText(), null, null, null);
+        int i = 0;
+        while (i <= list.size() - 1) {
+            PhieuNhap_DTO px = list.get(i);
+            model.addRow(new Object[] {
+                    px.getMaPhieuNhap(),px.getMaNV(),px.getThoiGianLap(),px.getVAT(),px.getSoMatHang(),px.getTongTien(),px.getTrangThai()
+            });
+            table.setModel(model);
+            ++i;
+        }
+
+    }//GEN-LAST:event_btnTimActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnTaoPhieuXuat;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnTim;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -373,11 +397,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuNhap;
     private javax.swing.JTextField jtfSoMatHang;
     private javax.swing.JTextField jtfThoiGian;
+    private javax.swing.JTextField jtfTim;
     private javax.swing.JTextField jtfTongTien;
     private javax.swing.JTextField jtfTrangThai;
     private javax.swing.JTextField jtfVAT;

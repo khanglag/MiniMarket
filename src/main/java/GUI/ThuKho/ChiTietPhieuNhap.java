@@ -99,7 +99,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         btnLamMoi = new javax.swing.JButton();
         btnTaoYeuCau = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
@@ -284,7 +284,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                             .addComponent(jScrollPane9)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnThem)
-                                .addGap(84, 84, 84)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnXoa)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLamMoi)

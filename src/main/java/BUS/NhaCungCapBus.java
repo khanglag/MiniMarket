@@ -26,4 +26,8 @@ public class NhaCungCapBus {
         dto=dAO.searchNCC(maNCC,null, null,null).get(0);
         return dto.getTenNCC();
     }
+    public ArrayList<NhaCungCap_DTO> timNCC(String maNCC){
+        
+        return dAO.searchNCC(maNCC,null, null,null);
+    }
 }

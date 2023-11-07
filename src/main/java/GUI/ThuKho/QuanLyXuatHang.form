@@ -24,11 +24,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemXemChiTietPhieuXuatActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jMenuItem3"/>
-          </Properties>
-        </MenuItem>
       </SubComponents>
     </Container>
   </NonVisualComponents>
@@ -376,6 +371,14 @@
             <Property name="verticalGap" type="int" value="5"/>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JButton" name="btnTaoPhieuXuat">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#x1ea1;o phi&#x1ebf;u xu&#x1ea5;t"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoPhieuXuatActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JButton" name="btnLoad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
@@ -401,14 +404,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="In"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnTaoPhieuXuat">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="T&#x1ea1;o phi&#x1ebf;u xu&#x1ea5;t"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoPhieuXuatActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
