@@ -7,6 +7,8 @@ package BUS;
 import DAO.HangHoaDAO;
 import DTO.HangHoa_DTO;
 import File.ImageChooserAndMover;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ArrayList;
 
 /**
@@ -52,4 +54,13 @@ public class HangHoaBus {
      public String timHangHoa(String maHH){
         return dao.searchHangHoa(maHH);
     }
+     public ArrayList<HangHoa_DTO> sapXep(ArrayList<HangHoa_DTO> dto){
+         Collections.sort(dto,new Comparator<HangHoa_DTO>() {
+             @Override
+             public int compare(HangHoa_DTO o1, HangHoa_DTO o2) {
+                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+             }
+         });
+         return dto;
+     }
 }
