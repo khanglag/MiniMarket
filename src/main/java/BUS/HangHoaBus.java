@@ -10,6 +10,7 @@ import File.ImageChooserAndMover;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,5 +63,20 @@ public class HangHoaBus {
              }
          });
          return dto;
+     }
+     public boolean giamSLSP(String maSP,int soluong){
+         if (soluong<=0) {
+             JOptionPane.showMessageDialog(null,
+                        "Số lượng hàng hoá phải lớn hơn 0");
+             return false;
+         }
+         HangHoa_DTO dTO=new HangHoa_DTO();
+         dTO=dao.searchHangHoa(maSP, null, null, null).get(0);
+         int soluongcon=dTO.getSoLuong();
+         if (soluongcon>=soluong) {
+             dao.giamSL(maSP, soluongcon-soluong);
+             return true;
+         }
+         return false;
      }
 }

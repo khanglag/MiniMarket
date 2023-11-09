@@ -87,15 +87,26 @@ public class HangHoaDAO {
         boolean success = false;
         HangHoa_DTO hangHoa=new HangHoa_DTO(maSP, tenSP, null, maNCC, null, giaNhap, giaBan, 0, xuatXu, null, true);
         ConnectDB connectDB = new ConnectDB();
-        String sql = "UPDATE `hanghoa` SET "
-                + " `TENSP` = " + hangHoa.getTenSP() + ","
-                + " `MANCC` = " + hangHoa.getMaNCC() + ","
-                + " `GIANHAP` = " + hangHoa.getGiaNhap() + ","
-                + " `GIABAN` = " + hangHoa.getGiaBan() + ","
-                + " `XUATXU` = '" + hangHoa.getXuatXu() + "',"
-                + " WHERE `MASP` = '" + hangHoa.getMaSP() + "'";
-
-        success = connectDB.sqlUpdate(sql);
+        StringBuilder qry = new StringBuilder("UPDATE `hanghoa` SET ");
+        if (hangHoa.getTenSP() != null || !hangHoa.getTenSP() .isEmpty()) {
+            qry.append(" `TENSP` =  '" + hangHoa.getTenSP()  + "',");
+        }
+        if (hangHoa.getMaNCC() != null || !hangHoa.getMaNCC() .isEmpty()) {
+            qry.append(" `MANCC` =  '" + hangHoa.getMaNCC()  + "',");
+        }
+        if (hangHoa.getGiaNhap() >0) {
+            qry.append(" `GIANHAP` =   '" + hangHoa.getGiaNhap()  + "',");
+        }
+        if (hangHoa.getGiaNhap() >0) {
+            qry.append(" `GIABAN` =   '" + hangHoa.getGiaBan()  + "',");
+        }        
+        if (hangHoa.getXuatXu() != null || !hangHoa.getXuatXu() .isEmpty()) {
+            qry.append(" `XUATXU` =  '" + hangHoa.getXuatXu()  + "',");
+        }
+        qry.setLength(qry.length() - 1);
+            qry.append(" WHERE `MASP` = '" + hangHoa.getMaSP() + "'");
+        System.out.println(qry.toString());
+        success = connectDB.sqlUpdate(qry.toString());
         connectDB.closeConnect();
 
         return success;
@@ -152,7 +163,6 @@ public class HangHoaDAO {
     public String searchHangHoa(String maHH) {
         HangHoa_DTO hanghoa = null;
         ConnectDB connectDB = new ConnectDB();
-
         StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
         
         if (maHH != null || !maHH.isEmpty()) {
@@ -185,5 +195,15 @@ public class HangHoaDAO {
         }
         
         return hanghoa.getTenSP();
+    }
+    public boolean giamSL(String maSP, int soluong){
+        boolean success = false;
+        ConnectDB connectDB = new ConnectDB();
+        String sql = "UPDATE `hanghoa` SET "
+                + " `SOLUONG` = " + soluong 
+                + " WHERE `MASP` = '" + maSP + "'";
+        success = connectDB.sqlUpdate(sql);
+        connectDB.closeConnect();
+        return success;
     }
 }
