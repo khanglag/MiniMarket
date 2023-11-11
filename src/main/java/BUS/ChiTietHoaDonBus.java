@@ -6,6 +6,7 @@ package BUS;
 
 import DAO.ChiTietHoaDonDAO;
 import DTO.ChiTietHoaDon_DTO;
+import DTO.HoaDon_DTO;
 import java.util.ArrayList;
 
 /**
@@ -23,5 +24,9 @@ public class ChiTietHoaDonBus {
     }
     public ArrayList<ChiTietHoaDon_DTO> dsHD(String maHD){
         return dao.readBD();
+    }
+    public boolean themCTHD(int soHD, String maSP,int soluong){
+        ChiTietHoaDon_DTO dto =new ChiTietHoaDon_DTO(soHD, maSP, soluong, true);
+        return dao.add(dto);
     }
 }
