@@ -12,6 +12,7 @@ import com.toedter.calendar.JDateChooser;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,10 +31,11 @@ public class ThemKhachHang extends javax.swing.JPanel {
      */
     KhachHangDAO khd = new KhachHangDAO();
     KhachHangBus khb = new KhachHangBus();
+
     public ThemKhachHang() {
         initComponents();
         createButtonGroup();
-        showCustomerInTable();   
+        showCustomerInTable();
 //         String dateStr = "13/03/2003";
 //
 //        // Định dạng của chuỗi ngày
@@ -58,7 +60,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
             String sdt = khachHang.getSdt();
             LocalDate ngaySinh = khachHang.getNgaySinh();
             String diaChi = khachHang.getDiaChi();
-            model.addRow(new Object[]{i + 1, maKH, tenKH, sdt,ngaySinh,diaChi});
+            model.addRow(new Object[]{i + 1, maKH, tenKH, sdt, ngaySinh, diaChi});
         }
     }
 
@@ -302,15 +304,28 @@ public class ThemKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void btnAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCustomerMouseClicked
-        // TODO add your handling code here:
+
         String hoTen = txtName.getText();
         String soDT = txtNumberPhone.getText();
-        String ngaySinh = txtNgaySinh.getText();
         String diaChi = txtDiaChi.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate = LocalDate.parse(ngaySinh, formatter);
-       
-        khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
+        String ngaySinh = txtNgaySinh.getText().trim();
+      
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate localDate;
+            try {
+                localDate = LocalDate.parse(ngaySinh, formatter);
+                
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+                return; // Dừng xử lý tiếp theo
+            }
+           try {
+             khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
+             JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công");
+        } catch (Exception e) {
+            return;
+        }
+        
         showCustomerInTable();
     }//GEN-LAST:event_btnAddCustomerMouseClicked
 
@@ -325,8 +340,8 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
     private void btnFindCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCustomerActionPerformed
         // TODO add your handling code here:
-       String sdt = txtNumberPhone.getText();
-        KhachHang_DTO khachHang = khb.timKhachHang(null,sdt);
+        String sdt = txtNumberPhone.getText();
+        KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
         String maKH = khachHang.getMaKH();
@@ -358,7 +373,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 String sdt = khachHang.getSdt();
                 LocalDate ngaySinh = khachHang.getNgaySinh();
                 String diaChi = khachHang.getDiaChi();
-                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
+                model.addRow(new Object[]{1, maKH, tenKH, sdt, ngaySinh, diaChi});
             }
         }
         if (chkArrangeZA.isSelected()) {
@@ -369,7 +384,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 String sdt = khachHang.getSdt();
                 LocalDate ngaySinh = khachHang.getNgaySinh();
                 String diaChi = khachHang.getDiaChi();
-                model.addRow(new Object[]{1, maKH, tenKH, sdt,ngaySinh,diaChi});
+                model.addRow(new Object[]{1, maKH, tenKH, sdt, ngaySinh, diaChi});
             }
         }
     }//GEN-LAST:event_btnArrangeMouseClicked
@@ -380,7 +395,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
     private void TableCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCustomerMouseClicked
         // TODO add your handling code here:
-         Timeconvert timeConvert = new Timeconvert();
+        Timeconvert timeConvert = new Timeconvert();
         if (evt.getClickCount() == 1) { // Đảm bảo rằng đó là một lần click đơn, bạn có thể thay đổi số click cần thiết
             int selectedRow = TableCustomer.getSelectedRow();
             if (selectedRow != -1) {
