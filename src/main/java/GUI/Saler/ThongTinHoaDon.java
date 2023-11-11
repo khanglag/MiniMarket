@@ -4,12 +4,16 @@
  */
 package GUI.Saler;
 
+import BUS.ChiTietHoaDonBus;
+import DAO.ChiTietHoaDonDAO;
 import DAO.HoaDonDAO;
 import DTO.HangHoa_DTO;
+import DTO.HoaDon_DTO;
 import static GUI.Saler.BanHang.hhb;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,24 +29,28 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
     HoaDonDAO hdDAO = new HoaDonDAO();
     BanHang bh = new BanHang();
     double tong;
+    ChiTietHoaDonBus cthdBUS = new ChiTietHoaDonBus();
 
     public ThongTinHoaDon() {
         initComponents();
         showProductInTable();
         showInfoBill();
-       
+
     }
 
     public void showInfoBill() {
-        int soHD = hdDAO.demSoHoaDon() + 1;
-        txtMaHoaDon.setText(soHD + "");
+        int soHD = hdDAO.demSoHoaDon();
+     ArrayList<HoaDon_DTO> hoaDon =   hdDAO.searchHoaDon(soHD, null);
+     
+       txtMaHoaDon.setText(soHD + "");
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String dateTimeString = currentDateTime.format(formatter);
         txtTime.setText("Ngày " + dateTimeString);
-        txtKhachDua.setText(bh.tienKhachDua());
-        txtTienThua.setText(bh.tienTraKhach());
-        txtTongHoaDon.setText(String.valueOf(tong));
+        txtKhachDua.setText(String.valueOf(hoaDon.get(0).getTienKhachDua()));
+        txtTienThua.setText(String.valueOf(hoaDon.get(0).getTienTraKhach()));
+        txtTongHoaDon.setText(String.valueOf(hoaDon.get(0).getThanhTien()));
+        System.out.println(hoaDon);
     }
 
     public void showProductInTable() {
@@ -61,7 +69,7 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
             String giaban = String.valueOf(hhb.giaBanSP(sanPham.getMaSP()));
             model.addRow(new Object[]{tenSP, soLuong, giaban, thanhTien});
         }
-        tong= total;
+        tong = total;
     }
 
     /**
