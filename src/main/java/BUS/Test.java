@@ -14,6 +14,6 @@ import java.util.ArrayList;
 public class Test {
     public static void main(String[] args) {
         HangHoaBus bus= new HangHoaBus();
-        bus.themHH("4902430556782", "Biển vô cực", "0000004","NCCDYQN", "gói", 20000, 30000, 400, "Việt Nam", true);
+        bus.suaHangHoa("8936021003321", "Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 20g", "NCCLADY", 30000, 40800, "Trung quoc");
     }
 }

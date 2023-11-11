@@ -5,6 +5,7 @@
 package Handle;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  *
@@ -26,4 +27,10 @@ public class Convert {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return (formatter.format(tien)+" VNĐ");
     }
+    public static String soqualon(double number){
+       
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        return numberFormat.format(number);
+    }
+  
 }

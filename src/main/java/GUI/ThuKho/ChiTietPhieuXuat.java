@@ -258,7 +258,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,7 +491,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
     private void btnChonMaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaHangActionPerformed
         // TODO add your handling code here:
-        HangHoa hangHoa = new HangHoa(this);
+        HangHoa hangHoa = new HangHoa(this,0);
         hangHoa.setVisible(true);
         HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
         listHH.add(selectedHangHoa);

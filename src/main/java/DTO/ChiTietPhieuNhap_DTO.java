@@ -15,7 +15,6 @@ public class ChiTietPhieuNhap_DTO {
     private String maNCC;
     private double VAT;
     private String xuatXu;
-    private String anhSP;
     private int soLuong;
     private String donVi;
     private double giaNhap;
@@ -25,14 +24,14 @@ public class ChiTietPhieuNhap_DTO {
     public ChiTietPhieuNhap_DTO() {
     }
 
-    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenHangNhap,String maNCC, double VAT, String xuatXu, String anhSP, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
+    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenHangNhap,String maNCC, double VAT,
+            String xuatXu, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maHangNhap = maHangNhap;
         this.tenHangNhap = tenHangNhap;
         this.maNCC = maNCC;
         this.VAT = VAT;
         this.xuatXu = xuatXu;
-        this.anhSP = anhSP;
         this.soLuong = soLuong;
         this.donVi = donVi;
         this.giaNhap = giaNhap;
@@ -90,13 +89,6 @@ public class ChiTietPhieuNhap_DTO {
         this.xuatXu = xuatXu;
     }
 
-    public String getAnhSP() {
-        return anhSP;
-    }
-
-    public void setAnhSP(String anhSP) {
-        this.anhSP = anhSP;
-    }
 
     public int getSoLuong() {
         return soLuong;
@@ -140,7 +132,7 @@ public class ChiTietPhieuNhap_DTO {
 
     @Override
     public String toString() {
-        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenHangNhap=" + tenHangNhap + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", anhSP=" + anhSP + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
+        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenHangNhap=" + tenHangNhap + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
     }
 
     

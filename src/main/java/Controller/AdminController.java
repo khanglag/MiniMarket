@@ -2,6 +2,7 @@ package Controller;
 
  
 import BEAN.DanhMucBean;
+import GUI.Admin.QuanLyUser;
 import GUI.ThuKho.QuanLyKiemHang;
 import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;
@@ -23,13 +24,13 @@ import javax.swing.JPanel;
  *
  * @author khang
  */
-public class ThuKhoController {
+public class AdminController {
     
     private JPanel root;
     private String kindSelected="";
     private List<DanhMucBean> listItem = null;
 
-    public ThuKhoController(JPanel jpnRoot) {
+    public AdminController(JPanel jpnRoot) {
         this.root = jpnRoot;
     }
 
@@ -70,20 +71,13 @@ public class ThuKhoController {
                 case "TrangChu":
                     node = new TrangChu();
                     break;
-                case "QuanLyKiemHang":
-                    node = new QuanLyKiemHang();
-                    break;
-                case "QuanLyPhieuNhap":
-                    node = new QuanLyPhieuNhap();
+                case "QuanLyUser":
+                    node = new QuanLyUser();
                     break;
                 case "DangXuat":
                    // node = new PhieuXuatHang();
                     //dispose();
                     break;
-                case "QuanLyPhieuXuat":
-                    node = new QuanLyXuatHang();
-                    break;
-
                 // more
                 default:
                     break;
