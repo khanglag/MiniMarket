@@ -324,7 +324,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         String hoTen = txtName.getText();
         String soDT = txtNumberPhone.getText();
-
         String diaChi = txtDiaChi.getText();
         String ngaySinh = txtNgaySinh.getText().trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

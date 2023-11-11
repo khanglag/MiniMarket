@@ -3,33 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Saler;
-
-import BEAN.DanhMucBean;
-import DAO.HangHoaDAO;
+import BUS.NhanvienBus;
+import Controller.TaiKhoanController;
+import GUI.Login.LoginForm;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author acer
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class MainFrameSaler extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
     Color DefaultColor, ClickedColor;
+    NhanvienBus nv = new NhanvienBus();
 
-    public MainJFrame() {
+    public MainFrameSaler() {
         initComponents();
-       dashboardControl();
-        
+        dashboardControl();
+        txtUserName.setText(nv.tenNV(TaiKhoanController.getTendnString()));
     }
-    public void dashboardControl(){
-         mainScreen.setLayout(new BorderLayout());
+
+    public void dashboardControl() {
+        mainScreen.setLayout(new BorderLayout());
         mainScreen.add(new ThongTinNhanVien());
         DefaultColor = new Color(255, 255, 255);
         ClickedColor = new Color(240, 151, 57);
@@ -39,6 +39,7 @@ public class MainJFrame extends javax.swing.JFrame {
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +64,8 @@ public class MainJFrame extends javax.swing.JFrame {
         mainScreen = new javax.swing.JPanel();
         title = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,7 +250,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         title.setBackground(new java.awt.Color(147, 166, 174));
@@ -257,25 +260,36 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MÀN HÌNH NHÂN VIÊN");
 
+        txtUserName.setText("jLabel7");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout titleLayout = new javax.swing.GroupLayout(title);
         title.setLayout(titleLayout);
         titleLayout.setHorizontalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
-            .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(titleLayout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(38, 38, 38)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         titleLayout.setVerticalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 45, Short.MAX_VALUE)
-            .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(titleLayout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(jLabel2)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+            .addGroup(titleLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -321,7 +335,7 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
-          ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
         mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
@@ -334,7 +348,7 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
-         BanHang bh = new BanHang();
+        BanHang bh = new BanHang();
         mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
@@ -348,8 +362,8 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(ClickedColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
-         SanPham sp = new SanPham();
-         mainScreen.removeAll();
+        SanPham sp = new SanPham();
+        mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
         mainScreen.add(sp).setVisible(true);
@@ -363,7 +377,7 @@ public class MainJFrame extends javax.swing.JFrame {
         paneltkh.setBackground(ClickedColor);
         paneldx.setBackground(DefaultColor);
         ThemKhachHang tkh = new ThemKhachHang();
-          mainScreen.removeAll();
+        mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
         mainScreen.add(tkh).setVisible(true);
@@ -376,62 +390,47 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(ClickedColor);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            LoginForm lg = new LoginForm();
+            this.dispose();
+            lg.setVisible(true);
+            lg.setLocationRelativeTo(null);
+
+        } else {
+            return;
+        }
     }//GEN-LAST:event_paneldxMousePressed
 
     private void panelbhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelbhMouseClicked
         // TODO add your handling code here:
 
-       
+
     }//GEN-LAST:event_panelbhMouseClicked
 
     private void panelttcnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelttcnMouseClicked
         // TODO add your handling code here:
-      
+
 
     }//GEN-LAST:event_panelttcnMouseClicked
 
     private void panelspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelspMouseClicked
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_panelspMouseClicked
 
     private void paneltkhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneltkhMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_paneltkhMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                new MainFrameSaler().setVisible(true);
             }
         });
     }
@@ -443,6 +442,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainScreen;
     private javax.swing.JPanel panelbh;
@@ -452,5 +452,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelttcn;
     private javax.swing.JPanel sideBar2;
     private javax.swing.JPanel title;
+    private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

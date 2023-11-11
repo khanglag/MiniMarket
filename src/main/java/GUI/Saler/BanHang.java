@@ -5,29 +5,20 @@
 package GUI.Saler;
 
 import BUS.HangHoaBus;
+import DAO.ChiTietHoaDonDAO;
 import DAO.HangHoaDAO;
+import DAO.HoaDonDAO;
 import DTO.HangHoa_DTO;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.io.File;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import GUI.Login.TaiKhoan;
 import javax.swing.JLabel;
-import GUI.Saler.item;
 import static GUI.Saler.item.gioHang;
-import static GUI.Saler.item.hhb;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -38,15 +29,16 @@ public class BanHang extends javax.swing.JPanel {
     public JLabel LbImg;
     HangHoaDAO hhd = new HangHoaDAO();
     private String masp = "";
-    HangHoaBus hhb = new HangHoaBus();
+    static HangHoaBus hhb = new HangHoaBus();
+    HoaDonDAO hoaDonDAO = new HoaDonDAO();
+    ChiTietHoaDonDAO cthdDAO = new ChiTietHoaDonDAO();
+    TaiKhoan tk = new TaiKhoan();
 
-    /**
-     * Creates new form GioHang
-     */
     public BanHang() {
         initComponents();
         showItems();
         showItemCartInTable();
+        txtTienThua.setEnabled(false);
     }
 
     public void showItems() {
@@ -87,23 +79,32 @@ public class BanHang extends javax.swing.JPanel {
             int soLuong = sanPham.getSoLuong();
             double thanhTien = sanPham.getGiaBan();
             total += thanhTien;
-            model.addRow(new Object[]{maSP, tenSP, soLuong, thanhTien});
+            String giaban = String.valueOf(hhb.giaBanSP(sanPham.getMaSP()));
+            model.addRow(new Object[]{maSP, tenSP, soLuong, giaban, thanhTien});
         }
-        model.addRow(new Object[]{"", "", "Tổng:", total});          
-         txtTienKhachDua.addActionListener(new ActionListener() {
+        model.addRow(new Object[]{"", "", "", "Tổng:", total});
+        txtTienThua.setText(String.valueOf(Double.parseDouble(txtTienKhachDua.getText()) - total));
+        txtTienKhachDua.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Xử lý sự kiện thay đổi văn bản ở đây
                 double total = 0;
-                  for (HangHoa_DTO sanPham : gioHang) {
-                      total += sanPham.getGiaBan();
-                  }
+                for (HangHoa_DTO sanPham : gioHang) {
+                    total += sanPham.getGiaBan();
+                }
                 String tienKhachDua = txtTienKhachDua.getText();
                 txtTienThua.setText(String.valueOf(Double.parseDouble(tienKhachDua) - total));
             }
         });
         tableGioHang.revalidate();
         tableGioHang.repaint();
+    }
+
+    public String tienKhachDua() {
+        return txtTienKhachDua.getText();
+    }
+
+    public String tienTraKhach() {
+        return txtTienThua.getText();
     }
 
     @SuppressWarnings("unchecked")
@@ -116,7 +117,7 @@ public class BanHang extends javax.swing.JPanel {
         txtFindNameItem = new javax.swing.JTextField();
         txtTienKhachDua = new javax.swing.JTextField();
         txtTienThua = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnPayment = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnFind = new javax.swing.JButton();
@@ -136,21 +137,28 @@ public class BanHang extends javax.swing.JPanel {
 
         tableGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Thành tiền"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá bán", "Thành tiền"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tableGioHang.setRowHeight(40);
@@ -170,7 +178,12 @@ public class BanHang extends javax.swing.JPanel {
 
         txtTienThua.setText("0");
 
-        jButton2.setText("Thanh toán");
+        btnPayment.setText("Thanh toán");
+        btnPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaymentActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tiền thừa");
 
@@ -226,7 +239,7 @@ public class BanHang extends javax.swing.JPanel {
                 .addGap(106, 106, 106)
                 .addComponent(btnDeleteItem, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -267,7 +280,7 @@ public class BanHang extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteItem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSuaSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,6 +436,12 @@ public class BanHang extends javax.swing.JPanel {
 
     private void btnDeleteItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteItemMouseClicked
         // TODO add your handling code here:
+        if (gioHang.size() == 0) {
+            return;
+        }
+        if (masp.equals("")) {
+            return;
+        }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             for (HangHoa_DTO sanPham : gioHang) {
@@ -431,12 +450,56 @@ public class BanHang extends javax.swing.JPanel {
                     break;
                 }
             }
-
+            masp = "";
             showItemCartInTable();
         } else {
             return;
         }
     }//GEN-LAST:event_btnDeleteItemMouseClicked
+
+    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        // TODO add your handling code here:
+        double tienThua = Double.parseDouble(txtTienThua.getText());
+        double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
+        double total = 0;
+        for (int i = 0; i < gioHang.size(); i++) {
+            HangHoa_DTO hh = gioHang.get(i);
+            total += hh.getGiaBan();
+        }
+
+        if (tienThua < 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Khách chưa đưa đủ tiền vui lòng nhập lại!");
+            return;
+        }
+        if (gioHang.size() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng thêm sản phẩm vào giỏ để thanh toán");
+            return;
+        }
+
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận thanh toán?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            //hoaDonDAO.add(hoaDonDAO.demSoHoaDon() + 1, tk.getTen_dn(), LocalDate.now(), "KHACHVANGLAI", total, tienKhachDua, tienThua, true);
+            for(int i = 0;i<gioHang.size();i++){
+                HangHoa_DTO hh = gioHang.get(i);
+                
+            }
+            JFrame frame = new JFrame("In hóa đơn");
+            ThongTinHoaDon tthd = new ThongTinHoaDon();
+            frame.add(tthd);
+            frame.setSize(500, 700);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            gioHang.clear();
+            
+        } else {
+            return;
+        }
+        System.out.println("vào");
+      
+    }//GEN-LAST:event_btnPaymentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -445,8 +508,8 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnOffFind;
+    private javax.swing.JButton btnPayment;
     private javax.swing.JButton btnSuaSoLuong;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
