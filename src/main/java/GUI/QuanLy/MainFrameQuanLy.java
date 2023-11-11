@@ -4,6 +4,9 @@
  */
 package GUI.QuanLy;
 
+import BUS.NhanvienBus;
+import Controller.TaiKhoanController;
+import GUI.Login.LoginForm;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -12,17 +15,19 @@ import javax.swing.JOptionPane;
  *
  * @author acer
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class MainFrameQuanLy extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrame
      */
     Color DefaultColor, ClickedColor;
+    NhanvienBus nv = new NhanvienBus();
 
-    public MainJFrame() {
+    public MainFrameQuanLy() {
         initComponents();
         dashboardControl();
-
+        txtUserName.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+        this.setLocationRelativeTo(null);
     }
 
     public void dashboardControl() {
@@ -64,6 +69,8 @@ public class MainJFrame extends javax.swing.JFrame {
         mainScreen = new javax.swing.JPanel();
         title = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        txtUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("QUẢN LÝ");
@@ -111,7 +118,7 @@ public class MainJFrame extends javax.swing.JFrame {
         panelkhLayout.setHorizontalGroup(
             panelkhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelkhLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(26, 26, 26))
         );
@@ -179,23 +186,23 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Chi tiêu");
+        jLabel6.setText("Quản lý phiếu nhập");
 
         javax.swing.GroupLayout panelctLayout = new javax.swing.GroupLayout(panelct);
         panelct.setLayout(panelctLayout);
         panelctLayout.setHorizontalGroup(
             panelctLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelctLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelctLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelctLayout.setVerticalGroup(
             panelctLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelctLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel6)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         paneldx.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,11 +269,11 @@ public class MainJFrame extends javax.swing.JFrame {
         mainScreen.setLayout(mainScreenLayout);
         mainScreenLayout.setHorizontalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         title.setBackground(new java.awt.Color(147, 166, 174));
@@ -276,25 +283,49 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MÀN HÌNH QUẢN LÝ");
 
+        txtUserName.setBackground(new java.awt.Color(255, 255, 255));
+        txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtUserName.setForeground(new java.awt.Color(255, 255, 255));
+        txtUserName.setText("jLabel8");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout titleLayout = new javax.swing.GroupLayout(title);
         title.setLayout(titleLayout);
         titleLayout.setHorizontalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1089, Short.MAX_VALUE)
-            .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(titleLayout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(38, 38, 38)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         titleLayout.setVerticalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 45, Short.MAX_VALUE)
-            .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(titleLayout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(jLabel2)
-                    .addContainerGap(9, Short.MAX_VALUE)))
+            .addGroup(titleLayout.createSequentialGroup()
+                .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(titleLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(titleLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -401,7 +432,7 @@ public class MainJFrame extends javax.swing.JFrame {
         paneltk.setBackground(DefaultColor);
         panelct.setBackground(ClickedColor);
         paneldx.setBackground(DefaultColor);
-        QuanLyNhapHang qlct = new QuanLyNhapHang();
+        QuanLyPhieuNhap qlct = new QuanLyPhieuNhap();
         mainScreen.removeAll();
         mainScreen.revalidate();
         mainScreen.repaint();
@@ -416,39 +447,26 @@ public class MainJFrame extends javax.swing.JFrame {
         paneltk.setBackground(DefaultColor);
         panelct.setBackground(DefaultColor);
         paneldx.setBackground(ClickedColor);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            LoginForm lg = new LoginForm();
+            this.dispose();
+            lg.setVisible(true);
+            lg.setLocationRelativeTo(null);
+
+        } else {
+            return;
+        }
     }//GEN-LAST:event_paneldxMousePressed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                new MainFrameQuanLy().setVisible(true);
 
             }
         });
@@ -462,6 +480,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel mainScreen;
     private javax.swing.JPanel panelct;
@@ -472,5 +491,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel paneltk;
     private javax.swing.JPanel sideBar;
     private javax.swing.JPanel title;
+    private javax.swing.JLabel txtUserName;
     // End of variables declaration//GEN-END:variables
 }

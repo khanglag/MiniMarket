@@ -116,7 +116,7 @@ public class NhanvienBus {
     public String kiemtraTK(String maNV){
         TaiKhoanDAO dAO= new TaiKhoanDAO();
         TaiKhoan dto=new TaiKhoan();
-        dto=dAO.searchTaiKhoan(maNV);
+//        dto=dAO.searchTaiKhoan(maNV);
         if (dto.isTontai()==true) {
             return "Đã có tài khoản";
         }else if (dto.getTontai()==false) {

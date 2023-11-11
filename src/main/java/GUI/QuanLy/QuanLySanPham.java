@@ -126,7 +126,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnUpdateTTSP = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -350,10 +350,10 @@ public class QuanLySanPham extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Sửa TTSP");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateTTSP.setText("Sửa TTSP");
+        btnUpdateTTSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnUpdateTTSPActionPerformed(evt);
             }
         });
 
@@ -383,7 +383,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUpdateTTSP, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -398,7 +398,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUpdateTTSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnClear)
                     .addComponent(btnAdd)
@@ -756,11 +756,31 @@ public class QuanLySanPham extends javax.swing.JPanel {
         clearALL();
     }//GEN-LAST:event_btnClearActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnUpdateTTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTTSPActionPerformed
         // TODO add your handling code here:
 //        return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
-
-    }//GEN-LAST:event_jButton4ActionPerformed
+        String msp = txtMaSP.getText();
+        String tsp = txtTenSP.getText();
+        String xx = txtXuatXu.getText();
+        double giaNhap = Double.parseDouble(txtGiaNhap.getText());
+        double giaBan = Double.parseDouble(txtGiaBan.getText());
+        int indexMaNCC = cbbMaNCC.getSelectedIndex();
+        String maNCC = "";
+        if (indexMaNCC == 0) {
+            maNCC = "NCCBIAV";
+        }
+        if (indexMaNCC == 1) {
+            maNCC = "NCCCOOK";
+        }
+        if (indexMaNCC == 2) {
+            maNCC = "NCCDYQN";
+        }
+        if (indexMaNCC == 3) {
+            maNCC = "NCCLADY";
+        }
+        hhBus.suaHangHoa(msp, tsp, maNCC, giaNhap, giaBan, xx);
+        showProductsInTable();
+    }//GEN-LAST:event_btnUpdateTTSPActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
@@ -768,8 +788,8 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String msp = txtMaSP.getText();
         String tsp = txtTenSP.getText();
         String xx = txtXuatXu.getText();
-          double gb = Double.parseDouble(txtGiaBan.getText());
-         String maNH = "";
+        double gb = Double.parseDouble(txtGiaBan.getText());
+        String maNH = "";
         int indexMaNH = cbbMaNhomHang.getSelectedIndex();
         if (indexMaNH == 0) {
             maNH = "0000001";
@@ -807,7 +827,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (indexMaNH == 11) {
             maNH = "0000012";
         }
-          String maNCC = "";
+        String maNCC = "";
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
         if (indexMaNCC == 0) {
             maNCC = "NCCBIAV";
@@ -821,13 +841,10 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (indexMaNCC == 3) {
             maNCC = "NCCLADY";
         }
-        System.out.println(maNH);
-        System.out.println(maNCC);
-        ArrayList<HangHoa_DTO> danhSachSearchHH = hhBus.timHangHoa(null, tsp, maNH, gb, xx);
+        ArrayList<HangHoa_DTO> danhSachSearchHH = hhBus.timHangHoa(msp, tsp, maNH, gb, xx);
         System.out.println(danhSachSearchHH);
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        
         int soLuongSP = danhSachSearchHH.size();
         for (int i = 0; i < soLuongSP; i++) {
             HangHoa_DTO sanPham = danhSachSearchHH.get(i);
@@ -861,9 +878,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdateTTSP;
     private javax.swing.JComboBox<String> cbbMaNCC;
     private javax.swing.JComboBox<String> cbbMaNhomHang;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -8,7 +8,7 @@ import GUI.Admin.MainJFrameAd;
 import GUI.Login.Service.TaiKhoanService;
 import GUI.Login.Service.TaiKhoanServiceImpl;
 import GUI.Login.TaiKhoan;
-import GUI.QuanLy.MainJFrame;
+import GUI.QuanLy.MainFrameQuanLy;
 import GUI.ThuKho.MainFrameThuKho;
 import java.awt.Dialog;
 import java.awt.event.MouseAdapter;
@@ -92,7 +92,7 @@ public class TaiKhoanController {
                             if (taiKhoan.getQuyen().contains("QL")) {
                                 setNgdn(0);
                                 dialog.dispose();
-                                frame = new GUI.QuanLy.MainJFrame();
+                                frame = new GUI.QuanLy.MainFrameQuanLy();
                                 frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
@@ -101,7 +101,7 @@ public class TaiKhoanController {
                             } else if (taiKhoan.getQuyen().contains("NVBH")) {
                                 setNgdn(0);
                                 dialog.dispose();
-                                frame = new GUI.Saler.MainJFrame();
+                                frame = new GUI.Saler.MainFrameSaler();
                                 frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
