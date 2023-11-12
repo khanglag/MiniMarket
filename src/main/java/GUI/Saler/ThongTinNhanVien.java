@@ -72,27 +72,27 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("THÔNG TIN CÁ NHÂN");
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel1.setText("HỌ TÊN");
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel3.setText("SỐ ĐIỆN THOẠI");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel4.setText("EMAIL");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel5.setText("NGÀY SINH");
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel6.setText("ĐỊA CHỈ");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel7.setText("CĂN CƯỚC");
 
         btnUpdate.setText("Đổi mật khẩu");
@@ -148,7 +148,7 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
                     .addComponent(txtCanCuoc)
                     .addComponent(txtSDT)
                     .addComponent(txtHoTen))
-                .addContainerGap(728, Short.MAX_VALUE))
+                .addContainerGap(736, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnUpdate)
@@ -184,7 +184,7 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
                     .addComponent(txtCanCuoc))
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate)
-                .addGap(0, 170, Short.MAX_VALUE))
+                .addGap(0, 154, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

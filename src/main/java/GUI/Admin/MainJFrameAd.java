@@ -72,7 +72,9 @@ private void TrinhDieuKhien() {
 
         panelMenu.setBackground(new java.awt.Color(189, 205, 214));
 
-        jLabelQuanLyUser.setText("Quản lý user");
+        jLabelQuanLyUser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelQuanLyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/management.png"))); // NOI18N
+        jLabelQuanLyUser.setText("QUẢN LÝ USER");
 
         javax.swing.GroupLayout panelQuanLyUserLayout = new javax.swing.GroupLayout(panelQuanLyUser);
         panelQuanLyUser.setLayout(panelQuanLyUserLayout);
@@ -91,7 +93,9 @@ private void TrinhDieuKhien() {
                 .addContainerGap())
         );
 
-        jLabelDangXuat.setText("Đăng xuất");
+        jLabelDangXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
+        jLabelDangXuat.setText("ĐĂNG XUẤT");
         jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelDangXuatMouseClicked(evt);

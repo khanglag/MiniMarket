@@ -106,7 +106,9 @@ public class item extends javax.swing.JPanel {
 
         LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gao.jpg"))); // NOI18N
 
-        BtnAddProduct.setText("Thêm vào giỏ");
+        BtnAddProduct.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        BtnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gioHang.png"))); // NOI18N
+        BtnAddProduct.setText("THÊM VÀO GIỎ HÀNG");
         BtnAddProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnAddProductMouseClicked(evt);

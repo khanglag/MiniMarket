@@ -38,16 +38,22 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="ff" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Kh&#xf4;ng duy&#x1ec7;t"/>
+        <Property name="text" type="java.lang.String" value="KH&#xd4;NG DUY&#x1ec6;T"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStatusActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnWatch">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="99" red="0" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Xem"/>
+        <Property name="text" type="java.lang.String" value="XEM"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWatchActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

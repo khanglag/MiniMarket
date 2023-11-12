@@ -95,14 +95,22 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
 
-        btnCheckNhapHang.setText("Kiểm tra");
+        btnCheckNhapHang.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnCheckNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/test.png"))); // NOI18N
+        btnCheckNhapHang.setText("KIỂM TRA");
+        btnCheckNhapHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckNhapHangActionPerformed(evt);
+            }
+        });
 
         tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,8 +140,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
                 .addComponent(btnCheckNhapHang)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -146,9 +155,13 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCheckNhapHang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCheckNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckNhapHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCheckNhapHangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
