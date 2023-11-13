@@ -84,6 +84,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbMaNCC.setSelectedIndex(0);
         cbbMaNhomHang.setSelectedIndex(0);
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(""))); // NOI18N
+        btnAdd.setEnabled(true);
+        txtGiaNhap.setEnabled(true);
+        txtXuatXu.setEnabled(true);
+        txtDonVi.setEnabled(true);
+        cbbMaNCC.setEnabled(true);
+        cbbMaNhomHang.setEnabled(true);
         showProductsInTable();
     }
 
@@ -228,6 +234,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel8.setText("Số lượng");
 
+        txtMaSP.setEnabled(false);
         txtMaSP.setMaximumSize(new java.awt.Dimension(144, 200));
 
         txtTenSP.setMaximumSize(new java.awt.Dimension(144, 144));
@@ -510,6 +517,13 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 for (int i = 0; i < soLuongHH; i++) {
                     HangHoa_DTO sanPham = danhSachHangHoa.get(i);
                     if (maSP.equals(sanPham.getMaSP())) {
+                        btnAdd.setEnabled(false);
+
+                        txtGiaNhap.setEnabled(false);
+                        txtXuatXu.setEnabled(false);
+                        txtDonVi.setEnabled(false);
+                        cbbMaNCC.setEnabled(false);
+                        cbbMaNhomHang.setEnabled(false);
                         String Path = sanPham.getAnhSP();
                         txtMaSP.setText((String) TableProducts.getValueAt(selectedRow, 1));
                         txtTenSP.setText((String) TableProducts.getValueAt(selectedRow, 2));
@@ -758,7 +772,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void btnUpdateTTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTTSPActionPerformed
         // TODO add your handling code here:
-//        return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
+
         String msp = txtMaSP.getText();
         String tsp = txtTenSP.getText();
         String xx = txtXuatXu.getText();
@@ -778,8 +792,24 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (indexMaNCC == 3) {
             maNCC = "NCCLADY";
         }
-        hhBus.suaHangHoa(msp, tsp, maNCC, giaNhap, giaBan, xx);
-        showProductsInTable();
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa sản phẩm này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+
+            try {
+                hhBus.suaHangHoa(msp, tsp, maNCC, giaNhap, giaBan, xx);
+                showProductsInTable();
+                JOptionPane.showMessageDialog(null,
+                        "Sửa sản phẩm thành công");
+
+                clearALL();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Xóa hàng hóa thất bại");
+            }
+        } else {
+            return;
+        }
+
     }//GEN-LAST:event_btnUpdateTTSPActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

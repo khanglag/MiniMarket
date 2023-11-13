@@ -5,6 +5,7 @@
 package GUI.QuanLy;
 
 import BUS.PhieuNhapBus;
+import DAO.PhieuYeuCauNhapDAO;
 import DTO.PhieuNhap_DTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ import javax.swing.table.TableCellEditor;
 public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
     PhieuNhapBus pnBus = new PhieuNhapBus();
-
+     
     public QuanLyPhieuNhap() {
         initComponents();
         showReceiptInTable();
@@ -37,19 +38,25 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
     public void showReceiptInTable() {
         try {
+
             TableActionEvent event = new TableActionEvent() {
                 @Override
                 public void onStatus(int row, String MaPhieuNhap) {
-                    System.out.println("Trạng thái " + row + MaPhieuNhap);
+                    JFrame frame = new JFrame("Trạng thái kiểm duyệt");
+                    TrangThaiPhieuNhap ttpn = new TrangThaiPhieuNhap(MaPhieuNhap);
+                    frame.add(ttpn);
+                    frame.setSize(400, 300);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                 }
 
                 @Override
                 public void onRead(int row, String MaPhieuNhap) {
                     JFrame frame = new JFrame("Thông tin phiếu yêu cầu nhập hàng");
-                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap();
-                    read.MaPN(MaPhieuNhap);
-                    frame.add(read); 
-                    frame.setSize(800, 600); 
+                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap(MaPhieuNhap);
+                    frame.add(read);
+                    frame.setSize(800, 600);
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
@@ -62,6 +69,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
             for (int i = 0; i < soLuongPhieuNhap; i++) {
                 PhieuNhap_DTO phieuNhap = danhSachPhieuNhap.get(i);
+               
                 String maPN = phieuNhap.getMaPhieuNhap();
                 String maNV = phieuNhap.getMaNV();
                 LocalDate tgNhap = phieuNhap.getThoiGianLap();
@@ -71,6 +79,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 String tt = phieuNhap.getTrangThai();
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+                 pnBus.suaPhieuNhap(phieuNhap.getMaPhieuNhap(), phieuNhap.getVAT(), phieuNhap.getSoMatHang(), PROPERTIES, TOOL_TIP_TEXT_KEY);
                 model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien});
                 tablePhieuNhap.getColumnModel().getColumn(7).setPreferredWidth(130);
             }
@@ -90,8 +99,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        btnCheckNhapHang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
@@ -99,10 +106,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
-
-        jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
-
-        btnCheckNhapHang.setText("Kiểm tra");
 
         tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,29 +134,18 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnCheckNhapHang)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckNhapHang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckNhapHang;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePhieuNhap;
