@@ -6,11 +6,22 @@ package BUS;
 
 import DAO.HangHoaDAO;
 import DTO.HangHoa_DTO;
+import File.ExcelFile;
 import File.ImageChooserAndMover;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -93,5 +104,14 @@ public class HangHoaBus {
              return true;
          }
          return false;
+     }
+     public boolean themSPEX(){
+         ExcelFile e= new ExcelFile();
+         try {
+             XSSFWorkbook workbook = new XSSFWorkbook(e.chooseFileString());
+         } catch (Exception exception) {
+             exception.printStackTrace();
+         }
+        return true;
      }
 }
