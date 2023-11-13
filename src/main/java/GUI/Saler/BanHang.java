@@ -11,7 +11,6 @@ import DAO.ChiTietHoaDonDAO;
 import DAO.HangHoaDAO;
 import DAO.HoaDonDAO;
 import DTO.HangHoa_DTO;
-import DTO.KhachHang_DTO;
 import GUI.Login.TaiKhoan;
 import javax.swing.JLabel;
 import static GUI.Saler.item.gioHang;
@@ -522,17 +521,18 @@ public class BanHang extends javax.swing.JPanel {
         if (dialogResult == JOptionPane.YES_OPTION) {
             try {
                 hoaDonDAO.add(hoaDonDAO.demSoHoaDon() + 1, tk.getTen_dn(), LocalDate.now(), makh, total, tienKhachDua, tienThua, true);
-                
+                for (int i = 0; i < gioHang.size(); i++) {
+                HangHoa_DTO hh = gioHang.get(i);
+              
+                cthdBUS.themCTHD(hoaDonDAO.demSoHoaDon(), hh.getMaSP(), hh.getSoLuong());
+                hhb.giamSLSP(hh.getMaSP(), hh.getSoLuong());
+            }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
                         e);
                 return;
             }
-            for (int i = 0; i < gioHang.size(); i++) {
-                HangHoa_DTO hh = gioHang.get(i);
-                cthdBUS.themCTHD(hoaDonDAO.demSoHoaDon(), hh.getMaSP(), hh.getSoLuong());
-                hhb.giamSLSP(hh.getMaSP(), hh.getSoLuong());
-            }
+            
             JFrame frame = new JFrame("In hóa đơn");
             ThongTinHoaDon tthd = new ThongTinHoaDon();
             frame.add(tthd);

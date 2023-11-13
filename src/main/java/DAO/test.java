@@ -41,11 +41,13 @@ public class test {
         // NhanVienDAO nv = new NhanVienDAO();
         // NhanVien_DTO d = new NhanVien_DTO("A000004","Ke",LocalDate.now(),"nam","068000000011","0339708977","cuong@gmail.com","Tan son","NVTK203",true);
         // nv.add(d);
-        TaiKhoanDAO tk = new TaiKhoanDAO();
-        String maNV = "A038645";
-        String mk = "051203";
-        TaiKhoan_DTO  dto = new TaiKhoan_DTO(maNV,mk ,null, true);
-        tk.add(dto);
+//        TaiKhoanDAO tk = new TaiKhoanDAO();
+//        String maNV = "A038645";
+//        String mk = "051203";
+//        TaiKhoan_DTO  dto = new TaiKhoan_DTO(maNV,mk ,null, true);
+//        tk.add(dto);
 // >>>>>>> main
+        PhieuYeuCauNhapDAO pyc = new PhieuYeuCauNhapDAO();
+        System.out.println(        pyc.searchCTPN("0000001", "8657882990341", "Nước giặt Downy vườn hoa thơm ngát túi 3.05kg", "Việt Nam"));
     }
 }
