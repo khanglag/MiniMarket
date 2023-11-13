@@ -80,14 +80,17 @@ public class TaiKhoanController {
                     
                     TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {
-                        JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!");
+                        JOptionPane.showMessageDialog(null, "Tên đăng nhập không chính xác!");
 
-                    } else {
+                    } else if(!taiKhoan.getMat_khau().equals(jtfMatKhau.getText())){
+                        JOptionPane.showMessageDialog(null, "Mật khẩu không chính xác!");
+                    } else{
                         if (!taiKhoan.isTontai()) {
                             JOptionPane.showMessageDialog(null, "Tài khoản bị khoá!");
 
                         } else {
                             tendnString = jtfTenDangNhap.getText();
+                            JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
 
                             if (taiKhoan.getQuyen().contains("QL")) {
                                 setNgdn(0);

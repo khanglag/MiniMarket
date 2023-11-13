@@ -6,15 +6,15 @@ import DTO.ChiTietPhieuXuat_DTO;
 import DTO.NhanVien_DTO;
 import DTO.PhieuXuat_DTO;
 import Handle.Timeconvert;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         HangHoaBus bus= new HangHoaBus();
-        bus.suaHangHoa("8936021003321", "Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 20g", "NCCLADY", 30000, 40800, "Trung quoc");
-    
+        bus.themSPEX();
     }
 }

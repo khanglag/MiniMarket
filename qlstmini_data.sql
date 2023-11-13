@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 04, 2023 lúc 07:59 PM
+
+-- Thời gian đã tạo: Th10 09, 2023 lúc 04:10 PM
+
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -119,7 +121,22 @@ INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MA
 ('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1),
 ('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'gói', 3200, 960000, 1),
 ('0000002', '8934822220112', 'Lon bia Việt 330ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'lon', 8500, 255000, 1),
-('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1);
+
+('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1),
+('0000003', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1);
+
+--
+-- Bẫy `chitiet_phieunhap`
+--
+DELIMITER $$
+CREATE TRIGGER `before_chitiet_phieunhap_insert` BEFORE INSERT ON `chitiet_phieunhap` FOR EACH ROW BEGIN 
+			UPDATE hanghoa
+			SET SOLUONG = SOLUONG + new.SOLUONG
+            where new.MAHANGNHAP=hanghoa.MASP;
+END
+$$
+DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -199,7 +216,7 @@ INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GI
 ('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCLADY', 'bịch', 5900, 7200, 300, 'Việt Nam', '\\images\\suatiettrung.jpg', 1),
 ('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 112700, 153600, 10, 'Việt Nam', '\\images\\gao.jpg', 1),
 ('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 36400, 47800, 50, 'Việt Nam', '\\images\\suachua.jpg', 1),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 8, 'Việt Nam', '\\images\\btt.jpg', 1);
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 18, 'Việt Nam', '\\images\\btt.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -428,7 +445,8 @@ CREATE TABLE `phieunhap` (
 
 INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
 ('0000001', 'A038645', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
-('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1);
+('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1),
+('0000003', 'B041003', '2023-11-04 08:30:00', 0.08, 1, 270000, 'KHONG DUYET', 1);
 
 -- --------------------------------------------------------
 
@@ -493,7 +511,9 @@ INSERT INTO `phieuyeucaunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANC
 ('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1),
 ('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'gói', 3200, 960000, 1),
 ('0000002', '8934822220112', 'Lon bia Việt 330ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'lon', 8500, 255000, 1),
-('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1);
+('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'NCCDYQN', 0.08, 'Việt Nam', 300, 'bịch', 5900, 1770000, 1),
+('0000003', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', 0.08, 'Việt Nam', 10, 'cái', 27000, 270000, 1);
+
 
 -- --------------------------------------------------------
 
