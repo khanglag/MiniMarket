@@ -9,6 +9,7 @@ import DTO.PhieuNhap_DTO;
 import java.awt.Window;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -16,8 +17,10 @@ import javax.swing.SwingUtilities;
  * @author acer
  */
 public class TrangThaiPhieuNhap extends javax.swing.JPanel {
+
     private String MaPN;
     PhieuNhapBus pnBUS = new PhieuNhapBus();
+
     /**
      * Creates new form TrangThaiPhieuNhap
      */
@@ -107,24 +110,44 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-     Window window = SwingUtilities.getWindowAncestor(this);
-    if (window != null) {
-        window.dispose();
-    }
+        Window window = SwingUtilities.getWindowAncestor(this);
+        if (window != null) {
+            window.dispose();
+        }
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuyetActionPerformed
         // TODO add your handling code here:
-       // public boolean suaPhieuNhap(String maPhieuNhap,double VAT, int soMatHang, double tongTien, String trangThai)
-     ArrayList<PhieuNhap_DTO> phieuNhap =     pnBUS.timPhieuNhap(MaPN, null, null, null);
-        double VAT = phieuNhap.get(0).getVAT();
-        int soMatHang = phieuNhap.get(0).getSoMatHang();
-        
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            pnBUS.suaTrangThai(MaPN, "DA DUYET");
+            pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if (window != null) {
+                window.dispose();
+            }
+        } else {
+            return;
+        }
+
+
     }//GEN-LAST:event_btnDuyetActionPerformed
 
     private void btnKhongDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhongDuyetActionPerformed
         // TODO add your handling code here:
-          System.out.println("Nút không duyệt ->  "+ this.MaPN);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            pnBUS.suaTrangThai(MaPN, "KHONG DUYET");
+
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if (window != null) {
+
+                window.dispose();
+            }
+        } else {
+            return;
+        }
+
     }//GEN-LAST:event_btnKhongDuyetActionPerformed
 
 

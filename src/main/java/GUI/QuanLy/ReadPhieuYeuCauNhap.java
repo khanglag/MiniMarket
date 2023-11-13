@@ -3,9 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package GUI.QuanLy;
-
 import BUS.ChiTietPhieuNhapBus;
+import BUS.NhaCungCapBus;
+import BUS.PhieuNhapBus;
+import BUS.PhieuYeuCauNhapBus;
 import DAO.ChiTietPhieuNhapDAO;
+import DAO.PhieuYeuCauNhapDAO;
+import DTO.ChiTietPhieuNhap_DTO;
+import DTO.PhieuNhap_DTO;
+import Handle.Convert;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,21 +24,38 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ReadPhieuYeuCauNhap
-     */
     private String MaPN;
     ChiTietPhieuNhapBus ctpnBUS = new ChiTietPhieuNhapBus();
     ChiTietPhieuNhapDAO ctpnDAO = new ChiTietPhieuNhapDAO();
-    public ReadPhieuYeuCauNhap() {
+    NhaCungCapBus nccBUS = new NhaCungCapBus();
+    PhieuYeuCauNhapDAO pycnDAO = new PhieuYeuCauNhapDAO();
+    PhieuNhapBus pnBUS = new PhieuNhapBus();
+    Convert cv = new Convert();
+    public ReadPhieuYeuCauNhap(String mapn) {
         initComponents();
-        showInforPhieuNhapInTable();
+
+        this.MaPN = mapn;
+        showPhieuNhapInTable();
     }
-    public void showInforPhieuNhapInTable(){
-//          DefaultTableModel model = (DefaultTableModel) tablePhieuYeuCauNhap.getModel();
-//        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        System.out.println("Chi tiet phieu nhap ->  " +ctpnDAO.searchCTPN(MaPN, null, null, null)); 
+
+    public void showPhieuNhapInTable() {
+        DefaultTableModel model = (DefaultTableModel) tablePhieuYeuCauNhap.getModel();
+        model.setRowCount(0);
+        ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnDAO.searchCTPN(MaPN, null, null, null);
+       
+        double total = 0;
+        
+        for (int i = 0; i < chiTietPhieuNhap.size(); i++) {
+            ChiTietPhieuNhap_DTO ctpnDTO = chiTietPhieuNhap.get(i);
+            String tenNCC = nccBUS.timTenNCC(ctpnDTO.getMaNCC());
+            total += ctpnDTO.getTongTienNhap();
+            
+            model.addRow(new Object[]{ctpnDTO.getMaPhieuNhap(), ctpnDTO.getMaHangNhap(), ctpnDTO.getTenHangNhap(), tenNCC, ctpnDTO.getVAT(), ctpnDTO.getXuatXu(), ctpnDTO.getSoLuong(), ctpnDTO.getDonVi(),  ctpnDTO.getGiaNhap(), ctpnDTO.getTongTienNhap()});
+        }
+        model.addRow(new Object[]{null, null, null, null, null, null, null, null ,"Tổng:", total});
+      
     }
+
     public String MaPN(String mapn){
         return MaPN= mapn;
     }

@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -40,7 +42,26 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             TableActionEvent event = new TableActionEvent() {
                 @Override
                 public void onStatus(int row, String MaPhieuNhap) {
+
+                    JFrame frame = new JFrame("Trạng thái kiểm duyệt");
+                    TrangThaiPhieuNhap ttpn = new TrangThaiPhieuNhap(MaPhieuNhap);
+                    frame.add(ttpn);
+                    frame.setSize(400, 300);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                    
+                    frame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            System.out.println("chạy vao hàm rôixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                           
+                        }
+                    });
+                    
+
                     System.out.println("Trạng thái " + row + MaPhieuNhap);
+
                 }
 
                 @Override
@@ -53,6 +74,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
+                   
                 }
             };
 
@@ -71,6 +93,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 String tt = phieuNhap.getTrangThai();
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
+
                 model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien});
                 tablePhieuNhap.getColumnModel().getColumn(7).setPreferredWidth(130);
             }
