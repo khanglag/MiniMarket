@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -30,7 +32,7 @@ import javax.swing.table.TableCellEditor;
 public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
     PhieuNhapBus pnBus = new PhieuNhapBus();
-     
+
     public QuanLyPhieuNhap() {
         initComponents();
         showReceiptInTable();
@@ -49,6 +51,15 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
+                    
+                    frame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            System.out.println("chạy vao hàm rôixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                           
+                        }
+                    });
+                    
                 }
 
                 @Override
@@ -60,6 +71,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
+                   
                 }
             };
 
@@ -69,7 +81,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
             for (int i = 0; i < soLuongPhieuNhap; i++) {
                 PhieuNhap_DTO phieuNhap = danhSachPhieuNhap.get(i);
-               
                 String maPN = phieuNhap.getMaPhieuNhap();
                 String maNV = phieuNhap.getMaNV();
                 LocalDate tgNhap = phieuNhap.getThoiGianLap();
@@ -79,7 +90,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 String tt = phieuNhap.getTrangThai();
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
-                 pnBus.suaPhieuNhap(phieuNhap.getMaPhieuNhap(), phieuNhap.getVAT(), phieuNhap.getSoMatHang(), PROPERTIES, TOOL_TIP_TEXT_KEY);
+
                 model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien});
                 tablePhieuNhap.getColumnModel().getColumn(7).setPreferredWidth(130);
             }

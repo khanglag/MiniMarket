@@ -15,5 +15,6 @@ public class Test {
     public static void main(String[] args) {
         HangHoaBus bus= new HangHoaBus();
         bus.suaHangHoa("8936021003321", "Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 20g", "NCCLADY", 30000, 40800, "Trung quoc");
+    
     }
 }

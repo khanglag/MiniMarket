@@ -9,6 +9,7 @@ import Controller.TaiKhoanController;
 import GUI.Login.LoginForm;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,10 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
 
     public MainFrameQuanLy() {
         initComponents();
+         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Hiển thị full màn hình
+        setResizable(false); // Không cho phép chỉnh sửa kích thước
+
         dashboardControl();
         txtUserName.setText(nv.tenNV(TaiKhoanController.getTendnString()));
         this.setLocationRelativeTo(null);
