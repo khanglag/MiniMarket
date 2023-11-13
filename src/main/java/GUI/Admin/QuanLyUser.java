@@ -185,7 +185,9 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
+        btnXoa.setBackground(new java.awt.Color(51, 255, 102));
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         btnXoa.setText("XÓA");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +196,9 @@ public class QuanLyUser extends javax.swing.JPanel {
             }
         });
 
+        btnSua.setBackground(new java.awt.Color(51, 255, 102));
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/updated.png"))); // NOI18N
         btnSua.setText("SỬA");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +207,9 @@ public class QuanLyUser extends javax.swing.JPanel {
             }
         });
 
+        btnLoad.setBackground(new java.awt.Color(51, 255, 102));
         btnLoad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLoad.setForeground(new java.awt.Color(255, 255, 255));
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLoad.setText("LÀM MỚI");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +218,9 @@ public class QuanLyUser extends javax.swing.JPanel {
             }
         });
 
+        btnDatLaiMatKhau.setBackground(new java.awt.Color(51, 255, 102));
         btnDatLaiMatKhau.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDatLaiMatKhau.setForeground(new java.awt.Color(255, 255, 255));
         btnDatLaiMatKhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reset_password.png"))); // NOI18N
         btnDatLaiMatKhau.setText("ĐẶT LẠI MẬT KHẨU");
         btnDatLaiMatKhau.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +229,9 @@ public class QuanLyUser extends javax.swing.JPanel {
             }
         });
 
+        btnThem.setBackground(new java.awt.Color(51, 255, 102));
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ADD.png"))); // NOI18N
         btnThem.setText("THÊM TÀI KHOẢN");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
