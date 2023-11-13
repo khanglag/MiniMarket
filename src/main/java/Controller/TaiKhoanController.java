@@ -8,7 +8,7 @@ import GUI.Admin.MainJFrameAd;
 import GUI.Login.Service.TaiKhoanService;
 import GUI.Login.Service.TaiKhoanServiceImpl;
 import GUI.Login.TaiKhoan;
-import GUI.QuanLy.MainJFrame;
+import GUI.QuanLy.MainFrameQuanLy;
 import GUI.ThuKho.MainFrameThuKho;
 import java.awt.Dialog;
 import java.awt.event.MouseAdapter;
@@ -80,19 +80,22 @@ public class TaiKhoanController {
                     
                     TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {
-                        JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!");
+                        JOptionPane.showMessageDialog(null, "Tên đăng nhập không chính xác!");
 
-                    } else {
+                    } else if(!taiKhoan.getMat_khau().equals(jtfMatKhau.getText())){
+                        JOptionPane.showMessageDialog(null, "Mật khẩu không chính xác!");
+                    } else{
                         if (!taiKhoan.isTontai()) {
                             JOptionPane.showMessageDialog(null, "Tài khoản bị khoá!");
 
                         } else {
                             tendnString = jtfTenDangNhap.getText();
+                            JOptionPane.showMessageDialog(null, "Đăng nhập thành công!");
 
                             if (taiKhoan.getQuyen().contains("QL")) {
                                 setNgdn(0);
                                 dialog.dispose();
-                                frame = new GUI.QuanLy.MainJFrame();
+                                frame = new GUI.QuanLy.MainFrameQuanLy();
                                 frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
@@ -101,7 +104,7 @@ public class TaiKhoanController {
                             } else if (taiKhoan.getQuyen().contains("NVBH")) {
                                 setNgdn(0);
                                 dialog.dispose();
-                                frame = new GUI.Saler.MainJFrame();
+                                frame = new GUI.Saler.MainFrameSaler();
                                 frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);

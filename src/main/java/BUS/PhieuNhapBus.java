@@ -1,6 +1,8 @@
 package BUS;
 
 import DAO.PhieuNhapDAO;
+import DAO.PhieuYeuCauNhapDAO;
+import DTO.ChiTietPhieuNhap_DTO;
 import DTO.PhieuNhap_DTO;
 import Handle.Convert;
 
@@ -91,5 +93,25 @@ public class PhieuNhapBus {
             JOptionPane.showMessageDialog(null, "Lỗi khi tìm kiếm !!!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return new ArrayList<>();
         }
+    }
+    public boolean suaTongtien(String maPN,double tongTien){
+        return pnDAO.update(maPN, tongTien);
+    }
+    public boolean suaTrangThai(String maPN,String trangThai){
+        return pnDAO.update(maPN, trangThai);
+    }
+    public boolean capNhatPhieuNhap(String maPN,String trangThai){
+        if (trangThai=="DA DUYET") {
+            PhieuYeuCauNhapDAO ycDao=new PhieuYeuCauNhapDAO();
+            for(ChiTietPhieuNhap_DTO temp:ycDao.searchCTPN(maPN, null, null, null)){
+                //temp= yeu cau phieu nhap
+                String maSP= temp.getMaHangNhap();
+                int soluong= temp.getSoLuong();
+                HangHoaBus hhbus =new HangHoaBus();
+                hhbus.tangSLSP(maSP, soluong);
+            };
+            return true;
+        }
+        return false;
     }
 }

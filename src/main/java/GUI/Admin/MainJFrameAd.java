@@ -29,7 +29,7 @@ public class MainJFrameAd extends javax.swing.JFrame {
     }
 private void TrinhDieuKhien() {
         AdminController controller = new AdminController(jpnView);
-        //controller.setView(panelTrangChu, jLabelTrangChu);
+        controller.setView(panelQuanLyUser, jLabelQuanLyUser);
         
         List<DanhMucBean> listItem = new ArrayList<>();
         //listItem.add(new DanhMucBean("TrangChinh",jpnTrangChu,jlbTrangChu));
@@ -70,9 +70,13 @@ private void TrinhDieuKhien() {
         jScrollPane10.setForeground(new java.awt.Color(189, 205, 214));
         jScrollPane10.setHorizontalScrollBar(null);
 
-        panelMenu.setBackground(new java.awt.Color(189, 205, 214));
+        panelMenu.setBackground(new java.awt.Color(102, 255, 102));
 
-        jLabelQuanLyUser.setText("Quản lý user");
+        panelQuanLyUser.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabelQuanLyUser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelQuanLyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/management.png"))); // NOI18N
+        jLabelQuanLyUser.setText("QUẢN LÝ USER");
 
         javax.swing.GroupLayout panelQuanLyUserLayout = new javax.swing.GroupLayout(panelQuanLyUser);
         panelQuanLyUser.setLayout(panelQuanLyUserLayout);
@@ -80,7 +84,7 @@ private void TrinhDieuKhien() {
             panelQuanLyUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelQuanLyUserLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelQuanLyUserLayout.setVerticalGroup(
@@ -91,7 +95,11 @@ private void TrinhDieuKhien() {
                 .addContainerGap())
         );
 
-        jLabelDangXuat.setText("Đăng xuất");
+        jPanelDangXuat.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabelDangXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
+        jLabelDangXuat.setText("ĐĂNG XUẤT");
         jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelDangXuatMouseClicked(evt);
@@ -119,11 +127,8 @@ private void TrinhDieuKhien() {
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMenuLayout.createSequentialGroup()
-                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(jPanelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelQuanLyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +154,7 @@ private void TrinhDieuKhien() {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(147, 166, 174));
+        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
 
         jlbTen.setText("jLabel1");
         jlbTen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -239,41 +244,7 @@ private void TrinhDieuKhien() {
         login();
     }//GEN-LAST:event_jLabelDangXuatMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrameAd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrameAd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrameAd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrameAd.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainJFrameAd().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelDangXuat;

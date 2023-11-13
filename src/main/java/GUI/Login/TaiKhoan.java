@@ -1,7 +1,7 @@
 package GUI.Login;
 
 public class TaiKhoan {
-    private String Ten_dn;
+    public static String Ten_dn;
     private String Mat_khau;
 
     public String getQuyen() {

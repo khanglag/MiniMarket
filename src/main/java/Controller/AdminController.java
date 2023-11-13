@@ -3,7 +3,6 @@ package Controller;
  
 import BEAN.DanhMucBean;
 import GUI.Admin.QuanLyUser;
-import GUI.ThuKho.PhieuNhapHang;
 import GUI.ThuKho.QuanLyKiemHang;
 import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;

@@ -172,6 +172,33 @@ public class PhieuNhapDAO {
         
         return false; 
     }
-
+    public boolean update(String maPN,double tongTien){
+        ConnectDB connectDB = new ConnectDB();
+        boolean success = false;
+        StringBuilder qry = new StringBuilder("UPDATE `phieunhap` SET ");
+        if (tongTien >0) {
+            qry.append(" `TONGTIEN` =   '" + tongTien  + "',");
+        }
+        qry.setLength(qry.length() - 1);
+            qry.append(" WHERE `MAPHIEUNHAP` = '" + maPN + "'");
+        System.out.println(qry.toString());
+        success = connectDB.sqlUpdate(qry.toString());
+        connectDB.closeConnect();
+        return success;
+    }
+    public boolean update(String maPN, String trangThai){
+        ConnectDB connectDB = new ConnectDB();
+        boolean success = false;
+        StringBuilder qry = new StringBuilder("UPDATE `phieunhap` SET ");
+        if (trangThai != null || trangThai .isEmpty()) {
+        qry.append(" `TRANGTHAI` =   '" + trangThai + "',");}
+          
+        qry.setLength(qry.length() - 1);
+            qry.append(" WHERE `MAPHIEUNHAP` = '" + maPN + "'");
+        System.out.println(qry.toString());
+        success = connectDB.sqlUpdate(qry.toString());
+        connectDB.closeConnect();
+        return success;
+    }
 
 }

@@ -28,7 +28,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     
     public QuanLyPhieuNhap() {
         initComponents();
-        //jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
+        jtfMaNhanVien.setText(TaiKhoanController.getTendnString());
         LoadData();
     }
     public void LoadData() {
@@ -78,8 +78,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jtfTrangThai = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        jtfTim = new javax.swing.JTextField();
+        btnTim = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnTaoPhieuXuat = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
@@ -140,40 +140,59 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.GridLayout(7, 2, 5, 5));
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Mã Phiếu nhập");
         jPanel2.add(jLabel4);
 
         jtfMaPhieuNhap.setEditable(false);
+        jtfMaPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfMaPhieuNhapActionPerformed(evt);
+            }
+        });
         jPanel2.add(jtfMaPhieuNhap);
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Mã nhân viên");
         jPanel2.add(jLabel8);
+
+        jtfMaNhanVien.setEditable(false);
+        jtfMaNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfMaNhanVienActionPerformed(evt);
+            }
+        });
         jPanel2.add(jtfMaNhanVien);
 
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel13.setText("Thời gian");
         jPanel2.add(jLabel13);
 
         jtfThoiGian.setEditable(false);
         jPanel2.add(jtfThoiGian);
 
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("VAT");
         jPanel2.add(jLabel7);
 
         jtfVAT.setEditable(false);
         jPanel2.add(jtfVAT);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("Số mặt hàng");
         jPanel2.add(jLabel1);
 
         jtfSoMatHang.setEditable(false);
         jPanel2.add(jtfSoMatHang);
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setText("Tổng tiền");
         jPanel2.add(jLabel9);
 
         jtfTongTien.setEditable(false);
         jPanel2.add(jtfTongTien);
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Trạng thái");
         jPanel2.add(jLabel2);
 
@@ -185,8 +204,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +216,16 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
+        jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
 
-        jButton5.setText("Tìm kiếm");
+        btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
+        btnTim.setText("TÌM KIẾM");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -207,24 +233,28 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTim)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfTim, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnTim)))
                 .addGap(10, 10, 10))
         );
 
         jPanel3.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
 
-        btnTaoPhieuXuat.setText("Tạo phiếu nhập");
+        btnTaoPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTaoPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
+        btnTaoPhieuXuat.setText("TẠO PHIẾU NHẬP");
         btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTaoPhieuXuatActionPerformed(evt);
@@ -232,7 +262,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         });
         jPanel3.add(btnTaoPhieuXuat);
 
-        btnLamMoi.setText("Làm mới");
+        btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
+        btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
@@ -240,10 +272,14 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         });
         jPanel3.add(btnLamMoi);
 
-        jButton6.setText("Nhập Excel");
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Excel (2).png"))); // NOI18N
+        jButton6.setText("NHẬP EXCEL");
         jPanel3.add(jButton6);
 
-        jButton7.setText("Xuất Excel");
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/XuatExcel.png"))); // NOI18N
+        jButton7.setText("XUẤT EXCEL");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -251,7 +287,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         });
         jPanel3.add(jButton7);
 
-        jButton8.setText("In");
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
+        jButton8.setText("IN");
         jPanel3.add(jButton8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -262,7 +300,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(46, 46, 46)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -275,9 +313,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -350,11 +388,36 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuNhapActionPerformed
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        list = phieuNhapBus.timPhieuNhap(jtfTim.getText(), null, null, null);
+        int i = 0;
+        while (i <= list.size() - 1) {
+            PhieuNhap_DTO px = list.get(i);
+            model.addRow(new Object[] {
+                    px.getMaPhieuNhap(),px.getMaNV(),px.getThoiGianLap(),px.getVAT(),px.getSoMatHang(),px.getTongTien(),px.getTrangThai()
+            });
+            table.setModel(model);
+            ++i;
+        }
+
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void jtfMaPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaPhieuNhapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfMaPhieuNhapActionPerformed
+
+    private void jtfMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaNhanVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfMaNhanVienActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnTaoPhieuXuat;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnTim;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -373,11 +436,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuNhap;
     private javax.swing.JTextField jtfSoMatHang;
     private javax.swing.JTextField jtfThoiGian;
+    private javax.swing.JTextField jtfTim;
     private javax.swing.JTextField jtfTongTien;
     private javax.swing.JTextField jtfTrangThai;
     private javax.swing.JTextField jtfVAT;
