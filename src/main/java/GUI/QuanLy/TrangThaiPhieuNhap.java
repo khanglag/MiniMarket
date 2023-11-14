@@ -118,10 +118,12 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
 
     private void btnDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDuyetActionPerformed
         // TODO add your handling code here:
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận duyệt phiếu yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             pnBUS.suaTrangThai(MaPN, "DA DUYET");
             pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
+             JOptionPane.showMessageDialog(null,
+                    "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
                 window.dispose();
@@ -135,10 +137,11 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
 
     private void btnKhongDuyetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhongDuyetActionPerformed
         // TODO add your handling code here:
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận không duyệt phiếu yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             pnBUS.suaTrangThai(MaPN, "KHONG DUYET");
-
+             JOptionPane.showMessageDialog(null,
+                    "Không duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
 
