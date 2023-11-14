@@ -26,9 +26,9 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
 
     public MainFrameQuanLy() {
         initComponents();
-         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Hiển thị full màn hình
-        setResizable(false); // Không cho phép chỉnh sửa kích thước
+//         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+//        setExtendedState(JFrame.MAXIMIZED_BOTH); // Hiển thị full màn hình
+//        setResizable(false); // Không cho phép chỉnh sửa kích thước
 
         dashboardControl();
         txtUserName.setText(nv.tenNV(TaiKhoanController.getTendnString()));

@@ -54,27 +54,28 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     frame.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosed(WindowEvent e) {
-                            System.out.println("chạy vao hàm rôixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                           
+                            showReceiptInTable();
+                            
                         }
                     });
-                    
-
-                    System.out.println("Trạng thái " + row + MaPhieuNhap);
-
+                
                 }
 
                 @Override
                 public void onRead(int row, String MaPhieuNhap) {
                     JFrame frame = new JFrame("Thông tin phiếu yêu cầu nhập hàng");
-                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap();
-                    read.MaPN(MaPhieuNhap);
+                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap(MaPhieuNhap);            
                     frame.add(read); 
                     frame.setSize(800, 600); 
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                   
+                    frame.setVisible(true);           
+                     frame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            showReceiptInTable();                     
+                        }
+                    });
                 }
             };
 
@@ -93,10 +94,10 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 String tt = phieuNhap.getTrangThai();
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellRenderer(new TableActionCellRender());
                 tablePhieuNhap.getColumnModel().getColumn(7).setCellEditor(new TableActionCellEditor(event));
-
                 model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien});
                 tablePhieuNhap.getColumnModel().getColumn(7).setPreferredWidth(130);
             }
+             model.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Lỗi khi đọc dữ liệu Phiếu Nhập !!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
@@ -113,8 +114,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        btnCheckNhapHang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
@@ -122,18 +121,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
-
-        btnCheckNhapHang.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnCheckNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/test.png"))); // NOI18N
-        btnCheckNhapHang.setText("KIỂM TRA");
-        btnCheckNhapHang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckNhapHangActionPerformed(evt);
-            }
-        });
 
         tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -144,7 +131,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -162,34 +149,18 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(btnCheckNhapHang)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckNhapHang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCheckNhapHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckNhapHangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCheckNhapHangActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckNhapHang;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePhieuNhap;
