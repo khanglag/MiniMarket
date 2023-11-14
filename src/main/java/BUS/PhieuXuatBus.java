@@ -3,7 +3,7 @@ package BUS;
 import DAO.PhieuXuatDAO;
 import DTO.PhieuXuat_DTO;
 import Handle.Convert;
-
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
@@ -24,17 +24,18 @@ public class PhieuXuatBus {
         }
     }
 
-
     public boolean themPhieuXuat(PhieuXuat_DTO px) {
         // Kiểm tra null
-        if (px.getMaNV() == null || px.getMaKH() == null || px.getLyDo() == null || px.getGhiChu() == null) {
+        if (px.getMaNV() == null || px.getMaKH() == null || px.getThoiGianXuat() == null || px.getLyDo() == null
+                || px.getGhiChu() == null) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         // Thêm Phiếu Xuất
         String maPhieuXuat = Convert.convertMa(pxDAO.laySoLuongPhieuXuat() + 1);
-        PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, px.getMaNV(), px.getMaKH(), 0, px.getLyDo(), px.getGhiChu(), true);
+        PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, px.getMaNV(), px.getMaKH(), 0, px.getThoiGianXuat(),
+                px.getLyDo(), px.getGhiChu(), true);
 
         if (pxDAO.add(pxDTO)) {
             JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thành công");
@@ -43,7 +44,7 @@ public class PhieuXuatBus {
             JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thất bại", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        
+
     }
 
     public boolean xoaPhieuXuat(PhieuXuat_DTO px) {
@@ -58,20 +59,21 @@ public class PhieuXuatBus {
 
     public boolean suaPhieuXuat(String mapx, double thanhtien) {
         try {
-            return pxDAO.update(mapx,thanhtien);
+            return pxDAO.update(mapx, thanhtien);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi khi sửa Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
-    public boolean checkExist(String mapx){
+
+    public boolean checkExist(String mapx) {
         return pxDAO.checkExist(mapx);
     }
 
-    public ArrayList<PhieuXuat_DTO> timPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
+    public ArrayList<PhieuXuat_DTO> timPhieuXuat(String maPhieuXuat, String maNV, String maKH, LocalDate thoiGianXuat) {
         try {
-            return pxDAO.searchPhieuXuat(maPhieuXuat,maNV,maKH);
+            return pxDAO.searchPhieuXuat(maPhieuXuat, maNV, maKH, thoiGianXuat);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi khi tìm kiếm Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
