@@ -3,6 +3,8 @@ package DAO;
 import BUS.KhachHangBus;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import DAO.PhieuXuatDAO;
+import DTO.PhieuXuat_DTO;
 import DTO.PhieuXuat_DTO;
 import DTO.TaiKhoan_DTO;
 import DTO.ChiTietHoaDon_DTO;
@@ -18,6 +20,17 @@ import java.sql.ResultSet;
 
 public class test {
     public static void main(String[] args) {
+//        PhieuXuatDAO pxd = new PhieuXuatDAO();
+//        PhieuXuat_DTO dt = new PhieuXuat_DTO("0000004","A038645","0000001",100,LocalDate.now(),"aaa","",true);
+//        pxd.add(dt);
+    String mapx= "";
+    double thanhtien = 0;
+    LocalDate time = LocalDate.now();
+    String str= "UPDATE `phieuxuat` SET "
+                        + " `TONGTIEN` = '" + thanhtien
+                        + ",`THOIGIANXUAT` ='" + time
+                        + "' WHERE `MAPHIEUXUAT`='" + mapx + "'";
+        System.out.println(str);
 // <<<<<<< lag
 //         String maPhieuXuat="000001";
 //         String maNV="A03856";

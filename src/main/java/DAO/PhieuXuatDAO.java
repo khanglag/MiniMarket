@@ -53,8 +53,8 @@ public class PhieuXuatDAO {
                         + "','" + px.getMaNV()
                         + "','" + px.getMaKH()
                         + "'," + px.getTongTien()
-                        + "," + px.getThoiGianXuat()
-                        + ",'" + px.getLyDo()
+                        + ",'" + px.getThoiGianXuat()
+                        + "','" + px.getLyDo()
                         + "','" + px.getGhiChu()
                         + "','1')");
         connectDB.closeConnect();
@@ -69,11 +69,12 @@ public class PhieuXuatDAO {
         return success;
     }
 
-    public boolean update(String mapx, double thanhtien) {
+    public boolean update(String mapx, double thanhtien,LocalDate time) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `phieuxuat` SET "
-                        + " `TONGTIEN` = '" + thanhtien
+                        + " `TONGTIEN` = " + thanhtien
+                        + ",`THOIGIANXUAT` ='" + time
                         + "' WHERE `MAPHIEUXUAT`='" + mapx + "'");
         connectDB.closeConnect();
         return success;

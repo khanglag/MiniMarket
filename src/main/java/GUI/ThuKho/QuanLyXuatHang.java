@@ -7,6 +7,7 @@ package GUI.ThuKho;
 import BUS.PhieuXuatBus;
 import Controller.TaiKhoanController;
 import DTO.PhieuXuat_DTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         while (i <= list.size() - 1) {
             PhieuXuat_DTO px = list.get(i);
             model.addRow(new Object[] {
-                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getThoiGianXuat(),px.getLyDo(),px.getGhiChu()
             });
             jTableQuanLyXuatHang.setModel(model);
 
@@ -71,6 +72,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfMaKhachHang = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jtfTongTien = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jtfThoiGianXuat = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jtfLyDo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -108,11 +111,11 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Tổng tiền", "Lý do", "Ghi chú"
+                "STT", "Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Tổng tiền", "Thời gian xuất", "Lý do", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -132,7 +135,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin phiếu xuất"));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setLayout(new java.awt.GridLayout(6, 0, 0, 5));
+        jPanel3.setLayout(new java.awt.GridLayout(7, 0, 0, 5));
 
         jLabel4.setText("Mã phiếu xuất");
         jPanel3.add(jLabel4);
@@ -185,6 +188,12 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfTongTien.setEditable(false);
         jPanel3.add(jtfTongTien);
 
+        jLabel3.setText("Thời gian xuất");
+        jPanel3.add(jLabel3);
+
+        jtfThoiGianXuat.setEditable(false);
+        jPanel3.add(jtfThoiGianXuat);
+
         jLabel1.setText("Lý do");
         jPanel3.add(jLabel1);
         jPanel3.add(jtfLyDo);
@@ -197,7 +206,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,14 +320,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 672, Short.MAX_VALUE)
+            .addGap(0, 919, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -327,7 +336,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(13, 13, 13)
@@ -364,6 +373,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 PhieuXuat_DTO nv = new PhieuXuat_DTO();
                 nv.setMaNV(jtfMaNhanVien.getText());
                 nv.setMaKH(jtfMaKhachHang.getText());
+                nv.setThoiGianXuat(LocalDate.now());
                 nv.setLyDo(jtfLyDo.getText());
                 nv.setGhiChu(jtfGhiChu.getText());
                 phieuXuatBus.themPhieuXuat(nv);
@@ -412,14 +422,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
         ArrayList<PhieuXuat_DTO> listS = new ArrayList<PhieuXuat_DTO>();
-        listS = phieuXuatBus.timPhieuXuat(jtfTim.getText(), null, null);
+        listS = phieuXuatBus.timPhieuXuat(jtfTim.getText(), null, null,null);
         model = (DefaultTableModel) jTableQuanLyXuatHang.getModel();
         model.setRowCount(0);
         int i = 0;
         while (i <= listS.size() - 1) {
             PhieuXuat_DTO px = listS.get(i);
             model.addRow(new Object[] {
-                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getThoiGianXuat(),px.getLyDo(),px.getGhiChu()
             });
             jTableQuanLyXuatHang.setModel(model);
 
@@ -442,6 +452,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -461,6 +472,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JTextField jtfMaKhachHang;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuXuat;
+    private javax.swing.JTextField jtfThoiGianXuat;
     private javax.swing.JTextField jtfTim;
     private javax.swing.JTextField jtfTongTien;
     // End of variables declaration//GEN-END:variables

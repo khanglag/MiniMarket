@@ -9,6 +9,7 @@ import BUS.HangHoaBus;
 import BUS.PhieuXuatBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -413,6 +414,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
         }else if(flag){             
             JOptionPane.showMessageDialog(this,  "Mã hàng đã được chọn, vui lòng chọn mã khác!");
+        }else if(Integer.parseInt(jtfSoLuongYeuCau.getText())<=0 || Integer.parseInt(jtfSoLuongThucXuat.getText())<=0 ){             
+            JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0");
         }else{
             double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
             jtfThanhTien.setText(Double.toString(a));
@@ -550,7 +553,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                
         }
         if(flag){
-            phieuXuatBus.suaPhieuXuat(jtfMaPhieuXuat.getText(), thanhtien);
+            LocalDate time = LocalDate.now();
+            phieuXuatBus.suaPhieuXuat(jtfMaPhieuXuat.getText(), thanhtien,time);
             System.out.println(thanhtien);
             this.dispose();
         }

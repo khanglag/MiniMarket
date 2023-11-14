@@ -26,17 +26,17 @@ public class PhieuXuatBus {
 
     public boolean themPhieuXuat(PhieuXuat_DTO px) {
         // Kiểm tra null
-        if (px.getMaNV() == null || px.getMaKH() == null || px.getThoiGianXuat() == null || px.getLyDo() == null
-                || px.getGhiChu() == null) {
+        if (px.getMaNV() == null || px.getMaKH() == null || px.getThoiGianXuat() == null || px.getLyDo() == null) {
             JOptionPane.showMessageDialog(null, "Thông tin không được để trống", "Lỗi", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         // Thêm Phiếu Xuất
         String maPhieuXuat = Convert.convertMa(pxDAO.laySoLuongPhieuXuat() + 1);
+        System.out.print(maPhieuXuat);
         PhieuXuat_DTO pxDTO = new PhieuXuat_DTO(maPhieuXuat, px.getMaNV(), px.getMaKH(), 0, px.getThoiGianXuat(),
                 px.getLyDo(), px.getGhiChu(), true);
-
+        System.out.print(px);
         if (pxDAO.add(pxDTO)) {
             JOptionPane.showMessageDialog(null, "Thêm Phiếu Xuất thành công");
             return true;
@@ -57,9 +57,9 @@ public class PhieuXuatBus {
         }
     }
 
-    public boolean suaPhieuXuat(String mapx, double thanhtien) {
+    public boolean suaPhieuXuat(String mapx, double thanhtien,LocalDate time) {
         try {
-            return pxDAO.update(mapx, thanhtien);
+            return pxDAO.update(mapx, thanhtien,time);
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi khi sửa Phiếu Xuất.", "Lỗi", JOptionPane.ERROR_MESSAGE);
