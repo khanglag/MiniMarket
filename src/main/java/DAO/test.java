@@ -1,6 +1,7 @@
 package DAO;
 
 import BUS.KhachHangBus;
+import BUS.NhanvienBus;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import DAO.PhieuXuatDAO;
@@ -23,14 +24,17 @@ public class test {
 //        PhieuXuatDAO pxd = new PhieuXuatDAO();
 //        PhieuXuat_DTO dt = new PhieuXuat_DTO("0000004","A038645","0000001",100,LocalDate.now(),"aaa","",true);
 //        pxd.add(dt);
-    String mapx= "";
-    double thanhtien = 0;
-    LocalDate time = LocalDate.now();
-    String str= "UPDATE `phieuxuat` SET "
-                        + " `TONGTIEN` = '" + thanhtien
-                        + ",`THOIGIANXUAT` ='" + time
-                        + "' WHERE `MAPHIEUXUAT`='" + mapx + "'";
-        System.out.println(str);
+    NhanvienBus nv = new NhanvienBus();
+    String maPQ= "A557720";
+    String maNV = "NVTK203";
+    //nv.suaNhanVien(maNV,maPQ );
+    StringBuilder qry = new StringBuilder("UPDATE `nhanvien` SET");
+        qry.append(" `MAQUYEN` = '").append(maPQ);
+        
+        qry.append("' WHERE `MANV` = '").append(maNV).append("'");
+
+        String queryString = qry.toString();
+        System.out.println(queryString);
 // <<<<<<< lag
 //         String maPhieuXuat="000001";
 //         String maNV="A03856";
