@@ -264,7 +264,7 @@ public class HangHoa extends JDialog {
             String masp = jTableHangHoa.getModel().getValueAt(i, 0).toString();
             String tensp = jTableHangHoa.getModel().getValueAt(i, 1).toString();
             String mancc =jTableHangHoa.getModel().getValueAt(i, 2).toString();
-            String xuatxu =jTableHangHoa.getModel().getValueAt(i, 2).toString();
+            String xuatxu =jTableHangHoa.getModel().getValueAt(i, 5).toString();
             String donvi = jTableHangHoa.getModel().getValueAt(i, 6).toString();
          
             double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 4).toString());
