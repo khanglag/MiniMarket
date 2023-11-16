@@ -132,7 +132,7 @@ public class ChiTietPhieuNhap_DTO {
 
     @Override
     public String toString() {
-        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenHangNhap=" + tenHangNhap + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
+        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenHangNhap=" + tenHangNhap + ", maNCC=" + maNCC + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
     }
 
     

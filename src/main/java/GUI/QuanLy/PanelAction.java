@@ -55,10 +55,20 @@ public class PanelAction extends javax.swing.JPanel {
         btnWatch = new javax.swing.JButton();
 
         btnStatus.setBackground(new java.awt.Color(102, 255, 51));
-        btnStatus.setText("Không duyệt");
+        btnStatus.setText("KHÔNG DUYỆT");
+        btnStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatusActionPerformed(evt);
+            }
+        });
 
         btnWatch.setBackground(new java.awt.Color(0, 153, 255));
-        btnWatch.setText("Xem");
+        btnWatch.setText("XEM");
+        btnWatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWatchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,6 +86,14 @@ public class PanelAction extends javax.swing.JPanel {
                 .addComponent(btnWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStatusActionPerformed
+
+    private void btnWatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWatchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWatchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

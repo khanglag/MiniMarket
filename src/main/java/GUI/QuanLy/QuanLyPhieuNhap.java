@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
  */
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -40,19 +42,40 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             TableActionEvent event = new TableActionEvent() {
                 @Override
                 public void onStatus(int row, String MaPhieuNhap) {
-                    System.out.println("Trạng thái " + row + MaPhieuNhap);
+
+                    JFrame frame = new JFrame("Trạng thái kiểm duyệt");
+                    TrangThaiPhieuNhap ttpn = new TrangThaiPhieuNhap(MaPhieuNhap);
+                    frame.add(ttpn);
+                    frame.setSize(400, 300);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                    
+                    frame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            showReceiptInTable();
+                            
+                        }
+                    });
+                
                 }
 
                 @Override
                 public void onRead(int row, String MaPhieuNhap) {
                     JFrame frame = new JFrame("Thông tin phiếu yêu cầu nhập hàng");
-                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap();
-                    read.MaPN(MaPhieuNhap);
+                    ReadPhieuYeuCauNhap read = new ReadPhieuYeuCauNhap(MaPhieuNhap);            
                     frame.add(read); 
                     frame.setSize(800, 600); 
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
+                    frame.setVisible(true);           
+                     frame.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            showReceiptInTable();                     
+                        }
+                    });
                 }
             };
 
@@ -74,6 +97,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 model.addRow(new Object[]{i + 1, maPN, maNV, tgNhap, VAT, soMH, tongTien});
                 tablePhieuNhap.getColumnModel().getColumn(7).setPreferredWidth(130);
             }
+             model.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Lỗi khi đọc dữ liệu Phiếu Nhập !!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
@@ -90,19 +114,13 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        btnCheckNhapHang = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
-
-        jLabel1.setText("Thông báo yêu cầu nhập hàng từ thủ kho");
-
-        btnCheckNhapHang.setText("Kiểm tra");
 
         tablePhieuNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,7 +131,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -131,29 +149,18 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnCheckNhapHang)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCheckNhapHang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckNhapHang;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePhieuNhap;
