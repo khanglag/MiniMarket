@@ -36,10 +36,8 @@ private void TrinhDieuKhien() {
         //listItem.add(new DanhMucBean("PhieuNhapHang",panelPhieuNhap,jLabelPhieuNhap));
         listItem.add(new DanhMucBean("QuanLyUser",panelQuanLyUser,jLabelQuanLyUser));
         listItem.add(new DanhMucBean("DangXuat",jPanelDangXuat,jLabelDangXuat));
-  
-        System.out.println("hang44");
+
         controller.setEvent(listItem);
-        System.out.println("hang46");
     }
     /**
      * This method is called from within the constructor to initialize the form.
