@@ -186,4 +186,8 @@ public class HangHoaBus {
         JOptionPane.showMessageDialog(null,erorrString);
         return true;
     }
+    public boolean xuatHHExcel(){
+        ExcelFile e= new ExcelFile();
+        return e.xuatFileExcelHH(dao.ReadHangHoa());
+    }
 }
