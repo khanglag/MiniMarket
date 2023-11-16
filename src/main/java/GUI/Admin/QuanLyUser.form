@@ -324,7 +324,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/bin.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="X&#xd3;A"/>
+                <Property name="text" type="java.lang.String" value="Kho&#xe1; t&#xe0;i kho&#x1ea3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>

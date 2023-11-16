@@ -357,7 +357,10 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         }
         if(jtfSoLuong.getText().equals("") || jtfTinhTrang.equals("")  ){
             JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
-        }else if(flag){             
+        }else if(Integer.parseInt(jtfSoLuong.getText())<=0){
+             JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0");
+        }
+        else if(flag){             
             JOptionPane.showMessageDialog(this,  "Mã hàng đã được chọn, vui lòng chọn mã khác!");
         }else{
             

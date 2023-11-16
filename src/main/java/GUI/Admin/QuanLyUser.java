@@ -189,7 +189,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
-        btnXoa.setText("XÓA");
+        btnXoa.setText("Khoá tài khoản");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -450,7 +450,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
         if(taiKhoanBus.xoaTaiKhoan(tk)){
-            JOptionPane.showMessageDialog(null, "Đã xoá tài khoản");
+            JOptionPane.showMessageDialog(null, "Đã khoá tài khoản");
         }
         
         LoadData();
