@@ -59,6 +59,9 @@ public class TaiKhoanBus {
             return false;
         }
     }
+    public boolean moTK(TaiKhoan_DTO tk) {
+        return tkDAO.unKhoa(tk);
+    }
     public boolean doiMatKhau(String maNV, String matKhau) {
         if(tkDAO.isTaiKhoanExisted(maNV))
             return tkDAO.doiMatKhau(maNV, matKhau);
