@@ -77,6 +77,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnXoa = new javax.swing.JButton();
+        btnMoKhoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
         btnDatLaiMatKhau = new javax.swing.JButton();
@@ -185,6 +186,8 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
+        jPanel3.setLayout(new java.awt.GridLayout(6, 0));
+
         btnXoa.setBackground(new java.awt.Color(51, 255, 102));
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,6 +198,15 @@ public class QuanLyUser extends javax.swing.JPanel {
                 btnXoaActionPerformed(evt);
             }
         });
+        jPanel3.add(btnXoa);
+
+        btnMoKhoa.setText("Mở khoá tài khoản");
+        btnMoKhoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoKhoaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnMoKhoa);
 
         btnSua.setBackground(new java.awt.Color(51, 255, 102));
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -206,6 +218,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 btnSuaActionPerformed(evt);
             }
         });
+        jPanel3.add(btnSua);
 
         btnLoad.setBackground(new java.awt.Color(51, 255, 102));
         btnLoad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -217,6 +230,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 btnLoadActionPerformed(evt);
             }
         });
+        jPanel3.add(btnLoad);
 
         btnDatLaiMatKhau.setBackground(new java.awt.Color(51, 255, 102));
         btnDatLaiMatKhau.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -228,6 +242,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 btnDatLaiMatKhauActionPerformed(evt);
             }
         });
+        jPanel3.add(btnDatLaiMatKhau);
 
         btnThem.setBackground(new java.awt.Color(51, 255, 102));
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -239,39 +254,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 btnThemActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnLoad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDatLaiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnSua)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnXoa)
-                .addGap(8, 8, 8)
-                .addComponent(btnLoad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnThem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDatLaiMatKhau)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
+        jPanel3.add(btnThem);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -284,7 +267,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
@@ -383,7 +366,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -448,11 +431,18 @@ public class QuanLyUser extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
-        if(taiKhoanBus.xoaTaiKhoan(tk)){
-            JOptionPane.showMessageDialog(null, "Đã khoá tài khoản");
+        int i = jTable.getSelectedRow();
+        String str = jTable.getModel().getValueAt(i, 4).toString();
+        if(str.equals("Đã có tài khoản")){
+            TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
+            if(taiKhoanBus.xoaTaiKhoan(tk)){
+                JOptionPane.showMessageDialog(null, "Đã khoá tài khoản");
+            }
+        }else if (str.equals("Chưa có tài khoản")){
+            JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+        }else{
+            JOptionPane.showMessageDialog(null, "Tài khoản đã bị khoá");
         }
-        
         LoadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -489,10 +479,28 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfTimActionPerformed
 
+    private void btnMoKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoKhoaActionPerformed
+        // TODO add your handling code here:
+        int i = jTable.getSelectedRow();
+        String str = jTable.getModel().getValueAt(i, 4).toString();
+        if(str.equals("Tài khoản bị khoá")){
+            TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
+            if(taiKhoanBus.moTK(tk)){
+                JOptionPane.showMessageDialog(null, "Đã mở khoá tài khoản");
+            }
+        }else if (str.equals("Chưa có tài khoản")){
+            JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+        }else{
+            JOptionPane.showMessageDialog(null, "Tài khoản hiện không khoá");
+        }
+        LoadData();
+    }//GEN-LAST:event_btnMoKhoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatLaiMatKhau;
     private javax.swing.JButton btnLoad;
+    private javax.swing.JButton btnMoKhoa;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
