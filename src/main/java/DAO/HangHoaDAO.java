@@ -45,9 +45,9 @@ public class HangHoaDAO {
     }
 
     public boolean add(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
-      
+      boolean success = false;
         try {
-              boolean success = false;
+              
         HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
@@ -66,12 +66,11 @@ public class HangHoaDAO {
         connectDB.closeConnect();
         JOptionPane.showMessageDialog(null,
                 "Thêm hàng hóa thành công");
-        return success;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Thêm hàng hóa thất bại");
         }
-        return true;
+        return success;
     }
 
     public boolean delete(String maSP) {
@@ -204,6 +203,45 @@ public class HangHoaDAO {
                 + " WHERE `MASP` = '" + maSP + "'";
         success = connectDB.sqlUpdate(sql);
         connectDB.closeConnect();
+        return success;
+    }
+    public boolean daTonTaiHH(String maHH){
+        ConnectDB connectDB = new ConnectDB();
+        StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
+        
+        if (maHH != null || !maHH.isEmpty()) {
+            qry.append(" AND `MASP` LIKE '%" + maHH + "%'");
+        }
+        try {
+             if (connectDB.sqlQuery(qry.toString()).next()==true) 
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addS(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
+      boolean success = false;
+        try {
+              
+        HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
+        ConnectDB connectDB = new ConnectDB();
+        success = connectDB.sqlUpdate(
+                "INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `ANHSP`, `TONTAI`) VALUES ("
+                        + "'" + hh.getMaSP()
+                        + "','" + hh.getTenSP()
+                        + "','" + hh.getMaNH()
+                        + "','" + hh.getMaNCC()
+                        + "','" + hh.getDonVi()
+                        + "','" + hh.getGiaNhap()
+                        + "','" + hh.getGiaBan()
+                        + "','" + hh.getSoLuong()
+                        + "','" + hh.getXuatXu()
+                        + "','" + hh.getAnhSP()
+                        + "', 1)");
+        connectDB.closeConnect();
+        } catch (Exception e) {
+        }
         return success;
     }
 }

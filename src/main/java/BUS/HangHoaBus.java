@@ -17,8 +17,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -28,90 +33,157 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author pc
  */
 public class HangHoaBus {
-    public HangHoaBus(){
+    public HangHoaBus() {
     }
+
     ArrayList<HangHoa_DTO> ds;
-    HangHoaDAO dao= new HangHoaDAO();
-    public ArrayList<HangHoa_DTO> itemData(){
+    HangHoaDAO dao = new HangHoaDAO();
+
+    public ArrayList<HangHoa_DTO> itemData() {
         return dao.ReadHangHoa();
     }
-    public int ktSoLuong(String maHang){
-        ds= dao.searchHangHoa(maHang, null, null, null);
+
+    public int ktSoLuong(String maHang) {
+        ds = dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getSoLuong();
     }
-    public double giaBanSP(String maHang){
-        ds= dao.searchHangHoa(maHang, null, null, null);
+
+    public double giaBanSP(String maHang) {
+        ds = dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getGiaBan();
     }
-    public ArrayList<HangHoa_DTO> timHangHoa(String maHH,String tenSP, String maNH, double giaBan, String xuatXu){
+
+    public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenSP, String maNH, double giaBan, String xuatXu) {
         return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
     }
-    public boolean themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, boolean tonTai){
-        String anhSP=ImageChooserAndMover.formatString(tenSP);
+
+    public boolean themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap,
+            double giaBan, int soLuong, String xuatXu, boolean tonTai) {
+        String anhSP = ImageChooserAndMover.formatString(tenSP);
         if (!ImageChooserAndMover.chooseAndMoveImage(anhSP)) {
             return false;
         }
-        anhSP=ImageChooserAndMover.formatStringFile(anhSP);
+        anhSP = ImageChooserAndMover.formatStringFile(anhSP);
         return dao.add(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
     }
-    public boolean xoaHangHoa(String maHH){
+
+    public boolean xoaHangHoa(String maHH) {
         return dao.delete(maHH);
     }
-    public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa,String maNH,String maNCC){
+
+    public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa, String maNH, String maNCC) {
         return dao.searchHangHoa(maHH, maNCC, maNH, maNCC);
     }
-    public boolean suaHangHoa(String maSP,String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu){
+
+    public boolean suaHangHoa(String maSP, String tenSP, String maNCC, double giaNhap, double giaBan, String xuatXu) {
         return dao.update(maSP, tenSP, maNCC, giaNhap, giaBan, xuatXu);
     }
-     public String timHangHoa(String maHH){
+
+    public String timHangHoa(String maHH) {
         return dao.searchHangHoa(maHH);
     }
-     public ArrayList<HangHoa_DTO> sapXep(ArrayList<HangHoa_DTO> dto){
-         Collections.sort(dto,new Comparator<HangHoa_DTO>() {
-             @Override
-             public int compare(HangHoa_DTO o1, HangHoa_DTO o2) {
-                 throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-             }
-         });
-         return dto;
-     }
-     public boolean giamSLSP(String maSP,int soluong){
-         if (soluong<=0) {
-             JOptionPane.showMessageDialog(null,
-                        "Số lượng hàng hoá phải lớn hơn 0");
-             return false;
-         }
-         HangHoa_DTO dTO=new HangHoa_DTO();
-         dTO=dao.searchHangHoa(maSP, null, null, null).get(0);
-         int soluongcon=dTO.getSoLuong();
-         if (soluongcon>=soluong) {
-             dao.giamSL(maSP, soluongcon-soluong);
-             return true;
-         }
-         return false;
-     }
-     public boolean tangSLSP(String maSP, int soluong){
-         if (soluong<=0) {
-             JOptionPane.showMessageDialog(null,
-                        "Số lượng hàng hoá phải lớn hơn 0");
-             return false;
-         }
-         HangHoa_DTO dTO=new HangHoa_DTO();
-         dTO=dao.searchHangHoa(maSP, null, null, null).get(0);
-         int soluongcon=dTO.getSoLuong();
-         if (soluongcon>=soluong) {
-             dao.giamSL(maSP, soluongcon+soluong);
-             return true;
-         }
-         return false;
-     }
-     public boolean themSPEX(){
-         ExcelFile e= new ExcelFile();
-         try {
-             XSSFWorkbook workbook = new XSSFWorkbook(e.chooseFileString());
-         } catch (Exception exception) {
-             exception.printStackTrace();
-         }
+
+    public ArrayList<HangHoa_DTO> sapXep(ArrayList<HangHoa_DTO> dto) {
+        Collections.sort(dto, new Comparator<HangHoa_DTO>() {
+            @Override
+            public int compare(HangHoa_DTO o1, HangHoa_DTO o2) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                               // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+        return dto;
+    }
+
+    public boolean giamSLSP(String maSP, int soluong) {
+        if (soluong <= 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Số lượng hàng hoá phải lớn hơn 0");
+            return false;
+        }
+        HangHoa_DTO dTO = new HangHoa_DTO();
+        dTO = dao.searchHangHoa(maSP, null, null, null).get(0);
+        int soluongcon = dTO.getSoLuong();
+        if (soluongcon >= soluong) {
+            dao.giamSL(maSP, soluongcon - soluong);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean tangSLSP(String maSP, int soluong) {
+        if (soluong <= 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Số lượng hàng hoá phải lớn hơn 0");
+            return false;
+        }
+        HangHoa_DTO dTO = new HangHoa_DTO();
+        dTO = dao.searchHangHoa(maSP, null, null, null).get(0);
+        int soluongcon = dTO.getSoLuong();
+        if (soluongcon >= soluong) {
+            dao.giamSL(maSP, soluongcon + soluong);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean themSPEX() {
+        ExcelFile e = new ExcelFile();
+        int startRow = 3; // Hàng bắt đầu từ 4 (vị trí 0-based)
+        int startColumn = 1; // Cột 2 (vị trí 0-based)
+        String erorrString="";
+        try (FileInputStream fis = new FileInputStream(new File(e.chooseFileString()));
+                Workbook workbook = WorkbookFactory.create(fis)) {
+
+            Sheet sheet = workbook.getSheetAt(0); // Chọn sheet (ở đây giả sử chọn sheet đầu tiên)
+
+            // Lặp qua từng dòng từ hàng bắt đầu
+            for (int rowIndex = startRow; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                Row row = sheet.getRow(rowIndex);
+
+                // Kiểm tra nếu dòng không rỗng
+                if (row != null) {
+                    HangHoa_DTO hhdto = new HangHoa_DTO();
+                    
+                    Cell cell = row.getCell(1);
+                    if (cell.getStringCellValue()=="") {
+                        break;
+                    }
+                    hhdto.setMaSP(cell.getStringCellValue());
+                    cell = row.getCell(2);
+                    hhdto.setTenSP(cell.getStringCellValue());
+                    cell = row.getCell(3);
+                    hhdto.setMaNH(cell.getStringCellValue());
+                    cell = row.getCell(4);
+                    hhdto.setMaNCC(cell.getStringCellValue());
+                    cell = row.getCell(5);
+                    hhdto.setDonVi(cell.getStringCellValue());
+                    cell = row.getCell(6);
+                    hhdto.setGiaNhap(cell.getNumericCellValue());
+                    cell = row.getCell(7);
+                    hhdto.setGiaBan(cell.getNumericCellValue());
+                    cell = row.getCell(8);
+                    hhdto.setSoLuong((int) cell.getNumericCellValue());
+                    cell = row.getCell(9);
+                    hhdto.setXuatXu(cell.getStringCellValue());
+                    cell = row.getCell(10);
+                    hhdto.setAnhSP(cell.getStringCellValue());
+                    System.out.println("Hang hoa" + hhdto.toString());
+                    if (dao.daTonTaiHH(hhdto.getMaSP())) {
+                        if(erorrString!="")
+                            erorrString+="\nSản phẩm "+hhdto.getMaSP()+" "+hhdto.getTenSP()+"đã tồn tại ";
+                    }
+                    else {
+                        dao.addS(hhdto.getMaSP(), hhdto.getTenSP(), hhdto.getMaNH(), hhdto.getMaNCC(), hhdto.getDonVi(), hhdto.getGiaNhap(), hhdto.getGiaBan(), hhdto.getSoLuong(), hhdto.getXuatXu(), hhdto.getAnhSP(), true);
+                    }
+                }
+
+            }
+
+        } catch (IOException | EncryptedDocumentException ep) {
+            ep.printStackTrace();
+            return false;
+        }
+        JOptionPane.showMessageDialog(null,erorrString);
         return true;
-     }
+    }
 }
