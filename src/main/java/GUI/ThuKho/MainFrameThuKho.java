@@ -156,7 +156,9 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         panelMenu.setBackground(new java.awt.Color(189, 205, 214));
 
-        jLabelPhieuKiemHang.setText("Quản lý kiểm hàng");
+        jLabelPhieuKiemHang.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelPhieuKiemHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/KiemHang.png"))); // NOI18N
+        jLabelPhieuKiemHang.setText("QUẢN LÝ KIỂM HÀNG");
 
         javax.swing.GroupLayout panelPhieuKiemHangLayout = new javax.swing.GroupLayout(panelPhieuKiemHang);
         panelPhieuKiemHang.setLayout(panelPhieuKiemHangLayout);
@@ -164,7 +166,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             panelPhieuKiemHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPhieuKiemHangLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelPhieuKiemHang, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelPhieuKiemHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelPhieuKiemHangLayout.setVerticalGroup(
@@ -175,7 +177,9 @@ public class MainFrameThuKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelQuanLyPhieuXuat.setText("Quản lý phiếu xuất");
+        jLabelQuanLyPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelQuanLyPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Phiếu.png"))); // NOI18N
+        jLabelQuanLyPhieuXuat.setText("QUẢN LÝ PHIẾU XUẤT");
 
         javax.swing.GroupLayout panelQuanLyPhieuXuatLayout = new javax.swing.GroupLayout(panelQuanLyPhieuXuat);
         panelQuanLyPhieuXuat.setLayout(panelQuanLyPhieuXuatLayout);
@@ -183,7 +187,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             panelQuanLyPhieuXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelQuanLyPhieuXuatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelQuanLyPhieuXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelQuanLyPhieuXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelQuanLyPhieuXuatLayout.setVerticalGroup(
@@ -194,7 +198,9 @@ public class MainFrameThuKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelQuanLyPhieuNhap.setText("Quản lý phiếu nhập");
+        jLabelQuanLyPhieuNhap.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelQuanLyPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Phieu_.png"))); // NOI18N
+        jLabelQuanLyPhieuNhap.setText("QUẢN LÝ PHIẾU NHẬP");
 
         javax.swing.GroupLayout panelQuanLyPhieuNhapLayout = new javax.swing.GroupLayout(panelQuanLyPhieuNhap);
         panelQuanLyPhieuNhap.setLayout(panelQuanLyPhieuNhapLayout);
@@ -202,7 +208,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             panelQuanLyPhieuNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelQuanLyPhieuNhapLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelQuanLyPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelQuanLyPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelQuanLyPhieuNhapLayout.setVerticalGroup(
@@ -213,7 +219,9 @@ public class MainFrameThuKho extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelDangXuat.setText("Đăng xuất");
+        jLabelDangXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
+        jLabelDangXuat.setText("ĐĂNG XUẤT");
         jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelDangXuatMouseClicked(evt);
@@ -226,7 +234,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             panelDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDangXuatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jLabelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelDangXuatLayout.setVerticalGroup(
@@ -243,11 +251,11 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelQuanLyPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelQuanLyPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelPhieuKiemHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelQuanLyPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelQuanLyPhieuXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
@@ -272,7 +280,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGap(0, 385, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +332,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpnRootLayout.createSequentialGroup()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18))

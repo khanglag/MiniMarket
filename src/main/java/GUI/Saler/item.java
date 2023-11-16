@@ -28,14 +28,10 @@ public class item extends javax.swing.JPanel {
 
     private String MaSP;
     private static int soLuong;
-//    private static double price;
     HangHoaDAO hhd = new HangHoaDAO();
     static HangHoaBus hhb = new HangHoaBus();
     public static ArrayList<HangHoa_DTO> gioHang = new ArrayList<>();
-
-    /**
-     * Creates new form item
-     */
+    
     public item() {
         initComponents();
     }
@@ -106,7 +102,10 @@ public class item extends javax.swing.JPanel {
 
         LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gao.jpg"))); // NOI18N
 
-        BtnAddProduct.setText("Thêm vào giỏ");
+        BtnAddProduct.setBackground(new java.awt.Color(51, 255, 51));
+        BtnAddProduct.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        BtnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gioHang.png"))); // NOI18N
+        BtnAddProduct.setText("THÊM VÀO GIỎ HÀNG");
         BtnAddProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BtnAddProductMouseClicked(evt);
@@ -123,12 +122,12 @@ public class item extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(LbImg)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnAddProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(LbImg))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnAddProduct)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

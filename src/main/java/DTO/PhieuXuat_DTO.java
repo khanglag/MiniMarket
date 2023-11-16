@@ -4,6 +4,8 @@
  */
 package DTO;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -13,28 +15,33 @@ public class PhieuXuat_DTO {
     private String maNV;
     private String maKH;
     private double tongTien;
+    private LocalDate thoiGianXuat;
     private String lyDo;
     private String ghiChu;
     private boolean tonTai;
 
     public PhieuXuat_DTO() {
     }
-    
-    public PhieuXuat_DTO(String maNV, String maKH, double tongTien, String lyDo, String ghiChu) {
-        
+
+    public PhieuXuat_DTO(String maNV, String maKH, double tongTien, LocalDate thoiGianXuat, String lyDo,
+            String ghiChu) {
+
         this.maNV = maNV;
         this.maKH = maKH;
         this.tongTien = tongTien;
+        this.thoiGianXuat = thoiGianXuat;
         this.lyDo = lyDo;
         this.ghiChu = ghiChu;
-       
+
     }
 
-    public PhieuXuat_DTO(String maPhieuXuat, String maNV, String maKH, double tongTien, String lyDo, String ghiChu, boolean tonTai) {
+    public PhieuXuat_DTO(String maPhieuXuat, String maNV, String maKH, double tongTien, LocalDate thoiGianXuat,
+            String lyDo, String ghiChu, boolean tonTai) {
         this.maPhieuXuat = maPhieuXuat;
         this.maNV = maNV;
         this.maKH = maKH;
         this.tongTien = tongTien;
+        this.thoiGianXuat = thoiGianXuat;
         this.lyDo = lyDo;
         this.ghiChu = ghiChu;
         this.tonTai = tonTai;
@@ -72,6 +79,14 @@ public class PhieuXuat_DTO {
         this.tongTien = tongTien;
     }
 
+    public LocalDate getThoiGianXuat() {
+        return thoiGianXuat;
+    }
+
+    public void setThoiGianXuat(LocalDate thoiGianXuat) {
+        this.thoiGianXuat = thoiGianXuat;
+    }
+
     public String getLyDo() {
         return lyDo;
     }
@@ -98,11 +113,9 @@ public class PhieuXuat_DTO {
 
     @Override
     public String toString() {
-        return "PhieuXuat_DTO{" + "maPhieuXuat=" + maPhieuXuat + ", maNV=" + maNV + ", maKH=" + maKH + ", tongTien=" + tongTien + ", lyDo=" + lyDo + ", ghiChu=" + ghiChu + ", tonTai=" + tonTai + '}';
+        return "PhieuXuat_DTO{" + "maPhieuXuat=" + maPhieuXuat + ", maNV=" + maNV + ", maKH=" + maKH + ", tongTien="
+                + tongTien + ", thoiGianXuat= " + thoiGianXuat + ", lyDo=" + lyDo + ", ghiChu=" + ghiChu + ", tonTai="
+                + tonTai + '}';
     }
-    
-    
 
 }
-
-   

@@ -82,23 +82,25 @@ public class MainFrameSaler extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Bán hàng");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sell.png"))); // NOI18N
+        jLabel1.setText("BÁN HÀNG");
 
         javax.swing.GroupLayout panelbhLayout = new javax.swing.GroupLayout(panelbh);
         panelbh.setLayout(panelbhLayout);
         panelbhLayout.setHorizontalGroup(
             panelbhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelbhLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43))
+            .addGroup(panelbhLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelbhLayout.setVerticalGroup(
             panelbhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelbhLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelsp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,23 +112,25 @@ public class MainFrameSaler extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Sản phẩm");
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/product.png"))); // NOI18N
+        jLabel3.setText("SẢN PHẨM");
 
         javax.swing.GroupLayout panelspLayout = new javax.swing.GroupLayout(panelsp);
         panelsp.setLayout(panelspLayout);
         panelspLayout.setHorizontalGroup(
             panelspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelspLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelspLayout.setVerticalGroup(
             panelspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelspLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel3)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         paneldx.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,23 +139,25 @@ public class MainFrameSaler extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Đăng xuất");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
+        jLabel4.setText("ĐĂNG XUẤT");
 
         javax.swing.GroupLayout paneldxLayout = new javax.swing.GroupLayout(paneldx);
         paneldx.setLayout(paneldxLayout);
         paneldxLayout.setHorizontalGroup(
             paneldxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneldxLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         paneldxLayout.setVerticalGroup(
             paneldxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneldxLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel4)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelttcn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,23 +169,25 @@ public class MainFrameSaler extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Thông tin cá nhân");
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/information.png"))); // NOI18N
+        jLabel5.setText("THÔNG TIN CÁ NHÂN");
 
         javax.swing.GroupLayout panelttcnLayout = new javax.swing.GroupLayout(panelttcn);
         panelttcn.setLayout(panelttcnLayout);
         panelttcnLayout.setHorizontalGroup(
             panelttcnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelttcnLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelttcnLayout.setVerticalGroup(
             panelttcnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelttcnLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel5)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         paneltkh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,23 +199,25 @@ public class MainFrameSaler extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Thêm khách hàng");
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addCustomer.png"))); // NOI18N
+        jLabel6.setText("THÊM KHÁCH HÀNG");
 
         javax.swing.GroupLayout paneltkhLayout = new javax.swing.GroupLayout(paneltkh);
         paneltkh.setLayout(paneltkhLayout);
         paneltkhLayout.setHorizontalGroup(
             paneltkhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneltkhLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(20, 20, 20))
+            .addGroup(paneltkhLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         paneltkhLayout.setVerticalGroup(
             paneltkhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneltkhLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel6)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout sideBar2Layout = new javax.swing.GroupLayout(sideBar2);
@@ -250,12 +260,12 @@ public class MainFrameSaler extends javax.swing.JFrame {
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGap(0, 423, Short.MAX_VALUE)
         );
 
         title.setBackground(new java.awt.Color(147, 166, 174));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 248, 26));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MÀN HÌNH NHÂN VIÊN");
@@ -280,7 +290,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
         titleLayout.setHorizontalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

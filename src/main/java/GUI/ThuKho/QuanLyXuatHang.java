@@ -7,6 +7,7 @@ package GUI.ThuKho;
 import BUS.PhieuXuatBus;
 import Controller.TaiKhoanController;
 import DTO.PhieuXuat_DTO;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,7 +37,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         while (i <= list.size() - 1) {
             PhieuXuat_DTO px = list.get(i);
             model.addRow(new Object[] {
-                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getThoiGianXuat(),px.getLyDo(),px.getGhiChu()
             });
             jTableQuanLyXuatHang.setModel(model);
 
@@ -71,6 +72,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfMaKhachHang = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jtfTongTien = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jtfThoiGianXuat = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jtfLyDo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -108,11 +111,11 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "STT", "Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Tổng tiền", "Lý do", "Ghi chú"
+                "STT", "Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Tổng tiền", "Thời gian xuất", "Lý do", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -132,7 +135,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin phiếu xuất"));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setLayout(new java.awt.GridLayout(6, 0, 0, 5));
+        jPanel3.setLayout(new java.awt.GridLayout(7, 0, 0, 5));
 
         jLabel4.setText("Mã phiếu xuất");
         jPanel3.add(jLabel4);
@@ -149,7 +152,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jLabel13.setText("Mã khách hàng");
         jPanel3.add(jLabel13);
 
-        btnChon.setText("Chọn");
+        btnChon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
+        btnChon.setText("CHỌN");
         btnChon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChonActionPerformed(evt);
@@ -163,10 +168,10 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jtfMaKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,6 +188,12 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jtfTongTien.setEditable(false);
         jPanel3.add(jtfTongTien);
 
+        jLabel3.setText("Thời gian xuất");
+        jPanel3.add(jLabel3);
+
+        jtfThoiGianXuat.setEditable(false);
+        jPanel3.add(jtfThoiGianXuat);
+
         jLabel1.setText("Lý do");
         jPanel3.add(jLabel1);
         jPanel3.add(jtfLyDo);
@@ -195,9 +206,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +219,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
-        btnTim.setText("Tìm kiếm");
+        btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
+        btnTim.setText("TÌM KIẾM");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimActionPerformed(evt);
@@ -225,8 +236,8 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addComponent(btnTim)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +250,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
 
-        btnTaoPhieuXuat.setText("Tạo phiếu xuất");
+        btnTaoPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTaoPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
+        btnTaoPhieuXuat.setText("TẠO PHIẾU XUẤT");
         btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTaoPhieuXuatActionPerformed(evt);
@@ -247,7 +260,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         });
         jPanel5.add(btnTaoPhieuXuat);
 
-        btnLoad.setText("Làm mới");
+        btnLoad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
+        btnLoad.setText("LÀM MỚI");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadActionPerformed(evt);
@@ -255,10 +270,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         });
         jPanel5.add(btnLoad);
 
-        jButton6.setText("Nhập Excel");
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
+        jButton6.setText("NHẬP EXCEL");
         jPanel5.add(jButton6);
 
-        jButton7.setText("Xuất Excel");
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/XuatExcel.png"))); // NOI18N
+        jButton7.setText("XUẤT EXCEL");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -266,7 +285,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         });
         jPanel5.add(jButton7);
 
-        jButton8.setText("In");
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
+        jButton8.setText("IN");
         jPanel5.add(jButton8);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -274,17 +295,18 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(192, 192, 192))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -298,14 +320,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 672, Short.MAX_VALUE)
+            .addGap(0, 919, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)
@@ -314,7 +336,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(13, 13, 13)
@@ -351,6 +373,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 PhieuXuat_DTO nv = new PhieuXuat_DTO();
                 nv.setMaNV(jtfMaNhanVien.getText());
                 nv.setMaKH(jtfMaKhachHang.getText());
+                nv.setThoiGianXuat(LocalDate.now());
                 nv.setLyDo(jtfLyDo.getText());
                 nv.setGhiChu(jtfGhiChu.getText());
                 phieuXuatBus.themPhieuXuat(nv);
@@ -399,14 +422,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
         // TODO add your handling code here:
         ArrayList<PhieuXuat_DTO> listS = new ArrayList<PhieuXuat_DTO>();
-        listS = phieuXuatBus.timPhieuXuat(jtfTim.getText(), null, null);
+        listS = phieuXuatBus.timPhieuXuat(jtfTim.getText(), null, null,null);
         model = (DefaultTableModel) jTableQuanLyXuatHang.getModel();
         model.setRowCount(0);
         int i = 0;
         while (i <= listS.size() - 1) {
             PhieuXuat_DTO px = listS.get(i);
             model.addRow(new Object[] {
-                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getLyDo(),px.getGhiChu()
+                    ++i, px.getMaPhieuXuat(),px.getMaNV(),px.getMaKH(),px.getTongTien(),px.getThoiGianXuat(),px.getLyDo(),px.getGhiChu()
             });
             jTableQuanLyXuatHang.setModel(model);
 
@@ -429,6 +452,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -448,6 +472,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     private javax.swing.JTextField jtfMaKhachHang;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuXuat;
+    private javax.swing.JTextField jtfThoiGianXuat;
     private javax.swing.JTextField jtfTim;
     private javax.swing.JTextField jtfTongTien;
     // End of variables declaration//GEN-END:variables

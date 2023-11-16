@@ -102,7 +102,7 @@ public class NhanVienDAO {
         StringBuilder qry = new StringBuilder("UPDATE `nhanvien` SET");
         qry.append(" `MAQUYEN` = '").append(maPQ);
         
-        qry.append(" WHERE `MANV` = '").append(maNV).append("'");
+        qry.append("' WHERE `MANV` = '").append(maNV).append("'");
 
         String queryString = qry.toString();
         boolean success=connectDB.sqlUpdate(queryString);

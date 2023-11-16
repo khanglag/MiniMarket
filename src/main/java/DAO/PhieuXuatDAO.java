@@ -3,6 +3,7 @@ package DAO;
 import DTO.PhieuXuat_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import ConnectDB.ConnectDB;
 
@@ -28,6 +29,7 @@ public class PhieuXuatDAO {
                             rSet.getString("MANV"),
                             rSet.getString("MAKH"),
                             rSet.getDouble("TONGTIEN"),
+                            rSet.getDate("THOIGIANXUAT").toLocalDate(),
                             rSet.getNString("LYDO"),
                             rSet.getNString("GHICHU"),
                             rSet.getBoolean("TONTAI"));
@@ -46,12 +48,13 @@ public class PhieuXuatDAO {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                "INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `MAKH`, `TONGTIEN`, `LYDO` ,`GHICHU`, `TONTAI`) VALUES "
+                "INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `MAKH`, `TONGTIEN`, `THOIGIANXUAT`, `LYDO` ,`GHICHU`, `TONTAI`) VALUES "
                         + "('" + px.getMaPhieuXuat()
                         + "','" + px.getMaNV()
                         + "','" + px.getMaKH()
                         + "'," + px.getTongTien()
-                        + ",'" + px.getLyDo()
+                        + ",'" + px.getThoiGianXuat()
+                        + "','" + px.getLyDo()
                         + "','" + px.getGhiChu()
                         + "','1')");
         connectDB.closeConnect();
@@ -66,18 +69,19 @@ public class PhieuXuatDAO {
         return success;
     }
 
-
-    public boolean update(String mapx,double thanhtien) {
+    public boolean update(String mapx, double thanhtien,LocalDate time) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `phieuxuat` SET "       
-                        + " `TONGTIEN` = '" + thanhtien
+                .sqlUpdate("UPDATE `phieuxuat` SET "
+                        + " `TONGTIEN` = " + thanhtien
+                        + ",`THOIGIANXUAT` ='" + time
                         + "' WHERE `MAPHIEUXUAT`='" + mapx + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public ArrayList<PhieuXuat_DTO> searchPhieuXuat(String maPhieuXuat, String maNV, String maKH) {
+    public ArrayList<PhieuXuat_DTO> searchPhieuXuat(String maPhieuXuat, String maNV, String maKH,
+            LocalDate thoiGianXuat) {
         ArrayList<PhieuXuat_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
@@ -93,6 +97,10 @@ public class PhieuXuatDAO {
         if (maKH != null && !maKH.isEmpty())
             qry.append(" AND `MAKH` = '" + maKH + "'");
 
+        if (thoiGianXuat != null) {
+            qry.append(" AND DATE(`THOIGIANXUAT`) = '" + thoiGianXuat + "'");
+        }
+
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
 
         try {
@@ -103,6 +111,7 @@ public class PhieuXuatDAO {
                             rSet.getString("MANV"),
                             rSet.getString("MAKH"),
                             rSet.getDouble("TONGTIEN"),
+                            rSet.getDate("THOIGIANXUAT").toLocalDate(),
                             rSet.getNString("LYDO"),
                             rSet.getNString("GHICHU"),
                             rSet.getBoolean("TONTAI"));
@@ -115,12 +124,13 @@ public class PhieuXuatDAO {
 
         return ds;
     }
+
     public int laySoLuongPhieuXuat() {
         ConnectDB connectDB = new ConnectDB();
         int soLuong = 0;
         String qry = "SELECT COUNT(*) FROM `phieuxuat` WHERE TONTAI = 1";
         ResultSet rSet = null;
-    
+
         try {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null && rSet.next()) {
@@ -133,13 +143,14 @@ public class PhieuXuatDAO {
         connectDB.closeConnect();
         return soLuong;
     }
+
     public boolean checkExist(String mapx) {
         ConnectDB connectDB = new ConnectDB();
         boolean flag = true;
         int count = 0;
-        String qry = "SELECT COUNT(*) FROM `chitiet_phieuxuat` WHERE TONTAI = 1 AND MAPHIEUXUAT = '" + mapx +"'";
+        String qry = "SELECT COUNT(*) FROM `chitiet_phieuxuat` WHERE TONTAI = 1 AND MAPHIEUXUAT = '" + mapx + "'";
         ResultSet rSet = null;
-    
+
         try {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null && rSet.next()) {
@@ -149,11 +160,11 @@ public class PhieuXuatDAO {
             System.out.println("Lỗi truy vấn số lượng Phiếu Xuất!!!");
             e.printStackTrace();
         }
-        if(count != 0)
+        if (count != 0)
             flag = false;
         connectDB.closeConnect();
         System.out.println(flag);
         return flag;
     }
-    
+
 }
