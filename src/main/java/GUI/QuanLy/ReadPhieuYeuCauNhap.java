@@ -39,6 +39,25 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         this.MaPN = mapn;
         txtMaPN.setText("Thông tin phiếu yêu cầu nhập hàng số " + MaPN);
         showPhieuNhapInTable();
+      ArrayList<PhieuNhap_DTO> pn =   pnBUS.timPhieuNhap(MaPN, null, null, null);
+        if(pn.get(0).getTrangThai().equals("DA DUYET")){
+            btnUpdate.setEnabled(false);
+            txtSuaGiaNhap.setEnabled(false);
+            txtXuatXu.setEditable(false);
+            txtSuaSoLuong.setEnabled(false);
+            txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
+        }
+         if(pn.get(0).getTrangThai().equals("KHONG DUYET")){
+            btnUpdate.setEnabled(false);
+            txtSuaGiaNhap.setEnabled(false);
+            txtXuatXu.setEditable(false);
+            txtSuaSoLuong.setEnabled(false);
+            txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
+        }
+         if(pn.get(0).getTrangThai().equals("CHO")){
+            
+            txtThongTinTrangThai.setText("Phiếu đang trong trạng thái chờ kiểm duyệt có thể chỉnh sửa");
+        }
     }
 
     public void showPhieuNhapInTable() {
@@ -72,6 +91,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         txtTenSP = new javax.swing.JTextField();
         txtSuaSoLuong = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
+        txtThongTinTrangThai = new javax.swing.JLabel();
         txtMaPN = new javax.swing.JLabel();
 
         tablePhieuYeuCauNhap.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,6 +152,9 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             }
         });
 
+        txtThongTinTrangThai.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        txtThongTinTrangThai.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,17 +166,24 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
                     .addComponent(txtXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSuaGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSuaGiaNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206)
+                        .addComponent(txtThongTinTrangThai))
                     .addComponent(txtSuaSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(621, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMaSP)
-                    .addComponent(txtSuaGiaNhap))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtMaSP)
+                        .addComponent(txtSuaGiaNhap))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtThongTinTrangThai)))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,6 +288,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
     private javax.swing.JTextField txtSuaGiaNhap;
     private javax.swing.JTextField txtSuaSoLuong;
     private javax.swing.JTextField txtTenSP;
+    private javax.swing.JLabel txtThongTinTrangThai;
     private javax.swing.JTextField txtXuatXu;
     // End of variables declaration//GEN-END:variables
 }
