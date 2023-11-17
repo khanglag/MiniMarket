@@ -169,7 +169,6 @@ public class HangHoaBus {
                     hhdto.setAnhSP(cell.getStringCellValue());
                     System.out.println("Hang hoa" + hhdto.toString());
                     if (dao.daTonTaiHH(hhdto.getMaSP())) {
-                        if(erorrString!="")
                             erorrString+="\nSản phẩm "+hhdto.getMaSP()+" "+hhdto.getTenSP()+"đã tồn tại ";
                     }
                     else {
@@ -183,7 +182,9 @@ public class HangHoaBus {
             ep.printStackTrace();
             return false;
         }
-        JOptionPane.showMessageDialog(null,erorrString);
+        if (erorrString!="") {
+            JOptionPane.showMessageDialog(null,erorrString);
+        }
         return true;
     }
     public boolean xuatHHExcel(){
