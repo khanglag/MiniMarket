@@ -22,8 +22,8 @@ public class ChiTietHoaDonBus {
     public ArrayList<ChiTietHoaDon_DTO> dsHD(){
         return dao.readBD();
     }
-    public ArrayList<ChiTietHoaDon_DTO> dsHD(String maHD){
-        return dao.readBD();
+    public ArrayList<ChiTietHoaDon_DTO> dsHD(int maHD){
+        return dao.readBD(maHD);
     }
     public boolean themCTHD(int soHD, String maSP,int soluong){
         ChiTietHoaDon_DTO dto =new ChiTietHoaDon_DTO(soHD, maSP, soluong, true);

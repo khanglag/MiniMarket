@@ -940,10 +940,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+         hhBus.xuatHHExcel();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        hhBus.themSPEX();
     }//GEN-LAST:event_jButton7ActionPerformed
 
 

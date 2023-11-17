@@ -39,23 +39,23 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         this.MaPN = mapn;
         txtMaPN.setText("Thông tin phiếu yêu cầu nhập hàng số " + MaPN);
         showPhieuNhapInTable();
-      ArrayList<PhieuNhap_DTO> pn =   pnBUS.timPhieuNhap(MaPN, null, null, null);
-        if(pn.get(0).getTrangThai().equals("DA DUYET")){
+        ArrayList<PhieuNhap_DTO> pn = pnBUS.timPhieuNhap(MaPN, null, null, null);
+        if (pn.get(0).getTrangThai().equals("DA DUYET")) {
             btnUpdate.setEnabled(false);
             txtSuaGiaNhap.setEnabled(false);
             txtXuatXu.setEditable(false);
             txtSuaSoLuong.setEnabled(false);
             txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
         }
-         if(pn.get(0).getTrangThai().equals("KHONG DUYET")){
+        if (pn.get(0).getTrangThai().equals("KHONG DUYET")) {
             btnUpdate.setEnabled(false);
             txtSuaGiaNhap.setEnabled(false);
             txtXuatXu.setEditable(false);
             txtSuaSoLuong.setEnabled(false);
             txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
         }
-         if(pn.get(0).getTrangThai().equals("CHO")){
-            
+        if (pn.get(0).getTrangThai().equals("CHO")) {
+
             txtThongTinTrangThai.setText("Phiếu đang trong trạng thái chờ kiểm duyệt có thể chỉnh sửa");
         }
     }
@@ -64,9 +64,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tablePhieuYeuCauNhap.getModel();
         model.setRowCount(0);
         ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnDAO.searchCTPN(MaPN, null, null, null);
-
         double total = 0;
-
         for (int i = 0; i < chiTietPhieuNhap.size(); i++) {
             ChiTietPhieuNhap_DTO ctpnDTO = chiTietPhieuNhap.get(i);
             String tenNCC = nccBUS.timTenNCC(ctpnDTO.getMaNCC());
@@ -75,7 +73,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             model.addRow(new Object[]{ctpnDTO.getMaPhieuNhap(), ctpnDTO.getMaHangNhap(), ctpnDTO.getTenHangNhap(), tenNCC, ctpnDTO.getVAT(), ctpnDTO.getXuatXu(), ctpnDTO.getSoLuong(), ctpnDTO.getDonVi(), giaNhap, ctpnDTO.getTongTienNhap()});
         }
         model.addRow(new Object[]{null, null, null, null, null, null, null, null, "Tổng:", total});
-        pnBUS.suaTongtien(MaPN, total);
+//        pnBUS.suaTongtien(MaPN, total);
     }
 
     @SuppressWarnings("unchecked")
@@ -232,6 +230,16 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         String giaNhap = txtSuaGiaNhap.getText();
         int newSoLuong = Integer.parseInt(soLuong);
         double newGiaNhap = Double.parseDouble(giaNhap);
+        if (newSoLuong <= 0) {
+            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
+            return;
+        }
+
+        if (newGiaNhap <= 0) {
+            JOptionPane.showMessageDialog(null, "Giá nhập phải lớn hơn 0");
+            return;
+        }
+
         if (soLuong.equals("") || giaNhap.equals("") || tenSP.equals("") || xuatXu.equals("")) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ giá trị");
             return;
@@ -243,18 +251,27 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Nhập không đúng định dạng số.");
             return;
         }
-        ArrayList<ChiTietPhieuNhap_DTO> ctpn = ctpnBUS.timCTPN(MaPN, MaSP, null, null);
+        
+        ArrayList<ChiTietPhieuNhap_DTO> ctpn = pycnDAO.searchCTPN(MaPN, MaSP, null, null);
       
         ctpn.get(0).setTenHangNhap(tenSP);
         ctpn.get(0).setXuatXu(xuatXu);
         ctpn.get(0).setGiaNhap(newGiaNhap);
         ctpn.get(0).setSoLuong(newSoLuong);
         ctpn.get(0).setTongTienNhap(newGiaNhap * newSoLuong);
-     
+
         int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận sửa yêu cầu sản phẩm", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             pycnDAO.updateCTPN(ctpn.get(0));
-            
+            ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnDAO.searchCTPN(MaPN, null, null, null);
+            double total = 0;
+            for (int i = 0; i < chiTietPhieuNhap.size(); i++) {
+                ChiTietPhieuNhap_DTO ctpnDTO = chiTietPhieuNhap.get(i);
+
+                total += ctpnDTO.getTongTienNhap();
+
+            }
+            pnBUS.suaTongtien(MaPN, total);
             showPhieuNhapInTable();
         } else {
             return;

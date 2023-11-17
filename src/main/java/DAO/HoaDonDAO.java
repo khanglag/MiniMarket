@@ -33,9 +33,9 @@ public class HoaDonDAO {
                             rset.getString("MANV"),
                             rset.getDate("THOIGIANLAP").toLocalDate(),
                             rset.getNString("MAKH"),
+                            rset.getDouble("THANHTIEN"),
                             rset.getDouble("TIENKHACHDUA"),
                             rset.getDouble("TIENTRAKHACH"),
-                            rset.getDouble("THANHTIEN"),
                             rset.getBoolean("TONTAI"));
                     ds.add(hoaDon);
                 }
