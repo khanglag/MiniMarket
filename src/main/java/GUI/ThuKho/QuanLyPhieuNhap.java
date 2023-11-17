@@ -332,7 +332,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 nv.setVAT(0);
                 nv.setSoMatHang(0);
                 nv.setTongTien(0);
-                nv.setTrangThai("Chờ duyệt");
+                nv.setTrangThai("CHO");
                 phieuNhapBus.themPhieuNhap(nv);
                 table.repaint();
                 refreshData();
