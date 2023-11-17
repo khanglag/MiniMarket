@@ -121,7 +121,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận duyệt phiếu yêu cầu?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             pnBUS.suaTrangThai(MaPN, "DA DUYET");
-            pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
+//            pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
              JOptionPane.showMessageDialog(null,
                     "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!!");
             Window window = SwingUtilities.getWindowAncestor(this);

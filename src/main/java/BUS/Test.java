@@ -2,6 +2,7 @@
 package BUS;
 
 import BUS.PhieuXuatBus;
+import DAO.PhieuYeuCauNhapDAO;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.NhanVien_DTO;
 import DTO.PhieuXuat_DTO;
