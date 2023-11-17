@@ -428,6 +428,8 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
     private void btnTaoYeuCauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoYeuCauActionPerformed
         // TODO add your handling code here:
         boolean flag = false;
+        int n = list.size();
+        int i = jTable.getSelectedRow();
         for(ChiTietPhieuNhap_DTO ctpn: list){
             if(phieuYeuCauNhapBus.themCTPN(ctpn)){
                 flag = true;
@@ -436,7 +438,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
         }
         if(flag){
+            
             JOptionPane.showMessageDialog(this,  "Tạo thành công");
+            phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
             this.dispose();
         }
     }//GEN-LAST:event_btnTaoYeuCauActionPerformed
