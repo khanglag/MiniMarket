@@ -69,6 +69,15 @@ public class TaiKhoanDAO {
         return success;
 
     }
+    public boolean unKhoa(TaiKhoan_DTO taiKhoan) {
+        boolean success = false;
+        ConnectDB connectDB = new ConnectDB();
+        success = connectDB
+                .sqlUpdate(" UPDATE `taikhoan`  SET `TONTAI` = 1 WHERE `MANV` = '" + taiKhoan.getMaNV() + "'");
+        connectDB.closeConnect();
+        return success;
+
+    }
     
     public boolean isTaiKhoanExisted(String maNV){
         ConnectDB connectDB = new ConnectDB();
