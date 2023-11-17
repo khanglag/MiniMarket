@@ -55,7 +55,6 @@ public class DoiMatKhau extends javax.swing.JFrame {
         jLabel1.setText("ĐỔI MẬT KHẨU");
 
         btnDoiMatKhau.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnDoiMatKhau.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\Zalo Received Files\\MiniMarket\\src\\main\\java\\Icon\\reset_password.png")); // NOI18N
         btnDoiMatKhau.setText("ĐỔI MẬT KHẨU");
         btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

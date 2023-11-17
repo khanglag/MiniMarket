@@ -467,7 +467,9 @@ public class QuanLyUser extends javax.swing.JPanel {
         if(i>=0){
             int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn đặt lại mật khẩu không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
-                taiKhoanBus.doiMatKhau(jtfMaNV.getText(), "Abc@123");
+                if(taiKhoanBus.doiMatKhau(jtfMaNV.getText(), "Abc@123")){
+                    JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
+                }
             } else {
             
             }
