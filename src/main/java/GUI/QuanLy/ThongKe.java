@@ -7,11 +7,16 @@ package GUI.QuanLy;
 import BUS.ChiTietHoaDonBus;
 import BUS.HangHoaBus;
 import BUS.HoaDonBus;
+import BUS.PhieuNhapBus;
+import BUS.PhieuXuatBus;
 import DAO.HangHoaDAO;
 import DTO.ChiTietHoaDon_DTO;
 import DTO.HangHoa_DTO;
 import DTO.HoaDon_DTO;
+import DTO.PhieuNhap_DTO;
+import DTO.PhieuXuat_DTO;
 import com.toedter.calendar.JDateChooser;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -20,6 +25,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,60 +38,143 @@ import javax.swing.table.DefaultTableModel;
 public class ThongKe extends javax.swing.JPanel {
 
     HoaDonBus hdBUS = new HoaDonBus();
+    ArrayList<HoaDon_DTO> danhSachHoaDon = hdBUS.dsHoaDon();
+
     ChiTietHoaDonBus cthdBUS = new ChiTietHoaDonBus();
-    HangHoaBus hhBUS = new HangHoaBus();
+    PhieuXuatBus pxBUS = new PhieuXuatBus();
+    ArrayList<PhieuXuat_DTO> phieuXuats = pxBUS.readPhieuXuat_DTOs();
+
     HangHoaDAO hhd = new HangHoaDAO();
     ArrayList<HangHoa_DTO> dsHangHoa = hhd.ReadHangHoa();
-    public ThongKe(JDateChooser dateNext, JDateChooser datePrev, JButton jButton1, JComboBox<String> jComboBox1, JLabel jLabel1, JLabel jLabel2, JLabel jLabel3, JScrollPane jScrollPane1, JPanel ngayTruoc, JTable tableStatistical) {
-        this.dateNext = dateNext;
-        this.datePrev = datePrev;
-        this.jButton1 = jButton1;
-        this.jComboBox1 = jComboBox1;
-        this.jLabel1 = jLabel1;
-        this.jLabel2 = jLabel2;
-        this.jLabel3 = jLabel3;
-        this.jScrollPane1 = jScrollPane1;
-        this.ngayTruoc = ngayTruoc;
-        this.tableStatistical = tableStatistical;
-    }
+
+    PhieuNhapBus pnBUS = new PhieuNhapBus();
+    ArrayList<PhieuNhap_DTO> phieuNhaps = pnBUS.rPhieuNhap_DTOs();
+
+    DefaultTableModel originalModel;
 
     public ThongKe() {
         initComponents();
-        showBillStatistics(LocalDate.now(), LocalDate.now());
+        showBillStatistics(null, null);
     }
 
-    public void showBillStatistics(LocalDate dayPrevDate, LocalDate dayNext) {
+    public void showBillStatistics(LocalDate dayPrev, LocalDate dayNext) {
+        originalModel = (DefaultTableModel) tableStatistical.getModel();
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
-        ArrayList<HoaDon_DTO> danhSachHoaDon = hdBUS.dsHoaDon();
         double total = 0;
-        double doanhThu = 0;
-        for (int i = 0; i < danhSachHoaDon.size(); i++) {
-            HoaDon_DTO hoaDon = danhSachHoaDon.get(i);
-            ArrayList<ChiTietHoaDon_DTO> cthds = cthdBUS.dsHD(hoaDon.getSoHD());
-            double giaGoc = 0;
-            for (int j = 0; j < cthds.size(); j++) {
-                ChiTietHoaDon_DTO cthd = cthds.get(j);
-                double giaNhap = getGiaNhap(cthd.getMaSP());
-                giaGoc += cthd.getSoLuong() * giaNhap;
-                
+        double tongDoanhThu = 0;
+        if (dayPrev == null || dayNext == null) {
+            for (int i = 0; i < danhSachHoaDon.size(); i++) {
+                HoaDon_DTO hoaDon = danhSachHoaDon.get(i);
+                ArrayList<ChiTietHoaDon_DTO> cthds = cthdBUS.dsHD(hoaDon.getSoHD());
+                double giaGoc = 0;
+                double doanhThu = 0;
+                for (int j = 0; j < cthds.size(); j++) {
+                    ChiTietHoaDon_DTO cthd = cthds.get(j);
+                    double giaNhap = getGiaNhap(cthd.getMaSP());
+                    giaGoc += cthd.getSoLuong() * giaNhap;
+                }
+                doanhThu = hoaDon.getThanhTien() - giaGoc;
+                total += hoaDon.getThanhTien();
+                model.addRow(new Object[]{hoaDon.getSoHD(), hoaDon.getMaNV(), hoaDon.getMaKH(), hoaDon.getThoiGianLap(), hoaDon.getThanhTien(), hoaDon.getTienKhachDua(), hoaDon.getTienTraKhach(), doanhThu});
+                tongDoanhThu += doanhThu;
             }
-            System.out.println("hóa đơn thứ "+i+1+": thanh tien: "+hoaDon.getThanhTien());
-            System.out.println("hóa đơn thứ "+i+1+": giá goc: "+giaGoc);
-           // double tienLai = hoaDon.getThanhTien() - giaGoc;
-           // total += hoaDon.getThanhTien();
-            model.addRow(new Object[]{hoaDon.getSoHD(), hoaDon.getMaNV(), hoaDon.getMaKH(), hoaDon.getThoiGianLap(), hoaDon.getThanhTien(), hoaDon.getTienKhachDua(), hoaDon.getTienTraKhach(),1});
+        } else {
+            ArrayList<HoaDon_DTO> hoaDonByDate = new ArrayList<>();
+            for (int i = 0; i < danhSachHoaDon.size(); i++) {
+                HoaDon_DTO hoaDon = danhSachHoaDon.get(i);
+                if ((hoaDon.getThoiGianLap().isAfter(dayPrev) || hoaDon.getThoiGianLap().isEqual(dayPrev))
+                        && (hoaDon.getThoiGianLap().isBefore(dayNext) || hoaDon.getThoiGianLap().isEqual(dayNext))) {
+                    hoaDonByDate.add(hoaDon);
+                }
+            }
+            for (int i = 0; i < hoaDonByDate.size(); i++) {
+                HoaDon_DTO hoaDon = hoaDonByDate.get(i);
+                ArrayList<ChiTietHoaDon_DTO> cthds = cthdBUS.dsHD(hoaDon.getSoHD());
+                double giaGoc = 0;
+                double doanhThu = 0;
+                for (int j = 0; j < cthds.size(); j++) {
+                    ChiTietHoaDon_DTO cthd = cthds.get(j);
+                    double giaNhap = getGiaNhap(cthd.getMaSP());
+                    giaGoc += cthd.getSoLuong() * giaNhap;
+                }
+                doanhThu = hoaDon.getThanhTien() - giaGoc;
+                total += hoaDon.getThanhTien();
+                model.addRow(new Object[]{hoaDon.getSoHD(), hoaDon.getMaNV(), hoaDon.getMaKH(), hoaDon.getThoiGianLap(), hoaDon.getThanhTien(), hoaDon.getTienKhachDua(), hoaDon.getTienTraKhach(), doanhThu});
+                tongDoanhThu += doanhThu;
+            }
         }
+        model.addRow(new Object[]{null, null, null, "Tổng thu nhập : ", total, null, null, tongDoanhThu});
     }
-    public double getGiaNhap(String MaSP){
-        for(int i = 0;i<dsHangHoa.size();i++){
-            if(dsHangHoa.get(i).getMaSP().equals(MaSP)){
+
+    public void showImportBill(LocalDate dayPrev, LocalDate dayNext) {
+        DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
+        model.setRowCount(0);
+        String[] columnNames = {"Mã phiếu nhập", "MANV", "Thời gian lập", "VAT", "Số mặt hàng", "Tổng tiền", "Trạng thái"};
+        DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        double total = 0;
+        if (dayPrev == null || dayNext == null) {
+            for (int i = 0; i < phieuNhaps.size(); i++) {
+                PhieuNhap_DTO pn = phieuNhaps.get(i);
+                String tongTien = decimalFormat.format(pn.getTongTien());
+                newModel.addRow(new Object[]{pn.getMaPhieuNhap(), pn.getMaNV(), pn.getThoiGianLap(), pn.getVAT(), pn.getSoMatHang(), tongTien, pn.getTrangThai()});
+                if (pn.getTrangThai().equals("DA DUYET")) {
+                    total += pn.getTongTien();
+                }
+            }
+        }else{
+            ArrayList<PhieuNhap_DTO> phieuNhapByDate = new ArrayList<>();
+            for (int i = 0; i < phieuNhaps.size(); i++) {
+                PhieuNhap_DTO phieuNhap = phieuNhaps.get(i);
+                if ((phieuNhap.getThoiGianLap().isAfter(dayPrev) || phieuNhap.getThoiGianLap().isEqual(dayPrev))
+                        && (phieuNhap.getThoiGianLap().isBefore(dayNext) || phieuNhap.getThoiGianLap().isEqual(dayNext))) {
+                    phieuNhapByDate.add(phieuNhap);
+                }
+            }
+            for (int i = 0; i < phieuNhapByDate.size(); i++) {
+                PhieuNhap_DTO pn = phieuNhapByDate.get(i);
+                String tongTien = decimalFormat.format(pn.getTongTien());
+                newModel.addRow(new Object[]{pn.getMaPhieuNhap(), pn.getMaNV(), pn.getThoiGianLap(), pn.getVAT(), pn.getSoMatHang(), tongTien, pn.getTrangThai()});
+                if (pn.getTrangThai().equals("DA DUYET")) {
+                    total += pn.getTongTien();
+                }
+            }
+        }
+        String tongTiens = decimalFormat.format(total);
+        newModel.addRow(new Object[]{null, null, null, null, "Tổng", tongTiens, null});
+        tableStatistical.setModel(newModel);
+    }
+
+    public void showExportBill(LocalDate dayPrev, LocalDate dayNext) {
+
+        DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
+        model.setRowCount(0);
+        String[] columnNames = {"Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Thời gian xuất", "Lý do", "Ghi chú", "Tổng tiền"};
+        DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        double total = 0;
+        for (int i = 0; i < phieuXuats.size(); i++) {
+            PhieuXuat_DTO px = phieuXuats.get(i);
+
+            newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
+            total += px.getTongTien();
+        }
+        String tongTiens = decimalFormat.format(total);
+        newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens});
+        tableStatistical.setModel(newModel);
+    }
+
+    public double getGiaNhap(String MaSP) {
+        for (int i = 0; i < dsHangHoa.size(); i++) {
+            if (dsHangHoa.get(i).getMaSP().equals(MaSP)) {
                 return dsHangHoa.get(i).getGiaNhap();
-                
+
             }
         }
         return 0;
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -98,14 +187,16 @@ public class ThongKe extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         datePrev = new com.toedter.calendar.JDateChooser();
         dateNext = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnThongKe = new javax.swing.JButton();
+        cbbTypeStatistic = new javax.swing.JComboBox<>();
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("THỐNG KÊ");
 
+        tableStatistical.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        tableStatistical.setForeground(new java.awt.Color(255, 0, 51));
         tableStatistical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -125,7 +216,7 @@ public class ThongKe extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        tableStatistical.setRowHeight(30);
+        tableStatistical.setRowHeight(35);
         jScrollPane1.setViewportView(tableStatistical);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -158,17 +249,17 @@ public class ThongKe extends javax.swing.JPanel {
         dateNext.setToolTipText("Calander");
         dateNext.setDateFormatString("dd/MM/yyyy");
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ThongKe.png"))); // NOI18N
-        jButton1.setText("THỐNG KÊ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnThongKe.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ThongKe.png"))); // NOI18N
+        btnThongKe.setText("THỐNG KÊ");
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnThongKeActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống kê hóa đơn", "Thống kê phiếu nhập", "Thống kê phiếu xuất", "Thống kê sản phẩm bán chạy" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn loại thống kê"));
+        cbbTypeStatistic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống kê hóa đơn", "Thống kê phiếu nhập", "Thống kê phiếu xuất", "Thống kê sản phẩm bán chạy" }));
+        cbbTypeStatistic.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn loại thống kê"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -188,9 +279,9 @@ public class ThongKe extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateNext, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(btnThongKe)))
                 .addGap(0, 520, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,44 +296,92 @@ public class ThongKe extends javax.swing.JPanel {
                     .addComponent(dateNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThongKe)
+                    .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         java.util.Date dayPrev = datePrev.getDate();
         java.util.Date dayNext = dateNext.getDate();
-        if (dayPrev != null && dayNext != null) {
-            Instant instant1 = dayPrev.toInstant();
-            LocalDate localDate1 = instant1.atZone(ZoneId.systemDefault()).toLocalDate();
+        if (dayPrev == null && dayNext == null) {
+            if (cbbTypeStatistic.getSelectedIndex() == 0) {
+                tableStatistical.setModel(originalModel);
+                showBillStatistics(null, null);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 1) {
+                showImportBill(null, null);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 2) {
+                showExportBill(null, null);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 3) {
+                System.out.println("ĐÂy là vị trí 3");
+                return;
+            }
+        }
+        if (dayPrev == null || dayNext == null) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng chọn đầy đủ ngày trước và ngày sau");
+            return;
+        }
 
-            Instant instant2 = dayNext.toInstant();
-            LocalDate localDate2 = instant2.atZone(ZoneId.systemDefault()).toLocalDate();
-
-            // So sánh hai LocalDate
-            if (localDate1.isEqual(localDate2)) {
-                System.out.println("Hai ngày bằng nhau.");
-                System.out.println("Day prev ->" + localDate1 + "-----Day next -> " + localDate2);
-            } else if (localDate1.isBefore(localDate2)) {
-                System.out.println("Ngày -> " + localDate1 + "nhỏ hơn ngày -> " + localDate2);
-            } else {
-                System.out.println("Ngày -> " + localDate1 + "lớn hơn ngày -> " + localDate2);
+        Instant instant1 = dayPrev.toInstant();
+        LocalDate localDate1 = instant1.atZone(ZoneId.systemDefault()).toLocalDate();
+        Instant instant2 = dayNext.toInstant();
+        LocalDate localDate2 = instant2.atZone(ZoneId.systemDefault()).toLocalDate();
+        if (localDate1.isBefore(localDate2)) {
+            if (cbbTypeStatistic.getSelectedIndex() == 0) {
+                tableStatistical.setModel(originalModel);
+                showBillStatistics(localDate1, localDate2);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 1) {
+                showImportBill(localDate1, localDate2);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 2) {
+                showExportBill(localDate1, localDate2);
+                return;
+            }
+            if (cbbTypeStatistic.getSelectedIndex() == 3) {
+                System.out.println("ĐÂy là vị trí 3");
+                return;
             }
         } else {
-            System.out.println("Một hoặc cả hai ngày chưa được chọn.");
+            JOptionPane.showMessageDialog(null,
+                    "Chọn ngày không hợp lệ ngày trước phải nhỏ hơn ngày sau");
+            return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+//        if (dayPrev != null && dayNext != null) {
+//
+//            // So sánh hai LocalDate
+//            if (localDate1.isEqual(localDate2)) {
+//                System.out.println("Hai ngày bằng nhau.");
+//                System.out.println("Day prev ->" + localDate1 + "-----Day next -> " + localDate2);
+//            } else if (localDate1.isBefore(localDate2)) {
+//                System.out.println("Ngày -> " + localDate1 + "nhỏ hơn ngày -> " + localDate2);
+//            } else {
+//                System.out.println("Ngày -> " + localDate1 + "lớn hơn ngày -> " + localDate2);
+//            }
+//        } else {
+//            System.out.println("Một hoặc cả hai ngày chưa được chọn.");
+//        }
+    }//GEN-LAST:event_btnThongKeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThongKe;
+    private javax.swing.JComboBox<String> cbbTypeStatistic;
     private com.toedter.calendar.JDateChooser dateNext;
     private com.toedter.calendar.JDateChooser datePrev;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
