@@ -24,6 +24,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -168,7 +169,7 @@ public class ThongKe extends javax.swing.JPanel {
                     phieuXuatByDate.add(phieuXuat);
                 }
             }
-             for (int i = 0; i < phieuXuatByDate.size(); i++) {
+            for (int i = 0; i < phieuXuatByDate.size(); i++) {
                 PhieuXuat_DTO px = phieuXuatByDate.get(i);
                 newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
                 total += px.getTongTien();
@@ -178,13 +179,14 @@ public class ThongKe extends javax.swing.JPanel {
         newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens});
         tableStatistical.setModel(newModel);
     }
-    
-    public void showProductBestSaler(){
+
+    public void showProductBestSaler() {
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
         String[] columnNames = {"Mã sản phẩm", "Tên sản phẩm", "Số lượng đã bán"};
         DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
     }
+
     public double getGiaNhap(String MaSP) {
         for (int i = 0; i < dsHangHoa.size(); i++) {
             if (dsHangHoa.get(i).getMaSP().equals(MaSP)) {
@@ -200,7 +202,7 @@ public class ThongKe extends javax.swing.JPanel {
     private void initComponents() {
 
         popupMenu = new javax.swing.JPopupMenu();
-        details = new javax.swing.JMenuItem();
+        chiTietHoaDon = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableStatistical = new javax.swing.JTable();
@@ -213,8 +215,13 @@ public class ThongKe extends javax.swing.JPanel {
         cbbTypeStatistic = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
-        details.setText("Xem chi tiết");
-        popupMenu.add(details);
+        chiTietHoaDon.setText("Xem chi tiết");
+        chiTietHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chiTietHoaDonActionPerformed(evt);
+            }
+        });
+        popupMenu.add(chiTietHoaDon);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -289,7 +296,7 @@ public class ThongKe extends javax.swing.JPanel {
             }
         });
 
-        cbbTypeStatistic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống kê hóa đơn", "Thống kê phiếu nhập", "Thống kê phiếu xuất", "Thống kê sản phẩm bán chạy" }));
+        cbbTypeStatistic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống kê hóa đơn", "Thống kê phiếu nhập", "Thống kê phiếu xuất" }));
         cbbTypeStatistic.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn loại thống kê"));
 
         jButton1.setText("Xóa ngày");
@@ -366,10 +373,7 @@ public class ThongKe extends javax.swing.JPanel {
                 showExportBill(null, null);
                 return;
             }
-            if (cbbTypeStatistic.getSelectedIndex() == 3) {
-                System.out.println("ĐÂy là vị trí 3");
-                return;
-            }
+           
         }
         if (dayPrev == null || dayNext == null) {
             JOptionPane.showMessageDialog(null,
@@ -395,10 +399,7 @@ public class ThongKe extends javax.swing.JPanel {
                 showExportBill(localDate1, localDate2);
                 return;
             }
-            if (cbbTypeStatistic.getSelectedIndex() == 3) {
-                System.out.println("ĐÂy là vị trí 3");
-                return;
-            }
+          
         } else {
             JOptionPane.showMessageDialog(null,
                     "Chọn ngày không hợp lệ ngày trước phải nhỏ hơn ngày sau");
@@ -414,16 +415,34 @@ public class ThongKe extends javax.swing.JPanel {
 
     private void tableStatisticalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableStatisticalMouseClicked
         // TODO add your handling code here:
-        popupMenu.show(tableStatistical, evt.getX(), evt.getY());
+        int i = tableStatistical.getSelectedRow();
+        if (i >= 0) {
+
+            popupMenu.show(tableStatistical, evt.getX(), evt.getY());
+        }
+
     }//GEN-LAST:event_tableStatisticalMouseClicked
+
+    private void chiTietHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chiTietHoaDonActionPerformed
+        // TODO add your handling code here:
+        int i = tableStatistical.getSelectedRow();
+        JFrame frame = new JFrame("Chi tiết hóa đơn");
+        ChiTietHoaDon cthd = new ChiTietHoaDon(Integer.parseInt(tableStatistical.getModel().getValueAt(i, 0).toString()));
+        frame.add(cthd);
+        frame.setSize(450, 421);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+    }//GEN-LAST:event_chiTietHoaDonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThongKe;
     private javax.swing.JComboBox<String> cbbTypeStatistic;
+    private javax.swing.JMenuItem chiTietHoaDon;
     private com.toedter.calendar.JDateChooser dateNext;
     private com.toedter.calendar.JDateChooser datePrev;
-    private javax.swing.JMenuItem details;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

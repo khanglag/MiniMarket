@@ -4,17 +4,38 @@
  */
 package GUI.QuanLy;
 
+import BUS.ChiTietHoaDonBus;
+import BUS.HangHoaBus;
+import DTO.ChiTietHoaDon_DTO;
+import DTO.HangHoa_DTO;
+import GUI.Saler.item;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
  */
 public class ChiTietHoaDon extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ChiTietHoaDon
-     */
-    public ChiTietHoaDon() {
+    private int SoHD;
+    ChiTietHoaDonBus cthdBUS = new ChiTietHoaDonBus();
+
+    public ChiTietHoaDon(int SoHD) {
         initComponents();
+        this.SoHD = SoHD;
+        txtSoHD.setText(String.valueOf(SoHD));
+        showDetailsBillInTable();
+    }
+
+    public void showDetailsBillInTable() {
+        DefaultTableModel model = (DefaultTableModel) tableDeTailsBill.getModel();
+        model.setRowCount(0);
+        ArrayList<ChiTietHoaDon_DTO> cthds = cthdBUS.dsHD(this.SoHD);
+        for (int i = 0; i < cthds.size(); i++) {
+            ChiTietHoaDon_DTO cthd = cthds.get(i);
+            model.addRow(new Object[]{cthd.getSoHD(), cthd.getMaSP(), cthd.getSoLuong()});
+        }
     }
 
     /**
@@ -28,6 +49,8 @@ public class ChiTietHoaDon extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         txtSoHD = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableDeTailsBill = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Chi tiết hóa đơn số");
@@ -35,30 +58,63 @@ public class ChiTietHoaDon extends javax.swing.JPanel {
         txtSoHD.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         txtSoHD.setText("jLabel2");
 
+        tableDeTailsBill.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Số hóa đơn", "Mã sản phẩm", "Số lượng"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableDeTailsBill.setRowHeight(40);
+        jScrollPane1.setViewportView(tableDeTailsBill);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(162, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(272, 272, 272))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtSoHD, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 440, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private static javax.swing.JTable tableDeTailsBill;
     private javax.swing.JLabel txtSoHD;
     // End of variables declaration//GEN-END:variables
 }
