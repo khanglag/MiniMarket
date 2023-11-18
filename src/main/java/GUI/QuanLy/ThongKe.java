@@ -52,8 +52,6 @@ public class ThongKe extends javax.swing.JPanel {
 
     DefaultTableModel originalModel;
 
-    
-
     public ThongKe() {
         initComponents();
         showBillStatistics(null, null);
@@ -82,13 +80,11 @@ public class ThongKe extends javax.swing.JPanel {
                 tongDoanhThu += doanhThu;
             }
         } else {
-            ArrayList<HoaDon_DTO> hoaDonByDate= new ArrayList<>();
+            ArrayList<HoaDon_DTO> hoaDonByDate = new ArrayList<>();
             for (int i = 0; i < danhSachHoaDon.size(); i++) {
                 HoaDon_DTO hoaDon = danhSachHoaDon.get(i);
-                if (dayPrev.isBefore(hoaDon.getThoiGianLap()) || dayPrev.isEqual(hoaDon.getThoiGianLap())) {
-                    hoaDonByDate.add(hoaDon);
-                }
-                if (dayNext.isAfter(hoaDon.getThoiGianLap()) || dayNext.isEqual(hoaDon.getThoiGianLap())) {
+                if ((hoaDon.getThoiGianLap().isAfter(dayPrev) || hoaDon.getThoiGianLap().isEqual(dayPrev))
+                        && (hoaDon.getThoiGianLap().isBefore(dayNext) || hoaDon.getThoiGianLap().isEqual(dayNext))) {
                     hoaDonByDate.add(hoaDon);
                 }
             }
@@ -108,24 +104,41 @@ public class ThongKe extends javax.swing.JPanel {
                 tongDoanhThu += doanhThu;
             }
         }
-
         model.addRow(new Object[]{null, null, null, "Tổng thu nhập : ", total, null, null, tongDoanhThu});
     }
 
     public void showImportBill(LocalDate dayPrev, LocalDate dayNext) {
-
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
         String[] columnNames = {"Mã phiếu nhập", "MANV", "Thời gian lập", "VAT", "Số mặt hàng", "Tổng tiền", "Trạng thái"};
         DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         double total = 0;
-        for (int i = 0; i < phieuNhaps.size(); i++) {
-            PhieuNhap_DTO pn = phieuNhaps.get(i);
-            String tongTien = decimalFormat.format(pn.getTongTien());
-            newModel.addRow(new Object[]{pn.getMaPhieuNhap(), pn.getMaNV(), pn.getThoiGianLap(), pn.getVAT(), pn.getSoMatHang(), tongTien, pn.getTrangThai()});
-            if (pn.getTrangThai().equals("DA DUYET")) {
-                total += pn.getTongTien();
+        if (dayPrev == null || dayNext == null) {
+            for (int i = 0; i < phieuNhaps.size(); i++) {
+                PhieuNhap_DTO pn = phieuNhaps.get(i);
+                String tongTien = decimalFormat.format(pn.getTongTien());
+                newModel.addRow(new Object[]{pn.getMaPhieuNhap(), pn.getMaNV(), pn.getThoiGianLap(), pn.getVAT(), pn.getSoMatHang(), tongTien, pn.getTrangThai()});
+                if (pn.getTrangThai().equals("DA DUYET")) {
+                    total += pn.getTongTien();
+                }
+            }
+        }else{
+            ArrayList<PhieuNhap_DTO> phieuNhapByDate = new ArrayList<>();
+            for (int i = 0; i < phieuNhaps.size(); i++) {
+                PhieuNhap_DTO phieuNhap = phieuNhaps.get(i);
+                if ((phieuNhap.getThoiGianLap().isAfter(dayPrev) || phieuNhap.getThoiGianLap().isEqual(dayPrev))
+                        && (phieuNhap.getThoiGianLap().isBefore(dayNext) || phieuNhap.getThoiGianLap().isEqual(dayNext))) {
+                    phieuNhapByDate.add(phieuNhap);
+                }
+            }
+            for (int i = 0; i < phieuNhapByDate.size(); i++) {
+                PhieuNhap_DTO pn = phieuNhapByDate.get(i);
+                String tongTien = decimalFormat.format(pn.getTongTien());
+                newModel.addRow(new Object[]{pn.getMaPhieuNhap(), pn.getMaNV(), pn.getThoiGianLap(), pn.getVAT(), pn.getSoMatHang(), tongTien, pn.getTrangThai()});
+                if (pn.getTrangThai().equals("DA DUYET")) {
+                    total += pn.getTongTien();
+                }
             }
         }
         String tongTiens = decimalFormat.format(total);
@@ -294,7 +307,7 @@ public class ThongKe extends javax.swing.JPanel {
         // TODO add your handling code here:
         java.util.Date dayPrev = datePrev.getDate();
         java.util.Date dayNext = dateNext.getDate();
-        if (dayPrev == null || dayNext == null) {
+        if (dayPrev == null && dayNext == null) {
             if (cbbTypeStatistic.getSelectedIndex() == 0) {
                 tableStatistical.setModel(originalModel);
                 showBillStatistics(null, null);
@@ -313,16 +326,12 @@ public class ThongKe extends javax.swing.JPanel {
                 return;
             }
         }
-        if (dayPrev == null && dayNext != null) {
+        if (dayPrev == null || dayNext == null) {
             JOptionPane.showMessageDialog(null,
-                    "Vui lòng chọn ngày trước");
+                    "Vui lòng chọn đầy đủ ngày trước và ngày sau");
             return;
         }
-        if (dayPrev != null && dayNext == null) {
-            JOptionPane.showMessageDialog(null,
-                    "Vui lòng chọn ngày sau");
-            return;
-        }
+
         Instant instant1 = dayPrev.toInstant();
         LocalDate localDate1 = instant1.atZone(ZoneId.systemDefault()).toLocalDate();
         Instant instant2 = dayNext.toInstant();
