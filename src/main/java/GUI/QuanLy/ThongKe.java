@@ -123,7 +123,7 @@ public class ThongKe extends javax.swing.JPanel {
                     total += pn.getTongTien();
                 }
             }
-        }else{
+        } else {
             ArrayList<PhieuNhap_DTO> phieuNhapByDate = new ArrayList<>();
             for (int i = 0; i < phieuNhaps.size(); i++) {
                 PhieuNhap_DTO phieuNhap = phieuNhaps.get(i);
@@ -147,24 +147,44 @@ public class ThongKe extends javax.swing.JPanel {
     }
 
     public void showExportBill(LocalDate dayPrev, LocalDate dayNext) {
-
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
         String[] columnNames = {"Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Thời gian xuất", "Lý do", "Ghi chú", "Tổng tiền"};
         DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         double total = 0;
-        for (int i = 0; i < phieuXuats.size(); i++) {
-            PhieuXuat_DTO px = phieuXuats.get(i);
-
-            newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
-            total += px.getTongTien();
+        if (dayPrev == null || dayNext == null) {
+            for (int i = 0; i < phieuXuats.size(); i++) {
+                PhieuXuat_DTO px = phieuXuats.get(i);
+                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
+                total += px.getTongTien();
+            }
+        } else {
+            ArrayList<PhieuXuat_DTO> phieuXuatByDate = new ArrayList<>();
+            for (int i = 0; i < phieuXuats.size(); i++) {
+                PhieuXuat_DTO phieuXuat = phieuXuats.get(i);
+                if ((phieuXuat.getThoiGianXuat().isAfter(dayPrev) || phieuXuat.getThoiGianXuat().isEqual(dayPrev))
+                        && (phieuXuat.getThoiGianXuat().isBefore(dayNext) || phieuXuat.getThoiGianXuat().isEqual(dayNext))) {
+                    phieuXuatByDate.add(phieuXuat);
+                }
+            }
+             for (int i = 0; i < phieuXuatByDate.size(); i++) {
+                PhieuXuat_DTO px = phieuXuatByDate.get(i);
+                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
+                total += px.getTongTien();
+            }
         }
         String tongTiens = decimalFormat.format(total);
         newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens});
         tableStatistical.setModel(newModel);
     }
-
+    
+    public void showProductBestSaler(){
+        DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
+        model.setRowCount(0);
+        String[] columnNames = {"Mã sản phẩm", "Tên sản phẩm", "Số lượng đã bán"};
+        DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
+    }
     public double getGiaNhap(String MaSP) {
         for (int i = 0; i < dsHangHoa.size(); i++) {
             if (dsHangHoa.get(i).getMaSP().equals(MaSP)) {
@@ -179,6 +199,8 @@ public class ThongKe extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu = new javax.swing.JPopupMenu();
+        details = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableStatistical = new javax.swing.JTable();
@@ -189,6 +211,10 @@ public class ThongKe extends javax.swing.JPanel {
         dateNext = new com.toedter.calendar.JDateChooser();
         btnThongKe = new javax.swing.JButton();
         cbbTypeStatistic = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+
+        details.setText("Xem chi tiết");
+        popupMenu.add(details);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -217,6 +243,11 @@ public class ThongKe extends javax.swing.JPanel {
             }
         });
         tableStatistical.setRowHeight(35);
+        tableStatistical.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableStatisticalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableStatistical);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -261,6 +292,13 @@ public class ThongKe extends javax.swing.JPanel {
         cbbTypeStatistic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thống kê hóa đơn", "Thống kê phiếu nhập", "Thống kê phiếu xuất", "Thống kê sản phẩm bán chạy" }));
         cbbTypeStatistic.setBorder(javax.swing.BorderFactory.createTitledBorder("Tùy chọn loại thống kê"));
 
+        jButton1.setText("Xóa ngày");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,7 +307,7 @@ public class ThongKe extends javax.swing.JPanel {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -281,7 +319,9 @@ public class ThongKe extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnThongKe)))
+                        .addComponent(btnThongKe)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(0, 520, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -294,10 +334,15 @@ public class ThongKe extends javax.swing.JPanel {
                     .addComponent(ngayTruoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(datePrev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThongKe)
-                    .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnThongKe)
+                            .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
         );
@@ -359,22 +404,18 @@ public class ThongKe extends javax.swing.JPanel {
                     "Chọn ngày không hợp lệ ngày trước phải nhỏ hơn ngày sau");
             return;
         }
-
-//        if (dayPrev != null && dayNext != null) {
-//
-//            // So sánh hai LocalDate
-//            if (localDate1.isEqual(localDate2)) {
-//                System.out.println("Hai ngày bằng nhau.");
-//                System.out.println("Day prev ->" + localDate1 + "-----Day next -> " + localDate2);
-//            } else if (localDate1.isBefore(localDate2)) {
-//                System.out.println("Ngày -> " + localDate1 + "nhỏ hơn ngày -> " + localDate2);
-//            } else {
-//                System.out.println("Ngày -> " + localDate1 + "lớn hơn ngày -> " + localDate2);
-//            }
-//        } else {
-//            System.out.println("Một hoặc cả hai ngày chưa được chọn.");
-//        }
     }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        datePrev.setDate(null);
+        dateNext.setDate(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableStatisticalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableStatisticalMouseClicked
+        // TODO add your handling code here:
+        popupMenu.show(tableStatistical, evt.getX(), evt.getY());
+    }//GEN-LAST:event_tableStatisticalMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -382,11 +423,14 @@ public class ThongKe extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbbTypeStatistic;
     private com.toedter.calendar.JDateChooser dateNext;
     private com.toedter.calendar.JDateChooser datePrev;
+    private javax.swing.JMenuItem details;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel ngayTruoc;
+    private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JTable tableStatistical;
     // End of variables declaration//GEN-END:variables
 }
