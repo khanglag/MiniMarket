@@ -69,7 +69,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
         jtfThoiGian = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnTaoPhieuKiemHang = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -179,10 +178,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/updated.png"))); // NOI18N
-        btnSua.setText("SỬA");
-
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         btnXoa.setText("XÓA");
@@ -209,7 +204,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnTaoPhieuKiemHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -219,8 +213,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnTaoPhieuKiemHang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSua)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -314,6 +306,8 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
             } catch (Exception ex) {
 
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn phiếu kiểm hàng muốn xóa");
         }
         
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -391,7 +385,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLamMoi;
-    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTaoPhieuKiemHang;
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnXoa;

@@ -333,7 +333,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 nv.setSoMatHang(0);
                 nv.setTongTien(0);
                 nv.setTrangThai("CHO");
-                phieuNhapBus.themPhieuNhap(nv);
+                if(phieuNhapBus.themPhieuNhap(nv)){
+                    JOptionPane.showMessageDialog(this, "Tạo phiếu nhập thành công");
+                }
                 table.repaint();
                 refreshData();
             
