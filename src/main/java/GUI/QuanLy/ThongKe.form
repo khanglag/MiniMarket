@@ -8,10 +8,13 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="details">
+        <MenuItem class="javax.swing.JMenuItem" name="chiTietHoaDon">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xem chi ti&#x1ebf;t"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chiTietHoaDonActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>
@@ -261,11 +264,10 @@
     <Component class="javax.swing.JComboBox" name="cbbTypeStatistic">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="Th&#x1ed1;ng k&#xea; h&#xf3;a &#x111;&#x1a1;n"/>
             <StringItem index="1" value="Th&#x1ed1;ng k&#xea; phi&#x1ebf;u nh&#x1ead;p"/>
             <StringItem index="2" value="Th&#x1ed1;ng k&#xea; phi&#x1ebf;u xu&#x1ea5;t"/>
-            <StringItem index="3" value="Th&#x1ed1;ng k&#xea; s&#x1ea3;n ph&#x1ea9;m b&#xe1;n ch&#x1ea1;y"/>
           </StringArray>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

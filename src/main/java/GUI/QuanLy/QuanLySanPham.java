@@ -64,7 +64,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             }
             model.addRow(new Object[]{i + 1, maSP, tenSP, soLuong, giaNhap, giaBan, tenNCC, xuatXu, donVi, tinhTrang});
         }
-        txtSoLuongSP.setEnabled(false);
+
     }
 
     public void createButtonGroup() {
@@ -84,12 +84,15 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbMaNCC.setSelectedIndex(0);
         cbbMaNhomHang.setSelectedIndex(0);
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(""))); // NOI18N
+        txtMaSP.setEnabled(true);
+        txtSoLuongSP.setEnabled(true);
         btnAdd.setEnabled(true);
         txtGiaNhap.setEnabled(true);
         txtXuatXu.setEnabled(true);
         txtDonVi.setEnabled(true);
         cbbMaNCC.setEnabled(true);
         cbbMaNhomHang.setEnabled(true);
+
         showProductsInTable();
     }
 
@@ -236,7 +239,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel8.setText("Số lượng");
 
-        txtMaSP.setEnabled(false);
         txtMaSP.setMaximumSize(new java.awt.Dimension(144, 200));
 
         txtTenSP.setMaximumSize(new java.awt.Dimension(144, 144));
@@ -548,6 +550,8 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void TableProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProductsMouseClicked
         // TODO add your handling code here:
+        txtMaSP.setEnabled(false);
+        txtSoLuongSP.setEnabled(false);
         if (evt.getClickCount() == 1) { // Đảm bảo rằng đó là một lần click đơn, bạn có thể thay đổi số click cần thiết
             int selectedRow = TableProducts.getSelectedRow();
             if (selectedRow != -1) {
@@ -708,22 +712,28 @@ public class QuanLySanPham extends javax.swing.JPanel {
             return;
         }
         int soLuong = 0;
-        double giaNhap = Double.parseDouble(txtGiaNhap.getText());
-        double giaBan = Double.parseDouble(txtGiaBan.getText());
-        try {
-            // Lấy dữ liệu từ JTextField
-            String a = txtGiaNhap.getText();
-            String b = txtGiaBan.getText();
-            // Thử chuyển đổi dữ liệu thành kiểu double
-            double value = Double.parseDouble(a);
-            double valueb = Double.parseDouble(b);
-            return;
-            // Nếu chuyển đổi thành công, thực hiện các hành động với giá trị kiểu double ở đây
-        } catch (NumberFormatException e) {
-            // Xử lý khi dữ liệu không thể chuyển đổi thành kiểu double
-            JOptionPane.showMessageDialog(null, "Dữ liệu không hợp lệ. Hãy nhập một số kiểu double.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        String giaNhap = txtGiaNhap.getText();
+        String giaBan = txtGiaBan.getText();
 
+        try {
+            // Kiểm tra giá nhập
+            Double.parseDouble(giaNhap);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số");
+            return;
         }
+
+        try {
+            // Kiểm tra giá bán
+            Double.parseDouble(giaBan);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số");
+            return;
+        }
+
+// Nếu code chạy đến đây, cả hai giá trị đều là số, và bạn có thể chuyển chúng thành Double
+        double giaNhapDouble = Double.parseDouble(giaNhap);
+        double giaBanDouble = Double.parseDouble(giaBan);
 
         String maNCC = "";
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
@@ -777,10 +787,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (indexMaNH == 11) {
             maNH = "0000012";
         }
-        hhBus.themHH(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, true);
+        hhBus.themHH(maSP, tenSP, maNH, maNCC, donVi, giaNhapDouble, giaBanDouble, soLuong, xuatXu, true);
         showProductsInTable();
         clearALL();
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -940,7 +949,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-         hhBus.xuatHHExcel();
+        hhBus.xuatHHExcel();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
