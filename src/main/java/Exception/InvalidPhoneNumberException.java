@@ -10,6 +10,6 @@ package Exception;
  */
 public class InvalidPhoneNumberException extends Exception {
     public InvalidPhoneNumberException(String phoneNumber) {
-        super("Số điện thoại không hợp lệ: " + phoneNumber);
+        super("Số điện thoại không hợp lệ: ");
     }
 }

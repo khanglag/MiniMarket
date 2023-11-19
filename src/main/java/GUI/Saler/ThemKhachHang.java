@@ -26,9 +26,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemKhachHang extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ThemKhachHang
-     */
     KhachHangDAO khd = new KhachHangDAO();
     KhachHangBus khb = new KhachHangBus();
 
@@ -36,15 +33,6 @@ public class ThemKhachHang extends javax.swing.JPanel {
         initComponents();
         createButtonGroup();
         showCustomerInTable();
-//         String dateStr = "13/03/2003";
-//
-//        // Định dạng của chuỗi ngày
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//
-//        // Chuyển đổi chuỗi thành LocalDate
-//        LocalDate localDate = LocalDate.parse(dateStr, formatter);
-//
-//        System.out.println("LocalDate: " + localDate);
     }
 
     public void showCustomerInTable() {
@@ -97,6 +85,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
         txtDiaChi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNgaySinh = new javax.swing.JTextField();
+        txtFindBySDT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,6 +221,8 @@ public class ThemKhachHang extends javax.swing.JPanel {
             }
         });
 
+        txtFindBySDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập sdt để tìm kiếm khách hàng"));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -251,11 +242,14 @@ public class ThemKhachHang extends javax.swing.JPanel {
                             .addComponent(txtNgaySinh)
                             .addComponent(txtDiaChi))
                         .addGap(61, 61, 61)
-                        .addComponent(btnArrange, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(chkArrangeAZ)
-                        .addGap(18, 18, 18)
-                        .addComponent(chkArrangeZA))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnArrange, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(chkArrangeAZ)
+                                .addGap(18, 18, 18)
+                                .addComponent(chkArrangeZA))
+                            .addComponent(txtFindBySDT, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3))
                 .addGap(0, 185, Short.MAX_VALUE))
         );
@@ -272,11 +266,16 @@ public class ThemKhachHang extends javax.swing.JPanel {
                             .addComponent(chkArrangeZA))
                         .addGap(1, 1, 1))
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
-                    .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13)
+                            .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtFindBySDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -319,13 +318,9 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void btnAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCustomerMouseClicked
 
@@ -333,23 +328,33 @@ public class ThemKhachHang extends javax.swing.JPanel {
         String soDT = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
         String ngaySinh = txtNgaySinh.getText().trim();
-      
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate localDate;
-            try {
-                localDate = LocalDate.parse(ngaySinh, formatter);
-                
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
-                return; // Dừng xử lý tiếp theo
-            }
-           try {
-             khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
-             JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate;
+        if (hoTen.equals("")) {
+            JOptionPane.showMessageDialog(null, "Họ tên không được để trống");
+            return;
+        }
+        if (diaChi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống");
+            return;
+        }
+        if (soDT.equals("")) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống");
+            return;
+        }
+        try {
+            localDate = LocalDate.parse(ngaySinh, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            return; // Dừng xử lý tiếp theo
+        }
+        try {
+            khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
+            JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công");
         } catch (Exception e) {
             return;
         }
-        
+
         showCustomerInTable();
     }//GEN-LAST:event_btnAddCustomerMouseClicked
 
@@ -364,7 +369,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
     private void btnFindCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindCustomerActionPerformed
         // TODO add your handling code here:
-        String sdt = txtNumberPhone.getText();
+        String sdt = txtFindBySDT.getText();
         KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
@@ -445,6 +450,10 @@ public class ThemKhachHang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkArrangeAZActionPerformed
 
+    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddCustomerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableCustomer;
@@ -463,6 +472,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtFindBySDT;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtNumberPhone;
