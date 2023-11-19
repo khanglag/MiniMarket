@@ -70,10 +70,12 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         jtfDonVi = new javax.swing.JTextField();
         jtfTinhTrang = new javax.swing.JTextField();
         btnChon = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         btnDong = new javax.swing.JButton();
         btnTao = new javax.swing.JButton();
 
@@ -142,6 +144,8 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setLayout(new java.awt.GridLayout(5, 0));
+
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ADD.png"))); // NOI18N
         btnThem.setText("THÊM");
@@ -150,6 +154,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 btnThemActionPerformed(evt);
             }
         });
+        jPanel2.add(btnThem);
 
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/updated.png"))); // NOI18N
@@ -159,6 +164,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 btnSuaActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSua);
 
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
@@ -168,6 +174,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 btnXoaActionPerformed(evt);
             }
         });
+        jPanel2.add(btnXoa);
 
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
@@ -177,6 +184,15 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 btnLamMoiActionPerformed(evt);
             }
         });
+        jPanel2.add(btnLamMoi);
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnClear);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,24 +214,20 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                     .addComponent(jtfSoLuong)
                     .addComponent(jtfDonVi)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtfMaSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(jtfMaSanPham)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jtfTenSanPham))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(101, 101, 101))
+                .addGap(71, 71, 71)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jtfMaPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -223,12 +235,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChon)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(btnThem)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnChon))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -242,16 +249,13 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jtfDonVi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(btnSua)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnXoa)
-                        .addGap(28, 28, 28)
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLamMoi)
                             .addComponent(jtfTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnDong.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -282,10 +286,8 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(btnDong)
                 .addGap(27, 27, 27))
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,22 +331,28 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
             for(int j = 0;j<list.size();j++){
                 ChiTietKiemHang_DTO ctpx = list.get(j);
                 if(ctpx.getMaSP().equals(jTable
-                    .getModel().getValueAt(i, 2).toString())){
+                    .getModel().getValueAt(i, 1).toString())){
                     index = i;
+                    break;
                 }
             }
+            if(index>=0 ){
+                String maPx = jtfMaPhieu.getText();
+                String maHx = jtfMaSanPham.getText();
+                String tenSp = jtfTenSanPham.getText();
+                int soluong = Integer.parseInt(jtfSoLuong.getText());
+                String donViTinh = jtfDonVi.getText();
+                String tinhTrang= jtfTinhTrang.getText();
+                ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
+                list.set(index,ctpx);
+                JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
+                LoadData();
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa.Mời chọn sản phẩm");
         }
-        if(index>=0 ){
-            String maPx = jtfMaPhieu.getText();
-            String maHx = jtfMaSanPham.getText();
-            String tenSp = jtfTenSanPham.getText();
-            int soluong = Integer.parseInt(jtfSoLuong.getText());
-            String donViTinh = jtfDonVi.getText();
-            
-            String tinhTrang= jtfTinhTrang.getText();
-            ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
-            list.set(index,ctpx);
-        }
+        
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -357,6 +365,8 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         }
         if(jtfSoLuong.getText().equals("") || jtfTinhTrang.equals("")  ){
             JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
+        }else if(!Handle.Check.isNumeric(jtfSoLuong.getText())){
+             JOptionPane.showMessageDialog(this,  "Số lượng không hợp lệ. Mời nhập lại!");
         }else if(Integer.parseInt(jtfSoLuong.getText())<=0){
              JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0");
         }
@@ -372,7 +382,9 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
             
             String tinhTrang= jtfTinhTrang.getText();
             ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
-            list.add(ctpx);
+            if(list.add(ctpx)){
+                JOptionPane.showMessageDialog(this, "Thêm sản phẩm vào bảng chi tiết phiếu kiểm hàng thành công");
+            }
             LoadData();
         }
     }//GEN-LAST:event_btnThemActionPerformed
@@ -383,7 +395,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         if(i>=0){
             for(ChiTietKiemHang_DTO ctpx : list){
                 if(ctpx.getMaSP().equals(jTable
-                    .getModel().getValueAt(i, 2).toString())){
+                    .getModel().getValueAt(i, 1).toString())){
                     if(list.remove(ctpx)){
                         JOptionPane.showMessageDialog(this,  "Đã xoá!");
                     }else{
@@ -391,10 +403,10 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                     }
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa.Mời chọn sản phẩm");
         }
-        if(list.isEmpty()){
-            model.setRowCount(0);
-        }
+        
         LoadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -434,8 +446,18 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableMouseClicked
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        jtfMaSanPham.setText("");
+        jtfTenSanPham.setText("");
+        jtfSoLuong.setText("");
+        jtfDonVi.setText("");
+        jtfTinhTrang.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDong;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnSua;
@@ -449,6 +471,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jtfDonVi;

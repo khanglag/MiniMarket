@@ -99,7 +99,7 @@ public class PhieuNhapDAO {
         StringBuilder qry = new StringBuilder("SELECT * FROM `phieunhap` WHERE TONTAI = 1");
 
         if (maPhieuNhap != null && !maPhieuNhap.isEmpty()) {
-            qry.append(" AND `MAPHIEUNHAP` = '" + maPhieuNhap + "'");
+            qry.append(" AND `MAPHIEUNHAP` like '" + maPhieuNhap + "%'");
         }
 
         if (maNV != null) {
