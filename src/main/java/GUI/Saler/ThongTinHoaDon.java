@@ -274,6 +274,8 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
     private void btnXuatHDPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHDPDFActionPerformed
         // TODO add your handling code here:
         String path = "";
+        String pathHandle = "xuatHD"+txtMaHoaDon.getText().trim()+".pdf";
+        System.out.println(pathHandle);
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x = j.showSaveDialog(this);
@@ -283,10 +285,10 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
         Document doc = new Document();
         try {
 
-            PdfWriter.getInstance(doc, new FileOutputStream(path + "xuatHD.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
             doc.open();
-            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
+//            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
             doc.add(new Paragraph("THONG TIN HOA DON"));
             doc.add(new Paragraph("CUA HANG: " + txtTitle.getText() + " " + txtChaoMung.getText()));
             doc.add(new Paragraph(txtSoHD.getText() + txtMaHoaDon.getText() + "              " + txtThoiGian.getText() + txtTime.getText()));
@@ -303,22 +305,19 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                     pdfTable.addCell(tableGioHang.getModel().getValueAt(rows, cols).toString());
                 }
             }
-
             doc.add(pdfTable);
-            doc.add(new Paragraph(txtTongHD.getText()+" " + txtTongHoaDon.getText()));
+            doc.add(new Paragraph(txtTongHD.getText() + " " + txtTongHoaDon.getText()));
             doc.add(new Paragraph(txtTKD.getText() + txtKhachDua.getText()));
-            doc.add(new Paragraph(txtTT.getText()+"       " + txtTienThua.getText()));
+            doc.add(new Paragraph(txtTT.getText() + "       " + txtTienThua.getText()));
             JOptionPane.showMessageDialog(this, "Xuất hóa đơn PDF thành công!");
             doc.close();
-          
-
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
         }
-  Window window = SwingUtilities.getWindowAncestor(this);
-            if (window != null) {
-                window.dispose();
-            }
+        Window window = SwingUtilities.getWindowAncestor(this);
+        if (window != null) {
+            window.dispose();
+        }
     }//GEN-LAST:event_btnXuatHDPDFActionPerformed
 
 
