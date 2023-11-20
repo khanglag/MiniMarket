@@ -429,19 +429,23 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean flag = false;
         int n = list.size();
-        int i = jTable.getSelectedRow();
-        for(ChiTietPhieuNhap_DTO ctpn: list){
+        
+        if(n==0){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm");
+        }else{
+            for(ChiTietPhieuNhap_DTO ctpn: list){
             if(phieuYeuCauNhapBus.themCTPN(ctpn)){
                 flag = true;
             }else{
                 flag = false;
             }
-        }
-        if(flag){
-            
-            JOptionPane.showMessageDialog(this,  "Tạo thành công");
-            phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
-            this.dispose();
+            }
+            if(flag){
+
+                JOptionPane.showMessageDialog(this,  "Tạo thành công");
+                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_btnTaoYeuCauActionPerformed
 

@@ -11,7 +11,9 @@ import Controller.ThuKhoController;
 import GUI.Admin.DoiMatKhau;
 import GUI.Login.LoginForm;
 import static GUI.Login.LoginForm.login;
+import GUI.Saler.ThongTinNhanVien;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -31,6 +33,11 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         initComponents();
         jLabelTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        jpnView.removeAll();
+        jpnView.revalidate();
+        jpnView.repaint();
+        jpnView.add(ttnv).setVisible(true);
         TrinhDieuKhien();
         
 
@@ -366,9 +373,18 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
     private void jLabelTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTenMouseClicked
         // TODO add your handling code here:
-        new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
+        panelPhieuKiemHang.setBackground(Color.red);
+        panelQuanLyPhieuNhap.setBackground(Color.red);
+        panelQuanLyPhieuXuat.setBackground(Color.red);
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        jpnView.removeAll();
+        jpnView.revalidate();
+        jpnView.repaint();
+        jpnView.add(ttnv).setVisible(true);
+        
     }//GEN-LAST:event_jLabelTenMouseClicked
 
+    
     private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
         // TODO add your handling code here:
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);

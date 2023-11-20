@@ -418,7 +418,10 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
     private void btnTaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoActionPerformed
         // TODO add your handling code here:
         boolean flag = false;
-        for(ChiTietKiemHang_DTO ctpx : list){
+        if(list.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm nào");
+        }else{
+            for(ChiTietKiemHang_DTO ctpx : list){
             if(chitiet.themCTKH(ctpx)){
                 flag = true;
             }else{
@@ -428,6 +431,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         }
         if(flag){
             this.dispose();
+        }
         }
         
     }//GEN-LAST:event_btnTaoActionPerformed

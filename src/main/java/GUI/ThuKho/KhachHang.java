@@ -9,6 +9,7 @@ import DTO.KhachHang_DTO;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -223,10 +224,12 @@ public class KhachHang extends JDialog {
         int i = jTableKhachHang.getSelectedRow();
         if (i >= 0) {
             setMaKH(jTableKhachHang.getModel().getValueAt(i, 0).toString());
-            
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng");
         }
 
-        this.dispose();
+        
     }//GEN-LAST:event_btnChonActionPerformed
 
     /**
