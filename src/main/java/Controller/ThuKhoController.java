@@ -100,7 +100,6 @@ public class ThuKhoController {
 
          @Override
       public void mousePressed(MouseEvent e) {
-          System.out.println("chay mousepress");
            kindSelected = kind;
            jpnItem.setBackground(new Color(0,0,0));
            jlbItem.setBackground(new Color(0,0,0));
@@ -108,20 +107,17 @@ public class ThuKhoController {
 
       @Override
       public void mouseReleased(MouseEvent e) {
-          System.out.println("chay mousereleased");
-
+         
       }
 
       @Override
       public void mouseEntered(MouseEvent e) {
-          System.out.println("chay mouseenter");
           jpnItem.setBackground(new Color(0,0,0));
           jlbItem.setBackground(new Color(0,0,0));
       }
 
       @Override
       public void mouseExited(MouseEvent e) {
-          System.out.println("chay mouseexit");
           if (!kindSelected.equalsIgnoreCase(kind)) {
                 jpnItem.setBackground(new Color(51,51,51));
                 jlbItem.setBackground(new Color(51,51,51));
@@ -130,7 +126,6 @@ public class ThuKhoController {
         
     }
     private void setChangeBackGround(String kind){
-        System.out.println("chay doi mau");
         for(DanhMucBean item: listItem){
             if(item.getKind().equalsIgnoreCase(kind)){
                 item.getJpn().setBackground(new Color(0,0,0));

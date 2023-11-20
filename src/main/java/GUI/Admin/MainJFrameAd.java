@@ -10,6 +10,8 @@ import Controller.AdminController;
 import Controller.TaiKhoanController;
 import GUI.Login.LoginForm;
 import static GUI.Login.LoginForm.login;
+import GUI.Saler.ThongTinNhanVien;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -27,6 +29,11 @@ public class MainJFrameAd extends javax.swing.JFrame {
     public MainJFrameAd() {
         initComponents();
         jlbTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        jpnView.removeAll();
+        jpnView.revalidate();
+        jpnView.repaint();
+        jpnView.add(ttnv).setVisible(true);
         TrinhDieuKhien();
     }
 private void TrinhDieuKhien() {
@@ -235,7 +242,12 @@ private void TrinhDieuKhien() {
 
     private void jlbTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbTenMouseClicked
         // TODO add your handling code here:
-        new DoiMatKhau(TaiKhoanController.getTendnString()).setVisible(true);
+        panelQuanLyUser.setBackground(Color.red);
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        jpnView.removeAll();
+        jpnView.revalidate();
+        jpnView.repaint();
+        jpnView.add(ttnv).setVisible(true);
     }//GEN-LAST:event_jlbTenMouseClicked
 
     private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
