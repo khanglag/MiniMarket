@@ -621,7 +621,7 @@ public class BanHang extends javax.swing.JPanel {
             JFrame frame = new JFrame("In hóa đơn");
             ThongTinHoaDon tthd = new ThongTinHoaDon();
             frame.add(tthd);
-            frame.setSize(500, 700);
+            frame.setSize(548, 536);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);

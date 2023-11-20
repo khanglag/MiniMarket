@@ -641,10 +641,8 @@ public class QuanLySanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (ChkArrangeByName.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
-            model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+            model.setRowCount(0); 
             ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
-
-            // Sắp xếp danh sách theo tenSP bằng cách sử dụng Comparator
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
@@ -670,8 +668,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
             ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
-
-// Sắp xếp danh sách theo giaBan bằng cách sử dụng Comparator
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
@@ -714,27 +710,24 @@ public class QuanLySanPham extends javax.swing.JPanel {
         int soLuong = 0;
         String giaNhap = txtGiaNhap.getText();
         String giaBan = txtGiaBan.getText();
-
         try {
-            // Kiểm tra giá nhập
             Double.parseDouble(giaNhap);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số");
             return;
         }
-
         try {
-            // Kiểm tra giá bán
             Double.parseDouble(giaBan);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số");
             return;
         }
-
-// Nếu code chạy đến đây, cả hai giá trị đều là số, và bạn có thể chuyển chúng thành Double
         double giaNhapDouble = Double.parseDouble(giaNhap);
         double giaBanDouble = Double.parseDouble(giaBan);
-
+        if(giaBanDouble <=0 || giaNhapDouble <= 0){
+            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán > 0");
+            return;
+        }
         String maNCC = "";
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
         if (indexMaNCC == 0) {
@@ -794,10 +787,16 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        String maSP = txtMaSP.getText();
+        if(maSP.equals("")){
+              JOptionPane.showMessageDialog(null,
+                        "Vui lòng chọn sản phẩm để xóa");
+              return;
+        }
         String tenSP = txtTenSP.getText();
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa sản phẩm " + tenSP + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
-            String maSP = txtMaSP.getText();
+            
             try {
                 hhBus.xoaHangHoa(maSP);
                 JOptionPane.showMessageDialog(null,
@@ -825,8 +824,43 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String msp = txtMaSP.getText();
         String tsp = txtTenSP.getText();
         String xx = txtXuatXu.getText();
-        double giaNhap = Double.parseDouble(txtGiaNhap.getText());
-        double giaBan = Double.parseDouble(txtGiaBan.getText());
+        String giaNhap = txtGiaNhap.getText();
+        String giaBan = txtGiaBan.getText();
+         if(msp.equals("")){
+             JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm để sửa");
+            return;
+        }
+        if(tsp.equals("")){
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập tên sp");
+            return;
+        }
+        if(xx.equals("")){
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập xuất xứ sp");
+            return;
+        }
+        try {
+            // Kiểm tra giá nhập
+            Double.parseDouble(giaNhap);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số");
+            return;
+        }
+
+        try {
+            // Kiểm tra giá bán
+            Double.parseDouble(giaBan);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số");
+            return;
+        }
+
+// Nếu code chạy đến đây, cả hai giá trị đều là số, và bạn có thể chuyển chúng thành Double
+        double giaNhapDouble = Double.parseDouble(giaNhap);
+        double giaBanDouble = Double.parseDouble(giaBan);
+        if(giaBanDouble <=0 || giaNhapDouble <= 0){
+            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán > 0");
+            return;
+        }
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
         String maNCC = "";
         if (indexMaNCC == 0) {
@@ -845,7 +879,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (dialogResult == JOptionPane.YES_OPTION) {
 
             try {
-                hhBus.suaHangHoa(msp, tsp, maNCC, giaNhap, giaBan, xx);
+                hhBus.suaHangHoa(msp, tsp, maNCC, giaNhapDouble, giaBanDouble, xx);
                 showProductsInTable();
                 JOptionPane.showMessageDialog(null,
                         "Sửa sản phẩm thành công");
