@@ -69,7 +69,15 @@ public class HangHoaBus {
     }
 
     public boolean xoaHangHoa(String maHH) {
-        return dao.delete(maHH);
+        try {
+            dao.delete(maHH);
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Xóa hàng hóa thất bại");
+        }
+        return true;
     }
 
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa, String maNH, String maNCC) {
