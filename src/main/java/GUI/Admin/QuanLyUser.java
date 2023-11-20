@@ -392,6 +392,13 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
         if(i>=0){
+            if(!jTable.getModel().getValueAt(i, 4).equals("Chưa có tài khoản")){
+                btnSua.setEnabled(false);
+                btnThem.setEnabled(false);
+            }else{
+                btnSua.setEnabled(true);
+                btnThem.setEnabled(true);
+            }
             jtfMaNV.setText(jTable.getModel().getValueAt(i, 0).toString());
             jtfTen.setText(jTable.getModel().getValueAt(i, 1).toString());
             jtfNgaySinh.setText(jTable.getModel().getValueAt(i, 2).toString());
@@ -433,27 +440,36 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
         String str = jTable.getModel().getValueAt(i, 4).toString();
-        if(str.equals("Đã có tài khoản")){
+        if(i>=0){
+            if(str.equals("Đã có tài khoản")){
             TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
             if(taiKhoanBus.xoaTaiKhoan(tk)){
                 JOptionPane.showMessageDialog(null, "Đã khoá tài khoản");
             }
-        }else if (str.equals("Chưa có tài khoản")){
-            JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+            }else if (str.equals("Chưa có tài khoản")){
+                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+            }else{
+                JOptionPane.showMessageDialog(null, "Tài khoản đã bị khoá");
+            }
+            LoadData();
         }else{
-            JOptionPane.showMessageDialog(null, "Tài khoản đã bị khoá");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn xoá");
         }
-        LoadData();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        if(nhanVienBus.suaNhanVien(jtfMaNV.getText().toString(), jtfMaQuyen.getText().toString())){
+        int i = jTable.getSelectedRow();
+        if(i>=0){
+            if(nhanVienBus.suaNhanVien(jtfMaNV.getText().toString(), jtfMaQuyen.getText().toString())){
             JOptionPane.showMessageDialog(this, "Sửa thành công!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Lỗi!");
+            }
+            LoadData();
         }else{
-            JOptionPane.showMessageDialog(this, "Lỗi!");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản muốn sửa");
         }
-        LoadData();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
@@ -484,18 +500,22 @@ public class QuanLyUser extends javax.swing.JPanel {
     private void btnMoKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoKhoaActionPerformed
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
-        String str = jTable.getModel().getValueAt(i, 4).toString();
-        if(str.equals("Tài khoản bị khoá")){
-            TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
-            if(taiKhoanBus.moTK(tk)){
-                JOptionPane.showMessageDialog(null, "Đã mở khoá tài khoản");
+        if(i>=0){
+            String str = jTable.getModel().getValueAt(i, 4).toString();
+            if(str.equals("Tài khoản bị khoá")){
+                TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
+                if(taiKhoanBus.moTK(tk)){
+                    JOptionPane.showMessageDialog(null, "Đã mở khoá tài khoản");
+                }
+            }else if (str.equals("Chưa có tài khoản")){
+                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+            }else{
+                JOptionPane.showMessageDialog(null, "Tài khoản hiện không khoá");
             }
-        }else if (str.equals("Chưa có tài khoản")){
-            JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+            LoadData();
         }else{
-            JOptionPane.showMessageDialog(null, "Tài khoản hiện không khoá");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn mở khoá");
         }
-        LoadData();
     }//GEN-LAST:event_btnMoKhoaActionPerformed
 
 
