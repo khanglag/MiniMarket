@@ -9,6 +9,7 @@ import DTO.HangHoa_DTO;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -269,9 +270,12 @@ public class HangHoa extends JDialog {
          
             double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 4).toString());
             chonHangHoa = new HangHoa_DTO(masp,tensp,mancc,donvi,giaban,xuatxu);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm");
         }
         
-        this.dispose();
+        
     }//GEN-LAST:event_btnChonActionPerformed
 
     private void jTableHangHoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHangHoaMouseClicked
