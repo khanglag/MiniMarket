@@ -8,9 +8,11 @@ import BEAN.DanhMucBean;
 import BUS.NhanvienBus;
 import Controller.AdminController;
 import Controller.TaiKhoanController;
+import GUI.Login.LoginForm;
 import static GUI.Login.LoginForm.login;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -238,8 +240,16 @@ private void TrinhDieuKhien() {
 
     private void jLabelDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelDangXuatMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-        login();
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            LoginForm lg = new LoginForm();
+            this.dispose();
+            lg.setVisible(true);
+            lg.setLocationRelativeTo(null);
+
+        } else {
+            return;
+        }
     }//GEN-LAST:event_jLabelDangXuatMouseClicked
 
 
