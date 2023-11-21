@@ -63,6 +63,10 @@ public class NhanvienBus {
         return dAO.searchNhanVien(null, tenNV, null);
     }
 
+    public ArrayList<NhanVien_DTO> timNhanVienM(String tenNV){
+        return dAO.searchNhanVien(tenNV, null, null);
+    }
+    
     public boolean themNhanVien(String tenNV, LocalDate ngaySinh, String gioiTinh, String sdt, String cccd,
             String email, String diaChi, String maPQ) {
         PhoneNumberValidator phoneNumberValidator=new PhoneNumberValidator();

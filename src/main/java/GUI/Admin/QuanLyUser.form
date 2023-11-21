@@ -275,7 +275,7 @@
             <Property name="rows" type="int" value="6"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnXoa">
+            <Component class="javax.swing.JButton" name="btnKhoa">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="ff" red="33" type="rgb"/>
@@ -292,7 +292,7 @@
                 <Property name="text" type="java.lang.String" value="Kho&#xe1; t&#xe0;i kho&#x1ea3;n"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhoaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnMoKhoa">
@@ -430,6 +430,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xcc;M KI&#x1ebe;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfTim">
           <Properties>

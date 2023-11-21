@@ -71,4 +71,8 @@ public class TaiKhoanBus {
         return tkDAO.Account(maNV);
         
     }
+    public TaiKhoan_DTO tim(String maNV){
+        return tkDAO.searchTaiKhoan(maNV);
+        
+    }
 }

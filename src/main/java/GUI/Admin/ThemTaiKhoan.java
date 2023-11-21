@@ -71,6 +71,8 @@ public class ThemTaiKhoan extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Quyền");
         jPanel2.add(jLabel4);
+
+        jtfQuyen.setEditable(false);
         jPanel2.add(jtfQuyen);
 
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

@@ -200,6 +200,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         // TODO add your handling code here:
         TaiKhoan_DTO tk = tkBus.checkPass(TaiKhoanController.getTendnString());
         System.out.println(tk);
+        
         if(jpfMatKhau.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
         }else if( jpfMatKhauMoi.getText().equals("")){
@@ -210,8 +211,11 @@ public class DoiMatKhau extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Mật khẩu không khớp!");
         }else if(!jpfMatKhau.getText().equals(tk.getMatKhau())){
             JOptionPane.showMessageDialog(this, "Mật khẩu không chính xác!");
-        }
-        else if(tkBus.doiMatKhau(TaiKhoanController.getTendnString(), jpfXacNhan.getText())){
+        }else if( jpfMatKhauMoi.getText().equals(tk.getMatKhau())){
+            JOptionPane.showMessageDialog(this, "Mật khẩu mới phải khác mật khẩu cũ!");
+        }else if( jpfMatKhauMoi.getText().length()<8){
+            JOptionPane.showMessageDialog(this, "Mật khẩu phải có ít nhất 8 ký tự");
+        }else if(tkBus.doiMatKhau(TaiKhoanController.getTendnString(), jpfXacNhan.getText())){
             JOptionPane.showMessageDialog(this, "Đã đổi mật khẩu!");
             this.dispose();
         }else
