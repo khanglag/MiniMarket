@@ -76,7 +76,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         jcbbTenQuyen = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnXoa = new javax.swing.JButton();
+        btnKhoa = new javax.swing.JButton();
         btnMoKhoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
@@ -188,17 +188,17 @@ public class QuanLyUser extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(6, 0));
 
-        btnXoa.setBackground(new java.awt.Color(51, 255, 102));
-        btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
-        btnXoa.setText("Khoá tài khoản");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnKhoa.setBackground(new java.awt.Color(51, 255, 102));
+        btnKhoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnKhoa.setForeground(new java.awt.Color(255, 255, 255));
+        btnKhoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
+        btnKhoa.setText("Khoá tài khoản");
+        btnKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
+                btnKhoaActionPerformed(evt);
             }
         });
-        jPanel3.add(btnXoa);
+        jPanel3.add(btnKhoa);
 
         btnMoKhoa.setText("Mở khoá tài khoản");
         btnMoKhoa.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +287,11 @@ public class QuanLyUser extends javax.swing.JPanel {
         btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnTim.setText("TÌM KIẾM");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
         jtfTim.addActionListener(new java.awt.event.ActionListener() {
@@ -436,11 +441,12 @@ public class QuanLyUser extends javax.swing.JPanel {
             
     }//GEN-LAST:event_jcbbTenQuyenActionPerformed
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+    private void btnKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaActionPerformed
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
-        String str = jTable.getModel().getValueAt(i, 4).toString();
+        
         if(i>=0){
+            String str = jTable.getModel().getValueAt(i, 4).toString();
             if(str.equals("Đã có tài khoản")){
             TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
             if(taiKhoanBus.xoaTaiKhoan(tk)){
@@ -455,7 +461,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn xoá");
         }
-    }//GEN-LAST:event_btnXoaActionPerformed
+    }//GEN-LAST:event_btnKhoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
@@ -483,12 +489,14 @@ public class QuanLyUser extends javax.swing.JPanel {
         if(i>=0){
             int choice = JOptionPane.showConfirmDialog(null, "Bạn có muốn đặt lại mật khẩu không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
-                if(taiKhoanBus.doiMatKhau(jtfMaNV.getText(), "Abc@123")){
+                if(taiKhoanBus.doiMatKhau(jtfMaNV.getText(), "Abc@1234")){
                     JOptionPane.showMessageDialog(this, "Đặt lại mật khẩu thành công!");
                 }
             } else {
             
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản muốn đặt lại mật khẩu");
         }
         
     }//GEN-LAST:event_btnDatLaiMatKhauActionPerformed
@@ -518,15 +526,33 @@ public class QuanLyUser extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnMoKhoaActionPerformed
 
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        // TODO add your handling code here:
+        model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0);
+        
+        list = nhanVienBus.timNhanVienM(jtfTim.getText());
+        int i = 0;
+        while (i <= list.size() - 1) {
+            NhanVien_DTO px = list.get(i);
+            String str = nhanVienBus.kiemtraTK(px.getMaNV());
+            model.addRow(new Object[] {
+                   px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
+            });
+            jTable.setModel(model);
+            ++i;
+        }
+    }//GEN-LAST:event_btnTimActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDatLaiMatKhau;
+    private javax.swing.JButton btnKhoa;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnMoKhoa;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
