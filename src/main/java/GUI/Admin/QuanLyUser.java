@@ -467,7 +467,9 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
         if(i>=0){
-            if(nhanVienBus.suaNhanVien(jtfMaNV.getText().toString(), jtfMaQuyen.getText().toString())){
+            if(jcbbTenQuyen.getSelectedIndex()==0){
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn quyền");
+            } else if(nhanVienBus.suaNhanVien(jtfMaNV.getText().toString(), jtfMaQuyen.getText().toString())){
             JOptionPane.showMessageDialog(this, "Sửa thành công!");
             }else{
                 JOptionPane.showMessageDialog(this, "Lỗi!");
