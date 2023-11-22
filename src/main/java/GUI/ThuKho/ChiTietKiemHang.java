@@ -363,7 +363,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 flag = true;
             }        
         }
-        if(jtfSoLuong.getText().equals("") || jtfTinhTrang.equals("")  ){
+        if(jtfSoLuong.getText().equals("") || jtfTinhTrang.getText().equals("")  ){
             JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
         }else if(!Handle.Check.isNumeric(jtfSoLuong.getText())){
              JOptionPane.showMessageDialog(this,  "Số lượng không hợp lệ. Mời nhập lại!");
