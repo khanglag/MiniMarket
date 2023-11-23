@@ -249,6 +249,7 @@ public class BanHang extends javax.swing.JPanel {
         txtSDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập SĐT"));
 
         txtTenKH.setBorder(javax.swing.BorderFactory.createTitledBorder("Tên khách hàng"));
+        txtTenKH.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -541,6 +542,11 @@ public class BanHang extends javax.swing.JPanel {
     private void btnSuaSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaSoLuongMouseClicked
         // TODO add your handling code here:
         String soLuong = txtSoLuong.getText();
+        if(Integer.parseInt(soLuong) < 1){
+             JOptionPane.showMessageDialog(null,
+                            "Số lượng >= 1");
+                    return;
+        }
         for (HangHoa_DTO sanPham : gioHang) {
             if (sanPham.getMaSP().equals(masp)) {
                 int soLuongTrenDB = hhb.ktSoLuong(sanPham.getMaSP());
@@ -639,11 +645,17 @@ public class BanHang extends javax.swing.JPanel {
         } else {
             return;
         }
+        showItemCartInTable();
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKhachHangActionPerformed
         // TODO add your handling code here:
         String sdt = txtSDT.getText();
+         if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng nhập SĐT!");
+            return;
+        } 
         khBUS.timKhachHang(null, sdt);
         if (khBUS.timKhachHang(null, sdt) == null) {
             JOptionPane.showMessageDialog(null,

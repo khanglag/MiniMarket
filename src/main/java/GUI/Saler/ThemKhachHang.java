@@ -371,6 +371,10 @@ public class ThemKhachHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         String sdt = txtFindBySDT.getText();
         KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
+        if(khachHang == null){
+            JOptionPane.showMessageDialog(null, "SĐT không chính xác hoặc khách hàng không có trong hệ thống vui lòng nhập lại!!");
+            return;
+        }
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
         String maKH = khachHang.getMaKH();

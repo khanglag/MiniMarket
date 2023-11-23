@@ -7,6 +7,7 @@ package GUI.QuanLy;
 import BUS.NhanvienBus;
 import Controller.TaiKhoanController;
 import GUI.Login.LoginForm;
+import GUI.Saler.ThongTinNhanVien;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -302,8 +303,12 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
 
         txtUserName.setBackground(new java.awt.Color(255, 255, 255));
         txtUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(255, 255, 255));
         txtUserName.setText("jLabel8");
+        txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUserNameMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -473,6 +478,15 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_paneldxMousePressed
+
+    private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
+        // TODO add your handling code here:
+            ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(ttnv).setVisible(true);
+    }//GEN-LAST:event_txtUserNameMouseClicked
 
     /**
      * @param args the command line arguments

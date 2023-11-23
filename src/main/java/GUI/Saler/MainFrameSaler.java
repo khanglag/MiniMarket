@@ -271,6 +271,11 @@ public class MainFrameSaler extends javax.swing.JFrame {
         jLabel2.setText("MÀN HÌNH NHÂN VIÊN");
 
         txtUserName.setText("jLabel7");
+        txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUserNameMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -433,6 +438,15 @@ public class MainFrameSaler extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_paneltkhMouseClicked
+
+    private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
+        // TODO add your handling code here:
+          ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(ttnv).setVisible(true);
+    }//GEN-LAST:event_txtUserNameMouseClicked
 
     /**
      * @param args the command line arguments
