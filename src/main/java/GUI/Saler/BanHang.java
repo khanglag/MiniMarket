@@ -249,6 +249,7 @@ public class BanHang extends javax.swing.JPanel {
         txtSDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập SĐT"));
 
         txtTenKH.setBorder(javax.swing.BorderFactory.createTitledBorder("Tên khách hàng"));
+        txtTenKH.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -412,9 +413,7 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -543,6 +542,11 @@ public class BanHang extends javax.swing.JPanel {
     private void btnSuaSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaSoLuongMouseClicked
         // TODO add your handling code here:
         String soLuong = txtSoLuong.getText();
+        if(Integer.parseInt(soLuong) < 1){
+             JOptionPane.showMessageDialog(null,
+                            "Số lượng >= 1");
+                    return;
+        }
         for (HangHoa_DTO sanPham : gioHang) {
             if (sanPham.getMaSP().equals(masp)) {
                 int soLuongTrenDB = hhb.ktSoLuong(sanPham.getMaSP());
@@ -566,6 +570,8 @@ public class BanHang extends javax.swing.JPanel {
             return;
         }
         if (masp.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng click vào sản phẩm cần xóa để xóa!");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -623,7 +629,7 @@ public class BanHang extends javax.swing.JPanel {
             JFrame frame = new JFrame("In hóa đơn");
             ThongTinHoaDon tthd = new ThongTinHoaDon();
             frame.add(tthd);
-            frame.setSize(500, 700);
+            frame.setSize(548, 536);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
@@ -641,11 +647,17 @@ public class BanHang extends javax.swing.JPanel {
         } else {
             return;
         }
+        showItemCartInTable();
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKhachHangActionPerformed
         // TODO add your handling code here:
         String sdt = txtSDT.getText();
+         if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng nhập SĐT!");
+            return;
+        } 
         khBUS.timKhachHang(null, sdt);
         if (khBUS.timKhachHang(null, sdt) == null) {
             JOptionPane.showMessageDialog(null,

@@ -52,6 +52,7 @@ public class HangHoaBus {
         ds = dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getGiaBan();
     }
+   
 
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenSP, String maNH, double giaBan, String xuatXu) {
         return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
@@ -68,7 +69,15 @@ public class HangHoaBus {
     }
 
     public boolean xoaHangHoa(String maHH) {
-        return dao.delete(maHH);
+        try {
+            dao.delete(maHH);
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Xóa hàng hóa thất bại");
+        }
+        return true;
     }
 
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenHangHoa, String maNH, String maNCC) {
@@ -169,7 +178,6 @@ public class HangHoaBus {
                     hhdto.setAnhSP(cell.getStringCellValue());
                     System.out.println("Hang hoa" + hhdto.toString());
                     if (dao.daTonTaiHH(hhdto.getMaSP())) {
-                        if(erorrString!="")
                             erorrString+="\nSản phẩm "+hhdto.getMaSP()+" "+hhdto.getTenSP()+"đã tồn tại ";
                     }
                     else {
@@ -183,7 +191,9 @@ public class HangHoaBus {
             ep.printStackTrace();
             return false;
         }
-        JOptionPane.showMessageDialog(null,erorrString);
+        if (erorrString!="") {
+            JOptionPane.showMessageDialog(null,erorrString);
+        }
         return true;
     }
     public boolean xuatHHExcel(){

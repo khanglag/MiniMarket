@@ -42,10 +42,10 @@ public class ChiTietHoaDonDAO {
         return chiTietHoaDon_DTOs;
     }
 
-    public ArrayList<ChiTietHoaDon_DTO> readBD(String maHD) {
+    public ArrayList<ChiTietHoaDon_DTO> readBD(int maHD) {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<ChiTietHoaDon_DTO> chiTietHoaDon_DTOs = new ArrayList<>();
-        String qry = "SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1 AND 'sohd'="+maHD;
+        String qry = "SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1 AND SOHD="+maHD;
         ResultSet rSet = null;
         try {
             rSet = connectDB.sqlQuery(qry);

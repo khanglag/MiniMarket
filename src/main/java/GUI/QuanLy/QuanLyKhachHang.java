@@ -111,6 +111,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         chkArrangeZA = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         txtMaKh = new javax.swing.JTextField();
+        txtFindBySDT = new javax.swing.JTextField();
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
@@ -255,6 +256,8 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Mã khách hàng");
 
+        txtFindBySDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập sdt để tìm kiếm khách hàng"));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -275,21 +278,24 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                             .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                             .addComponent(txtDiaChi))))
                 .addGap(67, 67, 67)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnArrange)
-                .addGap(18, 18, 18)
-                .addComponent(chkArrangeAZ)
-                .addGap(18, 18, 18)
-                .addComponent(chkArrangeZA)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnArrange)
+                        .addGap(18, 18, 18)
+                        .addComponent(chkArrangeAZ)
+                        .addGap(18, 18, 18)
+                        .addComponent(chkArrangeZA))
+                    .addComponent(txtFindBySDT, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -302,8 +308,9 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFindBySDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -336,7 +343,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -349,6 +356,18 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         String soDT = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
         String ngaySinh = txtNgaySinh.getText().trim();
+        if (hoTen.equals("")) {
+            JOptionPane.showMessageDialog(null, "Họ tên không được để trống");
+            return;
+        }
+        if (diaChi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống");
+            return;
+        }
+        if (soDT.equals("")) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống");
+            return;
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate;
         try {
@@ -361,12 +380,12 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
         showCustomerInTable();
         btnClearActionPerformed(null);
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         String sdt = txtNumberPhone.getText().trim();
         if (sdt.equals("")) {
+             JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để xóa");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa?", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -393,7 +412,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                         txtName.setEnabled(false);
                         txtNgaySinh.setEnabled(false);
                         txtMaKh.setEnabled(false);
-              
+
                         txtName.setText(khachHang.getTenKH());
                         txtNumberPhone.setText(khachHang.getSdt());
                         String ngaySinh = timeConvert.convert(khachHang.getNgaySinh());
@@ -409,15 +428,26 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-       
-         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa thông tin khách hàng này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            String maKH = txtMaKh.getText();
+        String maKH = txtMaKh.getText();
+         if (maKH.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để sửa");
+            return;
+        }
         String sdt = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
-        khb.suaKhachHang(maKH, sdt, diaChi);
-        showCustomerInTable();
-        clearAll();
+        if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống");
+            return;
+        }
+        if (diaChi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống");
+            return;
+        }
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa thông tin khách hàng này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            khb.suaKhachHang(maKH, sdt, diaChi);
+            showCustomerInTable();
+            clearAll();
         } else {
             return;
         }
@@ -425,7 +455,11 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-        String sdt = txtNumberPhone.getText();
+        String sdt = txtFindBySDT.getText();
+        if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập SĐT khách hàng để tìm kiếm thông tin khách hàng!!");
+            return;
+        }
         KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
@@ -496,6 +530,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtFindBySDT;
     private javax.swing.JTextField txtMaKh;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNgaySinh;
