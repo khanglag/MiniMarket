@@ -461,8 +461,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         }
         try {
             nvBus.themNhanVien(tenNV, localDate, gioiTinh, sdt, cccd, email, diaChi, maPQ);
-            JOptionPane.showMessageDialog(null, "Thêm NV thành công");
-
+           
             showStaffInTable();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Thêm thất bại!!!!!!");
@@ -560,7 +559,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 
             try {
                 nvBus.suaNhanVien(maNV, sdt, diaChi, maPQ, email);
-                JOptionPane.showMessageDialog(null, "Update thông tin thành công");
+              
                 clearAll();
                 showStaffInTable();
             } catch (Exception e) {
