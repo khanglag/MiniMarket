@@ -428,6 +428,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
             double thanhTien = Double.parseDouble(jtfThanhTien.getText());
             ChiTietPhieuXuat_DTO ctpx = new ChiTietPhieuXuat_DTO(maPx,maHx,soLuongYC,soLuongTX, donViTinh, donGia, thanhTien,true);
             list.add(ctpx);
+            jtfSoLuongThucXuat.setText("");
+            jtfSoLuongYeuCau.setText("");
             LoadData();
         }
         
@@ -445,6 +447,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                     index = i;
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá");
         }
         if(index>=0 ){
             double a = Double.parseDouble(jtfSoLuongThucXuat.getText())*Double.parseDouble(jtfDonGia.getText());
@@ -477,6 +481,8 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                     }
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá");
         }
         
         LoadData();

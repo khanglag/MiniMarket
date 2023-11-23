@@ -18,11 +18,11 @@ public class ThemTaiKhoan extends javax.swing.JDialog {
      * Creates new form ThemTaiKhoan
      */
     public ThemTaiKhoan(Frame owner,String taikhoan, String quyen) {
-        super(owner, "Select Product", true);
+        super(owner, "Thêm tài khoản", true);
         setSize(300, 200);
         initComponents();
         jtfTaiKhoan.setText(taikhoan);
-        jtfMatKhau.setText("Abc@123");
+        jtfMatKhau.setText("Abc@1234");
         jtfQuyen.setText(quyen);
     }
 

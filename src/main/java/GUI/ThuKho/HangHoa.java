@@ -30,7 +30,7 @@ public class HangHoa extends JDialog {
     ArrayList<HangHoa_DTO> list = new ArrayList<HangHoa_DTO>();
     int number;
     public HangHoa(Frame owner, int number) {
-        super(owner, "Select Product", true);
+        super(owner, "Hàng hoá", true);
         setSize(300, 200);
         this.number=number;
         initComponents();
