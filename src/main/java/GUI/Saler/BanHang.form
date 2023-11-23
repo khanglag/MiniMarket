@@ -326,6 +326,7 @@
                     <TitledBorder title="T&#xea;n kh&#xe1;ch h&#xe0;ng"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
