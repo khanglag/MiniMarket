@@ -85,7 +85,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbMaNhomHang.setSelectedIndex(0);
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(""))); // NOI18N
         txtMaSP.setEnabled(true);
-        txtSoLuongSP.setEnabled(true);
+      
         btnAdd.setEnabled(true);
         txtGiaNhap.setEnabled(true);
         txtXuatXu.setEnabled(true);
@@ -244,6 +244,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         txtTenSP.setMaximumSize(new java.awt.Dimension(144, 144));
         txtTenSP.setMinimumSize(new java.awt.Dimension(144, 144));
 
+        txtSoLuongSP.setEnabled(false);
         txtSoLuongSP.setMaximumSize(new java.awt.Dimension(144, 2147483647));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
