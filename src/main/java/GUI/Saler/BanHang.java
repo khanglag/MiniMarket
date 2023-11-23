@@ -570,6 +570,8 @@ public class BanHang extends javax.swing.JPanel {
             return;
         }
         if (masp.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng click vào sản phẩm cần xóa để xóa!");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
