@@ -524,6 +524,10 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         String name = txtHoTen.getText();
         String maNV = txtMaNV.getText();
+          if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để sửa");
+            return;
+        }
         String sdt = txtSDT.getText();
         String diaChi = txtDiaChi.getText();
         String maPQ = "";
@@ -578,6 +582,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         if (txtMaNV.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để xóa");
             return;
         }
         String name = txtHoTen.getText();
