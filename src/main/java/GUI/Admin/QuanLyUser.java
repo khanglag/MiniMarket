@@ -378,7 +378,11 @@ public class QuanLyUser extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        new ThemTaiKhoan(null,jtfMaNV.getText(),jtfMaQuyen.getText()).setVisible(true);
+        int i = jTable.getSelectedRow();
+        if(i>=0)
+            new ThemTaiKhoan(null,jtfMaNV.getText(),jtfMaQuyen.getText()).setVisible(true);
+        else
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản");
         LoadData();
     }//GEN-LAST:event_btnThemActionPerformed
 
