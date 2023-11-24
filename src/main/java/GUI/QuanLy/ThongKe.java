@@ -5,7 +5,7 @@
 package GUI.QuanLy;
 
 import BUS.ChiTietHoaDonBus;
-import BUS.HangHoaBus;
+import BUS.ChiTietPhieuXuatBus;
 import BUS.HoaDonBus;
 import BUS.PhieuNhapBus;
 import BUS.PhieuXuatBus;
@@ -15,21 +15,13 @@ import DTO.HangHoa_DTO;
 import DTO.HoaDon_DTO;
 import DTO.PhieuNhap_DTO;
 import DTO.PhieuXuat_DTO;
-import com.toedter.calendar.JDateChooser;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,6 +43,7 @@ public class ThongKe extends javax.swing.JPanel {
     PhieuNhapBus pnBUS = new PhieuNhapBus();
     ArrayList<PhieuNhap_DTO> phieuNhaps = pnBUS.rPhieuNhap_DTOs();
 
+    ChiTietPhieuXuatBus ctpx = new ChiTietPhieuXuatBus();
     DefaultTableModel originalModel;
 
     public ThongKe() {
@@ -62,6 +55,7 @@ public class ThongKe extends javax.swing.JPanel {
         originalModel = (DefaultTableModel) tableStatistical.getModel();
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         double total = 0;
         double tongDoanhThu = 0;
         if (dayPrev == null || dayNext == null) {
@@ -106,6 +100,9 @@ public class ThongKe extends javax.swing.JPanel {
             }
         }
         model.addRow(new Object[]{null, null, null, "Tổng thu nhập : ", total, null, null, tongDoanhThu});
+        txtDoanhThu.setVisible(true);
+        jLabel4.setVisible(true);
+        txtDoanhThu.setText(decimalFormat.format(tongDoanhThu) + " VNĐ");
     }
 
     public void showImportBill(LocalDate dayPrev, LocalDate dayNext) {
@@ -145,20 +142,24 @@ public class ThongKe extends javax.swing.JPanel {
         String tongTiens = decimalFormat.format(total);
         newModel.addRow(new Object[]{null, null, null, null, "Tổng", tongTiens, null});
         tableStatistical.setModel(newModel);
+        txtDoanhThu.setVisible(false);
+        jLabel4.setVisible(false);
     }
 
     public void showExportBill(LocalDate dayPrev, LocalDate dayNext) {
         DefaultTableModel model = (DefaultTableModel) tableStatistical.getModel();
         model.setRowCount(0);
-        String[] columnNames = {"Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Thời gian xuất", "Lý do", "Ghi chú", "Tổng tiền"};
+        String[] columnNames = {"Mã phiếu xuất", "Mã nhân viên", "Mã khách hàng", "Thời gian xuất", "Lý do", "Ghi chú", "Tổng tiền", "Tiền lãi"};
         DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         double total = 0;
+        double tongDoanhThu = 0; 
         if (dayPrev == null || dayNext == null) {
             for (int i = 0; i < phieuXuats.size(); i++) {
                 PhieuXuat_DTO px = phieuXuats.get(i);
-                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
+                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(),decimalFormat.format(px.getTongTien()) ,decimalFormat.format(ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat())) });
                 total += px.getTongTien();
+                tongDoanhThu += ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat());
             }
         } else {
             ArrayList<PhieuXuat_DTO> phieuXuatByDate = new ArrayList<>();
@@ -171,13 +172,18 @@ public class ThongKe extends javax.swing.JPanel {
             }
             for (int i = 0; i < phieuXuatByDate.size(); i++) {
                 PhieuXuat_DTO px = phieuXuatByDate.get(i);
-                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), px.getTongTien()});
+                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), decimalFormat.format(px.getTongTien()), decimalFormat.format(ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat()))});
                 total += px.getTongTien();
+                 tongDoanhThu += ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat());
             }
         }
         String tongTiens = decimalFormat.format(total);
-        newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens});
+        newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens,decimalFormat.format(tongDoanhThu)});
         tableStatistical.setModel(newModel);
+        txtDoanhThu.setVisible(true);
+        jLabel4.setVisible(true);
+        txtDoanhThu.setText(decimalFormat.format(tongDoanhThu) + " VNĐ");
+        
     }
 
     public void showProductBestSaler() {
@@ -214,6 +220,8 @@ public class ThongKe extends javax.swing.JPanel {
         btnThongKe = new javax.swing.JButton();
         cbbTypeStatistic = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtDoanhThu = new javax.swing.JLabel();
 
         chiTietHoaDon.setText("Xem chi tiết");
         chiTietHoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +314,12 @@ public class ThongKe extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Doanh thu:");
+
+        txtDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtDoanhThu.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -329,7 +343,11 @@ public class ThongKe extends javax.swing.JPanel {
                         .addComponent(btnThongKe)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 520, Short.MAX_VALUE))
+                .addGap(163, 163, 163)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDoanhThu)
+                .addGap(0, 221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,15 +359,21 @@ public class ThongKe extends javax.swing.JPanel {
                     .addComponent(ngayTruoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(datePrev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnThongKe)
-                            .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDoanhThu)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(23, 23, 23)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnThongKe)
+                                .addComponent(cbbTypeStatistic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
         );
@@ -373,7 +397,7 @@ public class ThongKe extends javax.swing.JPanel {
                 showExportBill(null, null);
                 return;
             }
-           
+
         }
         if (dayPrev == null || dayNext == null) {
             JOptionPane.showMessageDialog(null,
@@ -399,7 +423,7 @@ public class ThongKe extends javax.swing.JPanel {
                 showExportBill(localDate1, localDate2);
                 return;
             }
-          
+
         } else {
             JOptionPane.showMessageDialog(null,
                     "Chọn ngày không hợp lệ ngày trước phải nhỏ hơn ngày sau");
@@ -447,9 +471,11 @@ public class ThongKe extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel ngayTruoc;
     private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JTable tableStatistical;
+    private javax.swing.JLabel txtDoanhThu;
     // End of variables declaration//GEN-END:variables
 }
