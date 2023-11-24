@@ -2,6 +2,7 @@ package BUS;
 
 import DAO.ChiTietPhieuXuatDAO;
 import DTO.ChiTietPhieuXuat_DTO;
+import File.ExcelFile;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -98,4 +99,12 @@ public class ChiTietPhieuXuatBus {
             return new ArrayList<>();
         }
     }
+    public boolean xuatEX(String maPX){
+        ExcelFile file= new ExcelFile();
+        return file.xuatPhieuXuatEX(maPX);
+    }
+//    public boolean themEX(){
+//        ExcelFile file= new ExcelFile();
+//        return 
+//    }
 }
