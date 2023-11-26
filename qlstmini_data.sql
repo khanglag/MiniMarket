@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 13, 2023 lúc 06:50 PM
+-- Thời gian đã tạo: Th10 26, 2023 lúc 12:56 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -315,6 +315,7 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `TONTAI`) VALUES
+('A000000', 'Admin', '0000-00-00', 'nam', '', '', '', '', 'ADMIN01', 1),
 ('A000001', 'Võ Đinh Xuân Hoàng', '2003-02-02', 'nam', '068000000002', '0944313407', 'vodinhxuanhoang@gmail.com', '277 Âu Dương Lân', 'NVBH203', 1),
 ('A000003', 'Nguyễn Trần Yến Nhi', '2003-04-17', 'nữ', '068000000000', '0368562519', 'tuoi@gmail.com', 'Thủ Đức', 'NVTK203', 1),
 ('A038645', 'Nguyễn Thị Anh Thư ', '2003-08-15', 'nữ', '068303002628', '0368779041', 'nguyenanhthu15082003@gmail.com', '101 Nguyễn Thị Tần', 'NVTK203', 1),
@@ -369,6 +370,7 @@ CREATE TABLE `phanquyen` (
 --
 
 INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
+('ADMIN01', 'Admin', 1),
 ('NVBH203', 'Nhân viên bán hàng', 1),
 ('NVTK203', 'Nhân viên thủ kho', 1),
 ('QL20003', 'Quản lý', 1);
@@ -529,6 +531,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `MAPQ`, `TONTAI`) VALUES
+('A000000', '123456', 'ADMIN01', 1),
 ('A000001', 'xhne', 'NVBH203', 1),
 ('A000003', 'tuoine', 'NVTK203', 1),
 ('A038645', '130613', 'NVTK203', 1),
