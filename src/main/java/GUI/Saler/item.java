@@ -151,11 +151,11 @@ public class item extends javax.swing.JPanel {
         // TODO add your handling code here:  
       
         ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
-        JFrame frame = new JFrame("Số lượng");
-        openPopup(frame, MaSP);
-        if(soLuong<=0){
-            return;
-        }
+        //JFrame frame = new JFrame("Số lượng");
+        //openPopup(frame, MaSP);
+//        if(soLuong<=0){
+//            return;
+//        }
         boolean daTonTai = false;
         for (HangHoa_DTO sanPham : gioHang) {
             if (MaSP.equals(sanPham.getMaSP())) {
@@ -163,14 +163,14 @@ public class item extends javax.swing.JPanel {
                 break;
             }
         }
-
+        int sl  = 1;
         if (!daTonTai) {
             // Nếu sản phẩm chưa tồn tại trong gioHang, thêm nó vào gioHang
             for (int i = 0; i < danhSachSanPham.size(); i++) {
                 HangHoa_DTO sanPham = danhSachSanPham.get(i);
                 if (MaSP.equals(sanPham.getMaSP())) {
-                    sanPham.setSoLuong(soLuong);
-                    double price = soLuong * hhb.giaBanSP(sanPham.getMaSP());
+                    sanPham.setSoLuong(sl);
+                    double price = sl * hhb.giaBanSP(sanPham.getMaSP());
                     sanPham.setGiaBan(price);
                     gioHang.add(sanPham);
                     break; // Thêm sản phẩm và thoát khỏi vòng lặp
