@@ -350,7 +350,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
         }
         try {
             khb.themKhanhHang(hoTen, localDate, soDT, diaChi, true);
-            JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công");
+           
         } catch (Exception e) {
             return;
         }
@@ -364,6 +364,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
         txtNumberPhone.setText("");
         txtNgaySinh.setText("");
         txtDiaChi.setText("");
+        txtFindBySDT.setText("");
         showCustomerInTable();
     }//GEN-LAST:event_btnClearActionPerformed
 

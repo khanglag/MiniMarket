@@ -8,22 +8,36 @@ import BUS.ChiTietPhieuXuatBus;
 import BUS.KhachHangBus;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.KhachHang_DTO;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Window;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author khang
  */
 public class ChiTietPhieuXuatView extends javax.swing.JFrame {
+
     ChiTietPhieuXuatBus chitiet = new ChiTietPhieuXuatBus();
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
     KhachHangBus kh = new KhachHangBus();
+
     /**
      * Creates new form ChiTietPhieuNhapView
      */
-    public ChiTietPhieuXuatView(String maPhieuXuat,String maKH) {
+    public ChiTietPhieuXuatView(String maPhieuXuat, String maKH) {
         initComponents();
         jtfMaPhieuXuat.setText(maPhieuXuat);
         jtfMaKH.setText(maKH);
@@ -32,31 +46,32 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         LoadData(maPhieuXuat);
     }
 
-    public void LoadData(String maPhieuXuat){
-        double tongTien=0;
+    public void LoadData(String maPhieuXuat) {
+        double tongTien = 0;
         model = (DefaultTableModel) jTableChiTietPhieuXuat.getModel();
         model.setRowCount(0);
-        list = chitiet.timChiTietPhieuXuat(maPhieuXuat,null);
+        list = chitiet.timChiTietPhieuXuat(maPhieuXuat, null);
         int i = 0;
-        for(ChiTietPhieuXuat_DTO px : list){
-            model.addRow(new Object[] {
-                    px.getMaPhieuXuat(),px.getMaHangXuat(),px.getSoLuongYC(),px.getSoLuongThucTe(), px.getDonVi(),px.getDonGia(),px.getThanhTien()
+        for (ChiTietPhieuXuat_DTO px : list) {
+            model.addRow(new Object[]{
+                px.getMaPhieuXuat(), px.getMaHangXuat(), px.getSoLuongYC(), px.getSoLuongThucTe(), px.getDonVi(), px.getDonGia(), px.getThanhTien()
             });
-            tongTien+=px.getThanhTien();
+            tongTien += px.getThanhTien();
             jTableChiTietPhieuXuat.setModel(model);
         }
-        
-        model.addRow(new Object[] {
-                    null,null,null,null, null,null,null
-            });
+
+        model.addRow(new Object[]{
+            null, null, null, null, null, null, null
+        });
         jTableChiTietPhieuXuat.setModel(model);
-         model.addRow(new Object[] {
-                    null,null,null,null, null,"Tổng tiền: ",tongTien
-            });
-         jTableChiTietPhieuXuat.setModel(model);
+        model.addRow(new Object[]{
+            null, null, null, null, null, "Tổng tiền: ", tongTien
+        });
+        jTableChiTietPhieuXuat.setModel(model);
 //        model.setValueAt("Tổng tiền: ", list.size(), 5);
 //        model.setValueAt(tongTien, list.size(), 6);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +92,7 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jtfTenKhachHang = new javax.swing.JTextField();
         btnDong = new javax.swing.JButton();
+        btnXuatPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -128,6 +144,13 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
             }
         });
 
+        btnXuatPDF.setText("Xuất PDF");
+        btnXuatPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,6 +176,8 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
                 .addContainerGap(184, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnXuatPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addComponent(btnDong)
                 .addGap(22, 22, 22))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +202,9 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(btnDong))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXuatPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,13 +228,75 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDongActionPerformed
 
+    private void btnXuatPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatPDFActionPerformed
+        // TODO add your handling code here:
+        String path = "";
+
+        String maPN = jTableChiTietPhieuXuat.getValueAt(1, 0).toString();
+        String pathHandle = "xuatPhieuXuat" + maPN + ".pdf";
+        String txtMaKh = jtfMaKH.getText();
+        String txtTenKh = jtfTenKhachHang.getText();
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = j.showSaveDialog(this);
+        if (x == JFileChooser.APPROVE_OPTION) {
+            path = j.getSelectedFile().getPath();
+        }
+        Document doc = new Document();
+        try {
+            String txtTenKhachHangModified = StringUtils.upperCase(txtTenKh); // Chuyển sang in hoa
+            txtTenKhachHangModified = StringUtils.stripAccents(txtTenKhachHangModified);
+            PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
+            doc.open();
+//            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
+            doc.add(new Paragraph("THONG TIN PHIEU XUAT"));
+            doc.add(new Paragraph("MA KHACH HANG: " + txtMaKh));
+            doc.add(new Paragraph("HO VA TEN KHACH HANG: " + txtTenKhachHangModified));
+            doc.add(new Paragraph(" "));
+            PdfPTable pdfTable = new PdfPTable(jTableChiTietPhieuXuat.getColumnCount());
+// Add header row vào bảng PDF
+            for (int i = 0; i < jTableChiTietPhieuXuat.getColumnCount(); i++) {
+                String header = jTableChiTietPhieuXuat.getColumnName(i); // Lấy tiêu đề cột từ jTable
+
+                // Chuyển sang in hoa và loại bỏ dấu tiếng Việt
+                header = StringUtils.upperCase(header); // Chuyển sang in hoa
+                header = StringUtils.stripAccents(header); // Loại bỏ dấu
+
+                pdfTable.addCell(header); // Thêm tiêu đề đã chỉnh sửa vào bảng PDF
+            }
+
+            // Add content rows vào bảng PDF
+            for (int rows = 0; rows < jTableChiTietPhieuXuat.getRowCount(); rows++) {
+                for (int cols = 0; cols < jTableChiTietPhieuXuat.getColumnCount(); cols++) {
+                    Object cellValue = jTableChiTietPhieuXuat.getModel().getValueAt(rows, cols);
+                    //pdfTable.addCell(jTable.getModel().getValueAt(rows, cols).toString());
+                    String cellText = (cellValue != null) ? cellValue.toString() : "";
+                    cellText = StringUtils.upperCase(cellText); // Chuyển sang in hoa
+                    cellText = StringUtils.stripAccents(cellText); // Loại bỏ dấu
+                    pdfTable.addCell(cellText);
+                }
+            }
+            doc.add(pdfTable);
+
+            JOptionPane.showMessageDialog(this, "Xuất phiếu xuất PDF thành công");
+            doc.close();
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+        }
+        Window window = SwingUtilities.getWindowAncestor(this);
+        if (window != null) {
+            window.dispose();
+        }
+    }//GEN-LAST:event_btnXuatPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDong;
+    private javax.swing.JButton btnXuatPDF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
