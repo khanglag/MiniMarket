@@ -305,6 +305,7 @@
                     <StringItem index="1" value="Kh&#xe1;ch &#x111;&#xe3; &#x111;&#x103;ng k&#xed; tr&#xea;n h&#x1ec7; th&#x1ed1;ng"/>
                   </StringArray>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
