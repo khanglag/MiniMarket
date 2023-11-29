@@ -206,4 +206,7 @@ public class HangHoaBus {
         ExcelFile e = new ExcelFile();
         return e.xuatFileExcelHH(dao.ReadHangHoa());
     }
+    public Integer Sol(String maHH){
+        return dao.Sol(maHH);
+    }
 }
