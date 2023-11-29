@@ -2,6 +2,7 @@ package Controller;
 
  
 import BEAN.DanhMucBean;
+import GUI.Saler.ThongTinNhanVien;
 import GUI.ThuKho.QuanLyKiemHang;
 import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;
@@ -34,7 +35,7 @@ public class ThuKhoController {
     }
 
     public void setView(JPanel jpnItem, JLabel jlbItem){
-        kindSelected = "PhieuXuatHang";    
+        kindSelected = "ThongTinNhanVien";    
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(new TrangChu());
@@ -76,9 +77,8 @@ public class ThuKhoController {
                 case "QuanLyPhieuNhap":
                     node = new QuanLyPhieuNhap();
                     break;
-                case "DangXuat":
-                   // node = new PhieuXuatHang();
-                    //dispose();
+                case "ThongTinNhanVien":
+                    node =  new ThongTinNhanVien();
                     break;
                 case "QuanLyPhieuXuat":
                     node = new QuanLyXuatHang();

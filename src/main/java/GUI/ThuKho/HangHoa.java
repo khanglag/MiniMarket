@@ -41,8 +41,8 @@ public class HangHoa extends JDialog {
         model = (DefaultTableModel) jTableHangHoa.getModel();
         model.setRowCount(0);
         list = hangHoaBus.itemData();
-//        if(number ==1)
-//            list = hangHoaBus.sapXep(list);
+        if(number ==1)
+            list = hangHoaBus.sortBySoLuong(list);
         int soLuongSP = list.size();
         double giaBan;
         for (int i = 0; i < soLuongSP; i++) {
