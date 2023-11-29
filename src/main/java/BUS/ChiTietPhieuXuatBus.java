@@ -1,14 +1,18 @@
 package BUS;
 
 import DAO.ChiTietPhieuXuatDAO;
+import DAO.HangHoaDAO;
 import DTO.ChiTietPhieuXuat_DTO;
+import DTO.HangHoa_DTO;
+import File.ExcelFile;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ChiTietPhieuXuatBus {
     private final ChiTietPhieuXuatDAO ctpxDAO;
-
+    HangHoaDAO hhd = new HangHoaDAO();
+    ArrayList<HangHoa_DTO> dsHangHoa = hhd.ReadHangHoa();
     public ChiTietPhieuXuatBus() {
         ctpxDAO = new ChiTietPhieuXuatDAO();
     }
@@ -98,4 +102,34 @@ public class ChiTietPhieuXuatBus {
             return new ArrayList<>();
         }
     }
+    public boolean xuatEX(String maPX){
+        ExcelFile file= new ExcelFile();
+        return file.xuatPhieuXuatEX(maPX);
+    }
+    public double getGiaNhap(String MaSP) {
+        for (int i = 0; i < dsHangHoa.size(); i++) {
+            if (dsHangHoa.get(i).getMaSP().equals(MaSP)) {
+                return dsHangHoa.get(i).getGiaNhap();
+
+            }
+        }
+        return 0;
+    }
+    public double doanhThuPhieuXuat(String MaPX){
+        ArrayList<ChiTietPhieuXuat_DTO> chiTietPhieuXuats = timChiTietPhieuXuat(MaPX,null);
+        double tongDoanhThu = 0;
+        double total = 0;
+        double giaGoc = 0;
+        for(int i = 0 ;i< chiTietPhieuXuats.size();i++){
+            ChiTietPhieuXuat_DTO ctpx = chiTietPhieuXuats.get(i);
+            total += ctpx.getThanhTien();
+            giaGoc += ctpx.getSoLuongThucTe()*getGiaNhap(ctpx.getMaHangXuat());
+        }
+        tongDoanhThu = total - giaGoc;
+        return tongDoanhThu;
+    }
+//    public boolean themEX(){
+//        ExcelFile file= new ExcelFile();
+//        return 
+//    }
 }

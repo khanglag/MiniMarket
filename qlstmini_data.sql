@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 29, 2023 lúc 07:36 AM
+-- Thời gian đã tạo: Th10 13, 2023 lúc 06:50 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -265,6 +265,7 @@ INSERT INTO `khachhang` (`MAKH`, `TENKH`, `NGAYSINH`, `SDT`, `DIACHI`, `TONTAI`)
 ('0000001', 'Lê Văn Việt', '1999-09-01', '0368779041', 'Quận 8', 1),
 ('0000002', 'Đặng Văn Khoa', '2000-10-07', '0393506251', 'Quận 5', 1),
 ('0000003', 'Vũ Hà', '2003-09-07', '0336544121', 'Quận 10', 1),
+('KHACHVL0', 'Khách vãng lai', '2003-09-01', '0336544121', 'quan', 1),
 ('0000004', 'Dương Huy', '1995-09-07', '0377371312', 'Quận 5', 1);
 
 -- --------------------------------------------------------
@@ -318,8 +319,8 @@ INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, 
 ('A000001', 'Võ Đinh Xuân Hoàng', '2003-02-02', 'nam', '068000000002', '0944313407', 'vodinhxuanhoang@gmail.com', '277 Âu Dương Lân', 'NVBH203', 1),
 ('A000003', 'Nguyễn Trần Yến Nhi', '2003-04-17', 'nữ', '068000000000', '0368562519', 'tuoi@gmail.com', 'Thủ Đức', 'NVTK203', 1),
 ('A038645', 'Nguyễn Thị Anh Thư ', '2003-08-15', 'nữ', '068303002628', '0368779041', 'nguyenanhthu15082003@gmail.com', '101 Nguyễn Thị Tần', 'NVTK203', 1),
-('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'ADMIN01', 1),
-('A140403', 'Đỗ Minh Khang', '2003-04-14', 'nam', '068000000001', '0838208944', 'khanglag@gmail.com', 'Dương Quảng Hàm', 'NVBH203', 1),
+('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'NVBH203', 1),
+('A140403', 'Đỗ Minh Khang', '2003-04-14', 'nam', '068000000001', '0838208944', 'khanglag@gmail.com', 'Dương Quảng Hàm', 'ADMIN01', 1),
 ('B041003', 'Lê Duy Khang', '2003-10-04', 'nam', '091203002454', '0358808913', 'lehoanggiakhuong@gmail.com', '277 Âu Dương Lân', 'QL20003', 1);
 
 -- --------------------------------------------------------
@@ -369,10 +370,11 @@ CREATE TABLE `phanquyen` (
 --
 
 INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
-('ADMIN01', 'Admin', 1),
 ('NVBH203', 'Nhân viên bán hàng', 1),
+('ADMIN01', 'Admin',1),
 ('NVTK203', 'Nhân viên thủ kho', 1),
 ('QL20003', 'Quản lý', 1);
+
 
 -- --------------------------------------------------------
 
@@ -497,7 +499,6 @@ INSERT INTO `phieuyeucaunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `MANC
 CREATE TABLE `taikhoan` (
   `MANV` char(7) NOT NULL,
   `MATKHAU` text NOT NULL,
-  `MAPQ` char(7) NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -505,13 +506,13 @@ CREATE TABLE `taikhoan` (
 -- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `MAPQ`, `TONTAI`) VALUES
-('A000001', '1', 'NVBH203', 1),
-('A000003', 'tuoine', 'NVTK203', 1),
-('A038645', '130613', 'NVTK203', 1),
-('A070103', '1', 'ADMIN01', 1),
-('A140403', '140403', 'NVBH203', 1),
-('B041003', '100403', 'QL20003', 1);
+INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `TONTAI`) VALUES
+('A000001', 'xhne' , 1),
+('A000003', 'tuoine', 1),
+('A038645', '130613', 1),
+('A070103', '070103', 1),
+('A140403', '140403', 1),
+('B041003', '100403', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -593,7 +594,7 @@ ALTER TABLE `nhomhang`
 ALTER TABLE `phanquyen`
   ADD PRIMARY KEY (`MAQUYEN`);
 
---
+
 -- Chỉ mục cho bảng `phieukiemhang`
 --
 ALTER TABLE `phieukiemhang`
@@ -625,8 +626,7 @@ ALTER TABLE `phieuyeucaunhap`
 -- Chỉ mục cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  ADD PRIMARY KEY (`MANV`),
-  ADD KEY `MANV` (`MANV`,`MAPQ`);
+  ADD PRIMARY KEY (`MANV`);
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -680,6 +680,7 @@ ALTER TABLE `hoadon`
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`MAQUYEN`) REFERENCES `phanquyen` (`MAQUYEN`);
 
+
 --
 -- Các ràng buộc cho bảng `phieukiemhang`
 --
@@ -709,7 +710,7 @@ ALTER TABLE `phieuyeucaunhap`
 -- Các ràng buộc cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`MANV`,`MAPQ`) REFERENCES `nhanvien` (`MANV`, `MAQUYEN`);
+  ADD CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

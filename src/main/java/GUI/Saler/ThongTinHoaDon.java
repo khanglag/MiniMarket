@@ -5,53 +5,30 @@
 package GUI.Saler;
 
 import BUS.ChiTietHoaDonBus;
-import DAO.ChiTietHoaDonDAO;
 import DAO.HoaDonDAO;
 import DTO.HangHoa_DTO;
 import DTO.HoaDon_DTO;
 import static GUI.Saler.BanHang.hhb;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Window;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BoxLayout;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.UndoableEditListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-//import javax.swing.text.Document;
-import javax.swing.text.Element;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -128,26 +105,26 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
 
         txtTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTitle.setText("SIEU THI MINI");
+        txtTitle.setText("SIÊU THỊ MINI");
 
         txtSoHD.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtSoHD.setText("SO HOA DON: ");
+        txtSoHD.setText("Số hóa đơn: ");
 
         txtMaHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtMaHoaDon.setText("jLabel3");
 
         txtTongHD.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTongHD.setText("TONG HOA DON: ");
+        txtTongHD.setText("Tổng hóa đơn:");
 
         txtTongHoaDon.setText("jLabel5");
 
         txtTKD.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTKD.setText("TIEN KHACH DUA: ");
+        txtTKD.setText("Tiền khách đưa:");
 
         txtKhachDua.setText("jLabel5");
 
         txtThoiGian.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtThoiGian.setText("THOI GIAN: ");
+        txtThoiGian.setText("Thời gian:");
 
         txtTime.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTime.setText("jLabel3");
@@ -155,14 +132,14 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
         txtChaoMung.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtChaoMung.setForeground(new java.awt.Color(255, 51, 51));
         txtChaoMung.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtChaoMung.setText("RAT VUI KHI DUOC PHUC VU QUY KHACH");
+        txtChaoMung.setText("RẤT VUI KHI ĐƯỢC PHỤC VỤ QUÝ KHÁCH");
 
         txtGach.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtGach.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtGach.setText("_______________________________________________________________________________________________");
 
         txtTT.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtTT.setText("TIEN THUA:");
+        txtTT.setText("Tiền thừa:");
 
         txtTienThua.setText("jLabel5");
 
@@ -181,7 +158,7 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "TEN SP", "SO LUONG", "GIA BAN", "THANH TIEN"
+                "Tên sản phẩm", "Số lượng", "Giá bán", "Thành tiền"
             }
         ) {
             Class[] types = new Class [] {
@@ -274,46 +251,67 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
     private void btnXuatHDPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatHDPDFActionPerformed
         // TODO add your handling code here:
         String path = "";
-        String pathHandle = "xuatHD"+txtMaHoaDon.getText().trim()+".pdf";
+        String pathHandle = "xuatHD" + txtMaHoaDon.getText().trim() + ".pdf";
         System.out.println(pathHandle);
         JFileChooser j = new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x = j.showSaveDialog(this);
         if (x == JFileChooser.APPROVE_OPTION) {
             path = j.getSelectedFile().getPath();
-        }
-        Document doc = new Document();
-        try {
+            Document doc = new Document();
+            try {
+                BaseFont unicodeFont = BaseFont.createFont("../MiniMarket/Roboto/Roboto-Thin.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                com.itextpdf.text.Font vietnameseFont = new com.itextpdf.text.Font(unicodeFont, 12);
+                com.itextpdf.text.Font boldFont = new com.itextpdf.text.Font(vietnameseFont.getBaseFont(), 18, com.itextpdf.text.Font.BOLD);
+                PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
+                doc.open();
+                Paragraph info = new Paragraph("Thông tin hóa đơn", boldFont);
+                info.setAlignment(Element.ALIGN_CENTER); // Căn giữa đoạn văn bản
+                doc.add(info);
+                String title = "Cửa hàng: " + txtTitle.getText() + " MR.FRESH " + txtChaoMung.getText();
+                doc.add(new Paragraph(title, vietnameseFont));
+                String infoBill = txtSoHD.getText() + txtMaHoaDon.getText() + "              " + txtThoiGian.getText() + " " + txtTime.getText();
+                doc.add(new Paragraph(infoBill, vietnameseFont));
+                doc.add(new Paragraph(" "));
+                PdfPTable pdfTable = new PdfPTable(tableGioHang.getColumnCount());
+                // Add header row vào bảng PDF
+                for (int i = 0; i < tableGioHang.getColumnCount(); i++) {
+                    String header = tableGioHang.getColumnName(i); // Lấy tiêu đề cột từ jTable
 
-            PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
-            doc.open();
-//            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
-            doc.add(new Paragraph("THONG TIN HOA DON"));
-            doc.add(new Paragraph("CUA HANG: " + txtTitle.getText() + " " + txtChaoMung.getText()));
-            doc.add(new Paragraph(txtSoHD.getText() + txtMaHoaDon.getText() + "              " + txtThoiGian.getText() + txtTime.getText()));
-            doc.add(new Paragraph(" "));
-            PdfPTable pdfTable = new PdfPTable(tableGioHang.getColumnCount());
-            // Add header row vào bảng PDF
-            for (int i = 0; i < tableGioHang.getColumnCount(); i++) {
-                pdfTable.addCell(tableGioHang.getColumnName(i));
-            }
-
-            // Add content rows vào bảng PDF
-            for (int rows = 0; rows < tableGioHang.getRowCount(); rows++) {
-                for (int cols = 0; cols < tableGioHang.getColumnCount(); cols++) {
-                    pdfTable.addCell(tableGioHang.getModel().getValueAt(rows, cols).toString());
+                    // Chuyển sang in hoa và loại bỏ dấu tiếng Việt
+//                header = StringUtils.upperCase(header); // Chuyển sang in hoa
+//                header = StringUtils.stripAccents(header); // Loại bỏ dấu
+                    // Tạo một ô mới và thiết lập font cho tiêu đề cột
+                    PdfPCell cell = new PdfPCell(new Phrase(header, vietnameseFont));
+                    pdfTable.addCell(cell);
+//                pdfTable.addCell(header);
                 }
+
+                // Add content rows vào bảng PDF
+                for (int rows = 0; rows < tableGioHang.getRowCount(); rows++) {
+                    for (int cols = 0; cols < tableGioHang.getColumnCount(); cols++) {
+                        Object cellValue = tableGioHang.getModel().getValueAt(rows, cols);
+                        String cellText = (cellValue != null) ? cellValue.toString() : "";
+                        PdfPCell cell = new PdfPCell(new Phrase(cellText, vietnameseFont));
+                        pdfTable.addCell(cell);
+                    }
+                }
+                doc.add(pdfTable);
+                String tonghd = txtTongHD.getText() + " " + txtTongHoaDon.getText() + " VNĐ";
+                doc.add(new Paragraph(tonghd, vietnameseFont));
+                String tienkd = txtTKD.getText() + " " + txtKhachDua.getText() + " VNĐ";
+                doc.add(new Paragraph(tienkd, vietnameseFont));
+                String tienthua = txtTT.getText() + " " + txtTienThua.getText() + " VNĐ";
+                doc.add(new Paragraph(tienthua, vietnameseFont));
+                JOptionPane.showMessageDialog(this, "In hóa đơn thành công!");
+                doc.close();
+            } catch (DocumentException | IOException e) {
+                e.printStackTrace();
             }
-            doc.add(pdfTable);
-            doc.add(new Paragraph(txtTongHD.getText() + " " + txtTongHoaDon.getText()));
-            doc.add(new Paragraph(txtTKD.getText() + txtKhachDua.getText()));
-            doc.add(new Paragraph(txtTT.getText() + "       " + txtTienThua.getText()));
-            JOptionPane.showMessageDialog(this, "Xuất hóa đơn PDF thành công!");
-            doc.close();
-        } catch (DocumentException | IOException e) {
-            e.printStackTrace();
+        } else if (x == JFileChooser.CANCEL_OPTION || x == JFileChooser.ERROR_OPTION) {
+            JOptionPane.showMessageDialog(this, "Hủy in hóa đơn!");
         }
+
         Window window = SwingUtilities.getWindowAncestor(this);
         if (window != null) {
             window.dispose();

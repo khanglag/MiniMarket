@@ -33,7 +33,7 @@ public class KhachHang extends JDialog {
      * @param owner
      */
     public KhachHang(Frame owner) {
-        super(owner, "Select Product", true);
+        super(owner, "Khách hàng", true);
         setSize(300, 200);
         initComponents();
         LoadData();

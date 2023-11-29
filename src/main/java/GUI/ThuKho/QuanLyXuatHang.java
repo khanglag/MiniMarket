@@ -84,6 +84,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         btnTaoPhieuXuat = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -248,7 +249,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel5.setLayout(new java.awt.GridLayout(5, 0, 0, 5));
+        jPanel5.setLayout(new java.awt.GridLayout(6, 0, 0, 5));
 
         btnTaoPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnTaoPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
@@ -269,6 +270,14 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
             }
         });
         jPanel5.add(btnLoad);
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnClear);
 
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
@@ -357,8 +366,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
             jtfMaNhanVien.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 2).toString());
             jtfMaKhachHang.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 3).toString());
             jtfTongTien.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 4).toString());
-            jtfLyDo.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 5).toString());
-            jtfGhiChu.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 6).toString());
+            jtfThoiGianXuat.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 5).toString());
+            jtfLyDo.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 6).toString());
+            jtfGhiChu.setText(jTableQuanLyXuatHang.getModel().getValueAt(i, 7).toString());
             jPopupMenu.show(jTableQuanLyXuatHang, evt.getX(), evt.getY());
         }
         
@@ -416,6 +426,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
+       
         refreshData();
     }//GEN-LAST:event_btnLoadActionPerformed
 
@@ -436,6 +447,16 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnTimActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        jtfMaPhieuXuat.setText("");
+        jtfMaKhachHang.setText("");
+        jtfTongTien.setText("");
+        jtfThoiGianXuat.setText("");
+        jtfLyDo.setText("");
+        jtfGhiChu.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
+
       public void refreshData() {
         phieuXuatBus = new PhieuXuatBus();
         LoadData();
@@ -443,6 +464,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChon;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnTaoPhieuXuat;
     private javax.swing.JButton btnTim;

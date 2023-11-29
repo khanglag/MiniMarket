@@ -290,6 +290,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
         jButton8.setText("IN");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -333,9 +338,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 nv.setSoMatHang(0);
                 nv.setTongTien(0);
                 nv.setTrangThai("CHO");
-                if(phieuNhapBus.themPhieuNhap(nv)){
-                    JOptionPane.showMessageDialog(this, "Tạo phiếu nhập thành công");
-                }
+                phieuNhapBus.themPhieuNhap(nv);
                 table.repaint();
                 refreshData();
             
@@ -414,6 +417,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void jtfMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfMaNhanVienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfMaNhanVienActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

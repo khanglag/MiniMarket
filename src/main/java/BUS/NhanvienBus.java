@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import DAO.TaiKhoanDAO;
 import DTO.TaiKhoan_DTO;
+
 /**
  *
  * @author pc
@@ -37,62 +38,67 @@ public class NhanvienBus {
     }
 
     public boolean suaNhanVien(String maNV, String sdt, String diaChi, String maPQ, String email) {
-        PhoneNumberValidator phoneNumberValidator=new PhoneNumberValidator();
+        PhoneNumberValidator phoneNumberValidator = new PhoneNumberValidator();
         try {
             phoneNumberValidator.validatePhoneNumber(sdt);
             try {
                 if (isEmailValid(email)) {
-                    return dAO.update(maNV, sdt, diaChi, maPQ, email);
+                     dAO.update(maNV, sdt, diaChi, maPQ, email);
+                      JOptionPane.showMessageDialog(null, "Update thông tin thành công");
+                      return true;
                 }
             } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(null,e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } catch (InvalidPhoneNumberException e) {
-             JOptionPane.showMessageDialog(null,e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
         return false;
     }
+
     public boolean suaNhanVien(String maNV, String maPQ) {
-       
+
         return dAO.update(maNV, maPQ);
-                
+
     }
-    
-    public ArrayList<NhanVien_DTO> timNhanVien(String tenNV){
+
+    public ArrayList<NhanVien_DTO> timNhanVien(String tenNV) {
         return dAO.searchNhanVien(null, tenNV, null);
     }
 
-    public ArrayList<NhanVien_DTO> timNhanVienM(String tenNV){
+    public ArrayList<NhanVien_DTO> timNhanVienM(String tenNV) {
         return dAO.searchNhanVien(tenNV, null, null);
     }
-    
+
     public boolean themNhanVien(String tenNV, LocalDate ngaySinh, String gioiTinh, String sdt, String cccd,
             String email, String diaChi, String maPQ) {
-        PhoneNumberValidator phoneNumberValidator=new PhoneNumberValidator();
+        PhoneNumberValidator phoneNumberValidator = new PhoneNumberValidator();
         try {
             phoneNumberValidator.validatePhoneNumber(sdt);
             try {
                 if (isEmailValid(email)) {
                     try {
-                     DateOfBirthValidator dateOfBirthValidator = new DateOfBirthValidator();
-                    dateOfBirthValidator.validateDateOfBirth(ngaySinh);
-                         NhanVien_DTO dTO = new NhanVien_DTO(taoMaNV(sdt, maPQ), tenNV, ngaySinh, gioiTinh, cccd, sdt, email, diaChi,
-                maPQ, true);
-                         return dAO.add(dTO);
+                        DateOfBirthValidator dateOfBirthValidator = new DateOfBirthValidator();
+                        dateOfBirthValidator.validateDateOfBirth(ngaySinh);
+                        NhanVien_DTO dTO = new NhanVien_DTO(taoMaNV(sdt, maPQ), tenNV, ngaySinh, gioiTinh, cccd, sdt, email, diaChi,
+                                maPQ, true);
+                         dAO.add(dTO);
+                          JOptionPane.showMessageDialog(null, "Thêm nv thành công!");
+                          return true;
                     } catch (InvalidDateOfBirthException e) {
-                    JOptionPane.showMessageDialog(null,e.getMessage());
-                }
+                        JOptionPane.showMessageDialog(null, "Thêm nv thất bại!");
+                    }
                 }
             } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(null,e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } catch (InvalidPhoneNumberException e) {
-             JOptionPane.showMessageDialog(null,e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
         return false;
-       
+
     }
 
     public String taoMaNV(String sdt, String maPQ) {
@@ -114,19 +120,21 @@ public class NhanvienBus {
         }
         return (ma += subsdt);
     }
-    public String tenNV(String manv){
+
+    public String tenNV(String manv) {
         return dAO.TenNV(manv);
     }
-    public String kiemtraTK(String maNV){
-        TaiKhoanDAO dAO= new TaiKhoanDAO();
-        TaiKhoan_DTO dto=new TaiKhoan_DTO();
-        dto=dAO.searchTaiKhoan(maNV);
-        if(dto==null){
+
+    public String kiemtraTK(String maNV) {
+        TaiKhoanDAO dAO = new TaiKhoanDAO();
+        TaiKhoan_DTO dto = new TaiKhoan_DTO();
+        dto = dAO.searchTaiKhoan(maNV);
+        if (dto == null) {
             return "Chưa có tài khoản";
         }
-        if (dto.isTonTai()==true) {
+        if (dto.isTonTai() == true) {
             return "Đã có tài khoản";
-        }else if (dto.isTonTai()==false) {
+        } else if (dto.isTonTai() == false) {
             return "Tài khoản bị khoá";
         }
         return "Lỗi truy xuất";

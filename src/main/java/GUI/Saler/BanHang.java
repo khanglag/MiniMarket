@@ -76,7 +76,7 @@ public class BanHang extends javax.swing.JPanel {
     }
 
     public static  void showItemCartInTable() {
-        tableGioHang.removeAll();
+        //tableGioHang.removeAll();
         ArrayList<HangHoa_DTO> gioHang = item.gioHang;
         
         DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
@@ -106,11 +106,16 @@ public class BanHang extends javax.swing.JPanel {
                 txtTienThua.setText(String.valueOf(Double.parseDouble(tienKhachDua) - total));
             }
         });
-        model.fireTableDataChanged();
-        tableGioHang.revalidate();
-        tableGioHang.repaint();
+//        model.fireTableDataChanged();
+//        tableGioHang.revalidate();
+//        tableGioHang.repaint();
     }
-
+    public void resetUI(){
+          DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng    
+        txtTienKhachDua.setText("0");
+        txtTienThua.setText("0");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,6 +140,7 @@ public class BanHang extends javax.swing.JPanel {
         txtTienKhachDua = new javax.swing.JTextField();
         txtTienThua = new javax.swing.JTextField();
         btnPayment = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         ScrollPaneItems = new javax.swing.JScrollPane();
         PanelItems = new javax.swing.JPanel();
@@ -245,10 +251,12 @@ public class BanHang extends javax.swing.JPanel {
         });
 
         cbbTypeCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khách vãng lai", "Khách đã đăng kí trên hệ thống" }));
+        cbbTypeCustomer.setEnabled(false);
 
         txtSDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập SĐT"));
 
         txtTenKH.setBorder(javax.swing.BorderFactory.createTitledBorder("Tên khách hàng"));
+        txtTenKH.setEnabled(false);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -382,6 +390,13 @@ public class BanHang extends javax.swing.JPanel {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
+        btnRefresh.setText("Refresh UI");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -394,7 +409,11 @@ public class BanHang extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRefresh)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -412,7 +431,10 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRefresh)
+                        .addGap(70, 70, 70)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -541,6 +563,11 @@ public class BanHang extends javax.swing.JPanel {
     private void btnSuaSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaSoLuongMouseClicked
         // TODO add your handling code here:
         String soLuong = txtSoLuong.getText();
+        if(Integer.parseInt(soLuong) < 1){
+             JOptionPane.showMessageDialog(null,
+                            "Số lượng >= 1");
+                    return;
+        }
         for (HangHoa_DTO sanPham : gioHang) {
             if (sanPham.getMaSP().equals(masp)) {
                 int soLuongTrenDB = hhb.ktSoLuong(sanPham.getMaSP());
@@ -555,6 +582,7 @@ public class BanHang extends javax.swing.JPanel {
                 break;
             }
         }
+       
         showItemCartInTable();
     }//GEN-LAST:event_btnSuaSoLuongMouseClicked
 
@@ -564,6 +592,8 @@ public class BanHang extends javax.swing.JPanel {
             return;
         }
         if (masp.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng click vào sản phẩm cần xóa để xóa!");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -629,7 +659,7 @@ public class BanHang extends javax.swing.JPanel {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     SwingUtilities.invokeLater(() -> {
-                            System.out.println("-------- vao ---------------");
+                          resetUI();
                         gioHang.clear();
                         showItemCartInTable();
                     });
@@ -639,11 +669,19 @@ public class BanHang extends javax.swing.JPanel {
         } else {
             return;
         }
+      
+         resetUI();
+        showItemCartInTable();
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKhachHangActionPerformed
         // TODO add your handling code here:
         String sdt = txtSDT.getText();
+         if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Vui lòng nhập SĐT!");
+            return;
+        } 
         khBUS.timKhachHang(null, sdt);
         if (khBUS.timKhachHang(null, sdt) == null) {
             JOptionPane.showMessageDialog(null,
@@ -664,6 +702,11 @@ public class BanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSuaSoLuongActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        resetUI();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelItems;
@@ -672,6 +715,7 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnOffFind;
     private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSuaSoLuong;
     private javax.swing.JButton btnTimKhachHang;
     private javax.swing.JComboBox<String> cbbTypeCustomer;

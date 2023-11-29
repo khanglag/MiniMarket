@@ -21,18 +21,20 @@ public class TaiKhoanDAOImpl implements TaiKhoanDAO {
     public TaiKhoan login(String tenDangNhap, String matKhau) {
         ConnectDB conn = new ConnectDB();
         Connection cons = ConnectDB.getConnection();
-        String sql = "SELECT * FROM taikhoan WHERE MANV LIKE ?";
+        String sql = "SELECT taikhoan.MANV,MATKHAU,MAQUYEN, taikhoan.TONTAI FROM `taikhoan` INNER JOIN `nhanvien` ON taikhoan.MANV= nhanvien.MANV WHERE taikhoan.MANV LIKE ?";
+        
         TaiKhoan taiKhoan = null;
         try {
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ps.setString(1, tenDangNhap);
+            System.out.println(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 taiKhoan = new TaiKhoan();
 
                 taiKhoan.setTen_dn(rs.getString("MANV"));
                 taiKhoan.setMat_khau(rs.getString("MATKHAU"));
-                taiKhoan.setQuyen(rs.getString("MAPQ"));
+                taiKhoan.setQuyen(rs.getString("MAQUYEN"));
                 taiKhoan.setTontai(rs.getBoolean("TONTAI"));
 
             }

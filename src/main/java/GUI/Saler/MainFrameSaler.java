@@ -30,11 +30,11 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     public void dashboardControl() {
         mainScreen.setLayout(new BorderLayout());
-        mainScreen.add(new ThongTinNhanVien());
+        mainScreen.add(new BanHang());
         DefaultColor = new Color(255, 255, 255);
         ClickedColor = new Color(240, 151, 57);
-        panelttcn.setBackground(ClickedColor);
-        panelbh.setBackground(DefaultColor);
+       // panelttcn.setBackground(ClickedColor);
+        panelbh.setBackground(ClickedColor);
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
@@ -57,8 +57,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         paneldx = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        panelttcn = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         paneltkh = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         mainScreen = new javax.swing.JPanel();
@@ -160,36 +158,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelttcn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelttcnMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panelttcnMousePressed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/information.png"))); // NOI18N
-        jLabel5.setText("THÔNG TIN CÁ NHÂN");
-
-        javax.swing.GroupLayout panelttcnLayout = new javax.swing.GroupLayout(panelttcn);
-        panelttcn.setLayout(panelttcnLayout);
-        panelttcnLayout.setHorizontalGroup(
-            panelttcnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelttcnLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        panelttcnLayout.setVerticalGroup(
-            panelttcnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelttcnLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         paneltkh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 paneltkhMouseClicked(evt);
@@ -230,7 +198,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
                     .addComponent(panelbh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(paneldx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelttcn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(paneltkh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -238,14 +205,12 @@ public class MainFrameSaler extends javax.swing.JFrame {
             sideBar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideBar2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelttcn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelbh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(panelsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(paneltkh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(paneldx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -256,7 +221,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
         mainScreen.setLayout(mainScreenLayout);
         mainScreenLayout.setHorizontalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 939, Short.MAX_VALUE)
+            .addGap(0, 947, Short.MAX_VALUE)
         );
         mainScreenLayout.setVerticalGroup(
             mainScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,6 +236,11 @@ public class MainFrameSaler extends javax.swing.JFrame {
         jLabel2.setText("MÀN HÌNH NHÂN VIÊN");
 
         txtUserName.setText("jLabel7");
+        txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtUserNameMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -339,21 +309,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelttcnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelttcnMousePressed
-        panelttcn.setBackground(ClickedColor);
-        panelbh.setBackground(DefaultColor);
-        panelsp.setBackground(DefaultColor);
-        paneltkh.setBackground(DefaultColor);
-        paneldx.setBackground(DefaultColor);
-        ThongTinNhanVien ttnv = new ThongTinNhanVien();
-        mainScreen.removeAll();
-        mainScreen.revalidate();
-        mainScreen.repaint();
-        mainScreen.add(ttnv).setVisible(true);
-    }//GEN-LAST:event_panelttcnMousePressed
-
     private void panelbhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelbhMousePressed
-        panelttcn.setBackground(DefaultColor);
+       // panelttcn.setBackground(DefaultColor);
         panelbh.setBackground(ClickedColor);
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
@@ -367,7 +324,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     private void panelspMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelspMousePressed
         // TODO add your handling code here:
-        panelttcn.setBackground(DefaultColor);
+       // panelttcn.setBackground(DefaultColor);
         panelbh.setBackground(DefaultColor);
         panelsp.setBackground(ClickedColor);
         paneltkh.setBackground(DefaultColor);
@@ -381,7 +338,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     private void paneltkhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneltkhMousePressed
         // TODO add your handling code here:
-        panelttcn.setBackground(DefaultColor);
+       // panelttcn.setBackground(DefaultColor);
         panelbh.setBackground(DefaultColor);
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(ClickedColor);
@@ -395,7 +352,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     private void paneldxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneldxMousePressed
         // TODO add your handling code here:
-        panelttcn.setBackground(DefaultColor);
+      //  panelttcn.setBackground(DefaultColor);
         panelbh.setBackground(DefaultColor);
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
@@ -418,12 +375,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     }//GEN-LAST:event_panelbhMouseClicked
 
-    private void panelttcnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelttcnMouseClicked
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_panelttcnMouseClicked
-
     private void panelspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelspMouseClicked
         // TODO add your handling code here:
 
@@ -433,6 +384,15 @@ public class MainFrameSaler extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_paneltkhMouseClicked
+
+    private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
+        // TODO add your handling code here:
+          ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(ttnv).setVisible(true);
+    }//GEN-LAST:event_txtUserNameMouseClicked
 
     /**
      * @param args the command line arguments
@@ -450,7 +410,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -459,7 +418,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
     private javax.swing.JPanel paneldx;
     private javax.swing.JPanel panelsp;
     private javax.swing.JPanel paneltkh;
-    private javax.swing.JPanel panelttcn;
     private javax.swing.JPanel sideBar2;
     private javax.swing.JPanel title;
     private javax.swing.JLabel txtUserName;

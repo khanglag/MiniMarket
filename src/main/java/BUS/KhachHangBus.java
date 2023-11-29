@@ -53,7 +53,7 @@ public class KhachHangBus {
                     //Tạo đối tượng khách hàng
                     dAO.add(kh);
                     JOptionPane.showMessageDialog(null,
-                            "Thêm kh thành công");
+                            "Thêm khách hàng thành công");
                     //thêm đối tượng khách hàng
                 } catch (InvalidDateOfBirthException e) {
                      JOptionPane.showMessageDialog(null,
@@ -89,15 +89,21 @@ public class KhachHangBus {
         return true;
          
     }
+    public boolean suaKhachHang(String maKH,String sdt, String diaChi){
+        PhoneNumberValidator validator = new PhoneNumberValidator();
+         try {
+            validator.validatePhoneNumber(sdt);
+            if (dAO.ttKhachHang(sdt)) {
+                //Kiểm tra có khác hàng sử dụng số điện thoại đó chưa
+                JOptionPane.showMessageDialog(null,
+                        "Đã có khách hàng sử dụng số điện thoại: " + sdt + ". Vui lòng sử dụng số khác");
+                return false;
+            } else {
+               return dAO.update(maKH,sdt, diaChi);
 
-    public boolean suaKhachHang(String maKH, String sdt, String diaChi) {
-        try {
-            dAO.update(maKH, sdt, diaChi);
-            JOptionPane.showMessageDialog(null,
-                    "Sửa thông tin khách hàng thành công");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,
-                    "Sửa thông tin khách hàng thất bại");
+            }
+        } catch (InvalidPhoneNumberException e) {
+             JOptionPane.showMessageDialog(null,e.getMessage());
         }
         return true;
     }

@@ -385,6 +385,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         String sdt = txtNumberPhone.getText().trim();
         if (sdt.equals("")) {
+             JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để xóa");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa?", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -428,6 +429,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         String maKH = txtMaKh.getText();
+         if (maKH.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để sửa");
+            return;
+        }
         String sdt = txtNumberPhone.getText();
         String diaChi = txtDiaChi.getText();
         if (sdt.equals("")) {
@@ -451,6 +456,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
         String sdt = txtFindBySDT.getText();
+        if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập SĐT khách hàng để tìm kiếm thông tin khách hàng!!");
+            return;
+        }
         KhachHang_DTO khachHang = khb.timKhachHang(null, sdt);
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 

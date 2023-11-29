@@ -416,6 +416,8 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                     
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(this,  "Bạn chưa chọn sản phẩm muốn xoá!");
         }
         LoadData();
     }//GEN-LAST:event_btnXoaActionPerformed

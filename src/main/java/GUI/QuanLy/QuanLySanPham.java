@@ -85,7 +85,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbMaNhomHang.setSelectedIndex(0);
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(""))); // NOI18N
         txtMaSP.setEnabled(true);
-        txtSoLuongSP.setEnabled(true);
+      
         btnAdd.setEnabled(true);
         txtGiaNhap.setEnabled(true);
         txtXuatXu.setEnabled(true);
@@ -244,6 +244,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         txtTenSP.setMaximumSize(new java.awt.Dimension(144, 144));
         txtTenSP.setMinimumSize(new java.awt.Dimension(144, 144));
 
+        txtSoLuongSP.setEnabled(false);
         txtSoLuongSP.setMaximumSize(new java.awt.Dimension(144, 2147483647));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -796,7 +797,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String tenSP = txtTenSP.getText();
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa sản phẩm " + tenSP + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
-            
             try {
                 hhBus.xoaHangHoa(maSP);
                 JOptionPane.showMessageDialog(null,
@@ -810,7 +810,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         } else {
             return;
         }
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
