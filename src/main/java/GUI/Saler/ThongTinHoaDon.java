@@ -52,6 +52,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import javax.swing.text.Position;
 import javax.swing.text.Segment;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -290,19 +291,28 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
 //            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 //            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
             doc.add(new Paragraph("THONG TIN HOA DON"));
-            doc.add(new Paragraph("CUA HANG: " + txtTitle.getText() + " " + txtChaoMung.getText()));
+            doc.add(new Paragraph("CUA HANG: " + txtTitle.getText() + " MR.FRESH " + txtChaoMung.getText()));
             doc.add(new Paragraph(txtSoHD.getText() + txtMaHoaDon.getText() + "              " + txtThoiGian.getText() + txtTime.getText()));
             doc.add(new Paragraph(" "));
             PdfPTable pdfTable = new PdfPTable(tableGioHang.getColumnCount());
             // Add header row vào bảng PDF
             for (int i = 0; i < tableGioHang.getColumnCount(); i++) {
-                pdfTable.addCell(tableGioHang.getColumnName(i));
+                 String header = tableGioHang.getColumnName(i); // Lấy tiêu đề cột từ jTable
+
+                // Chuyển sang in hoa và loại bỏ dấu tiếng Việt
+                header = StringUtils.upperCase(header); // Chuyển sang in hoa
+                header = StringUtils.stripAccents(header); // Loại bỏ dấu
+                pdfTable.addCell(header);
             }
 
             // Add content rows vào bảng PDF
             for (int rows = 0; rows < tableGioHang.getRowCount(); rows++) {
                 for (int cols = 0; cols < tableGioHang.getColumnCount(); cols++) {
-                    pdfTable.addCell(tableGioHang.getModel().getValueAt(rows, cols).toString());
+                     Object cellValue = tableGioHang.getModel().getValueAt(rows, cols);
+                     String cellText = (cellValue != null) ? cellValue.toString() : "";
+                    cellText = StringUtils.upperCase(cellText); // Chuyển sang in hoa
+                    cellText = StringUtils.stripAccents(cellText); // Loại bỏ dấu
+                    pdfTable.addCell(cellText);
                 }
             }
             doc.add(pdfTable);
