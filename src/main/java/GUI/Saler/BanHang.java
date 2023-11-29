@@ -111,8 +111,7 @@ public class BanHang extends javax.swing.JPanel {
 //        tableGioHang.repaint();
     }
     public void resetUI(){
-          DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
-        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng    
+          showItemCartInTable();
         txtTienKhachDua.setText("0");
         txtTienThua.setText("0");
     }
@@ -140,7 +139,6 @@ public class BanHang extends javax.swing.JPanel {
         txtTienKhachDua = new javax.swing.JTextField();
         txtTienThua = new javax.swing.JTextField();
         btnPayment = new javax.swing.JButton();
-        btnRefresh = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         ScrollPaneItems = new javax.swing.JScrollPane();
         PanelItems = new javax.swing.JPanel();
@@ -390,13 +388,6 @@ public class BanHang extends javax.swing.JPanel {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        btnRefresh.setText("Refresh UI");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -409,11 +400,7 @@ public class BanHang extends javax.swing.JPanel {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnRefresh)))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -431,10 +418,7 @@ public class BanHang extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRefresh)
-                        .addGap(70, 70, 70)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -702,11 +686,6 @@ public class BanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSuaSoLuongActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        resetUI();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelItems;
@@ -715,7 +694,6 @@ public class BanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnFind;
     private javax.swing.JButton btnOffFind;
     private javax.swing.JButton btnPayment;
-    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSuaSoLuong;
     private javax.swing.JButton btnTimKhachHang;
     private javax.swing.JComboBox<String> cbbTypeCustomer;
