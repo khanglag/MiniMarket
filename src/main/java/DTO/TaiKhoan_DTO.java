@@ -15,6 +15,12 @@ package DTO;
         this.tonTai = tonTai;
     }
 
+    public TaiKhoan_DTO(String maNV, String matKhau, boolean tonTai) {
+        this.maNV = maNV;
+        this.matKhau = matKhau;
+        this.tonTai = tonTai;
+    }
+
     public String getMaNV() {
         return this.maNV;
     }
