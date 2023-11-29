@@ -431,6 +431,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtSDT.setText("");
         txtNgaySinh.setText("");
         txtDiaChi.setText("");
+        txtFindByName.setText("");
         btnAdd.setEnabled(true);
         cbbViTri.setEnabled(true);
         showStaffInTable();
@@ -618,7 +619,18 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tableQLNV.getModel();
         model.setRowCount(0);
         String tenNV = txtFindByName.getText();
+        if(tenNV.equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng điền tên nhân viên");
+            showStaffInTable();
+                return;
+        }
         ArrayList<NhanVien_DTO> danhSachNhanVienSearch = nvDao.searchNhanVien(null, tenNV, null);
+        if(danhSachNhanVienSearch.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Tên nhân viên không có trong hệ thống");
+            showStaffInTable();
+                return;
+        }
+       
         for (int i = 0; i < danhSachNhanVienSearch.size(); i++) {
             NhanVien_DTO nv = danhSachNhanVienSearch.get(i);
             int STT = i + 1;
