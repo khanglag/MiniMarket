@@ -331,7 +331,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         int i = jTable.getSelectedRow();
         int index=-1;
         if(i>=0){
-            if(hhbus.Sol(jTable.getModel().getValueAt(i, 0).toString())<Integer.parseInt(jtfSoLuong.getText())){
+             if(hhbus.Sol(jTable.getModel().getValueAt(i, 1).toString())>Integer.valueOf(jtfSoLuong.getText())){
                 for(int j = 0;j<list.size();j++){
                     ChiTietKiemHang_DTO ctpx = list.get(j);
                     if(ctpx.getMaSP().equals(jTable
