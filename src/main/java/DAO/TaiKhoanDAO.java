@@ -95,7 +95,8 @@ public class TaiKhoanDAO {
     public TaiKhoan_DTO Account(String manv) {
         ConnectDB connectDB = new ConnectDB();
         TaiKhoan_DTO tk = null;
-        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1 and MANV = '" + manv +"'";
+        String qry ="SELECT taikhoan.MANV,MATKHAU,MAQUYEN, taikhoan.TONTAI FROM `taikhoan` INNER JOIN `nhanvien` ON taikhoan.MANV= nhanvien.MANV WHERE taikhoan.TONTAI =1 and taikhoan.MANV ='" + manv +"'";
+        
         ResultSet rSet = null;
 
         try {
@@ -105,7 +106,7 @@ public class TaiKhoanDAO {
                     tk = new TaiKhoan_DTO(
                             rSet.getNString("MANV"),
                             rSet.getNString("MATKHAU"),
-                            rSet.getNString("MAPQ"),
+                            rSet.getNString("MAQUYEN"),
                             rSet.getBoolean("TONTAI"));
                     return tk;
 
