@@ -140,7 +140,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jLabel33.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel33.setText("Vị trí");
 
-        cbbViTri.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên bán hàng", "Nhân viên thủ kho", "Quản lý" }));
+        cbbViTri.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên bán hàng", "Nhân viên thủ kho", "Quản lý", "Admin" }));
 
         txtFindByName.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập tên để tìm kiếm"));
 
@@ -454,6 +454,9 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         }
         if (viTri == 2) {
             maPQ = "QL20003";
+        }
+        if(viTri == 3){
+            maPQ = "ADMIN01";
         }
         if (sdt.equals("") || tenNV.equals("") || cccd.equals("") || email.equals("") || diaChi.equals("")) {
             JOptionPane.showMessageDialog(null,
