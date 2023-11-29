@@ -14,7 +14,7 @@ public class TaiKhoanDAO {
     public ArrayList<TaiKhoan_DTO> ReadTaiKhoan() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<TaiKhoan_DTO> tkArrayList = new ArrayList<>();
-        String qry = "SELECT * FROM `taikhoan` WHERE TONTAI = 1";
+        String qry = "SELECT taikhoan.MANV,MATKHAU,MAQUYEN, taikhoan.TONTAI FROM `taikhoan` INNER JOIN `nhanvien` ON taikhoan.MANV= nhanvien.MANV WHERE taikhoan.TONTAI =1 ";
         ResultSet rSet = null;
 
         try {
@@ -24,7 +24,7 @@ public class TaiKhoanDAO {
                     TaiKhoan_DTO tk = new TaiKhoan_DTO(
                             rSet.getNString("MANV"),
                             rSet.getNString("MATKHAU"),
-                            rSet.getNString("MAPQ"),
+                            rSet.getNString("MAQUYEN"),
                             rSet.getBoolean("TONTAI"));
                     tkArrayList.add(tk);
 
@@ -42,10 +42,9 @@ public class TaiKhoanDAO {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
-                " INSERT INTO `taikhoan` (`MANV` , `MATKHAU`, `MAPQ`, `TONTAI`) VALUES "
+                " INSERT INTO `taikhoan` (`MANV` , `MATKHAU`, `TONTAI`) VALUES "
                         + "( '" + taiKhoan.getMaNV()
                         + "','" + taiKhoan.getMatKhau()
-                        + "','" + taiKhoan.getMaPQ()
                         + "','1')");
         connectDB.closeConnect();
         return success;
@@ -132,7 +131,6 @@ public class TaiKhoanDAO {
                     tk = new TaiKhoan_DTO(
                             rSet.getNString("MANV"),
                             rSet.getNString("MATKHAU"),
-                            rSet.getNString("MAPQ"),
                             rSet.getBoolean("TONTAI"));
                     return tk;
 
