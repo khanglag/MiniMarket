@@ -22,6 +22,10 @@ import java.util.Iterator;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -69,7 +73,11 @@ public class ExcelFile {
         // Tạo một workbook mới (đối với định dạng xlsx)
         try (Workbook workbook = new XSSFWorkbook()) {
             // Tạo một sheet trong workbook
-            Sheet sheet = workbook.createSheet("Product Data");
+            CellStyle style = workbook.createCellStyle();
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            style.setAlignment(HorizontalAlignment.CENTER);
+            Sheet sheet = workbook.createSheet("Hàng hoá");
 
             // Tạo dòng tiêu đề
             Row headerRow = sheet.createRow(0);
@@ -116,6 +124,10 @@ public class ExcelFile {
                 Cell cellAnhSP = row.createCell(9);
                 cellAnhSP.setCellValue(product.getAnhSP());
             }
+             for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+
 
             // Sử dụng JFileChooser để chọn nơi lưu file
             JFileChooser fileChooser = new JFileChooser();
@@ -152,14 +164,17 @@ public class ExcelFile {
         try (Workbook workbook = new XSSFWorkbook()) {
             // Tạo một sheet trong workbook
             Sheet sheet = workbook.createSheet("ChiTietPhieuXuat Data");
-
+            CellStyle style = workbook.createCellStyle();
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            style.setAlignment(HorizontalAlignment.CENTER);
             // Tạo dòng tiêu đề
             Row titleRow = sheet.createRow(0);
             Cell titleCell = titleRow.createCell(0);
             titleCell.setCellValue("CHI TIẾT PHIẾU XUẤT");
 
             // Gộp ô cho tiêu đề
-            sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 6));
+            sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 7));
 
             // Tạo dòng tiêu đề cho dữ liệu
             Row headerRow = sheet.createRow(1);
@@ -205,12 +220,15 @@ public class ExcelFile {
                 cellThanhTien.setCellValue(chiTietPhieuXuat.getThanhTien());
             }
             Row totalRow = sheet.createRow(rowNum++);
-            Cell totalLabelCell = totalRow.createCell(5); // Giả sử "Thành Tiền" ở cột thứ 6 (chỉ số 5)
+            Cell totalLabelCell = totalRow.createCell(6); // Giả sử "Thành Tiền" ở cột thứ 6 (chỉ số 5)
             totalLabelCell.setCellValue("Tổng cộng");
             PhieuXuatBus bus = new PhieuXuatBus();
             double totalThanhTien = bus.timPhieuXuat(maPX, null, null, null).get(0).getTongTien();
-            Cell totalValueCell = totalRow.createCell(6); // Giả sử "Thành Tiền" ở cột thứ 7 (chỉ số 6)
+            Cell totalValueCell = totalRow.createCell(7); // Giả sử "Thành Tiền" ở cột thứ 7 (chỉ số 6)
             totalValueCell.setCellValue(totalThanhTien);
+             for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+                sheet.autoSizeColumn(i);
+            }
 
             // Sử dụng JFileChooser để chọn nơi lưu file
             JFileChooser fileChooser = new JFileChooser();

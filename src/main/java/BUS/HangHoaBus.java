@@ -60,10 +60,16 @@ public class HangHoaBus {
 
     public boolean themHH(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap,
             double giaBan, int soLuong, String xuatXu, boolean tonTai) {
+        if (dao.daTonTaiHH(maSP)) {
+                           JOptionPane.showMessageDialog(null,
+                    "Hàng hoá "+tenSP+" đã tồn tại");
+            return false;
+                    }
         String anhSP = ImageChooserAndMover.formatString(tenSP);
         if (!ImageChooserAndMover.chooseAndMoveImage(anhSP)) {
             return false;
         }
+        
         anhSP = ImageChooserAndMover.formatStringFile(anhSP);
         return dao.add(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
     }
