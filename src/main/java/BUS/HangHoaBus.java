@@ -33,6 +33,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author pc
  */
 public class HangHoaBus {
+
     public HangHoaBus() {
     }
 
@@ -52,7 +53,6 @@ public class HangHoaBus {
         ds = dao.searchHangHoa(maHang, null, null, null);
         return ds.get(0).getGiaBan();
     }
-   
 
     public ArrayList<HangHoa_DTO> timHangHoa(String maHH, String tenSP, String maNH, double giaBan, String xuatXu) {
         return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
@@ -71,8 +71,7 @@ public class HangHoaBus {
     public boolean xoaHangHoa(String maHH) {
         try {
             dao.delete(maHH);
-            
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Xóa hàng hóa thất bại");
@@ -93,8 +92,8 @@ public class HangHoaBus {
     }
 
     public ArrayList<HangHoa_DTO> sortBySoLuong(ArrayList<HangHoa_DTO> list) {
-        ArrayList<HangHoa_DTO>sortList=new ArrayList<>();
-        sortList=list;
+        ArrayList<HangHoa_DTO> sortList = new ArrayList<>();
+        sortList = list;
         Collections.sort(sortList, new Comparator<HangHoa_DTO>() {
             @Override
             public int compare(HangHoa_DTO hh1, HangHoa_DTO hh2) {
@@ -104,7 +103,6 @@ public class HangHoaBus {
         });
         return sortList;
     }
-
 
     public boolean giamSLSP(String maSP, int soluong) {
         if (soluong <= 0) {
@@ -142,9 +140,8 @@ public class HangHoaBus {
         ExcelFile e = new ExcelFile();
         int startRow = 3; // Hàng bắt đầu từ 4 (vị trí 0-based)
         int startColumn = 1; // Cột 2 (vị trí 0-based)
-        String erorrString="";
-        try (FileInputStream fis = new FileInputStream(new File(e.chooseFileString()));
-                Workbook workbook = WorkbookFactory.create(fis)) {
+        String erorrString = "";
+        try (FileInputStream fis = new FileInputStream(new File(e.chooseFileString())); Workbook workbook = WorkbookFactory.create(fis)) {
 
             Sheet sheet = workbook.getSheetAt(0); // Chọn sheet (ở đây giả sử chọn sheet đầu tiên)
 
@@ -155,9 +152,9 @@ public class HangHoaBus {
                 // Kiểm tra nếu dòng không rỗng
                 if (row != null) {
                     HangHoa_DTO hhdto = new HangHoa_DTO();
-                    
+
                     Cell cell = row.getCell(1);
-                    if (cell.getStringCellValue()=="") {
+                    if (cell.getStringCellValue() == "") {
                         break;
                     }
                     hhdto.setMaSP(cell.getStringCellValue());
@@ -181,9 +178,8 @@ public class HangHoaBus {
                     hhdto.setAnhSP(cell.getStringCellValue());
                     System.out.println("Hang hoa" + hhdto.toString());
                     if (dao.daTonTaiHH(hhdto.getMaSP())) {
-                            erorrString+="\nSản phẩm "+hhdto.getMaSP()+" "+hhdto.getTenSP()+"đã tồn tại ";
-                    }
-                    else {
+                        erorrString += "\nSản phẩm " + hhdto.getMaSP() + " " + hhdto.getTenSP() + "đã tồn tại ";
+                    } else {
                         dao.addS(hhdto.getMaSP(), hhdto.getTenSP(), hhdto.getMaNH(), hhdto.getMaNCC(), hhdto.getDonVi(), hhdto.getGiaNhap(), hhdto.getGiaBan(), hhdto.getSoLuong(), hhdto.getXuatXu(), hhdto.getAnhSP(), true);
                     }
                 }
@@ -194,13 +190,14 @@ public class HangHoaBus {
             ep.printStackTrace();
             return false;
         }
-        if (erorrString!="") {
-            JOptionPane.showMessageDialog(null,erorrString);
+        if (erorrString != "") {
+            JOptionPane.showMessageDialog(null, erorrString);
         }
         return true;
     }
-    public boolean xuatHHExcel(){
-        ExcelFile e= new ExcelFile();
+
+    public boolean xuatHHExcel() {
+        ExcelFile e = new ExcelFile();
         return e.xuatFileExcelHH(dao.ReadHangHoa());
     }
 }

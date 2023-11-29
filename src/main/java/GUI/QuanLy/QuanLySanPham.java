@@ -797,7 +797,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String tenSP = txtTenSP.getText();
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa sản phẩm " + tenSP + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
-            
             try {
                 hhBus.xoaHangHoa(maSP);
                 JOptionPane.showMessageDialog(null,
@@ -811,7 +810,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         } else {
             return;
         }
-
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed

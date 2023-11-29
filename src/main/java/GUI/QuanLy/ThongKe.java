@@ -153,11 +153,11 @@ public class ThongKe extends javax.swing.JPanel {
         DefaultTableModel newModel = new DefaultTableModel(columnNames, 0);
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
         double total = 0;
-        double tongDoanhThu = 0; 
+        double tongDoanhThu = 0;
         if (dayPrev == null || dayNext == null) {
             for (int i = 0; i < phieuXuats.size(); i++) {
                 PhieuXuat_DTO px = phieuXuats.get(i);
-                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(),decimalFormat.format(px.getTongTien()) ,decimalFormat.format(ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat())) });
+                newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), decimalFormat.format(px.getTongTien()), decimalFormat.format(ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat()))});
                 total += px.getTongTien();
                 tongDoanhThu += ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat());
             }
@@ -174,16 +174,16 @@ public class ThongKe extends javax.swing.JPanel {
                 PhieuXuat_DTO px = phieuXuatByDate.get(i);
                 newModel.addRow(new Object[]{px.getMaPhieuXuat(), px.getMaNV(), px.getMaKH(), px.getThoiGianXuat(), px.getLyDo(), px.getGhiChu(), decimalFormat.format(px.getTongTien()), decimalFormat.format(ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat()))});
                 total += px.getTongTien();
-                 tongDoanhThu += ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat());
+                tongDoanhThu += ctpx.doanhThuPhieuXuat(px.getMaPhieuXuat());
             }
         }
         String tongTiens = decimalFormat.format(total);
-        newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens,decimalFormat.format(tongDoanhThu)});
+        newModel.addRow(new Object[]{null, null, null, null, null, "Tổng", tongTiens, decimalFormat.format(tongDoanhThu)});
         tableStatistical.setModel(newModel);
         txtDoanhThu.setVisible(true);
         jLabel4.setVisible(true);
         txtDoanhThu.setText(decimalFormat.format(tongDoanhThu) + " VNĐ");
-        
+
     }
 
     public void showProductBestSaler() {
@@ -441,8 +441,10 @@ public class ThongKe extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = tableStatistical.getSelectedRow();
         if (i >= 0) {
+            if (cbbTypeStatistic.getSelectedIndex() == 0) {
+                popupMenu.show(tableStatistical, evt.getX(), evt.getY());
+            }
 
-            popupMenu.show(tableStatistical, evt.getX(), evt.getY());
         }
 
     }//GEN-LAST:event_tableStatisticalMouseClicked
