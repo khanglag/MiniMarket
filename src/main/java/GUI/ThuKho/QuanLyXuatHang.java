@@ -5,8 +5,10 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
+import BUS.KhachHangBus;
 import BUS.PhieuXuatBus;
 import Controller.TaiKhoanController;
+import DTO.KhachHang_DTO;
 import DTO.PhieuXuat_DTO;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -360,6 +362,9 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = jTableQuanLyXuatHang.getSelectedRow();
         if(i >=0){
+            KhachHangBus khbus = new KhachHangBus();
+            KhachHang_DTO kh = khbus.timKhachHangMaKH(jtfMaKhachHang.getText());
+            
             ctpx.xuatEX(jtfMaPhieuXuat.getText());
         }else{
             JOptionPane.showMessageDialog(this, "Vui lòng chọn phiếu");
