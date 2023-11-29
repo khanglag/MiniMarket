@@ -76,7 +76,7 @@ public class BanHang extends javax.swing.JPanel {
     }
 
     public static  void showItemCartInTable() {
-        tableGioHang.removeAll();
+        //tableGioHang.removeAll();
         ArrayList<HangHoa_DTO> gioHang = item.gioHang;
         
         DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
@@ -106,11 +106,16 @@ public class BanHang extends javax.swing.JPanel {
                 txtTienThua.setText(String.valueOf(Double.parseDouble(tienKhachDua) - total));
             }
         });
-        model.fireTableDataChanged();
-        tableGioHang.revalidate();
-        tableGioHang.repaint();
+//        model.fireTableDataChanged();
+//        tableGioHang.revalidate();
+//        tableGioHang.repaint();
     }
-
+    public void resetUI(){
+          DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng    
+        txtTienKhachDua.setText("0");
+        txtTienThua.setText("0");
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -245,6 +250,7 @@ public class BanHang extends javax.swing.JPanel {
         });
 
         cbbTypeCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khách vãng lai", "Khách đã đăng kí trên hệ thống" }));
+        cbbTypeCustomer.setEnabled(false);
 
         txtSDT.setBorder(javax.swing.BorderFactory.createTitledBorder("Nhập SĐT"));
 
@@ -561,6 +567,7 @@ public class BanHang extends javax.swing.JPanel {
                 break;
             }
         }
+       
         showItemCartInTable();
     }//GEN-LAST:event_btnSuaSoLuongMouseClicked
 
@@ -637,7 +644,7 @@ public class BanHang extends javax.swing.JPanel {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     SwingUtilities.invokeLater(() -> {
-                            System.out.println("-------- vao ---------------");
+                          resetUI();
                         gioHang.clear();
                         showItemCartInTable();
                     });
@@ -647,6 +654,8 @@ public class BanHang extends javax.swing.JPanel {
         } else {
             return;
         }
+      
+         resetUI();
         showItemCartInTable();
     }//GEN-LAST:event_btnPaymentActionPerformed
 

@@ -53,7 +53,7 @@ public class KhachHangBus {
                     //Tạo đối tượng khách hàng
                     dAO.add(kh);
                     JOptionPane.showMessageDialog(null,
-                            "Thêm kh thành công");
+                            "Thêm khách hàng thành công");
                     //thêm đối tượng khách hàng
                 } catch (InvalidDateOfBirthException e) {
                      JOptionPane.showMessageDialog(null,
