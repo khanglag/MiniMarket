@@ -6,6 +6,7 @@ package File;
 
 import BUS.ChiTietPhieuXuatBus;
 import BUS.HangHoaBus;
+import BUS.NhanvienBus;
 import BUS.PhieuXuatBus;
 import DAO.HangHoaDAO;
 import DTO.ChiTietPhieuXuat_DTO;
@@ -146,6 +147,7 @@ public class ExcelFile {
         ArrayList<ChiTietPhieuXuat_DTO> chiTietPhieuXuatList = new ArrayList<>();
         ChiTietPhieuXuatBus busCt = new ChiTietPhieuXuatBus();
         chiTietPhieuXuatList = busCt.timChiTietPhieuXuat(maPX, null);
+        NhanvienBus nvbus = new NhanvienBus();
         // Tạo một workbook mới (đối với định dạng xlsx)
         try (Workbook workbook = new XSSFWorkbook()) {
             // Tạo một sheet trong workbook
