@@ -374,29 +374,6 @@ INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
 ('NVTK203', 'Nhân viên thủ kho', 1),
 ('QL20003', 'Quản lý', 1);
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `phieuchi`
---
-
-CREATE TABLE `phieuchi` (
-  `MAPHIEUCHI` char(7) NOT NULL,
-  `SOTIEN` double NOT NULL,
-  `MANV` char(7) NOT NULL,
-  `THOIGIANCHI` datetime NOT NULL,
-  `LYDO` text NOT NULL,
-  `GHICHU` text NOT NULL,
-  `TONTAI` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `phieuchi`
---
-
-INSERT INTO `phieuchi` (`MAPHIEUCHI`, `SOTIEN`, `MANV`, `THOIGIANCHI`, `LYDO`, `GHICHU`, `TONTAI`) VALUES
-('0000001', 11403720, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng nhập phiếu 1', '', 1),
-('0000002', 4341600, 'B041003', '2023-09-20 17:35:17', 'chi tiền hàng nhập phiếu 2', '', 1);
 
 -- --------------------------------------------------------
 
@@ -616,14 +593,7 @@ ALTER TABLE `nhomhang`
 ALTER TABLE `phanquyen`
   ADD PRIMARY KEY (`MAQUYEN`);
 
---
--- Chỉ mục cho bảng `phieuchi`
---
-ALTER TABLE `phieuchi`
-  ADD PRIMARY KEY (`MAPHIEUCHI`),
-  ADD KEY `MANV` (`MANV`);
 
---
 -- Chỉ mục cho bảng `phieukiemhang`
 --
 ALTER TABLE `phieukiemhang`
@@ -709,11 +679,6 @@ ALTER TABLE `hoadon`
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`MAQUYEN`) REFERENCES `phanquyen` (`MAQUYEN`);
 
---
--- Các ràng buộc cho bảng `phieuchi`
---
-ALTER TABLE `phieuchi`
-  ADD CONSTRAINT `phieuchi_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
 
 --
 -- Các ràng buộc cho bảng `phieukiemhang`
