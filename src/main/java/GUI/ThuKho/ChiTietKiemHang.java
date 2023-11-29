@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.ChiTietKiemHangBus;
+import BUS.HangHoaBus;
 import BUS.PhieuKiemHangBus;
 import DTO.ChiTietKiemHang_DTO;
 import DTO.HangHoa_DTO;
@@ -21,8 +22,10 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
     /**
      * Creates new form ChiTietKiemHang
      */
+    HangHoa_DTO selectedHangHoa;
     ChiTietKiemHangBus chitiet = new ChiTietKiemHangBus ();
     PhieuKiemHangBus phieuXuatBus = new PhieuKiemHangBus();
+    HangHoaBus hhbus = new HangHoaBus();
     DefaultTableModel model;
     ArrayList<ChiTietKiemHang_DTO> list = new ArrayList<ChiTietKiemHang_DTO>();
     public ChiTietKiemHang(String ma) {
@@ -310,7 +313,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         HangHoa hangHoa = new HangHoa(this,0);
         hangHoa.setVisible(true);
-        HangHoa_DTO selectedHangHoa = hangHoa.getSelectedHangHoa();
+        selectedHangHoa = hangHoa.getSelectedHangHoa();
         if(selectedHangHoa!=null){
             jtfMaSanPham.setText(selectedHangHoa.getMaSP());
             jtfTenSanPham.setText(selectedHangHoa.getTenSP());
@@ -328,26 +331,31 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         int i = jTable.getSelectedRow();
         int index=-1;
         if(i>=0){
-            for(int j = 0;j<list.size();j++){
-                ChiTietKiemHang_DTO ctpx = list.get(j);
-                if(ctpx.getMaSP().equals(jTable
-                    .getModel().getValueAt(i, 1).toString())){
-                    index = i;
-                    break;
+            if(hhbus.Sol(jTable.getModel().getValueAt(i, 0).toString())<Integer.parseInt(jtfSoLuong.getText())){
+                for(int j = 0;j<list.size();j++){
+                    ChiTietKiemHang_DTO ctpx = list.get(j);
+                    if(ctpx.getMaSP().equals(jTable
+                        .getModel().getValueAt(i, 1).toString())){
+                        index = i;
+                        break;
+                    }
                 }
-            }
-            if(index>=0 ){
-                String maPx = jtfMaPhieu.getText();
-                String maHx = jtfMaSanPham.getText();
-                String tenSp = jtfTenSanPham.getText();
-                int soluong = Integer.parseInt(jtfSoLuong.getText());
-                String donViTinh = jtfDonVi.getText();
-                String tinhTrang= jtfTinhTrang.getText();
-                ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
-                list.set(index,ctpx);
-                JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
-                LoadData();
-                
+                if(index>=0 ){
+                    String maPx = jtfMaPhieu.getText();
+                    String maHx = jtfMaSanPham.getText();
+                    String tenSp = jtfTenSanPham.getText();
+                    int soluong = Integer.parseInt(jtfSoLuong.getText());
+                    String donViTinh = jtfDonVi.getText();
+                    String tinhTrang= jtfTinhTrang.getText();
+                    ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
+                    list.set(index,ctpx);
+                    JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
+                    LoadData();
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Số lượng lớn hơn số lượng hàng hoá trong kho");
+      
             }
         }else{
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa.Mời chọn sản phẩm");
@@ -369,9 +377,10 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this,  "Số lượng không hợp lệ. Mời nhập lại!");
         }else if(Integer.parseInt(jtfSoLuong.getText())<=0){
              JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0");
-        }
-        else if(flag){             
+        }else if(flag){             
             JOptionPane.showMessageDialog(this,  "Mã hàng đã được chọn, vui lòng chọn mã khác!");
+        }else if(Integer.parseInt(jtfSoLuong.getText())> selectedHangHoa.getSoLuong()){
+            JOptionPane.showMessageDialog(this,  "Số lượng lớn hơn số lượng trong kho!");
         }else{
             
             String maPx = jtfMaPhieu.getText();
