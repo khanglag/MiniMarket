@@ -47,7 +47,6 @@ public class HangHoaDAO {
     public boolean add(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
       boolean success = false;
         try {
-              
         HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
