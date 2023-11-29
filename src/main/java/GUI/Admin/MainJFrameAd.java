@@ -15,6 +15,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,10 +31,23 @@ public class MainJFrameAd extends javax.swing.JFrame {
     public MainJFrameAd() {
         initComponents();
         jlbTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+
         jpnView.setLayout(new BorderLayout());
         TrinhDieuKhien();
+
+        setman();
     }
-private void TrinhDieuKhien() {
+    
+    private void setman(){
+        ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        jpnView.removeAll();
+        jpnView.revalidate();
+        jpnView.repaint();
+        jpnView.add(ttnv).setVisible(true);
+
+    }
+    private void TrinhDieuKhien() {
+        
         AdminController controller = new AdminController(jpnView);
         controller.setView(panelQuanLyUser, jLabelQuanLyUser);
         
