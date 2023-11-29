@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2023 lúc 01:56 PM
+-- Thời gian đã tạo: Th10 29, 2023 lúc 07:36 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -315,11 +315,10 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `TONTAI`) VALUES
-('A000000', 'Admin', '0000-00-00', 'nam', '', '', '', '', 'ADMIN01', 1),
 ('A000001', 'Võ Đinh Xuân Hoàng', '2003-02-02', 'nam', '068000000002', '0944313407', 'vodinhxuanhoang@gmail.com', '277 Âu Dương Lân', 'NVBH203', 1),
 ('A000003', 'Nguyễn Trần Yến Nhi', '2003-04-17', 'nữ', '068000000000', '0368562519', 'tuoi@gmail.com', 'Thủ Đức', 'NVTK203', 1),
 ('A038645', 'Nguyễn Thị Anh Thư ', '2003-08-15', 'nữ', '068303002628', '0368779041', 'nguyenanhthu15082003@gmail.com', '101 Nguyễn Thị Tần', 'NVTK203', 1),
-('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'NVBH203', 1),
+('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'ADMIN01', 1),
 ('A140403', 'Đỗ Minh Khang', '2003-04-14', 'nam', '068000000001', '0838208944', 'khanglag@gmail.com', 'Dương Quảng Hàm', 'NVBH203', 1),
 ('B041003', 'Lê Duy Khang', '2003-10-04', 'nam', '091203002454', '0358808913', 'lehoanggiakhuong@gmail.com', '277 Âu Dương Lân', 'QL20003', 1);
 
@@ -374,30 +373,6 @@ INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
 ('NVBH203', 'Nhân viên bán hàng', 1),
 ('NVTK203', 'Nhân viên thủ kho', 1),
 ('QL20003', 'Quản lý', 1);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `phieuchi`
---
-
-CREATE TABLE `phieuchi` (
-  `MAPHIEUCHI` char(7) NOT NULL,
-  `SOTIEN` double NOT NULL,
-  `MANV` char(7) NOT NULL,
-  `THOIGIANCHI` datetime NOT NULL,
-  `LYDO` text NOT NULL,
-  `GHICHU` text NOT NULL,
-  `TONTAI` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `phieuchi`
---
-
-INSERT INTO `phieuchi` (`MAPHIEUCHI`, `SOTIEN`, `MANV`, `THOIGIANCHI`, `LYDO`, `GHICHU`, `TONTAI`) VALUES
-('0000001', 11403720, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng nhập phiếu 1', '', 1),
-('0000002', 4341600, 'B041003', '2023-09-20 17:35:17', 'chi tiền hàng nhập phiếu 2', '', 1);
 
 -- --------------------------------------------------------
 
@@ -531,11 +506,10 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `MAPQ`, `TONTAI`) VALUES
-('A000000', '123456', 'ADMIN01', 1),
-('A000001', 'xhne', 'NVBH203', 1),
+('A000001', '1', 'NVBH203', 1),
 ('A000003', 'tuoine', 'NVTK203', 1),
 ('A038645', '130613', 'NVTK203', 1),
-('A070103', '070103', 'NVBH203', 1),
+('A070103', '1', 'ADMIN01', 1),
 ('A140403', '140403', 'NVBH203', 1),
 ('B041003', '100403', 'QL20003', 1);
 
@@ -618,13 +592,6 @@ ALTER TABLE `nhomhang`
 --
 ALTER TABLE `phanquyen`
   ADD PRIMARY KEY (`MAQUYEN`);
-
---
--- Chỉ mục cho bảng `phieuchi`
---
-ALTER TABLE `phieuchi`
-  ADD PRIMARY KEY (`MAPHIEUCHI`),
-  ADD KEY `MANV` (`MANV`);
 
 --
 -- Chỉ mục cho bảng `phieukiemhang`
@@ -712,12 +679,6 @@ ALTER TABLE `hoadon`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`MAQUYEN`) REFERENCES `phanquyen` (`MAQUYEN`);
-
---
--- Các ràng buộc cho bảng `phieuchi`
---
-ALTER TABLE `phieuchi`
-  ADD CONSTRAINT `phieuchi_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
 
 --
 -- Các ràng buộc cho bảng `phieukiemhang`
