@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author khang
  */
 public class PhieuYeuCauNhapDAO {
-     public ArrayList<ChiTietPhieuNhap_DTO> readBD() {
+    public ArrayList<ChiTietPhieuNhap_DTO> readBD() {
         ConnectDB connectBD = new ConnectDB();
         ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap_DTOs = new ArrayList<>();
         String qry = "SELECT * FROM `phieuyeucaunhap` WHERE TONTAI = 1";
@@ -90,7 +90,8 @@ public class PhieuYeuCauNhapDAO {
         return kq;
     }
 
-    public ArrayList<ChiTietPhieuNhap_DTO> searchCTPN(String maPhieuNhap, String maHangNhap, String tenHangNhap,String xuatXu) {
+    public ArrayList<ChiTietPhieuNhap_DTO> searchCTPN(String maPhieuNhap, String maHangNhap, String tenHangNhap,
+            String xuatXu) {
         ArrayList<ChiTietPhieuNhap_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
         StringBuilder qry = new StringBuilder("SELECT * FROM `phieuyeucaunhap` WHERE TONTAI = 1");
@@ -137,21 +138,40 @@ public class PhieuYeuCauNhapDAO {
         return ds;
 
     }
-    public boolean isCTPN_Existed(String maPhieu, String maSP) {
+
+    public boolean isCTPN_Existed(String maPhieu) {
         ConnectDB connectDB = new ConnectDB();
-        String qry = "SELECT 1 FROM `phieuyeucaunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `MAHANGNHAP` = '" + maSP + "'";
-        
+        String qry = "SELECT 1 FROM `phieuyeucaunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "'";
+
         ResultSet rSet = connectDB.sqlQuery(qry);
-        
+
         if (rSet != null) {
             try {
-                return rSet.next(); 
+                return rSet.next();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        
-        return false; 
+
+        return false;
+    }
+
+    public boolean isCTPN_Existed(String maPhieu, String maSP) {
+        ConnectDB connectDB = new ConnectDB();
+        String qry = "SELECT 1 FROM `phieuyeucaunhap` WHERE `MAPHIEUNHAP` = '" + maPhieu + "' AND `MAHANGNHAP` = '"
+                + maSP + "'";
+
+        ResultSet rSet = connectDB.sqlQuery(qry);
+
+        if (rSet != null) {
+            try {
+                return rSet.next();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false;
     }
 
 }
