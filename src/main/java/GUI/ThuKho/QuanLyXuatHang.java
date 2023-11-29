@@ -4,6 +4,7 @@
  */
 package GUI.ThuKho;
 
+import BUS.ChiTietPhieuXuatBus;
 import BUS.PhieuXuatBus;
 import Controller.TaiKhoanController;
 import DTO.PhieuXuat_DTO;
@@ -21,6 +22,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
     PhieuXuatBus phieuXuatBus = new PhieuXuatBus();
     DefaultTableModel model;
     ArrayList<PhieuXuat_DTO> list = new ArrayList<PhieuXuat_DTO>();
+    ChiTietPhieuXuatBus ctpx = new ChiTietPhieuXuatBus();
     /**
      * Creates new form QuanLyXuatHang
      */
@@ -356,6 +358,13 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        int i = jTableQuanLyXuatHang.getSelectedRow();
+        if(i >=0){
+            ctpx.xuatEX(jtfMaPhieuXuat.getText());
+        }else{
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn phiếu");
+            
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTableQuanLyXuatHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableQuanLyXuatHangMouseClicked
