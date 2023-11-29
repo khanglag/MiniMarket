@@ -73,12 +73,11 @@ public class QuanLyUser extends javax.swing.JPanel {
         jtfNgaySinh = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jtfMaQuyen = new javax.swing.JTextField();
-        jcbbTenQuyen = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jtfTenQuyen = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnKhoa = new javax.swing.JButton();
         btnMoKhoa = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
         btnLoad = new javax.swing.JButton();
         btnDatLaiMatKhau = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
@@ -123,15 +122,10 @@ public class QuanLyUser extends javax.swing.JPanel {
 
         jtfMaQuyen.setEditable(false);
 
-        jcbbTenQuyen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mời chọn quyền", "Nhân viên bán hàng", "Nhân viên thủ kho", "Quản lý", "Admin" }));
-        jcbbTenQuyen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbbTenQuyenActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Tên quyền");
+
+        jtfTenQuyen.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,23 +135,21 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addGap(46, 46, 46)
+                        .addComponent(jtfMaQuyen))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfMaNV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(jtfMaNV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                             .addComponent(jtfTen, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtfNgaySinh)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(42, 42, 42)
-                        .addComponent(jcbbTenQuyen, 0, 290, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel33)
-                        .addGap(46, 46, 46)
-                        .addComponent(jtfMaQuyen)))
+                            .addComponent(jtfNgaySinh)
+                            .addComponent(jtfTenQuyen))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,8 +169,8 @@ public class QuanLyUser extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbbTenQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jtfTenQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfMaQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,18 +199,6 @@ public class QuanLyUser extends javax.swing.JPanel {
             }
         });
         jPanel3.add(btnMoKhoa);
-
-        btnSua.setBackground(new java.awt.Color(51, 255, 102));
-        btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnSua.setForeground(new java.awt.Color(255, 255, 255));
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/updated.png"))); // NOI18N
-        btnSua.setText("SỬA");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnSua);
 
         btnLoad.setBackground(new java.awt.Color(51, 255, 102));
         btnLoad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -397,49 +377,25 @@ public class QuanLyUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         int i = jTable.getSelectedRow();
         if(i>=0){
-            if(!jTable.getModel().getValueAt(i, 4).equals("Chưa có tài khoản")){
-                btnSua.setEnabled(false);
-                btnThem.setEnabled(false);
-            }else{
-                btnSua.setEnabled(true);
-                btnThem.setEnabled(true);
-            }
+            
             jtfMaNV.setText(jTable.getModel().getValueAt(i, 0).toString());
             jtfTen.setText(jTable.getModel().getValueAt(i, 1).toString());
             jtfNgaySinh.setText(jTable.getModel().getValueAt(i, 2).toString());
             jtfMaQuyen.setText(jTable.getModel().getValueAt(i, 3).toString());
             if(jtfMaQuyen.getText().equals("NVBH203")){
-                jcbbTenQuyen.setSelectedIndex(1);
+                jtfTenQuyen.setText("Nhân viên bán hàng");
             }
             if(jtfMaQuyen.getText().equals("NVTK203")){
-                jcbbTenQuyen.setSelectedIndex(2);
+                jtfTenQuyen.setText("Nhân viên thủ kho");
             }
             if(jtfMaQuyen.getText().equals("QL20003")){
-                jcbbTenQuyen.setSelectedIndex(3);
+                jtfTenQuyen.setText("Quản lý");
             }
-            if(jtfMaQuyen.getText().equals("Admin")){
-                jcbbTenQuyen.setSelectedIndex(4);
+            if(jtfMaQuyen.getText().equals("ADMIN01")){
+                jtfTenQuyen.setText("Admin");
             }
         }
     }//GEN-LAST:event_jTableMouseClicked
-
-    private void jcbbTenQuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbbTenQuyenActionPerformed
-        // TODO add your handling code here:
-        int i = (int) jcbbTenQuyen.getSelectedIndex();
-        if(i==1){
-            jtfMaQuyen.setText("NVBH203");
-        }
-        if( i==2){
-            jtfMaQuyen.setText("NVTK203");
-        }
-        if(i==3){
-            jtfMaQuyen.setText("QL20003");
-        }
-        if(i==4){
-            jtfMaQuyen.setText("Admin");
-        }
-            
-    }//GEN-LAST:event_jcbbTenQuyenActionPerformed
 
     private void btnKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoaActionPerformed
         // TODO add your handling code here:
@@ -462,23 +418,6 @@ public class QuanLyUser extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn xoá");
         }
     }//GEN-LAST:event_btnKhoaActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-        int i = jTable.getSelectedRow();
-        if(i>=0){
-            if(jcbbTenQuyen.getSelectedIndex()==0){
-                JOptionPane.showMessageDialog(this, "Bạn chưa chọn quyền");
-            } else if(nhanVienBus.suaNhanVien(jtfMaNV.getText().toString(), jtfMaQuyen.getText().toString())){
-            JOptionPane.showMessageDialog(this, "Sửa thành công!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Lỗi!");
-            }
-            LoadData();
-        }else{
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản muốn sửa");
-        }
-    }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
@@ -552,7 +491,6 @@ public class QuanLyUser extends javax.swing.JPanel {
     private javax.swing.JButton btnKhoa;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnMoKhoa;
-    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
     private javax.swing.JLabel jLabel2;
@@ -569,11 +507,11 @@ public class QuanLyUser extends javax.swing.JPanel {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuThemTaiKhoan;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
-    private javax.swing.JComboBox<String> jcbbTenQuyen;
     private javax.swing.JTextField jtfMaNV;
     private javax.swing.JTextField jtfMaQuyen;
     private javax.swing.JTextField jtfNgaySinh;
     private javax.swing.JTextField jtfTen;
+    private javax.swing.JTextField jtfTenQuyen;
     private javax.swing.JTextField jtfTim;
     // End of variables declaration//GEN-END:variables
 }
