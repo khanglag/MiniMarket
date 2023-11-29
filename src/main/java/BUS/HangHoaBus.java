@@ -92,16 +92,19 @@ public class HangHoaBus {
         return dao.searchHangHoa(maHH);
     }
 
-    public ArrayList<HangHoa_DTO> sapXep(ArrayList<HangHoa_DTO> dto) {
-        Collections.sort(dto, new Comparator<HangHoa_DTO>() {
+    public ArrayList<HangHoa_DTO> sortBySoLuong(ArrayList<HangHoa_DTO> list) {
+        ArrayList<HangHoa_DTO>sortList=new ArrayList<>();
+        sortList=list;
+        Collections.sort(sortList, new Comparator<HangHoa_DTO>() {
             @Override
-            public int compare(HangHoa_DTO o1, HangHoa_DTO o2) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                               // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            public int compare(HangHoa_DTO hh1, HangHoa_DTO hh2) {
+                // Sắp xếp theo số lượng tăng dần (từ bé đến lớn)
+                return Integer.compare(hh1.getSoLuong(), hh2.getSoLuong());
             }
         });
-        return dto;
+        return sortList;
     }
+
 
     public boolean giamSLSP(String maSP, int soluong) {
         if (soluong <= 0) {
