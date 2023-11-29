@@ -30,7 +30,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
     public void dashboardControl() {
         mainScreen.setLayout(new BorderLayout());
-        mainScreen.add(new ThongTinNhanVien());
+        mainScreen.add(new BanHang());
         DefaultColor = new Color(255, 255, 255);
         ClickedColor = new Color(240, 151, 57);
        // panelttcn.setBackground(ClickedColor);
