@@ -2,6 +2,8 @@ package BUS;
 
 import DAO.ChiTietPhieuNhapDAO;
 import DTO.ChiTietPhieuNhap_DTO;
+import File.ExcelFile;
+import java.time.LocalDate;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -93,5 +95,9 @@ public class ChiTietPhieuNhapBus {
             JOptionPane.showMessageDialog(null, "Lỗi khi tìm Kiếm Phiếu !!!!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return new ArrayList<>();
         }
+    }
+    public boolean xuatEX(String maPN,String maNV,LocalDate ngayDate){
+        ExcelFile file=new ExcelFile();
+        return file.xuatChiTietPhieuNhapEX(maPN, ngayDate, maNV);
     }
 }
