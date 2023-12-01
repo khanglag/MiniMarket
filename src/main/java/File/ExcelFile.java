@@ -4,14 +4,21 @@
  */
 package File;
 
+
+import BUS.ChiTietPhieuNhapBus;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import BUS.ChiTietPhieuXuatBus;
 import BUS.HangHoaBus;
 import BUS.NhanvienBus;
 import BUS.PhieuXuatBus;
 import DAO.HangHoaDAO;
+import DTO.ChiTietPhieuNhap_DTO;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
 import DTO.PhieuXuat_DTO;
+import Handle.Timeconvert;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -298,4 +305,142 @@ public class ExcelFile {
         }
         return arrayList;
     }
+
+    public boolean xuatChiTietPhieuNhapEX(String maPN,LocalDate ngayDate,String maNV){
+        ChiTietPhieuNhapBus bus= new ChiTietPhieuNhapBus();
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("ChiTietPhieuNhap Data");
+            
+            CellStyle style = workbook.createCellStyle();
+            style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            style.setAlignment(HorizontalAlignment.CENTER);
+            // Tạo dòng tiêu đề
+            Row titleRow = sheet.createRow(0);
+            Cell titleCell = titleRow.createCell(0);
+            titleCell.setCellValue("CHI TIẾT PHIẾU NHẬP");
+            // Merge ô cho tiêu đề
+            sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 9));
+
+            // Tạo dòng cho tiêu đề
+
+            
+            titleCell.setCellValue("Chi tiết phiếu nhập");
+              // Tạo dòng cho thời gian và nhân viên
+            Row infoRow = sheet.createRow(1);
+            infoRow.createCell(0).setCellValue("Thời Gian:");
+            infoRow.createCell(1).setCellValue(Timeconvert.convert(ngayDate));
+            infoRow.createCell(8).setCellValue("Nhân Viên:");
+            infoRow.createCell(9).setCellValue(maNV);
+
+            // Tạo dòng cho tiêu đề cột
+            Row headerRow = sheet.createRow(2);
+            headerRow.createCell(0).setCellValue("Mã Phiếu Nhập");
+            headerRow.createCell(1).setCellValue("Mã Hàng Nhập");
+            headerRow.createCell(2).setCellValue("Tên Hàng Nhập");
+            headerRow.createCell(3).setCellValue("Mã NCC");
+            headerRow.createCell(4).setCellValue("VAT");
+            headerRow.createCell(5).setCellValue("Xuất Xứ");
+            headerRow.createCell(6).setCellValue("Số Lượng");
+            headerRow.createCell(7).setCellValue("Đơn Vị");
+            headerRow.createCell(8).setCellValue("Giá Nhập");
+            headerRow.createCell(9).setCellValue("Tổng Tiền Nhập");
+
+          
+
+            // Đổ dữ liệu từ danh sách vào tệp Excel
+            int rowNum = 3;
+            for (ChiTietPhieuNhap_DTO chiTietPhieuNhap : bus.timCTPN(maPN, "", "", "")) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(chiTietPhieuNhap.getMaPhieuNhap());
+                row.createCell(1).setCellValue(chiTietPhieuNhap.getMaHangNhap());
+                row.createCell(2).setCellValue(chiTietPhieuNhap.getTenHangNhap());
+                row.createCell(3).setCellValue(chiTietPhieuNhap.getMaNCC());
+                row.createCell(4).setCellValue(chiTietPhieuNhap.getVAT());
+                row.createCell(5).setCellValue(chiTietPhieuNhap.getXuatXu());
+                row.createCell(6).setCellValue(chiTietPhieuNhap.getSoLuong());
+                row.createCell(7).setCellValue(chiTietPhieuNhap.getDonVi());
+                row.createCell(8).setCellValue(chiTietPhieuNhap.getGiaNhap());
+                row.createCell(9).setCellValue(chiTietPhieuNhap.getTongTienNhap());
+            }
+            for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
+                sheet.autoSizeColumn(i);
+            }
+            // Sử dụng JFileChooser để chọn nơi lưu file
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // Lấy đường dẫn đã chọn
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                // Ghi workbook vào file
+                try (FileOutputStream fileOut = new FileOutputStream(filePath + ".xlsx")) {
+                    workbook.write(fileOut);
+                }
+
+                System.out.println("Tạo file Excel thành công!");
+            } else {
+                System.out.println("Người dùng đã hủy lựa chọn.");
+            }
+            System.out.println("Xuất Excel thành công!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public boolean xuatPDFPX(String maPX){
+        Document document = new Document();
+        ChiTietPhieuXuatBus bus=new ChiTietPhieuXuatBus();
+        JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // Lấy đường dẫn đã chọn
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                try {
+            // Ghi dữ liệu vào tệp PDF
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            // Tiêu đề hoá đơn
+            document.add(new Paragraph("Hoá Đơn Chi Tiết Phiếu Xuất"));
+
+            // Dòng trắng
+            document.add(new Paragraph(" "));
+
+            // Dữ liệu chi tiết phiếu xuất
+            for (ChiTietPhieuXuat_DTO chiTietPhieuXuat :bus.timChiTietPhieuXuat(maPX, "")) {
+                document.add(new Paragraph("Mã Phiếu Xuất: " + chiTietPhieuXuat.getMaPhieuXuat()));
+                document.add(new Paragraph("Mã Hàng Xuất: " + chiTietPhieuXuat.getMaHangXuat()));
+                document.add(new Paragraph("Số Lượng Yêu Cầu: " + chiTietPhieuXuat.getSoLuongYC()));
+                document.add(new Paragraph("Số Lượng Thực Tế: " + chiTietPhieuXuat.getSoLuongThucTe()));
+                document.add(new Paragraph("Đơn Vị: " + chiTietPhieuXuat.getDonVi()));
+                document.add(new Paragraph("Đơn Giá: " + chiTietPhieuXuat.getDonGia()));
+                document.add(new Paragraph("Thành Tiền: " + chiTietPhieuXuat.getThanhTien()));
+
+                // Dòng trắng giữa các chi tiết
+                document.add(new Paragraph(" "));
+            }
+
+            System.out.println("Xuất PDF thành công!");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            document.close();
+        }
+                System.out.println("Tạo file Excel thành công!");
+            } else {
+                System.out.println("Người dùng đã hủy lựa chọn.");
+                return false;
+            }
+    return true;
+    }
+
 }

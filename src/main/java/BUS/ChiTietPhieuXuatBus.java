@@ -128,8 +128,18 @@ public class ChiTietPhieuXuatBus {
         tongDoanhThu = total - giaGoc;
         return tongDoanhThu;
     }
-//    public boolean themEX(){
-//        ExcelFile file= new ExcelFile();
-//        return 
-//    }
+    public boolean themEX(){
+        ExcelFile file= new ExcelFile();
+        for(ChiTietPhieuXuat_DTO temp: file.nhapFileExcelPX())
+        {
+            if (!themChiTietPhieuXuat(temp)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean xuatPDF(String maPX){
+        ExcelFile file =new ExcelFile();
+        return file.xuatPDFPX(maPX);
+    }
 }
