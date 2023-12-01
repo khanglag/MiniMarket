@@ -53,9 +53,11 @@ public class ChiTietHoaDon extends javax.swing.JPanel {
         tableDeTailsBill = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(35, 82, 151));
         jLabel1.setText("Chi tiết hóa đơn số");
 
         txtSoHD.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        txtSoHD.setForeground(new java.awt.Color(35, 82, 151));
         txtSoHD.setText("jLabel2");
 
         tableDeTailsBill.setModel(new javax.swing.table.DefaultTableModel(
@@ -93,10 +95,10 @@ public class ChiTietHoaDon extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

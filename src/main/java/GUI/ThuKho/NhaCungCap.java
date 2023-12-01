@@ -83,7 +83,9 @@ public class NhaCungCap extends javax.swing.JDialog {
 
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
+        btnTim.setBackground(new java.awt.Color(67, 138, 174));
         btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnTim.setText("TÌM KIẾM");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +94,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnLamMoi.setBackground(new java.awt.Color(67, 138, 174));
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +105,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnChon.setBackground(new java.awt.Color(67, 138, 174));
         btnChon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChon.setForeground(new java.awt.Color(255, 255, 255));
         btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnChon.setText("CHỌN");
         btnChon.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +116,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnHuy.setBackground(new java.awt.Color(67, 138, 174));
         btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnHuy.setText("HỦY");
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +132,7 @@ public class NhaCungCap extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 276, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)

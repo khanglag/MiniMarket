@@ -71,19 +71,20 @@ public class SanPham extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 187, 198));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("XEM SẢN PHẨM");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(176, 206, 221));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin sản phẩm"));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/btt.jpg"))); // NOI18N
 
-        BtnArrange.setBackground(new java.awt.Color(102, 255, 0));
+        BtnArrange.setBackground(new java.awt.Color(67, 138, 174));
         BtnArrange.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        BtnArrange.setForeground(new java.awt.Color(255, 255, 255));
         BtnArrange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sorting.png"))); // NOI18N
         BtnArrange.setText("SẮP XẾP");
         BtnArrange.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,6 +98,7 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
 
+        ChkArrangeByName.setBackground(new java.awt.Color(176, 206, 221));
         ChkArrangeByName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         ChkArrangeByName.setText("Theo tên sản phẩm");
         ChkArrangeByName.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +107,7 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
 
+        ChkArrangeByPrice.setBackground(new java.awt.Color(176, 206, 221));
         ChkArrangeByPrice.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         ChkArrangeByPrice.setText("Theo giá sản phẩm");
         ChkArrangeByPrice.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +116,9 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
 
-        btnFindByName.setBackground(new java.awt.Color(255, 255, 0));
+        btnFindByName.setBackground(new java.awt.Color(67, 138, 174));
         btnFindByName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnFindByName.setForeground(new java.awt.Color(255, 255, 255));
         btnFindByName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnFindByName.setText("TÌM KIẾM");
         btnFindByName.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +127,7 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
 
-        btnOffFind.setBackground(new java.awt.Color(255, 0, 0));
+        btnOffFind.setBackground(new java.awt.Color(67, 138, 174));
         btnOffFind.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnOffFind.setForeground(new java.awt.Color(255, 255, 255));
         btnOffFind.setText("TẮT TÌM KIẾM");
@@ -138,43 +142,43 @@ public class SanPham extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138)
+                .addGap(91, 91, 91)
                 .addComponent(txtFindByName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnFindByName)
-                        .addGap(134, 134, 134)
-                        .addComponent(BtnArrange)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChkArrangeByName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ChkArrangeByPrice))
+                    .addComponent(btnFindByName)
                     .addComponent(btnOffFind))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnArrange)
+                    .addComponent(ChkArrangeByName, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(ChkArrangeByPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbImg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnArrange)
-                            .addComponent(ChkArrangeByName)
-                            .addComponent(ChkArrangeByPrice)
                             .addComponent(txtFindByName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnFindByName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnOffFind, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnOffFind, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ChkArrangeByName))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChkArrangeByPrice)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        TableProducts.setBackground(new java.awt.Color(204, 255, 255));
         TableProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -210,22 +214,21 @@ public class SanPham extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1167, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

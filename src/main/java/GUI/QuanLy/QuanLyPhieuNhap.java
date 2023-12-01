@@ -117,8 +117,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuNhap = new javax.swing.JTable();
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 187, 198));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ PHIẾU NHẬP");
 
@@ -155,7 +155,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

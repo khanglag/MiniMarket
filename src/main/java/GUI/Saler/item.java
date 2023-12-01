@@ -106,8 +106,9 @@ public class item extends javax.swing.JPanel {
 
         LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gao.jpg"))); // NOI18N
 
-        BtnAddProduct.setBackground(new java.awt.Color(51, 255, 51));
+        BtnAddProduct.setBackground(new java.awt.Color(67, 138, 174));
         BtnAddProduct.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        BtnAddProduct.setForeground(new java.awt.Color(255, 255, 255));
         BtnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gioHang.png"))); // NOI18N
         BtnAddProduct.setText("THÊM VÀO GIỎ HÀNG");
         BtnAddProduct.addMouseListener(new java.awt.event.MouseAdapter() {

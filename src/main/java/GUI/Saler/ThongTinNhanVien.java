@@ -72,8 +72,8 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 187, 198));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("THÔNG TIN CÁ NHÂN");
 
@@ -95,7 +95,9 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jLabel7.setText("CĂN CƯỚC");
 
-        btnUpdate.setBackground(new java.awt.Color(204, 0, 204));
+        btnUpdate.setBackground(new java.awt.Color(67, 138, 174));
+        btnUpdate.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Đổi mật khẩu");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,27 +106,21 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
         });
 
         txtHoTen.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtHoTen.setForeground(new java.awt.Color(255, 51, 51));
         txtHoTen.setText("jLabel8");
 
         txtSDT.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtSDT.setForeground(new java.awt.Color(255, 51, 0));
         txtSDT.setText("jLabel8");
 
         txtCanCuoc.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtCanCuoc.setForeground(new java.awt.Color(255, 51, 0));
         txtCanCuoc.setText("jLabel8");
 
         txtNgaySinh.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtNgaySinh.setForeground(new java.awt.Color(255, 51, 0));
         txtNgaySinh.setText("jLabel8");
 
         txtDiaChi.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtDiaChi.setForeground(new java.awt.Color(255, 51, 0));
         txtDiaChi.setText("jLabel8");
 
         txtEmail.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(255, 51, 0));
         txtEmail.setText("jLabel8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -185,7 +181,7 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
                     .addComponent(txtCanCuoc))
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 130, Short.MAX_VALUE))
+                .addGap(0, 138, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

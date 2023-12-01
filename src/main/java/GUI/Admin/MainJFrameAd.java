@@ -70,18 +70,21 @@ private void TrinhDieuKhien() {
         jlbTen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(160, 191, 213));
 
         jpnRoot.setBackground(new java.awt.Color(255, 255, 255));
 
-        jScrollPane10.setBackground(new java.awt.Color(189, 205, 214));
+        jScrollPane10.setBackground(new java.awt.Color(160, 191, 213));
         jScrollPane10.setForeground(new java.awt.Color(189, 205, 214));
         jScrollPane10.setHorizontalScrollBar(null);
 
-        panelMenu.setBackground(new java.awt.Color(102, 255, 102));
+        panelMenu.setBackground(new java.awt.Color(160, 191, 213));
 
-        panelQuanLyUser.setBackground(new java.awt.Color(255, 255, 255));
+        panelQuanLyUser.setBackground(new java.awt.Color(67, 138, 174));
 
         jLabelQuanLyUser.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelQuanLyUser.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelQuanLyUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelQuanLyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/management.png"))); // NOI18N
         jLabelQuanLyUser.setText("QUẢN LÝ USER");
 
@@ -102,9 +105,13 @@ private void TrinhDieuKhien() {
                 .addContainerGap())
         );
 
-        jPanelDangXuat.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDangXuat.setBackground(new java.awt.Color(67, 138, 174));
+        jPanelDangXuat.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabelDangXuat.setBackground(new java.awt.Color(255, 255, 255));
         jLabelDangXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
         jLabelDangXuat.setText("ĐĂNG XUẤT");
         jLabelDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,7 +155,7 @@ private void TrinhDieuKhien() {
 
         jScrollPane10.setViewportView(panelMenu);
 
-        jpnView.setBackground(new java.awt.Color(255, 255, 255));
+        jpnView.setBackground(new java.awt.Color(160, 191, 213));
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
         jpnView.setLayout(jpnViewLayout);
@@ -161,8 +168,13 @@ private void TrinhDieuKhien() {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel4.setBackground(new java.awt.Color(160, 191, 213));
 
+        jPanel1.setBackground(new java.awt.Color(144, 144, 144));
+
+        jlbTen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jlbTen.setForeground(new java.awt.Color(255, 255, 255));
+        jlbTen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbTen.setText("jLabel1");
         jlbTen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -242,7 +254,7 @@ private void TrinhDieuKhien() {
 
     private void jlbTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbTenMouseClicked
         // TODO add your handling code here:
-        panelQuanLyUser.setBackground(Color.red);
+        panelQuanLyUser.setBackground(new Color(67,138,174));
         ThongTinNhanVien ttnv = new ThongTinNhanVien();
         jpnView.removeAll();
         jpnView.revalidate();
