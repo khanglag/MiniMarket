@@ -5,6 +5,11 @@
 package File;
 
 import BUS.ChiTietPhieuNhapBus;
+
+import BUS.ChiTietPhieuNhapBus;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import BUS.ChiTietPhieuXuatBus;
 import BUS.HangHoaBus;
 import BUS.NhanvienBus;
@@ -304,6 +309,7 @@ public class ExcelFile {
         }
         return arrayList;
     }
+
     public boolean xuatChiTietPhieuNhapEX(String maPN,LocalDate ngayDate,String maNV){
         ChiTietPhieuNhapBus bus= new ChiTietPhieuNhapBus();
         try (Workbook workbook = new XSSFWorkbook()) {
@@ -387,7 +393,7 @@ public class ExcelFile {
             e.printStackTrace();
         }
         return true;
-    }
+
     public ArrayList<ChiTietKiemHang_DTO> nhapChiTietKiemHang() throws FileNotFoundException, IOException{
         String filePath=chooseFileString();
         FileInputStream fileInputStream = new FileInputStream(new File(filePath));
@@ -439,4 +445,57 @@ public class ExcelFile {
     private static int getIntValue(Cell cell) {
         return cell == null ? 0 : (int) cell.getNumericCellValue();
     }
+    public boolean xuatPDFPX(String maPX){
+        Document document = new Document();
+        ChiTietPhieuXuatBus bus=new ChiTietPhieuXuatBus();
+        JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // Lấy đường dẫn đã chọn
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                try {
+            // Ghi dữ liệu vào tệp PDF
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            // Tiêu đề hoá đơn
+            document.add(new Paragraph("Hoá Đơn Chi Tiết Phiếu Xuất"));
+
+            // Dòng trắng
+            document.add(new Paragraph(" "));
+
+            // Dữ liệu chi tiết phiếu xuất
+            for (ChiTietPhieuXuat_DTO chiTietPhieuXuat :bus.timChiTietPhieuXuat(maPX, "")) {
+                document.add(new Paragraph("Mã Phiếu Xuất: " + chiTietPhieuXuat.getMaPhieuXuat()));
+                document.add(new Paragraph("Mã Hàng Xuất: " + chiTietPhieuXuat.getMaHangXuat()));
+                document.add(new Paragraph("Số Lượng Yêu Cầu: " + chiTietPhieuXuat.getSoLuongYC()));
+                document.add(new Paragraph("Số Lượng Thực Tế: " + chiTietPhieuXuat.getSoLuongThucTe()));
+                document.add(new Paragraph("Đơn Vị: " + chiTietPhieuXuat.getDonVi()));
+                document.add(new Paragraph("Đơn Giá: " + chiTietPhieuXuat.getDonGia()));
+                document.add(new Paragraph("Thành Tiền: " + chiTietPhieuXuat.getThanhTien()));
+
+                // Dòng trắng giữa các chi tiết
+                document.add(new Paragraph(" "));
+            }
+
+            System.out.println("Xuất PDF thành công!");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            document.close();
+        }
+                System.out.println("Tạo file Excel thành công!");
+            } else {
+                System.out.println("Người dùng đã hủy lựa chọn.");
+                return false;
+            }
+    return true;
+    }
+
 }

@@ -11,6 +11,6 @@ package BUS;
 public class TestCuaBeo {
     public static void main(String[] args) {
         ChiTietPhieuXuatBus bus= new ChiTietPhieuXuatBus();
-        bus.xuatEX("0000001");
+        bus.xuatPDF("0000001");
     }
 }
