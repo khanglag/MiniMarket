@@ -209,7 +209,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cbbMaNCC" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="lbImg" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="lbImg" min="-2" pref="120" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel6" max="32767" attributes="0"/>

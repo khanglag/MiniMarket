@@ -42,7 +42,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
     public void showProductsInTable() {
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
         int soLuongSP = danhSachSanPham.size();
         for (int i = 0; i < soLuongSP; i++) {
             HangHoa_DTO sanPham = danhSachSanPham.get(i);
@@ -303,7 +303,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbbMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(lbImg, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -482,7 +484,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByName.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
             // Sắp xếp danh sách theo tenSP bằng cách sử dụng Comparator
             Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
                 @Override
@@ -514,7 +516,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByPrice.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
 // Sắp xếp danh sách theo giaBan bằng cách sử dụng Comparator
             Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
                 @Override
@@ -557,7 +559,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             int selectedRow = TableProducts.getSelectedRow();
             if (selectedRow != -1) {
                 String maSP = (String) TableProducts.getValueAt(selectedRow, 1);
-                ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+                ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
                 int soLuongHH = danhSachHangHoa.size();
                 for (int i = 0; i < soLuongHH; i++) {
                     HangHoa_DTO sanPham = danhSachHangHoa.get(i);
@@ -643,7 +645,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByName.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); 
-            ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
@@ -668,7 +670,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByPrice.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {

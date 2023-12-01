@@ -75,10 +75,10 @@ public class BanHang extends javax.swing.JPanel {
         PanelItems.repaint();
     }
 
-    public static  void showItemCartInTable() {
+    public static void showItemCartInTable() {
         //tableGioHang.removeAll();
         ArrayList<HangHoa_DTO> gioHang = item.gioHang;
-        
+
         DefaultTableModel model = (DefaultTableModel) tableGioHang.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng       
         int soLuongTrongGioHang = gioHang.size();
@@ -110,11 +110,13 @@ public class BanHang extends javax.swing.JPanel {
 //        tableGioHang.revalidate();
 //        tableGioHang.repaint();
     }
-    public void resetUI(){
-          showItemCartInTable();
+
+    public void resetUI() {
+        showItemCartInTable();
         txtTienKhachDua.setText("0");
         txtTienThua.setText("0");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -547,10 +549,18 @@ public class BanHang extends javax.swing.JPanel {
     private void btnSuaSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaSoLuongMouseClicked
         // TODO add your handling code here:
         String soLuong = txtSoLuong.getText();
-        if(Integer.parseInt(soLuong) < 1){
-             JOptionPane.showMessageDialog(null,
-                            "Số lượng >= 1");
-                    return;
+        try {
+            int number = Integer.parseInt(soLuong);
+            // Kiểm tra nếu chuyển đổi thành công, số nhập vào là một số nguyên
+            // Có thể tiếp tục xử lý ở đây
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập số nguyên");
+            return;
+        }
+        if (Integer.parseInt(soLuong) < 1) {
+            JOptionPane.showMessageDialog(null,
+                    "Số lượng >= 1");
+            return;
         }
         for (HangHoa_DTO sanPham : gioHang) {
             if (sanPham.getMaSP().equals(masp)) {
@@ -566,7 +576,7 @@ public class BanHang extends javax.swing.JPanel {
                 break;
             }
         }
-       
+
         showItemCartInTable();
     }//GEN-LAST:event_btnSuaSoLuongMouseClicked
 
@@ -643,7 +653,7 @@ public class BanHang extends javax.swing.JPanel {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     SwingUtilities.invokeLater(() -> {
-                          resetUI();
+                        resetUI();
                         gioHang.clear();
                         showItemCartInTable();
                     });
@@ -653,19 +663,19 @@ public class BanHang extends javax.swing.JPanel {
         } else {
             return;
         }
-      
-         resetUI();
+
+        resetUI();
         showItemCartInTable();
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnTimKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKhachHangActionPerformed
         // TODO add your handling code here:
         String sdt = txtSDT.getText();
-         if (sdt.equals("")) {
+        if (sdt.equals("")) {
             JOptionPane.showMessageDialog(null,
                     "Vui lòng nhập SĐT!");
             return;
-        } 
+        }
         khBUS.timKhachHang(null, sdt);
         if (khBUS.timKhachHang(null, sdt) == null) {
             JOptionPane.showMessageDialog(null,
