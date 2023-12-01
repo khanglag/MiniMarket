@@ -41,7 +41,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
 
-        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khb.dsKhachHang();
         int soLuongKH = danhSachKhachHang.size();
         for (int i = 0; i < soLuongKH; i++) {
             KhachHang_DTO khachHang = danhSachKhachHang.get(i);
