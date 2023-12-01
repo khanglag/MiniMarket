@@ -13,11 +13,5 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class Test {
-
-    public static void main(String[] args) throws IOException {
-        HangHoaBus bus= new HangHoaBus();
-        bus.xuatHHExcel();
-//        ChiTietPhieuXuatBus ctpx = new ChiTietPhieuXuatBus();
-//        System.out.println(ctpx.timChiTietPhieuXuat("0000001", null));
-    }
+    
 }

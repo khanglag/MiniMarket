@@ -400,10 +400,14 @@ public class ExcelFile {
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 // Lấy đường dẫn đã chọn
                 String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                filePath=filePath+".pdf";
                 try {
             // Ghi dữ liệu vào tệp PDF
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
+
+            // Sử dụng font được tích hợp sẵn trong iText PDF
+            FontFactory.registerDirectories();
 
             // Tiêu đề hoá đơn
             document.add(new Paragraph("Hoá Đơn Chi Tiết Phiếu Xuất"));
@@ -412,7 +416,7 @@ public class ExcelFile {
             document.add(new Paragraph(" "));
 
             // Dữ liệu chi tiết phiếu xuất
-            for (ChiTietPhieuXuat_DTO chiTietPhieuXuat :bus.timChiTietPhieuXuat(maPX, "")) {
+            for (ChiTietPhieuXuat_DTO chiTietPhieuXuat : bus.timChiTietPhieuXuat(maPX, "")) {
                 document.add(new Paragraph("Mã Phiếu Xuất: " + chiTietPhieuXuat.getMaPhieuXuat()));
                 document.add(new Paragraph("Mã Hàng Xuất: " + chiTietPhieuXuat.getMaHangXuat()));
                 document.add(new Paragraph("Số Lượng Yêu Cầu: " + chiTietPhieuXuat.getSoLuongYC()));
@@ -428,10 +432,8 @@ public class ExcelFile {
             System.out.println("Xuất PDF thành công!");
         } catch (DocumentException e) {
             e.printStackTrace();
-            return false;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
         } finally {
             document.close();
         }
