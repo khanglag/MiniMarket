@@ -4,6 +4,7 @@
  */
 package File;
 
+import BUS.ChiTietPhieuNhapBus;
 
 import BUS.ChiTietPhieuNhapBus;
 import com.itextpdf.text.*;
@@ -14,6 +15,7 @@ import BUS.HangHoaBus;
 import BUS.NhanvienBus;
 import BUS.PhieuXuatBus;
 import DAO.HangHoaDAO;
+import DTO.ChiTietKiemHang_DTO;
 import DTO.ChiTietPhieuNhap_DTO;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.HangHoa_DTO;
@@ -21,6 +23,7 @@ import DTO.PhieuXuat_DTO;
 import Handle.Timeconvert;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.compress.archivers.tar.TarConstants;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -389,6 +393,57 @@ public class ExcelFile {
             e.printStackTrace();
         }
         return true;
+
+    public ArrayList<ChiTietKiemHang_DTO> nhapChiTietKiemHang() throws FileNotFoundException, IOException{
+        String filePath=chooseFileString();
+        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+        Workbook workbook = new XSSFWorkbook(fileInputStream);
+        Sheet sheet = workbook.getSheetAt(0); // Lấy sheet đầu tiên
+        ArrayList<ChiTietKiemHang_DTO> temp=new ArrayList<>();
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0||row.getRowNum()==1) {
+                // Bỏ qua dòng tiêu đề
+                continue;
+            }
+
+            Cell cell = row.getCell(0); // Mã Phiếu
+            String maPhieu = getStringValue(cell);
+
+            cell = row.getCell(1); // Mã Sản Phẩm
+            String maSanPham = getStringValue(cell);
+
+            cell = row.getCell(2); // Tên Sản Phẩm
+            String tenSanPham = getStringValue(cell);
+
+            cell = row.getCell(3); // Số Lượng
+            int soLuong = getIntValue(cell);
+
+            cell = row.getCell(4); // Đơn Vị
+            String donVi = getStringValue(cell);
+
+            cell = row.getCell(5); // Tình Trạng Sản Phẩm
+            String tinhTrang = getStringValue(cell);
+
+            // In thông tin từ file Excel
+            System.out.println("Mã Phiếu: " + maPhieu);
+            System.out.println("Mã Sản Phẩm: " + maSanPham);
+            System.out.println("Tên Sản Phẩm: " + tenSanPham);
+            System.out.println("Số Lượng: " + soLuong);
+            System.out.println("Đơn Vị: " + donVi);
+            System.out.println("Tình Trạng Sản Phẩm: " + tinhTrang);
+            System.out.println("----------------------");  
+        }
+
+        fileInputStream.close();
+        workbook.close();
+        return temp;
+    }
+     private static String getStringValue(Cell cell) {
+        return cell == null ? "" : cell.getStringCellValue();
+    }
+
+    private static int getIntValue(Cell cell) {
+        return cell == null ? 0 : (int) cell.getNumericCellValue();
     }
     public boolean xuatPDFPX(String maPX){
         Document document = new Document();
