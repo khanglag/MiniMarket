@@ -491,7 +491,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             int selectedRow = tableQLNV.getSelectedRow();
             if (selectedRow != -1) {
                 String MaNV = (String) tableQLNV.getValueAt(selectedRow, 1);
-                ArrayList<NhanVien_DTO> danhSachNhanVien = nvDao.ReadNhanviens();
+                ArrayList<NhanVien_DTO> danhSachNhanVien = nvBus.dsNhanVien();
                 int soLuongNV = danhSachNhanVien.size();
                 for (int i = 0; i < soLuongNV; i++) {
                     NhanVien_DTO nhanVien = danhSachNhanVien.get(i);
