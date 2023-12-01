@@ -249,6 +249,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnClear.setBackground(new java.awt.Color(67, 138, 174));
         btnClear.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/broom.png"))); // NOI18N
         btnClear.setText("CLEAR");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -248,7 +248,6 @@ public class MainFrameSaler extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(144, 144, 144));
 
         txtUserName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(255, 255, 255));
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUserName.setText("jLabel7");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {

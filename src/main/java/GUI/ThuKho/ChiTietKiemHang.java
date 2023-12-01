@@ -204,6 +204,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         btnClear.setBackground(new java.awt.Color(67, 138, 174));
         btnClear.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnClear.setForeground(new java.awt.Color(255, 255, 255));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/broom.png"))); // NOI18N
         btnClear.setText("CLEAR");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

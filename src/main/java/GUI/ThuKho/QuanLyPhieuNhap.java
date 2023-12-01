@@ -193,6 +193,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         btnTaoPhieuXuat.setBackground(new java.awt.Color(67, 138, 174));
         btnTaoPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTaoPhieuXuat.setForeground(new java.awt.Color(255, 255, 255));
         btnTaoPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
         btnTaoPhieuXuat.setText("TẠO PHIẾU NHẬP");
         btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -203,6 +204,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         btnLamMoi.setBackground(new java.awt.Color(67, 138, 174));
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -213,11 +215,13 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jButton6.setBackground(new java.awt.Color(67, 138, 174));
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Excel (2).png"))); // NOI18N
         jButton6.setText("NHẬP EXCEL");
 
         jButton7.setBackground(new java.awt.Color(67, 138, 174));
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/XuatExcel.png"))); // NOI18N
         jButton7.setText("XUẤT EXCEL");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -228,6 +232,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         jButton8.setBackground(new java.awt.Color(67, 138, 174));
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
         jButton8.setText("IN");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -273,15 +278,15 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(btnTaoPhieuXuat)
-                .addGap(18, 18, 18)
-                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
+                .addComponent(btnLamMoi)
+                .addGap(54, 54, 54)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jButton7)
-                .addGap(12, 12, 12)
-                .addComponent(jButton8)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -306,6 +311,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
 
         btnTim.setBackground(new java.awt.Color(67, 138, 174));
         btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnTim.setText("TÌM KIẾM");
         btnTim.addActionListener(new java.awt.event.ActionListener() {

@@ -322,7 +322,6 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
 
         txtUserName.setBackground(new java.awt.Color(255, 255, 255));
         txtUserName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(255, 255, 255));
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUserName.setText("jLabel8");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {

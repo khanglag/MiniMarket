@@ -150,6 +150,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         btnChonMaHang.setBackground(new java.awt.Color(67, 138, 174));
         btnChonMaHang.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChonMaHang.setForeground(new java.awt.Color(255, 255, 255));
         btnChonMaHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnChonMaHang.setText("CHỌN");
         btnChonMaHang.addActionListener(new java.awt.event.ActionListener() {
@@ -245,6 +246,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         btnThem.setBackground(new java.awt.Color(67, 138, 174));
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ADD.png"))); // NOI18N
         btnThem.setText("THÊM");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +257,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         btnSua.setBackground(new java.awt.Color(67, 138, 174));
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/updated.png"))); // NOI18N
         btnSua.setText("SỬA");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +268,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         btnXoa.setBackground(new java.awt.Color(67, 138, 174));
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         btnXoa.setText("XÓA");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +279,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
 
         btnLamMoi.setBackground(new java.awt.Color(67, 138, 174));
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {

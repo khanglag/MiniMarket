@@ -51,7 +51,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         jLabel1.setText("Kiểm duyệt phiếu nhập kho");
 
         btnDuyet.setBackground(new java.awt.Color(67, 138, 174));
-        btnDuyet.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnDuyet.setText("Duyệt");
         btnDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +60,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         });
 
         btnKhongDuyet.setBackground(new java.awt.Color(211, 97, 120));
-        btnKhongDuyet.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        btnKhongDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnKhongDuyet.setText("Không duyệt");
         btnKhongDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +69,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         });
 
         btnCancel.setBackground(new java.awt.Color(110, 157, 181));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +86,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(81, 81, 81))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -93,7 +94,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
                         .addComponent(btnKhongDuyet)
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
