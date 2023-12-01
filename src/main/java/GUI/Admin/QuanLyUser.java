@@ -38,7 +38,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         int i = 0;
         while (i <= list.size() - 1) {
             NhanVien_DTO px = list.get(i);
-            String str = nhanVienBus.kiemtraTK(px.getMaNV());
+            String str = taiKhoanBus.kiemtraTK(px.getMaNV());
             model.addRow(new Object[] {
                     px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
             });
@@ -476,7 +476,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         int i = 0;
         while (i <= list.size() - 1) {
             NhanVien_DTO px = list.get(i);
-            String str = nhanVienBus.kiemtraTK(px.getMaNV());
+            String str = taiKhoanBus.kiemtraTK(px.getMaNV());
             model.addRow(new Object[] {
                    px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
             });
