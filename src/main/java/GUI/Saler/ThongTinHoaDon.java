@@ -292,10 +292,6 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                     for (int cols = 0; cols < tableGioHang.getColumnCount(); cols++) {
                         Object cellValue = tableGioHang.getModel().getValueAt(rows, cols);
                         String cellText = (cellValue != null) ? cellValue.toString() : "";
-//                    cellText = StringUtils.upperCase(cellText); // Chuyển sang in hoa
-//                    cellText = StringUtils.stripAccents(cellText); // Loại bỏ dấu
-
-                        // Tạo một ô mới và thiết lập font cho nội dung của ô
                         PdfPCell cell = new PdfPCell(new Phrase(cellText, vietnameseFont));
                         pdfTable.addCell(cell);
                     }
