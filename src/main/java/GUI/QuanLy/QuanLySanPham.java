@@ -745,7 +745,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String xuatXu = txtXuatXu.getText();
         if (maSP.equals("") || tenSP.equals("") || donVi.equals("") || xuatXu.equals("") || gn.equals("") || gb.equals("")) {
             JOptionPane.showMessageDialog(null,
-                    "Chưa đủ thông tin sản phẩm để thêm mới");
+                    "Chưa đủ thông tin sản phẩm để thêm mới!");
             return;
         }
         int soLuong = 0;
@@ -754,19 +754,19 @@ public class QuanLySanPham extends javax.swing.JPanel {
         try {
             Double.parseDouble(giaNhap);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số!");
             return;
         }
         try {
             Double.parseDouble(giaBan);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số!");
             return;
         }
         double giaNhapDouble = Double.parseDouble(giaNhap);
         double giaBanDouble = Double.parseDouble(giaBan);
         if(giaBanDouble <=0 || giaNhapDouble <= 0){
-            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán > 0");
+            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán lớn hơn 0!");
             return;
         }
         String maNCC = "";
@@ -831,7 +831,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String maSP = txtMaSP.getText();
         if(maSP.equals("")){
               JOptionPane.showMessageDialog(null,
-                        "Vui lòng chọn sản phẩm để xóa");
+                        "Vui lòng chọn sản phẩm để xóa!");
               return;
         }
         String tenSP = txtTenSP.getText();
@@ -840,12 +840,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
             try {
                 hhBus.xoaHangHoa(maSP);
                 JOptionPane.showMessageDialog(null,
-                        "Xóa hàng hóa thành công");
+                        "Xóa hàng hóa thành công!");
                 showProductsInTable();
                 clearALL();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
-                        "Xóa hàng hóa thất bại");
+                        "Xóa hàng hóa thất bại!");
             }
         } else {
             return;
@@ -866,22 +866,22 @@ public class QuanLySanPham extends javax.swing.JPanel {
         String giaNhap = txtGiaNhap.getText();
         String giaBan = txtGiaBan.getText();
          if(msp.equals("")){
-             JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm để sửa");
+             JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm để sửa!");
             return;
         }
         if(tsp.equals("")){
-             JOptionPane.showMessageDialog(null, "Vui lòng nhập tên sp");
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập tên sản phẩm!");
             return;
         }
         if(xx.equals("")){
-             JOptionPane.showMessageDialog(null, "Vui lòng nhập xuất xứ sp");
+             JOptionPane.showMessageDialog(null, "Vui lòng nhập xuất xứ sản phẩm!");
             return;
         }
         try {
             // Kiểm tra giá nhập
             Double.parseDouble(giaNhap);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá nhập là số!");
             return;
         }
 
@@ -889,7 +889,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             // Kiểm tra giá bán
             Double.parseDouble(giaBan);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng giá bán là số!");
             return;
         }
 
@@ -897,7 +897,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         double giaNhapDouble = Double.parseDouble(giaNhap);
         double giaBanDouble = Double.parseDouble(giaBan);
         if(giaBanDouble <=0 || giaNhapDouble <= 0){
-            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán > 0");
+            JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán lớn hơn 0!");
             return;
         }
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
@@ -921,12 +921,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 hhBus.suaHangHoa(msp, tsp, maNCC, giaNhapDouble, giaBanDouble, xx);
                 showProductsInTable();
                 JOptionPane.showMessageDialog(null,
-                        "Sửa sản phẩm thành công");
+                        "Sửa sản phẩm thành công!");
 
                 clearALL();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null,
-                        "Xóa hàng hóa thất bại");
+                        "Xóa hàng hóa thất bại!");
             }
         } else {
             return;

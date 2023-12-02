@@ -573,7 +573,7 @@ public class BanHang extends javax.swing.JPanel {
                 int soLuongTrenDB = hhb.ktSoLuong(sanPham.getMaSP());
                 if (Integer.parseInt(soLuong) > soLuongTrenDB) {
                     JOptionPane.showMessageDialog(null,
-                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm");
+                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm!");
                     return;
                 }
                 sanPham.setSoLuong(Integer.parseInt(soLuong));
@@ -596,7 +596,7 @@ public class BanHang extends javax.swing.JPanel {
                     "Vui lòng click vào sản phẩm cần xóa để xóa!");
             return;
         }
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này", "Xác nhận", JOptionPane.YES_NO_OPTION);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
             for (HangHoa_DTO sanPham : gioHang) {
                 if (sanPham.getMaSP().equals(masp)) {
@@ -619,7 +619,7 @@ public class BanHang extends javax.swing.JPanel {
         int viTri = cbbTypeCustomer.getSelectedIndex();
         if (gioHang.size() == 0) {
             JOptionPane.showMessageDialog(null,
-                    "Vui lòng thêm sản phẩm vào giỏ để thanh toán");
+                    "Vui lòng thêm sản phẩm vào giỏ để thanh toán!");
             return;
         }
         for (int i = 0; i < gioHang.size(); i++) {
@@ -685,7 +685,7 @@ public class BanHang extends javax.swing.JPanel {
         khBUS.timKhachHang(null, sdt);
         if (khBUS.timKhachHang(null, sdt) == null) {
             JOptionPane.showMessageDialog(null,
-                    "Khách hàng chưa đăng kí trên hệ thống");
+                    "Khách hàng chưa đăng kí trên hệ thống!");
             return;
         } else {
             cbbTypeCustomer.setSelectedIndex(1);

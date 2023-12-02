@@ -66,7 +66,7 @@ public class item extends javax.swing.JPanel {
                 int sl = Integer.parseInt(txtSoLuong.getText().trim());
                 if ( sl<= 0) {
                     JOptionPane.showMessageDialog(null,
-                            "Số lượng phải lớn hơn 0");
+                            "Số lượng phải lớn hơn 0!");
                     return;
                 }
                
@@ -74,7 +74,7 @@ public class item extends javax.swing.JPanel {
                 int soLuong = Integer.parseInt(txtSoLuong.getText().trim());
                 if (soLuong > soLuongTrenDB) {
                     JOptionPane.showMessageDialog(null,
-                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm");
+                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm!");
                     return;
                 }
                 item it = new item();

@@ -473,7 +473,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         }
         if (sdt.equals("") || tenNV.equals("") || cccd.equals("") || email.equals("") || diaChi.equals("")) {
             JOptionPane.showMessageDialog(null,
-                    "Thông tin chưa đầy đủ");
+                    "Thông tin chưa đầy đủ!");
             return;
         }
         String ngaySinh = txtNgaySinh.getText().trim();
@@ -482,7 +482,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         try {
             localDate = LocalDate.parse(ngaySinh, formatter);
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy!");
             return; // Dừng xử lý tiếp theo
         }
         try {
@@ -490,7 +490,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
            
             showStaffInTable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Thêm thất bại!!!!!!");
+            JOptionPane.showMessageDialog(null, "Thêm thất bại!");
             return;
         }
 
@@ -550,7 +550,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         String name = txtHoTen.getText();
         String maNV = txtMaNV.getText();
           if (txtMaNV.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để sửa");
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để sửa!");
             return;
         }
         String sdt = txtSDT.getText();
@@ -569,7 +569,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         }
         String email = txtEmail.getText();
         if(email.equals("")){
-               JOptionPane.showMessageDialog(null, "Email không được để trống");
+               JOptionPane.showMessageDialog(null, "Email không được để trống!");
                return;
         }
          if(sdt.equals("")){
@@ -577,7 +577,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                return;
         }
           if(diaChi.equals("")){
-               JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống");
+               JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống!");
                return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn sửa thông tin của " + name + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -589,7 +589,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 clearAll();
                 showStaffInTable();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Update thông tin thất bại!!!!!!!");
+                JOptionPane.showMessageDialog(null, "Cập nhật thông tin thất bại!");
                 return;
             }
 
@@ -607,7 +607,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         if (txtMaNV.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để xóa");
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn nhân viên để xóa!");
             return;
         }
         String name = txtHoTen.getText();
@@ -616,10 +616,10 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             String maNV = txtMaNV.getText();
             try {
                  nvBus.xoaNhanVien(maNV);
-                  JOptionPane.showMessageDialog(null, "Đã xóa nhân viên");
+                  JOptionPane.showMessageDialog(null, "Đã xóa nhân viên!");
                 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Xóa nhân viên thất bại");
+                JOptionPane.showMessageDialog(null, "Xóa nhân viên thất bại!");
                 return;
             }
            
@@ -636,13 +636,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         model.setRowCount(0);
         String tenNV = txtFindByName.getText();
         if(tenNV.equals("")){
-            JOptionPane.showMessageDialog(null, "Vui lòng điền tên nhân viên");
+            JOptionPane.showMessageDialog(null, "Vui lòng điền tên nhân viên!");
             showStaffInTable();
                 return;
         }
         ArrayList<NhanVien_DTO> danhSachNhanVienSearch = nvDao.searchNhanVien(null, tenNV, null);
         if(danhSachNhanVienSearch.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Tên nhân viên không có trong hệ thống");
+            JOptionPane.showMessageDialog(null, "Tên nhân viên không có trong hệ thống!");
             showStaffInTable();
                 return;
         }

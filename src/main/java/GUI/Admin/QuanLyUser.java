@@ -414,19 +414,19 @@ public class QuanLyUser extends javax.swing.JPanel {
         
         if(i>=0){
             String str = jTable.getModel().getValueAt(i, 4).toString();
-            if(str.equals("Đã có tài khoản")){
+            if(str.equals("Đã có tài khoản!")){
             TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
             if(taiKhoanBus.xoaTaiKhoan(tk)){
-                JOptionPane.showMessageDialog(null, "Đã khoá tài khoản");
+                JOptionPane.showMessageDialog(null, "Đã khoá tài khoản!");
             }
             }else if (str.equals("Chưa có tài khoản")){
-                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản!");
             }else{
                 JOptionPane.showMessageDialog(null, "Tài khoản đã bị khoá");
             }
             LoadData();
         }else{
-            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn xoá");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn xoá!");
         }
     }//GEN-LAST:event_btnKhoaActionPerformed
 
@@ -448,7 +448,7 @@ public class QuanLyUser extends javax.swing.JPanel {
             
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản muốn đặt lại mật khẩu");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn tài khoản muốn đặt lại mật khẩu!");
         }
         
     }//GEN-LAST:event_btnDatLaiMatKhauActionPerformed
@@ -465,16 +465,16 @@ public class QuanLyUser extends javax.swing.JPanel {
             if(str.equals("Tài khoản bị khoá")){
                 TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
                 if(taiKhoanBus.moTK(tk)){
-                    JOptionPane.showMessageDialog(null, "Đã mở khoá tài khoản");
+                    JOptionPane.showMessageDialog(null, "Đã mở khoá tài khoản!");
                 }
             }else if (str.equals("Chưa có tài khoản")){
-                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản");
+                JOptionPane.showMessageDialog(null, "Người dùng chưa có tài khoản!");
             }else{
-                JOptionPane.showMessageDialog(null, "Tài khoản hiện không khoá");
+                JOptionPane.showMessageDialog(null, "Tài khoản hiện không khoá!");
             }
             LoadData();
         }else{
-            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn mở khoá");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản muốn mở khoá!");
         }
     }//GEN-LAST:event_btnMoKhoaActionPerformed
 

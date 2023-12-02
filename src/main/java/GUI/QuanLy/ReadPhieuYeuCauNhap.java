@@ -236,24 +236,24 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
         int newSoLuong = Integer.parseInt(soLuong);
         double newGiaNhap = Double.parseDouble(giaNhap);
         if (newSoLuong <= 0) {
-            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0");
+            JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn 0!");
             return;
         }
 
         if (newGiaNhap <= 0) {
-            JOptionPane.showMessageDialog(null, "Giá nhập phải lớn hơn 0");
+            JOptionPane.showMessageDialog(null, "Giá nhập phải lớn hơn 0!");
             return;
         }
 
         if (soLuong.equals("") || giaNhap.equals("") || tenSP.equals("") || xuatXu.equals("")) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ giá trị");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ giá trị!");
             return;
         }
         try {
             int x = Integer.parseInt(soLuong);
             double y = Double.parseDouble(giaNhap);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Nhập không đúng định dạng số.");
+            JOptionPane.showMessageDialog(null, "Nhập không đúng định dạng số!");
             return;
         }
         

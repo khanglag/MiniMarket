@@ -369,16 +369,16 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                     String tinhTrang= jtfTinhTrang.getText();
                     ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
                     list.set(index,ctpx);
-                    JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
+                    JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công!");
                     LoadData();
 
                 }
             }else{
-                JOptionPane.showMessageDialog(this, "Số lượng lớn hơn số lượng hàng hoá trong kho");
+                JOptionPane.showMessageDialog(this, "Số lượng lớn hơn số lượng hàng hoá trong kho!");
       
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa.Mời chọn sản phẩm");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa. Mời chọn sản phẩm!");
         }
         
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -392,11 +392,11 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
             }        
         }
         if(jtfSoLuong.getText().equals("") || jtfTinhTrang.getText().equals("")  ){
-            JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin !");
+            JOptionPane.showMessageDialog(this,  "Vui lòng nhập đầy đủ thông tin!");
         }else if(!Handle.Check.isNumeric(jtfSoLuong.getText())){
              JOptionPane.showMessageDialog(this,  "Số lượng không hợp lệ. Mời nhập lại!");
         }else if(Integer.parseInt(jtfSoLuong.getText())<=0){
-             JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0");
+             JOptionPane.showMessageDialog(this,  "Số lượng phải lớn hơn 0!");
         }else if(flag){             
             JOptionPane.showMessageDialog(this,  "Mã hàng đã được chọn, vui lòng chọn mã khác!");
         }else if(Integer.parseInt(jtfSoLuong.getText())> selectedHangHoa.getSoLuong()){
@@ -412,7 +412,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
             String tinhTrang= jtfTinhTrang.getText();
             ChiTietKiemHang_DTO ctpx = new ChiTietKiemHang_DTO(maPx,maHx,tenSp,soluong,donViTinh,tinhTrang,true);
             if(list.add(ctpx)){
-                JOptionPane.showMessageDialog(this, "Thêm sản phẩm vào bảng chi tiết phiếu kiểm hàng thành công");
+                JOptionPane.showMessageDialog(this, "Thêm sản phẩm vào bảng chi tiết phiếu kiểm hàng thành công!");
             }
             LoadData();
         }
@@ -433,7 +433,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
                 }
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa.Mời chọn sản phẩm");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm muốn sửa. Mời chọn sản phẩm!");
         }
         
         LoadData();
@@ -448,7 +448,7 @@ public class ChiTietKiemHang extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean flag = false;
         if(list.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm nào");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm nào!");
         }else{
             for(ChiTietKiemHang_DTO ctpx : list){
             if(chitiet.themCTKH(ctpx)){

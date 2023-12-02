@@ -127,7 +127,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
             pnBUS.suaTrangThai(MaPN, "DA DUYET");
 //            pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
              JOptionPane.showMessageDialog(null,
-                    "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!!");
+                    "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
                 window.dispose();
@@ -145,7 +145,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         if (dialogResult == JOptionPane.YES_OPTION) {
             pnBUS.suaTrangThai(MaPN, "KHONG DUYET");
              JOptionPane.showMessageDialog(null,
-                    "Không duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!");
+                    "Không duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
 

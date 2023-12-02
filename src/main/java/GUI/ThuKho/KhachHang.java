@@ -226,7 +226,7 @@ public class KhachHang extends JDialog {
             setMaKH(jTableKhachHang.getModel().getValueAt(i, 0).toString());
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
         }
 
         

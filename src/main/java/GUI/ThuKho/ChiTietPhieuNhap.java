@@ -450,7 +450,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         int n = list.size();
         
         if(n==0){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm!");
         }else{
             for(ChiTietPhieuNhap_DTO ctpn: list){
             if(phieuYeuCauNhapBus.themCTPN(ctpn)){
@@ -461,7 +461,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
             if(flag){
 
-                JOptionPane.showMessageDialog(this,  "Tạo thành công");
+                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
                 phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
                 this.dispose();
             }

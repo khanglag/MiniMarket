@@ -280,7 +280,7 @@ public class HangHoa extends JDialog {
             chonHangHoa = new HangHoa_DTO(masp,tensp, sol, mancc,donvi,giaban,xuatxu);
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm");
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm!");
         }
         
         

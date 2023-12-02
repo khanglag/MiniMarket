@@ -342,21 +342,21 @@ public class ThemKhachHang extends javax.swing.JPanel {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate localDate;
         if (hoTen.equals("")) {
-            JOptionPane.showMessageDialog(null, "Họ tên không được để trống");
+            JOptionPane.showMessageDialog(null, "Họ tên không được để trống!");
             return;
         }
         if (diaChi.equals("")) {
-            JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống");
+            JOptionPane.showMessageDialog(null, "Địa chỉ không được để trống!");
             return;
         }
         if (soDT.equals("")) {
-            JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống");
+            JOptionPane.showMessageDialog(null, "Số điện thoại không được để trống!");
             return;
         }
         try {
             localDate = LocalDate.parse(ngaySinh, formatter);
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy.");
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ. Định dạng đúng là dd-MM-yyyy!");
             return; // Dừng xử lý tiếp theo
         }
         try {

@@ -437,7 +437,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Mã hàng đã được chọn, vui lòng chọn mã khác!");
                 } else if (Integer.parseInt(jtfSoLuongYeuCau.getText()) <= 0
                                 || Integer.parseInt(jtfSoLuongThucXuat.getText()) <= 0) {
-                        JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
+                        JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0!");
                 } else if (Integer.parseInt(jtfSoLuongThucXuat.getText()) > selectedHangHoa.getSoLuong()) {
                         JOptionPane.showMessageDialog(this, "Số lượng lớn hơn số lượng trong kho!");
                 } else {
@@ -479,11 +479,11 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                                         }
                                 }
                         } else {
-                                JOptionPane.showMessageDialog(null, "Số lượng hàng hoá lớn hơn số lượng trong kho");
+                                JOptionPane.showMessageDialog(null, "Số lượng hàng hoá lớn hơn số lượng trong kho!");
                         }
 
                 } else {
-                        JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá");
+                        JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá!");
                 }
                 if (index >= 0) {
                         double a = Double.parseDouble(jtfSoLuongThucXuat.getText())
@@ -520,7 +520,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                                 }
                         }
                 } else {
-                        JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá");
+                        JOptionPane.showMessageDialog(null, "Bạn chưa chọn hàng hoá!");
                 }
 
                 LoadData();
