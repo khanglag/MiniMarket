@@ -173,7 +173,6 @@ private void TrinhDieuKhien() {
         jPanel1.setBackground(new java.awt.Color(144, 144, 144));
 
         jlbTen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jlbTen.setForeground(new java.awt.Color(255, 255, 255));
         jlbTen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbTen.setText("jLabel1");
         jlbTen.addMouseListener(new java.awt.event.MouseAdapter() {

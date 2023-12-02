@@ -162,6 +162,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnChon.setBackground(new java.awt.Color(67, 138, 174));
         btnChon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChon.setForeground(new java.awt.Color(255, 255, 255));
         btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnChon.setText("CHỌN");
         btnChon.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +230,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnTaoPhieuXuat.setBackground(new java.awt.Color(67, 138, 174));
         btnTaoPhieuXuat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTaoPhieuXuat.setForeground(new java.awt.Color(255, 255, 255));
         btnTaoPhieuXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
         btnTaoPhieuXuat.setText("TẠO PHIẾU XUẤT");
         btnTaoPhieuXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +241,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnLoad.setBackground(new java.awt.Color(67, 138, 174));
         btnLoad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLoad.setForeground(new java.awt.Color(255, 255, 255));
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLoad.setText("LÀM MỚI");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
@@ -249,6 +252,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnClear.setBackground(new java.awt.Color(67, 138, 174));
         btnClear.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/broom.png"))); // NOI18N
         btnClear.setText("CLEAR");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -259,11 +263,13 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jButton6.setBackground(new java.awt.Color(67, 138, 174));
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/excel.png"))); // NOI18N
         jButton6.setText("NHẬP EXCEL");
 
         jButton7.setBackground(new java.awt.Color(67, 138, 174));
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/XuatExcel.png"))); // NOI18N
         jButton7.setText("XUẤT EXCEL");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -274,6 +280,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         jButton8.setBackground(new java.awt.Color(67, 138, 174));
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
         jButton8.setText("IN");
 
@@ -282,19 +289,19 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(btnTaoPhieuXuat)
-                .addGap(22, 22, 22)
+                .addGap(67, 67, 67)
                 .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(64, 64, 64)
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(31, 31, 31)
                 .addComponent(jButton6)
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,6 +324,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
 
         btnTim.setBackground(new java.awt.Color(67, 138, 174));
         btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnTim.setText("TÌM KIẾM");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -371,7 +379,7 @@ public class QuanLyXuatHang extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 961, Short.MAX_VALUE)
+            .addGap(0, 1325, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, 0)

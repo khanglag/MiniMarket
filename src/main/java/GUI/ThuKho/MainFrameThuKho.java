@@ -392,9 +392,9 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
     private void jLabelTenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTenMouseClicked
         // TODO add your handling code here:
-        panelPhieuKiemHang.setBackground(Color.red);
-        panelQuanLyPhieuNhap.setBackground(Color.red);
-        panelQuanLyPhieuXuat.setBackground(Color.red);
+        panelPhieuKiemHang.setBackground(new Color(67,138,174));
+        panelQuanLyPhieuNhap.setBackground(new Color(67,138,174));
+        panelQuanLyPhieuXuat.setBackground(new Color(67,138,174));
         ThongTinNhanVien ttnv = new ThongTinNhanVien();
         jpnView.removeAll();
         jpnView.revalidate();
