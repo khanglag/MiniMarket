@@ -41,7 +41,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="199" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="189" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -170,37 +170,32 @@
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtTenSP" min="-2" pref="144" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTenSP" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="txtSoLuongSP" alignment="1" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="txtMaSP" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                              <Component id="cbbMaNhomHang" alignment="1" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="153" pref="153" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtGiaBan" min="-2" pref="151" max="-2" attributes="0"/>
                               <Component id="txtGiaNhap" min="-2" pref="151" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="txtXuatXu" min="-2" pref="151" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtSoLuongSP" min="-2" pref="144" max="-2" attributes="0"/>
-                              <Component id="cbbMaNhomHang" min="-2" pref="142" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtXuatXu" min="-2" pref="151" max="-2" attributes="0"/>
-                              <Component id="txtDonVi" min="-2" pref="151" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="txtMaSP" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                      <Component id="txtDonVi" min="-2" pref="151" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -210,7 +205,8 @@
                           <Component id="cbbMaNCC" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="txtFindByName" min="-2" pref="162" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="lbImg" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -236,41 +232,45 @@
                               <Component id="cbbMaNCC" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtTenSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="29" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtXuatXu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtGiaBan" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtSoLuongSP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="txtFindByName" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtDonVi" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="lbImg" min="-2" pref="123" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtTenSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtSoLuongSP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtXuatXu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cbbMaNhomHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
-                              <Component id="lbImg" min="-2" pref="123" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -499,6 +499,15 @@
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 120]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtFindByName">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Nh&#x1ead;p t&#xea;n t&#xec;m ki&#x1ebf;m"/>
+              </Border>
             </Property>
           </Properties>
         </Component>

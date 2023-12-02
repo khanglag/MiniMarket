@@ -6,6 +6,7 @@ package GUI.Saler;
 
 import BUS.ChiTietHoaDonBus;
 import BUS.HangHoaBus;
+import BUS.HoaDonBus;
 import BUS.KhachHangBus;
 import DAO.ChiTietHoaDonDAO;
 import DAO.HangHoaDAO;
@@ -33,11 +34,12 @@ import javax.swing.SwingUtilities;
 public class BanHang extends javax.swing.JPanel {
 
     public JLabel LbImg;
-    HangHoaDAO hhd = new HangHoaDAO();
+    
     private String masp = "";
     static HangHoaBus hhb = new HangHoaBus();
     HoaDonDAO hoaDonDAO = new HoaDonDAO();
     ChiTietHoaDonDAO cthdDAO = new ChiTietHoaDonDAO();
+    HoaDonBus hdBUS = new HoaDonBus();
     TaiKhoan tk = new TaiKhoan();
     KhachHangBus khBUS = new KhachHangBus();
     ChiTietHoaDonBus cthdBUS = new ChiTietHoaDonBus();
@@ -53,7 +55,7 @@ public class BanHang extends javax.swing.JPanel {
 
     public void showItems() {
         PanelItems.removeAll();
-        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhb.itemData();
         int soLuongSP = danhSachSanPham.size();
         PanelItems.setLayout(new GridLayout(0, 2));
         for (int i = 0; i < soLuongSP; i++) {
@@ -503,7 +505,7 @@ public class BanHang extends javax.swing.JPanel {
         PanelItems.removeAll();
         String nameItem = txtFindNameItem.getText().toLowerCase();
         ArrayList<HangHoa_DTO> danhSachSanPhamTimKiem = new ArrayList<>();
-        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhb.itemData();
         int soLuongSP = danhSachSanPham.size();
         PanelItems.setLayout(new GridLayout(0, 2));
         for (int i = 0; i < soLuongSP; i++) {

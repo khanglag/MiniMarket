@@ -4,6 +4,7 @@
  */
 package GUI.Saler;
 
+import BUS.HangHoaBus;
 import DAO.HangHoaDAO;
 import DTO.HangHoa_DTO;
 import DTO.KhachHang_DTO;
@@ -22,7 +23,7 @@ import javax.swing.table.TableColumn;
 public class SanPham extends javax.swing.JPanel {
 
     HangHoaDAO hhd = new HangHoaDAO();
-
+    HangHoaBus hhBUS = new HangHoaBus();
     public SanPham() {
         initComponents();
         createButtonGroup();
@@ -33,7 +34,7 @@ public class SanPham extends javax.swing.JPanel {
     public void showProductsInTable() {
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachHangHoa = hhBUS.itemData();
         int soLuongSP = danhSachHangHoa.size();
         for (int i = 0; i < soLuongSP; i++) {
             HangHoa_DTO sanPham = danhSachHangHoa.get(i);
@@ -270,7 +271,7 @@ public class SanPham extends javax.swing.JPanel {
         if (ChkArrangeByPrice.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachHangHoa = hhBUS.itemData();
 
 // Sắp xếp danh sách theo giaBan bằng cách sử dụng Comparator
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
@@ -303,7 +304,7 @@ public class SanPham extends javax.swing.JPanel {
             int selectedRow = TableProducts.getSelectedRow();
             if (selectedRow != -1) {
                 String maSP = (String) TableProducts.getValueAt(selectedRow, 0);
-                ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+                ArrayList<HangHoa_DTO> danhSachHangHoa = hhBUS.itemData();
                 int soLuongHH = danhSachHangHoa.size();
                 for (int i = 0; i < soLuongHH; i++) {
                     HangHoa_DTO sanPham = danhSachHangHoa.get(i);
@@ -320,7 +321,7 @@ public class SanPham extends javax.swing.JPanel {
     private void btnFindByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindByNameActionPerformed
 
         String itemName = txtFindByName.getText().toLowerCase().trim();
-        ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachHangHoa = hhBUS.itemData();
         int soLuongHH = danhSachHangHoa.size();
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng 
