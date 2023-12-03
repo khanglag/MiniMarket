@@ -416,7 +416,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         
         if(i>=0){
             String str = jTable.getModel().getValueAt(i, 4).toString();
-            if(str.equals("Đã có tài khoản!")){
+            if(str.equals("Đã có tài khoản")){
             TaiKhoan_DTO tk = new TaiKhoan_DTO(jtfMaNV.getText().toString(),null,jtfMaQuyen.getText().toString(),true);
             if(taiKhoanBus.xoaTaiKhoan(tk)){
                 JOptionPane.showMessageDialog(null, "Đã khoá tài khoản!");
