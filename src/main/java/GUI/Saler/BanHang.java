@@ -176,6 +176,7 @@ public class BanHang extends javax.swing.JPanel {
             }
         });
         tableGioHang.setRowHeight(40);
+        tableGioHang.setSelectionBackground(new java.awt.Color(176, 206, 221));
         tableGioHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableGioHangMouseClicked(evt);

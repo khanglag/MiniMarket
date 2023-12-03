@@ -106,6 +106,7 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
         });
 
         txtHoTen.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
+        txtHoTen.setForeground(new java.awt.Color(49, 110, 140));
         txtHoTen.setText("jLabel8");
 
         txtSDT.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N

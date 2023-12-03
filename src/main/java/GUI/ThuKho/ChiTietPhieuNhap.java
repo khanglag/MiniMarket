@@ -242,6 +242,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMouseClicked(evt);

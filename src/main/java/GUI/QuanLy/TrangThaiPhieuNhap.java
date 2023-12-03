@@ -48,11 +48,12 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Kiểm duyệt phiếu nhập kho");
+        jLabel1.setText("KIỂM DUYỆT PHIẾU NHẬP KHO");
 
         btnDuyet.setBackground(new java.awt.Color(67, 138, 174));
         btnDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnDuyet.setText("Duyệt");
+        btnDuyet.setForeground(new java.awt.Color(255, 255, 255));
+        btnDuyet.setText("DUYỆT");
         btnDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDuyetActionPerformed(evt);
@@ -61,7 +62,8 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
 
         btnKhongDuyet.setBackground(new java.awt.Color(211, 97, 120));
         btnKhongDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnKhongDuyet.setText("Không duyệt");
+        btnKhongDuyet.setForeground(new java.awt.Color(255, 255, 255));
+        btnKhongDuyet.setText("KHÔNG DUYỆT");
         btnKhongDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKhongDuyetActionPerformed(evt);
@@ -69,6 +71,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         });
 
         btnCancel.setBackground(new java.awt.Color(110, 157, 181));
+        btnCancel.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +89,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(81, 81, 81))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)

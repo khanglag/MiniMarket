@@ -162,6 +162,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
             }
         });
         TableCustomer.setRowHeight(35);
+        TableCustomer.setSelectionBackground(new java.awt.Color(176, 206, 221));
         TableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableCustomerMouseClicked(evt);

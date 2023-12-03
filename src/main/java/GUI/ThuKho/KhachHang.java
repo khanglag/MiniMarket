@@ -141,6 +141,7 @@ public class KhachHang extends JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTableKhachHang.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jScrollPane1.setViewportView(jTableKhachHang);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -173,6 +173,7 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
             }
         });
         tableGioHang.setRowHeight(35);
+        tableGioHang.setSelectionBackground(new java.awt.Color(176, 206, 221));
         tableGioHang.setShowGrid(false);
         tableGioHang.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tableGioHang);

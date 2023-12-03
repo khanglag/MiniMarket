@@ -240,7 +240,6 @@ public class ThongKe extends javax.swing.JPanel {
         jLabel2.setText("THỐNG KÊ");
 
         tableStatistical.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        tableStatistical.setForeground(new java.awt.Color(255, 0, 51));
         tableStatistical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},

@@ -119,6 +119,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             }
         });
         tablePhieuYeuCauNhap.setRowHeight(40);
+        tablePhieuYeuCauNhap.setSelectionBackground(new java.awt.Color(176, 206, 221));
         tablePhieuYeuCauNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablePhieuYeuCauNhapMouseClicked(evt);

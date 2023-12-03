@@ -140,7 +140,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         });
         tablePhieuNhap.setRowHeight(50);
         tablePhieuNhap.setRowMargin(10);
-        tablePhieuNhap.setSelectionBackground(new java.awt.Color(51, 255, 51));
+        tablePhieuNhap.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jScrollPane1.setViewportView(tablePhieuNhap);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

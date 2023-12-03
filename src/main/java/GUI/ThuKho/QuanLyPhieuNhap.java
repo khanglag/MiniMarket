@@ -264,6 +264,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        table.setSelectionBackground(new java.awt.Color(176, 206, 221));
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);

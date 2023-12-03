@@ -372,6 +372,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        tableQLNV.setSelectionBackground(new java.awt.Color(176, 206, 221));
         tableQLNV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableQLNVMouseClicked(evt);

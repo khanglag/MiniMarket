@@ -87,6 +87,7 @@ public class ChiTietHoaDon extends javax.swing.JPanel {
             }
         });
         tableDeTailsBill.setRowHeight(40);
+        tableDeTailsBill.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jScrollPane1.setViewportView(tableDeTailsBill);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

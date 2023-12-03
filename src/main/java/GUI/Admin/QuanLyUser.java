@@ -311,7 +311,6 @@ public class QuanLyUser extends javax.swing.JPanel {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jTable.setBackground(new java.awt.Color(176, 206, 221));
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -335,6 +334,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMouseClicked(evt);

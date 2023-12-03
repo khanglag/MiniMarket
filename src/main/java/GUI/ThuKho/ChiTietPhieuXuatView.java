@@ -142,6 +142,7 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableChiTietPhieuXuat.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jScrollPane1.setViewportView(jTableChiTietPhieuXuat);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N

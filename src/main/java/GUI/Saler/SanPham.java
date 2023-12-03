@@ -203,6 +203,7 @@ public class SanPham extends javax.swing.JPanel {
             }
         });
         TableProducts.setRowHeight(35);
+        TableProducts.setSelectionBackground(new java.awt.Color(176, 206, 221));
         TableProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableProductsMouseClicked(evt);

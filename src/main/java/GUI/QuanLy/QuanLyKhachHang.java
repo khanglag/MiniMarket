@@ -134,6 +134,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        TableCustomer.setSelectionBackground(new java.awt.Color(176, 206, 221));
         TableCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableCustomerMouseClicked(evt);

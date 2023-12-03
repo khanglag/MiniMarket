@@ -354,6 +354,7 @@ public class ChiTietPhieuXuat extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTablePhieuXuatHang.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jTablePhieuXuatHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTablePhieuXuatHangMouseClicked(evt);
