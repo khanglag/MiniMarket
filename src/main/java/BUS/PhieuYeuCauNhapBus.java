@@ -99,4 +99,7 @@ public class PhieuYeuCauNhapBus {
             return new ArrayList<>();
         }
     }
+    public boolean checkExist(String mapx){
+        return ctnDAO.isCTPN_Existed(mapx);
+    }
 }

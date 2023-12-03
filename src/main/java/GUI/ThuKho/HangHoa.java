@@ -265,11 +265,12 @@ public class HangHoa extends JDialog {
             String masp = jTableHangHoa.getModel().getValueAt(i, 0).toString();
             String tensp = jTableHangHoa.getModel().getValueAt(i, 1).toString();
             String mancc =jTableHangHoa.getModel().getValueAt(i, 2).toString();
+            Integer sol = Integer.parseInt(jTableHangHoa.getModel().getValueAt(i, 3).toString());
             String xuatxu =jTableHangHoa.getModel().getValueAt(i, 5).toString();
             String donvi = jTableHangHoa.getModel().getValueAt(i, 6).toString();
          
             double giaban = Double.parseDouble(jTableHangHoa.getModel().getValueAt(i, 4).toString());
-            chonHangHoa = new HangHoa_DTO(masp,tensp,mancc,donvi,giaban,xuatxu);
+            chonHangHoa = new HangHoa_DTO(masp,tensp, sol, mancc,donvi,giaban,xuatxu);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm");

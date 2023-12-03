@@ -39,7 +39,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
 
-        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khb.dsKhachHang();
         int soLuongKH = danhSachKhachHang.size();
         for (int i = 0; i < soLuongKH; i++) {
             KhachHang_DTO khachHang = danhSachKhachHang.get(i);
@@ -389,7 +389,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
     private void btnArrangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnArrangeMouseClicked
         DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khb.dsKhachHang();
 
         // Sắp xếp danh sách theo tenKH bằng cách sử dụng Comparator
         Collections.sort(danhSachKhachHang, new Comparator<KhachHang_DTO>() {
@@ -434,7 +434,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
             int selectedRow = TableCustomer.getSelectedRow();
             if (selectedRow != -1) {
                 String soDT = (String) TableCustomer.getValueAt(selectedRow, 3);
-                ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+                ArrayList<KhachHang_DTO> danhSachKhachHang =khb.dsKhachHang();
                 int soLuongKH = danhSachKhachHang.size();
                 for (int i = 0; i < soLuongKH; i++) {
                     KhachHang_DTO khachHang = danhSachKhachHang.get(i);

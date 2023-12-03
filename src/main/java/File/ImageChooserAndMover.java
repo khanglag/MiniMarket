@@ -20,9 +20,9 @@ public class ImageChooserAndMover {
     public static boolean chooseAndMoveImage( String newFileName) {
         // Tạo cửa sổ JFileChooser
         String sourceFolderPath = "path/to/source/folder"; 
-        String destinationFolderPath="D:/Github//MiniMarket/src/main/java/images";
-        //D:\Github\MiniMarket\src\main\java\images
-        String destinationFolderPath_1 = "D:/Github/MiniMarket/src/main/resources"; // Đường dẫn đến thư mục đích
+
+        String destinationFolderPath="../MiniMarket/src/main/java/images";
+        String destinationFolderPath_1 = "../MiniMarket/src/main/resources/images"; // Đường dẫn đến thư mục đích
         JFileChooser fileChooser = new JFileChooser(sourceFolderPath);
         fileChooser.setFileFilter(new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif"));
 

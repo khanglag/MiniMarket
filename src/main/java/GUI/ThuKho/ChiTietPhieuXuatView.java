@@ -6,16 +6,25 @@ package GUI.ThuKho;
 
 import BUS.ChiTietPhieuXuatBus;
 import BUS.KhachHangBus;
+import BUS.PhieuXuatBus;
+import DAO.NhanVienDAO;
 import DTO.ChiTietPhieuXuat_DTO;
 import DTO.KhachHang_DTO;
+import DTO.NhanVien_DTO;
+import DTO.PhieuXuat_DTO;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Window;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -33,6 +42,9 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
     DefaultTableModel model;
     ArrayList<ChiTietPhieuXuat_DTO> list = new ArrayList<ChiTietPhieuXuat_DTO>();
     KhachHangBus kh = new KhachHangBus();
+    PhieuXuatBus pxBUS = new PhieuXuatBus();
+    double tt = 0;
+    NhanVienDAO nvDAO = new NhanVienDAO();
 
     /**
      * Creates new form ChiTietPhieuNhapView
@@ -67,6 +79,10 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         model.addRow(new Object[]{
             null, null, null, null, null, "Tổng tiền: ", tongTien
         });
+        String numberString = Handle.Convert.soqualon(tongTien);
+// Xóa dấu phẩy từ chuỗi số
+        numberString = numberString.replace(",", "");
+        tt = Double.parseDouble(numberString);
         jTableChiTietPhieuXuat.setModel(model);
 //        model.setValueAt("Tổng tiền: ", list.size(), 5);
 //        model.setValueAt(tongTien, list.size(), 6);
@@ -232,8 +248,8 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String path = "";
 
-        String maPN = jTableChiTietPhieuXuat.getValueAt(1, 0).toString();
-        String pathHandle = "xuatPhieuXuat" + maPN + ".pdf";
+        String maPX = jTableChiTietPhieuXuat.getValueAt(1, 0).toString();
+        String pathHandle = "xuatPhieuXuat" + maPX + ".pdf";
         String txtMaKh = jtfMaKH.getText();
         String txtTenKh = jtfTenKhachHang.getText();
         JFileChooser j = new JFileChooser();
@@ -241,49 +257,55 @@ public class ChiTietPhieuXuatView extends javax.swing.JFrame {
         int x = j.showSaveDialog(this);
         if (x == JFileChooser.APPROVE_OPTION) {
             path = j.getSelectedFile().getPath();
-        }
-        Document doc = new Document();
-        try {
-            String txtTenKhachHangModified = StringUtils.upperCase(txtTenKh); // Chuyển sang in hoa
-            txtTenKhachHangModified = StringUtils.stripAccents(txtTenKhachHangModified);
-            PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
-            doc.open();
-//            BaseFont unicodeFont = BaseFont.createFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-//            com.itextpdf.text.Font font = FontFactory.getFont("C:/Users/acer/OneDrive/Documents/NetBeansProjects/MiniMarket/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 12);
-            doc.add(new Paragraph("THONG TIN PHIEU XUAT"));
-            doc.add(new Paragraph("MA KHACH HANG: " + txtMaKh));
-            doc.add(new Paragraph("HO VA TEN KHACH HANG: " + txtTenKhachHangModified));
-            doc.add(new Paragraph(" "));
-            PdfPTable pdfTable = new PdfPTable(jTableChiTietPhieuXuat.getColumnCount());
+            Document doc = new Document();
+            try {
+                BaseFont unicodeFont = BaseFont.createFont("../MiniMarket/Roboto/Roboto-Thin.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                com.itextpdf.text.Font vietnameseFont = new com.itextpdf.text.Font(unicodeFont, 12);
+                com.itextpdf.text.Font boldFont = new com.itextpdf.text.Font(vietnameseFont.getBaseFont(), 18, com.itextpdf.text.Font.BOLD);
+                PdfWriter.getInstance(doc, new FileOutputStream(path + pathHandle));
+                doc.open();
+                Paragraph info = new Paragraph("Thông tin phiếu xuất hàng", boldFont);
+                info.setAlignment(Element.ALIGN_CENTER); // Căn giữa đoạn văn bản
+                doc.add(info);
+
+                ArrayList<PhieuXuat_DTO> pxDTO = pxBUS.timPhieuXuat(maPX, null, null, null);
+                doc.add(new Paragraph("Mã phiếu xuất: " + maPX + " - Thời gian lập: " + pxDTO.get(0).getThoiGianXuat(), vietnameseFont));
+                ArrayList<NhanVien_DTO> nhanVien = nvDAO.searchNhanVien(pxDTO.get(0).getMaNV(), null, null);
+                String nameStaff = "Tên nhân viên phụ trách xuất hàng: " + nhanVien.get(0).getTenNV();
+                doc.add(new Paragraph(nameStaff, vietnameseFont));
+                doc.add(new Paragraph("Mã khách hàng: " + txtMaKh, vietnameseFont));
+                doc.add(new Paragraph("Họ và tên khách hàng: " + txtTenKh, vietnameseFont));
+                doc.add(new Paragraph(" "));
+                PdfPTable pdfTable = new PdfPTable(jTableChiTietPhieuXuat.getColumnCount());
 // Add header row vào bảng PDF
-            for (int i = 0; i < jTableChiTietPhieuXuat.getColumnCount(); i++) {
-                String header = jTableChiTietPhieuXuat.getColumnName(i); // Lấy tiêu đề cột từ jTable
-
-                // Chuyển sang in hoa và loại bỏ dấu tiếng Việt
-                header = StringUtils.upperCase(header); // Chuyển sang in hoa
-                header = StringUtils.stripAccents(header); // Loại bỏ dấu
-
-                pdfTable.addCell(header); // Thêm tiêu đề đã chỉnh sửa vào bảng PDF
-            }
-
-            // Add content rows vào bảng PDF
-            for (int rows = 0; rows < jTableChiTietPhieuXuat.getRowCount(); rows++) {
-                for (int cols = 0; cols < jTableChiTietPhieuXuat.getColumnCount(); cols++) {
-                    Object cellValue = jTableChiTietPhieuXuat.getModel().getValueAt(rows, cols);
-                    //pdfTable.addCell(jTable.getModel().getValueAt(rows, cols).toString());
-                    String cellText = (cellValue != null) ? cellValue.toString() : "";
-                    cellText = StringUtils.upperCase(cellText); // Chuyển sang in hoa
-                    cellText = StringUtils.stripAccents(cellText); // Loại bỏ dấu
-                    pdfTable.addCell(cellText);
+                for (int i = 0; i < jTableChiTietPhieuXuat.getColumnCount(); i++) {
+                    String header = jTableChiTietPhieuXuat.getColumnName(i); // Lấy tiêu đề cột từ jTable
+                    PdfPCell cell = new PdfPCell(new Phrase(header, vietnameseFont));
+                    pdfTable.addCell(cell);
                 }
-            }
-            doc.add(pdfTable);
 
-            JOptionPane.showMessageDialog(this, "Xuất phiếu xuất PDF thành công");
-            doc.close();
-        } catch (DocumentException | IOException e) {
-            e.printStackTrace();
+                // Add content rows vào bảng PDF
+                for (int rows = 0; rows < jTableChiTietPhieuXuat.getRowCount() - 1; rows++) {
+                    for (int cols = 0; cols < jTableChiTietPhieuXuat.getColumnCount(); cols++) {
+                        Object cellValue = jTableChiTietPhieuXuat.getModel().getValueAt(rows, cols);
+                        String cellText = (cellValue != null) ? cellValue.toString() : "";
+                        PdfPCell cell = new PdfPCell(new Phrase(cellText, vietnameseFont));
+                        pdfTable.addCell(cell);
+                    }
+                }
+                doc.add(pdfTable);
+                Paragraph thanhTien = new Paragraph("Tổng tiền: " + String.valueOf(Handle.Convert.soqualon(tt)) + " VNĐ", boldFont);
+                thanhTien.setAlignment(Element.ALIGN_RIGHT); // Căn giữa đoạn văn bản
+                doc.add(thanhTien);
+                doc.close();
+                JOptionPane.showMessageDialog(this, "In phiếu xuất thành công");
+            } catch (DocumentException | IOException e) {
+                e.printStackTrace();
+            }
+        } else if (x == JFileChooser.CANCEL_OPTION || x == JFileChooser.ERROR_OPTION) {
+            JOptionPane.showMessageDialog(this, "Hủy in phiếu xuất");
         }
+
         Window window = SwingUtilities.getWindowAncestor(this);
         if (window != null) {
             window.dispose();

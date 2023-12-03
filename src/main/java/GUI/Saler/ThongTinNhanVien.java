@@ -4,6 +4,7 @@
  */
 package GUI.Saler;
 
+import BUS.NhanvienBus;
 import Controller.TaiKhoanController;
 import DAO.NhanVienDAO;
 import DTO.NhanVien_DTO;
@@ -22,8 +23,8 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
     /**
      * Creates new form TimKiemSanPham
      */
-    NhanVienDAO nvDAO = new NhanVienDAO();
-
+//    NhanVienDAO nvDAO = new NhanVienDAO();
+    NhanvienBus nvBUS = new NhanvienBus();
     public ThongTinNhanVien() {
         initComponents();
         showInfoStaff();
@@ -31,7 +32,7 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
 
     public void showInfoStaff() {
         TaiKhoan tk = new TaiKhoan();
-        ArrayList<NhanVien_DTO> nhanVien = nvDAO.searchNhanVien(tk.getTen_dn(), null, null);
+        ArrayList<NhanVien_DTO> nhanVien = nvBUS.timNhanVienM(tk.getTen_dn());
         for (int i = 0; i < nhanVien.size(); i++) {
             NhanVien_DTO nv = nhanVien.get(i);
             txtHoTen.setText(nv.getTenNV());//sdt em ns dc cc

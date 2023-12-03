@@ -5,6 +5,7 @@
 package GUI.ThuKho;
 
 import BUS.PhieuNhapBus;
+import BUS.PhieuYeuCauNhapBus;
 import Controller.TaiKhoanController;
 import DTO.PhieuNhap_DTO;
 import GUI.QuanLy.*;
@@ -25,6 +26,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     PhieuNhapBus phieuNhapBus = new PhieuNhapBus();
     DefaultTableModel model;
     ArrayList<PhieuNhap_DTO> list = new ArrayList<PhieuNhap_DTO>();
+    PhieuYeuCauNhapBus pyc = new PhieuYeuCauNhapBus();
     
     public QuanLyPhieuNhap() {
         initComponents();
@@ -383,12 +385,12 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         int i = table.getSelectedRow();
         if(jtfTrangThai.getText().toUpperCase().equals("Đã nhập")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
-        }else if(jtfTrangThai.getText().toUpperCase().equals("Chờ duyệt")){
-            JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
+        }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
+               new ChiTietPhieuNhap(table.getModel().getValueAt(i, 0).toString()).setVisible(true);
         }else if(jtfTrangThai.getText().toUpperCase().equals("Từ chối")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
         }else{
-            new ChiTietPhieuNhap(table.getModel().getValueAt(i, 0).toString()).setVisible(true);
+            JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
         }
         
     }//GEN-LAST:event_jMenuItemTaoChiTietPhieuNhapActionPerformed

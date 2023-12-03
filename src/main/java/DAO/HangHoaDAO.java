@@ -47,7 +47,6 @@ public class HangHoaDAO {
     public boolean add(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
       boolean success = false;
         try {
-              
         HangHoa_DTO hh=new HangHoa_DTO(maSP, tenSP, maNH, maNCC, donVi, giaNhap, giaBan, soLuong, xuatXu, anhSP, tonTai);
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(
@@ -195,6 +194,43 @@ public class HangHoaDAO {
         
         return hanghoa.getTenSP();
     }
+    public Integer Sol(String maHH) {
+        HangHoa_DTO hanghoa = null;
+        ConnectDB connectDB = new ConnectDB();
+        StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
+
+        if (maHH != null && !maHH.isEmpty()) {
+            qry.append(" AND `MASP` LIKE '%" + maHH + "%'");
+        }
+
+        ResultSet rSet = connectDB.sqlQuery(qry.toString());
+
+        try {
+            if (rSet != null) {
+                while (rSet.next()) {
+                    hanghoa = new HangHoa_DTO(
+                            rSet.getString("MASP"),
+                            rSet.getNString("TENSP"),
+                            rSet.getString("MANH"),
+                            rSet.getString("MANCC"),
+                            rSet.getNString("DONVI"),
+                            rSet.getDouble("GIANHAP"),
+                            rSet.getDouble("GIABAN"),
+                            rSet.getInt("SOLUONG"),
+                            rSet.getNString("XUATXU"),
+                            rSet.getString("ANHSP"),
+                            rSet.getBoolean("TONTAI"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Kiểm tra xem hanghoa có null không trước khi truy cập getSoLuong
+        return (hanghoa != null) ? hanghoa.getSoLuong() : 0;
+}
+
+        
     public boolean giamSL(String maSP, int soluong){
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
@@ -220,6 +256,7 @@ public class HangHoaDAO {
         }
         return false;
     }
+    
     public boolean addS(String maSP, String tenSP, String maNH, String maNCC, String donVi, double giaNhap, double giaBan, int soLuong, String xuatXu, String anhSP, boolean tonTai) {
       boolean success = false;
         try {

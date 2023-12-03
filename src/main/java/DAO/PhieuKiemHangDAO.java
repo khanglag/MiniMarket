@@ -107,7 +107,7 @@ public class PhieuKiemHangDAO {
     public int laySoLuongPhieu() {
         ConnectDB connectDB = new ConnectDB();
         int soLuong = 0;
-        String qry = "SELECT COUNT(*) FROM `phieukiemhang` WHERE TONTAI = 1";
+        String qry = "SELECT COUNT(*) FROM `phieukiemhang`";
         ResultSet rSet = null;
     
         try {
