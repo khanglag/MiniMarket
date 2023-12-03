@@ -38,7 +38,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         int i = 0;
         while (i <= list.size() - 1) {
             NhanVien_DTO px = list.get(i);
-            String str = nhanVienBus.kiemtraTK(px.getMaNV());
+            String str = taiKhoanBus.kiemtraTK(px.getMaNV());
             model.addRow(new Object[] {
                     px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
             });
@@ -371,7 +371,17 @@ public class QuanLyUser extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        new ThemTaiKhoan(null,jtfMaNV.getText(),jtfMaQuyen.getText()).setVisible(true);
+        int i = jTable.getSelectedRow();
+        if(i>=0){
+            
+            if(jTable.getModel().getValueAt(i, 4).toString().equals("Chưa có tài khoản")){
+                new ThemTaiKhoan(null,jtfMaNV.getText(),jtfMaQuyen.getText()).setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Người dùng đã có tài khoản");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản");
+        }
         LoadData();
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -489,7 +499,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         int i = 0;
         while (i <= list.size() - 1) {
             NhanVien_DTO px = list.get(i);
-            String str = nhanVienBus.kiemtraTK(px.getMaNV());
+            String str = taiKhoanBus.kiemtraTK(px.getMaNV());
             model.addRow(new Object[] {
                    px.getMaNV(),px.getTenNV(),px.getNgaySinh(),px.getMaQuyen(),str
             });

@@ -6,6 +6,7 @@ package GUI.QuanLy;
 
 import BUS.ChiTietHoaDonBus;
 import BUS.ChiTietPhieuXuatBus;
+import BUS.HangHoaBus;
 import BUS.HoaDonBus;
 import BUS.PhieuNhapBus;
 import BUS.PhieuXuatBus;
@@ -37,8 +38,9 @@ public class ThongKe extends javax.swing.JPanel {
     PhieuXuatBus pxBUS = new PhieuXuatBus();
     ArrayList<PhieuXuat_DTO> phieuXuats = pxBUS.readPhieuXuat_DTOs();
 
-    HangHoaDAO hhd = new HangHoaDAO();
-    ArrayList<HangHoa_DTO> dsHangHoa = hhd.ReadHangHoa();
+    //HangHoaDAO hhd = new HangHoaDAO();
+    HangHoaBus hhBUS = new HangHoaBus();
+    ArrayList<HangHoa_DTO> dsHangHoa = hhBUS.itemData();
 
     PhieuNhapBus pnBUS = new PhieuNhapBus();
     ArrayList<PhieuNhap_DTO> phieuNhaps = pnBUS.rPhieuNhap_DTOs();

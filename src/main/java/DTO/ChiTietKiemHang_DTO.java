@@ -29,7 +29,6 @@ public class ChiTietKiemHang_DTO {
         this.tinhTrangSP = tinhTrangSP;
         this.tonTai = tonTai;
     }
-
     public String getMaPhieu() {
         return maPhieu;
     }

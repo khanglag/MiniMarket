@@ -125,18 +125,4 @@ public class NhanvienBus {
         return dAO.TenNV(manv);
     }
 
-    public String kiemtraTK(String maNV) {
-        TaiKhoanDAO dAO = new TaiKhoanDAO();
-        TaiKhoan_DTO dto = new TaiKhoan_DTO();
-        dto = dAO.searchTaiKhoan(maNV);
-        if (dto == null) {
-            return "Chưa có tài khoản";
-        }
-        if (dto.isTonTai() == true) {
-            return "Đã có tài khoản";
-        } else if (dto.isTonTai() == false) {
-            return "Tài khoản bị khoá";
-        }
-        return "Lỗi truy xuất";
-    }
 }

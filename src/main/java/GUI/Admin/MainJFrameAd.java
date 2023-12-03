@@ -11,9 +11,11 @@ import Controller.TaiKhoanController;
 import GUI.Login.LoginForm;
 import static GUI.Login.LoginForm.login;
 import GUI.Saler.ThongTinNhanVien;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,14 +31,23 @@ public class MainJFrameAd extends javax.swing.JFrame {
     public MainJFrameAd() {
         initComponents();
         jlbTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+
+        jpnView.setLayout(new BorderLayout());
+        TrinhDieuKhien();
+
+        setman();
+    }
+    
+    private void setman(){
         ThongTinNhanVien ttnv = new ThongTinNhanVien();
         jpnView.removeAll();
         jpnView.revalidate();
         jpnView.repaint();
         jpnView.add(ttnv).setVisible(true);
-        TrinhDieuKhien();
+
     }
-private void TrinhDieuKhien() {
+    private void TrinhDieuKhien() {
+        
         AdminController controller = new AdminController(jpnView);
         controller.setView(panelQuanLyUser, jLabelQuanLyUser);
         

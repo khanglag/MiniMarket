@@ -33,19 +33,21 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         initComponents();
         jLabelTen.setText(nv.tenNV(TaiKhoanController.getTendnString()));
+        TrinhDieuKhien();
+              setman();
+    }
+    
+    private void setman(){
         ThongTinNhanVien ttnv = new ThongTinNhanVien();
         jpnView.removeAll();
         jpnView.revalidate();
         jpnView.repaint();
         jpnView.add(ttnv).setVisible(true);
-        TrinhDieuKhien();
-        
 
     }
-
     private void TrinhDieuKhien() {
         ThuKhoController controller = new ThuKhoController(jpnView);
-        controller.setView(panelPhieuKiemHang, jLabelPhieuKiemHang);
+        controller.setView(jPanelTen, jLabelTen);
         
         List<DanhMucBean> listItem = new ArrayList<>();
         //listItem.add(new DanhMucBean("TrangChinh",jpnTrangChu,jlbTrangChu));

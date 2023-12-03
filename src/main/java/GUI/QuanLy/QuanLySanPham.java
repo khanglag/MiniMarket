@@ -42,7 +42,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
     public void showProductsInTable() {
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
         int soLuongSP = danhSachSanPham.size();
         for (int i = 0; i < soLuongSP; i++) {
             HangHoa_DTO sanPham = danhSachSanPham.get(i);
@@ -85,7 +85,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         cbbMaNhomHang.setSelectedIndex(0);
         lbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource(""))); // NOI18N
         txtMaSP.setEnabled(true);
-      
+
         btnAdd.setEnabled(true);
         txtGiaNhap.setEnabled(true);
         txtXuatXu.setEnabled(true);
@@ -244,7 +244,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
         lbImg.setBackground(new java.awt.Color(255, 51, 51));
         lbImg.setMaximumSize(new java.awt.Dimension(150, 150));
         lbImg.setMinimumSize(new java.awt.Dimension(120, 120));
-
         BtnArrange.setBackground(new java.awt.Color(67, 138, 174));
         BtnArrange.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         BtnArrange.setForeground(new java.awt.Color(255, 255, 255));
@@ -276,7 +275,12 @@ public class QuanLySanPham extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(jLabel1))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel27)
+                        .addComponent(jLabel30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,6 +326,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addComponent(BtnArrange)
                         .addGap(0, 0, Short.MAX_VALUE)))
+
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -525,7 +530,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByName.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
             // Sắp xếp danh sách theo tenSP bằng cách sử dụng Comparator
             Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
                 @Override
@@ -557,7 +562,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByPrice.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
 // Sắp xếp danh sách theo giaBan bằng cách sử dụng Comparator
             Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
                 @Override
@@ -600,7 +605,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
             int selectedRow = TableProducts.getSelectedRow();
             if (selectedRow != -1) {
                 String maSP = (String) TableProducts.getValueAt(selectedRow, 1);
-                ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+                ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
                 int soLuongHH = danhSachHangHoa.size();
                 for (int i = 0; i < soLuongHH; i++) {
                     HangHoa_DTO sanPham = danhSachHangHoa.get(i);
@@ -685,8 +690,8 @@ public class QuanLySanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (ChkArrangeByName.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
-            model.setRowCount(0); 
-            ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+            model.setRowCount(0);
+            ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
@@ -711,7 +716,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         if (ChkArrangeByPrice.isSelected()) {
             DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
             model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-            ArrayList<HangHoa_DTO> danhSachHangHoa = hhd.ReadHangHoa();
+            ArrayList<HangHoa_DTO> danhSachHangHoa = hhBus.itemData();
             Collections.sort(danhSachHangHoa, new Comparator<HangHoa_DTO>() {
                 @Override
                 public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
@@ -770,6 +775,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         double giaBanDouble = Double.parseDouble(giaBan);
         if(giaBanDouble <=0 || giaNhapDouble <= 0){
             JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán lớn hơn 0!");
+
             return;
         }
         String maNCC = "";
@@ -836,6 +842,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
               JOptionPane.showMessageDialog(null,
                         "Vui lòng chọn sản phẩm để xóa!");
               return;
+
         }
         String tenSP = txtTenSP.getText();
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn xóa sản phẩm " + tenSP + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
@@ -878,6 +885,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
         }
         if(xx.equals("")){
              JOptionPane.showMessageDialog(null, "Vui lòng nhập xuất xứ sản phẩm!");
+
             return;
         }
         try {
@@ -899,8 +907,10 @@ public class QuanLySanPham extends javax.swing.JPanel {
 // Nếu code chạy đến đây, cả hai giá trị đều là số, và bạn có thể chuyển chúng thành Double
         double giaNhapDouble = Double.parseDouble(giaNhap);
         double giaBanDouble = Double.parseDouble(giaBan);
+
         if(giaBanDouble <=0 || giaNhapDouble <= 0){
             JOptionPane.showMessageDialog(null, "Vui lòng điền thông tin giá nhập,giá bán lớn hơn 0!");
+
             return;
         }
         int indexMaNCC = cbbMaNCC.getSelectedIndex();
@@ -939,70 +949,79 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
+        String nameItem = txtFindByName.getText().toLowerCase();
 //         return dao.searchHangHoa(maHH, tenSP, maNH, xuatXu);
-        String msp = txtMaSP.getText();
-        String tsp = txtTenSP.getText();
-        String xx = txtXuatXu.getText();
-        double gb = Double.parseDouble(txtGiaBan.getText());
-        String maNH = "";
-        int indexMaNH = cbbMaNhomHang.getSelectedIndex();
-        if (indexMaNH == 0) {
-            maNH = "0000001";
-        }
-        if (indexMaNH == 1) {
-            maNH = "0000002";
-        }
-        if (indexMaNH == 2) {
-            maNH = "0000003";
-        }
-        if (indexMaNH == 3) {
-            maNH = "0000004";
-        }
-        if (indexMaNH == 4) {
-            maNH = "0000005";
-        }
-        if (indexMaNH == 5) {
-            maNH = "0000006";
-        }
-        if (indexMaNH == 6) {
-            maNH = "0000007";
-        }
-        if (indexMaNH == 7) {
-            maNH = "0000008";
-        }
-        if (indexMaNH == 8) {
-            maNH = "0000009";
-        }
-        if (indexMaNH == 9) {
-            maNH = "0000010";
-        }
-        if (indexMaNH == 10) {
-            maNH = "0000011";
-        }
-        if (indexMaNH == 11) {
-            maNH = "0000012";
-        }
-        String maNCC = "";
-        int indexMaNCC = cbbMaNCC.getSelectedIndex();
-        if (indexMaNCC == 0) {
-            maNCC = "NCCBIAV";
-        }
-        if (indexMaNCC == 1) {
-            maNCC = "NCCCOOK";
-        }
-        if (indexMaNCC == 2) {
-            maNCC = "NCCDYQN";
-        }
-        if (indexMaNCC == 3) {
-            maNCC = "NCCLADY";
-        }
-        ArrayList<HangHoa_DTO> danhSachSearchHH = hhBus.timHangHoa(msp, tsp, maNH, gb, xx);
-        System.out.println(danhSachSearchHH);
+//        String msp = txtMaSP.getText();
+//        String tsp = txtTenSP.getText();
+//        String xx = txtXuatXu.getText();
+//        double gb = Double.parseDouble(txtGiaBan.getText());
+//        String maNH = "";
+//        int indexMaNH = cbbMaNhomHang.getSelectedIndex();
+//        if (indexMaNH == 0) {
+//            maNH = "0000001";
+//        }
+//        if (indexMaNH == 1) {
+//            maNH = "0000002";
+//        }
+//        if (indexMaNH == 2) {
+//            maNH = "0000003";
+//        }
+//        if (indexMaNH == 3) {
+//            maNH = "0000004";
+//        }
+//        if (indexMaNH == 4) {
+//            maNH = "0000005";
+//        }
+//        if (indexMaNH == 5) {
+//            maNH = "0000006";
+//        }
+//        if (indexMaNH == 6) {
+//            maNH = "0000007";
+//        }
+//        if (indexMaNH == 7) {
+//            maNH = "0000008";
+//        }
+//        if (indexMaNH == 8) {
+//            maNH = "0000009";
+//        }
+//        if (indexMaNH == 9) {
+//            maNH = "0000010";
+//        }
+//        if (indexMaNH == 10) {
+//            maNH = "0000011";
+//        }
+//        if (indexMaNH == 11) {
+//            maNH = "0000012";
+//        }
+//        String maNCC = "";
+//        int indexMaNCC = cbbMaNCC.getSelectedIndex();
+//        if (indexMaNCC == 0) {
+//            maNCC = "NCCBIAV";
+//        }
+//        if (indexMaNCC == 1) {
+//            maNCC = "NCCCOOK";
+//        }
+//        if (indexMaNCC == 2) {
+//            maNCC = "NCCDYQN";
+//        }
+//        if (indexMaNCC == 3) {
+//            maNCC = "NCCLADY";
+//        }
+//        ArrayList<HangHoa_DTO> danhSachSearchHH = hhBus.timHangHoa(msp, tsp, maNH, gb, xx);
+//        System.out.println(danhSachSearchHH);
         DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
         model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
-        int soLuongSP = danhSachSearchHH.size();
-        for (int i = 0; i < soLuongSP; i++) {
-            HangHoa_DTO sanPham = danhSachSearchHH.get(i);
+//        int soLuongSP = danhSachSearchHH.size();
+        ArrayList<HangHoa_DTO> danhSachSanPhamTimKiem = new ArrayList<>();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhBus.itemData();
+        for (int i = 0; i < danhSachSanPham.size(); i++) {
+            HangHoa_DTO sanPham = danhSachSanPham.get(i);
+            if (sanPham.getTenSP().toLowerCase().contains(nameItem)) {
+                danhSachSanPhamTimKiem.add(sanPham);
+            }
+        }
+        for (int i = 0; i < danhSachSanPhamTimKiem.size(); i++) {
+            HangHoa_DTO sanPham = danhSachSanPhamTimKiem.get(i);
             String maSP = sanPham.getMaSP();
             String tenSP = sanPham.getTenSP();
             int soLuong = sanPham.getSoLuong();
@@ -1064,6 +1083,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbImg;
     private javax.swing.JTextField txtDonVi;
+    private javax.swing.JTextField txtFindByName;
     private javax.swing.JTextField txtGiaBan;
     private javax.swing.JTextField txtGiaNhap;
     private javax.swing.JTextField txtMaSP;
