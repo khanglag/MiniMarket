@@ -163,7 +163,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
         jScrollPane10.setForeground(new java.awt.Color(189, 205, 214));
         jScrollPane10.setHorizontalScrollBar(null);
 
-        panelMenu.setBackground(new java.awt.Color(189, 205, 214));
+        panelMenu.setBackground(new java.awt.Color(160, 191, 213));
 
         panelPhieuKiemHang.setBackground(new java.awt.Color(67, 138, 174));
 
@@ -298,7 +298,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         jScrollPane10.setViewportView(panelMenu);
 
-        jpnView.setBackground(new java.awt.Color(160, 191, 213));
+        jpnView.setBackground(new java.awt.Color(176, 206, 221));
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
         jpnView.setLayout(jpnViewLayout);
