@@ -369,7 +369,6 @@ public class QuanLyUser extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "Bạn chưa chọn tài khoản");
         }
-        
         LoadData();
     }//GEN-LAST:event_btnThemActionPerformed
 

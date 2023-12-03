@@ -3,6 +3,7 @@ package Controller;
  
 import BEAN.DanhMucBean;
 import GUI.Admin.QuanLyUser;
+import GUI.Saler.ThongTinNhanVien;
 import GUI.ThuKho.QuanLyKiemHang;
 import GUI.ThuKho.QuanLyPhieuNhap;
 import GUI.ThuKho.QuanLyXuatHang;
@@ -35,7 +36,7 @@ public class AdminController {
     }
 
     public void setView(JPanel jpnItem, JLabel jlbItem){
-        kindSelected = "PhieuXuatHang";    
+        kindSelected = "ThongTinNhanVien";     
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(new TrangChu());
@@ -74,11 +75,9 @@ public class AdminController {
                 case "QuanLyUser":
                     node = new QuanLyUser();
                     break;
-                case "DangXuat":
-                   // node = new PhieuXuatHang();
-                    //dispose();
+                case "ThongTinNhanVien":
+                    node =  new ThongTinNhanVien();
                     break;
-                // more
                 default:
                     break;
            }
