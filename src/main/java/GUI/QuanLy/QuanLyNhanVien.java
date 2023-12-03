@@ -404,7 +404,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     public void showStaffInTable() {
         DefaultTableModel model = (DefaultTableModel) tableQLNV.getModel();
         model.setRowCount(0);
-        ArrayList<NhanVien_DTO> danhSachNhanVien = nvDao.ReadNhanviens();
+        ArrayList<NhanVien_DTO> danhSachNhanVien = nvBus.dsNhanVien();
         int soLuongNV = danhSachNhanVien.size();
         for (int i = 0; i < soLuongNV; i++) {
             NhanVien_DTO nv = danhSachNhanVien.get(i);
@@ -505,7 +505,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             int selectedRow = tableQLNV.getSelectedRow();
             if (selectedRow != -1) {
                 String MaNV = (String) tableQLNV.getValueAt(selectedRow, 1);
-                ArrayList<NhanVien_DTO> danhSachNhanVien = nvDao.ReadNhanviens();
+                ArrayList<NhanVien_DTO> danhSachNhanVien = nvBus.dsNhanVien();
                 int soLuongNV = danhSachNhanVien.size();
                 for (int i = 0; i < soLuongNV; i++) {
                     NhanVien_DTO nhanVien = danhSachNhanVien.get(i);
@@ -641,7 +641,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             showStaffInTable();
                 return;
         }
-        ArrayList<NhanVien_DTO> danhSachNhanVienSearch = nvDao.searchNhanVien(null, tenNV, null);
+        ArrayList<NhanVien_DTO> danhSachNhanVienSearch = nvBus.timNhanVien(tenNV);
         if(danhSachNhanVienSearch.isEmpty()){
             JOptionPane.showMessageDialog(null, "Tên nhân viên không có trong hệ thống!");
             showStaffInTable();

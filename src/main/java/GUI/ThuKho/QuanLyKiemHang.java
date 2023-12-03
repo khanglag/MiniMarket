@@ -316,8 +316,12 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
            
                 PhieuKiemHang_DTO nv = new PhieuKiemHang_DTO();
                 nv.setMaPhieu(jTablePhieuKiemHang.getModel().getValueAt(i, 0).toString());
+                if(phieuKiemHangBus.xoaPhieu(nv)){
+                    JOptionPane.showMessageDialog(this, "Xoá thành công");
+                }else{
+                    JOptionPane.showMessageDialog(this, phieuKiemHangBus.xoaPhieu(nv));
+                }
                 
-                JOptionPane.showMessageDialog(this, phieuKiemHangBus.xoaPhieu(nv));
                 jTablePhieuKiemHang.repaint();
                 refreshData();
             

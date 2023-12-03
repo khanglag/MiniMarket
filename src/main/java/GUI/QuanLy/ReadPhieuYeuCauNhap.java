@@ -30,6 +30,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
     ChiTietPhieuNhapDAO ctpnDAO = new ChiTietPhieuNhapDAO();
     NhaCungCapBus nccBUS = new NhaCungCapBus();
     PhieuYeuCauNhapDAO pycnDAO = new PhieuYeuCauNhapDAO();
+    PhieuYeuCauNhapBus pycnBUS = new PhieuYeuCauNhapBus();
     PhieuNhapBus pnBUS = new PhieuNhapBus();
     Convert cv = new Convert();
 
@@ -63,7 +64,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
     public void showPhieuNhapInTable() {
         DefaultTableModel model = (DefaultTableModel) tablePhieuYeuCauNhap.getModel();
         model.setRowCount(0);
-        ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnDAO.searchCTPN(MaPN, null, null, null);
+        ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnBUS.timCTPN(MaPN, null, null, null);
         double total = 0;
         for (int i = 0; i < chiTietPhieuNhap.size(); i++) {
             ChiTietPhieuNhap_DTO ctpnDTO = chiTietPhieuNhap.get(i);
@@ -258,7 +259,7 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             return;
         }
         
-        ArrayList<ChiTietPhieuNhap_DTO> ctpn = pycnDAO.searchCTPN(MaPN, MaSP, null, null);
+        ArrayList<ChiTietPhieuNhap_DTO> ctpn = pycnBUS.timCTPN(MaPN, MaSP, null, null);
       
         ctpn.get(0).setTenHangNhap(tenSP);
         ctpn.get(0).setXuatXu(xuatXu);
@@ -268,8 +269,8 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
 
         int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận sửa yêu cầu sản phẩm", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {
-            pycnDAO.updateCTPN(ctpn.get(0));
-            ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnDAO.searchCTPN(MaPN, null, null, null);
+            pycnBUS.suaCTPN(ctpn.get(0));
+            ArrayList<ChiTietPhieuNhap_DTO> chiTietPhieuNhap = pycnBUS.timCTPN(MaPN, null, null, null);
             double total = 0;
             for (int i = 0; i < chiTietPhieuNhap.size(); i++) {
                 ChiTietPhieuNhap_DTO ctpnDTO = chiTietPhieuNhap.get(i);
