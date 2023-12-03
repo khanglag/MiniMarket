@@ -95,8 +95,8 @@ public class AdminController {
       public void mousePressed(MouseEvent e) {
           System.out.println("chay mousepress");
            kindSelected = kind;
-           jpnItem.setBackground(new Color(0,0,0));
-           jlbItem.setBackground(new Color(0,0,0));
+//           jpnItem.setBackground(new Color(0,0,0));
+//           jlbItem.setBackground(new Color(0,0,0));
       }
 
       @Override
@@ -108,16 +108,16 @@ public class AdminController {
       @Override
       public void mouseEntered(MouseEvent e) {
           System.out.println("chay mouseenter");
-          jpnItem.setBackground(new Color(0,0,0));
-          jlbItem.setBackground(new Color(0,0,0));
+//          jpnItem.setBackground(new Color(0,0,0));
+//          jlbItem.setBackground(new Color(0,0,0));
       }
 
       @Override
       public void mouseExited(MouseEvent e) {
           System.out.println("chay mouseexit");
           if (!kindSelected.equalsIgnoreCase(kind)) {
-                jpnItem.setBackground(new Color(51,51,51));
-                jlbItem.setBackground(new Color(51,51,51));
+//                jpnItem.setBackground(new Color(51,51,51));
+//                jlbItem.setBackground(new Color(51,51,51));
           }
       }
         
@@ -126,11 +126,11 @@ public class AdminController {
         System.out.println("chay doi mau");
         for(DanhMucBean item: listItem){
             if(item.getKind().equalsIgnoreCase(kind)){
-                item.getJpn().setBackground(new Color(0,0,0));
-                item.getJlb().setBackground(new Color(0,0,0));
+                item.getJpn().setBackground(new Color(38,84,108));
+                item.getJlb().setBackground(new Color(38,84,108));
             } else{
-                item.getJpn().setBackground(new Color(51,51,51));
-                item.getJlb().setBackground(new Color(51,51,51));
+                item.getJpn().setBackground(new Color(67,138,174));
+                item.getJlb().setBackground(new Color(67,138,174));
             }
             
         }

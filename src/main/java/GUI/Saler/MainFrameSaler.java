@@ -31,8 +31,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
     public void dashboardControl() {
         mainScreen.setLayout(new BorderLayout());
         mainScreen.add(new BanHang());
-        DefaultColor = new Color(255, 255, 255);
-        ClickedColor = new Color(240, 151, 57);
+        DefaultColor = new Color(67,138,174);
+        ClickedColor = new Color(38,84,108);
        // panelttcn.setBackground(ClickedColor);
         panelbh.setBackground(ClickedColor);
         panelsp.setBackground(DefaultColor);
@@ -71,6 +71,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
 
         sideBar2.setBackground(new java.awt.Color(189, 205, 214));
 
+        panelbh.setBackground(new java.awt.Color(67, 138, 174));
         panelbh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelbhMouseClicked(evt);
@@ -81,6 +82,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sell.png"))); // NOI18N
         jLabel1.setText("BÁN HÀNG");
 
@@ -88,7 +91,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
         panelbh.setLayout(panelbhLayout);
         panelbhLayout.setHorizontalGroup(
             panelbhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelbhLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelbhLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -96,11 +99,12 @@ public class MainFrameSaler extends javax.swing.JFrame {
         panelbhLayout.setVerticalGroup(
             panelbhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelbhLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        panelsp.setBackground(new java.awt.Color(67, 138, 174));
         panelsp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelspMouseClicked(evt);
@@ -111,6 +115,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/product.png"))); // NOI18N
         jLabel3.setText("SẢN PHẨM");
 
@@ -126,11 +132,12 @@ public class MainFrameSaler extends javax.swing.JFrame {
         panelspLayout.setVerticalGroup(
             panelspLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelspLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        paneldx.setBackground(new java.awt.Color(67, 138, 174));
         paneldx.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 paneldxMousePressed(evt);
@@ -138,6 +145,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logout.png"))); // NOI18N
         jLabel4.setText("ĐĂNG XUẤT");
 
@@ -145,19 +154,17 @@ public class MainFrameSaler extends javax.swing.JFrame {
         paneldx.setLayout(paneldxLayout);
         paneldxLayout.setHorizontalGroup(
             paneldxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneldxLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         paneldxLayout.setVerticalGroup(
             paneldxLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneldxLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        paneltkh.setBackground(new java.awt.Color(67, 138, 174));
         paneltkh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 paneltkhMouseClicked(evt);
@@ -168,6 +175,8 @@ public class MainFrameSaler extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/addCustomer.png"))); // NOI18N
         jLabel6.setText("THÊM KHÁCH HÀNG");
 
@@ -183,9 +192,9 @@ public class MainFrameSaler extends javax.swing.JFrame {
         paneltkhLayout.setVerticalGroup(
             paneltkhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneltkhLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout sideBar2Layout = new javax.swing.GroupLayout(sideBar2);
@@ -215,7 +224,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        mainScreen.setBackground(new java.awt.Color(255, 255, 255));
+        mainScreen.setBackground(new java.awt.Color(160, 191, 213));
 
         javax.swing.GroupLayout mainScreenLayout = new javax.swing.GroupLayout(mainScreen);
         mainScreen.setLayout(mainScreenLayout);
@@ -228,13 +237,18 @@ public class MainFrameSaler extends javax.swing.JFrame {
             .addGap(0, 423, Short.MAX_VALUE)
         );
 
-        title.setBackground(new java.awt.Color(147, 166, 174));
+        title.setBackground(new java.awt.Color(160, 191, 213));
 
+        jLabel2.setBackground(new java.awt.Color(160, 191, 213));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(173, 248, 26));
+        jLabel2.setForeground(new java.awt.Color(35, 82, 151));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MÀN HÌNH NHÂN VIÊN");
 
+        jPanel1.setBackground(new java.awt.Color(144, 144, 144));
+
+        txtUserName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUserName.setText("jLabel7");
         txtUserName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -246,13 +260,14 @@ public class MainFrameSaler extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout titleLayout = new javax.swing.GroupLayout(title);
@@ -260,7 +275,7 @@ public class MainFrameSaler extends javax.swing.JFrame {
         titleLayout.setHorizontalGroup(
             titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

@@ -79,11 +79,14 @@ public class NhaCungCap extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        table.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jScrollPane1.setViewportView(table);
 
         jtfTim.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm"));
 
+        btnTim.setBackground(new java.awt.Color(67, 138, 174));
         btnTim.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTim.setForeground(new java.awt.Color(255, 255, 255));
         btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loupe.png"))); // NOI18N
         btnTim.setText("TÌM KIẾM");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +95,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnLamMoi.setBackground(new java.awt.Color(67, 138, 174));
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +106,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnChon.setBackground(new java.awt.Color(67, 138, 174));
         btnChon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChon.setForeground(new java.awt.Color(255, 255, 255));
         btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnChon.setText("CHỌN");
         btnChon.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +117,9 @@ public class NhaCungCap extends javax.swing.JDialog {
             }
         });
 
+        btnHuy.setBackground(new java.awt.Color(67, 138, 174));
         btnHuy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnHuy.setText("HỦY");
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -124,24 +133,22 @@ public class NhaCungCap extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 276, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jtfTim, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(53, 53, 53)
-                        .addComponent(btnLamMoi)
-                        .addGap(19, 19, 19))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnLamMoi)))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

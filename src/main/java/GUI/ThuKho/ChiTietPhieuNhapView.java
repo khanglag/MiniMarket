@@ -143,9 +143,12 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
         btnXuatPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(176, 206, 221));
 
+        jPanel1.setBackground(new java.awt.Color(176, 206, 221));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
+        jPanel36.setBackground(new java.awt.Color(176, 206, 221));
         jPanel36.setLayout(new java.awt.GridLayout(5, 2, 0, 5));
 
         jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -185,6 +188,7 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
 
         jPanel1.add(jPanel36);
 
+        jPanel37.setBackground(new java.awt.Color(176, 206, 221));
         jPanel37.setLayout(new java.awt.GridLayout(5, 2, 0, 5));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -248,6 +252,7 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMouseClicked(evt);
@@ -255,7 +260,9 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(jTable);
 
+        btnDong.setBackground(new java.awt.Color(67, 138, 174));
         btnDong.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDong.setForeground(new java.awt.Color(255, 255, 255));
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnDong.setText("Đóng");
         btnDong.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +271,9 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
             }
         });
 
+        btnNhapHang.setBackground(new java.awt.Color(67, 138, 174));
         btnNhapHang.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnNhapHang.setForeground(new java.awt.Color(255, 255, 255));
         btnNhapHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/import.png"))); // NOI18N
         btnNhapHang.setText("NHẬP HÀNG");
         btnNhapHang.addActionListener(new java.awt.event.ActionListener() {
@@ -273,6 +282,9 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
             }
         });
 
+        btnXuatPDF.setBackground(new java.awt.Color(67, 138, 174));
+        btnXuatPDF.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXuatPDF.setForeground(new java.awt.Color(255, 255, 255));
         btnXuatPDF.setText("Xuất PDF");
         btnXuatPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,10 +304,10 @@ public final class ChiTietPhieuNhapView extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnXuatPDF)
-                        .addGap(63, 63, 63)
+                        .addComponent(btnXuatPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
                         .addComponent(btnNhapHang)
-                        .addGap(58, 58, 58)
+                        .addGap(50, 50, 50)
                         .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

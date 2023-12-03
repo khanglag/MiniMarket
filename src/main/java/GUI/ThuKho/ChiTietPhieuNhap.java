@@ -101,8 +101,10 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(176, 206, 221));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
+        jPanel36.setBackground(new java.awt.Color(176, 206, 221));
         jPanel36.setLayout(new java.awt.GridLayout(5, 2, 0, 5));
 
         jLabel36.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -116,9 +118,13 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         jLabel37.setText("Mã hàng nhập");
         jPanel36.add(jLabel37);
 
+        jPanel2.setBackground(new java.awt.Color(176, 206, 221));
+
         jtfMaHangNhap.setEditable(false);
 
+        btnChon.setBackground(new java.awt.Color(67, 138, 174));
         btnChon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnChon.setForeground(new java.awt.Color(255, 255, 255));
         btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnChon.setText("CHỌN");
         btnChon.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +178,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
 
         jPanel1.add(jPanel36);
 
+        jPanel37.setBackground(new java.awt.Color(176, 206, 221));
         jPanel37.setLayout(new java.awt.GridLayout(5, 2, 0, 5));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -235,6 +242,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable.setSelectionBackground(new java.awt.Color(176, 206, 221));
         jTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMouseClicked(evt);
@@ -242,7 +250,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(jTable);
 
+        btnDong.setBackground(new java.awt.Color(67, 138, 174));
         btnDong.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDong.setForeground(new java.awt.Color(255, 255, 255));
         btnDong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnDong.setText("ĐÓNG");
         btnDong.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +261,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        btnThem.setBackground(new java.awt.Color(67, 138, 174));
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ADD.png"))); // NOI18N
         btnThem.setText("THÊM");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +272,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        btnXoa.setBackground(new java.awt.Color(67, 138, 174));
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         btnXoa.setText("XÓA");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +283,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        btnLamMoi.setBackground(new java.awt.Color(67, 138, 174));
         btnLamMoi.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnLamMoi.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLamMoi.setText("LÀM MỚI");
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +294,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
         });
 
+        btnTaoYeuCau.setBackground(new java.awt.Color(67, 138, 174));
         btnTaoYeuCau.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnTaoYeuCau.setForeground(new java.awt.Color(255, 255, 255));
         btnTaoYeuCau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/create.png"))); // NOI18N
         btnTaoYeuCau.setText("TẠO YÊU CẦU NHẬP");
         btnTaoYeuCau.addActionListener(new java.awt.event.ActionListener() {
@@ -294,8 +312,8 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTaoYeuCau)
-                .addGap(72, 72, 72)
-                .addComponent(btnDong)
+                .addGap(40, 40, 40)
+                .addComponent(btnDong, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -306,10 +324,10 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnThem)
-                        .addGap(127, 127, 127)
-                        .addComponent(btnXoa)
-                        .addGap(127, 127, 127)
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
                         .addComponent(btnLamMoi)
                         .addGap(149, 149, 149))))
         );
@@ -326,9 +344,9 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDong)
-                    .addComponent(btnTaoYeuCau))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTaoYeuCau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -433,7 +451,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
         int n = list.size();
         
         if(n==0){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm");
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm!");
         }else{
             for(ChiTietPhieuNhap_DTO ctpn: list){
             if(phieuYeuCauNhapBus.themCTPN(ctpn)){
@@ -444,7 +462,7 @@ public class ChiTietPhieuNhap extends javax.swing.JFrame {
             }
             if(flag){
 
-                JOptionPane.showMessageDialog(this,  "Tạo thành công");
+                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
                 phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
                 this.dispose();
             }

@@ -43,29 +43,36 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         btnKhongDuyet = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(176, 206, 221));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Kiểm duyệt phiếu nhập kho");
+        jLabel1.setText("KIỂM DUYỆT PHIẾU NHẬP KHO");
 
-        btnDuyet.setBackground(new java.awt.Color(102, 255, 0));
-        btnDuyet.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnDuyet.setText("Duyệt");
+        btnDuyet.setBackground(new java.awt.Color(67, 138, 174));
+        btnDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDuyet.setForeground(new java.awt.Color(255, 255, 255));
+        btnDuyet.setText("DUYỆT");
         btnDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDuyetActionPerformed(evt);
             }
         });
 
-        btnKhongDuyet.setBackground(new java.awt.Color(255, 0, 51));
-        btnKhongDuyet.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        btnKhongDuyet.setText("Không duyệt");
+        btnKhongDuyet.setBackground(new java.awt.Color(211, 97, 120));
+        btnKhongDuyet.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnKhongDuyet.setForeground(new java.awt.Color(255, 255, 255));
+        btnKhongDuyet.setText("KHÔNG DUYỆT");
         btnKhongDuyet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKhongDuyetActionPerformed(evt);
             }
         });
 
+        btnCancel.setBackground(new java.awt.Color(110, 157, 181));
+        btnCancel.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,19 +86,19 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(81, 81, 81))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(81, 81, 81))
+                        .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(btnKhongDuyet)
+                        .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
-                .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(btnKhongDuyet)
-                .addGap(58, 58, 58))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +110,8 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
                     .addComponent(btnDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKhongDuyet, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,7 +130,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
             pnBUS.suaTrangThai(MaPN, "DA DUYET");
 //            pnBUS.capNhatPhieuNhap(MaPN, "DA DUYET");
              JOptionPane.showMessageDialog(null,
-                    "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!!");
+                    "Đã duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
                 window.dispose();
@@ -141,7 +148,7 @@ public class TrangThaiPhieuNhap extends javax.swing.JPanel {
         if (dialogResult == JOptionPane.YES_OPTION) {
             pnBUS.suaTrangThai(MaPN, "KHONG DUYET");
              JOptionPane.showMessageDialog(null,
-                    "Không duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!!!!!");
+                    "Không duyệt thành công! VUI LÒNG CLICK VÀO DÒNG BẤT KÌ ĐỂ CẬP NHẬT BẢNG!");
             Window window = SwingUtilities.getWindowAncestor(this);
             if (window != null) {
 

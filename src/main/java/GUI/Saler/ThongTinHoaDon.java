@@ -103,9 +103,10 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableGioHang = new javax.swing.JTable();
 
-        txtTitle.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtTitle.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        txtTitle.setForeground(new java.awt.Color(35, 82, 151));
         txtTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTitle.setText("SIÊU THỊ MINI");
+        txtTitle.setText("MR.FRESH");
 
         txtSoHD.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txtSoHD.setText("Số hóa đơn: ");
@@ -130,7 +131,6 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
         txtTime.setText("jLabel3");
 
         txtChaoMung.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtChaoMung.setForeground(new java.awt.Color(255, 51, 51));
         txtChaoMung.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtChaoMung.setText("RẤT VUI KHI ĐƯỢC PHỤC VỤ QUÝ KHÁCH");
 
@@ -143,6 +143,9 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
 
         txtTienThua.setText("jLabel5");
 
+        btnXuatHDPDF.setBackground(new java.awt.Color(67, 138, 174));
+        btnXuatHDPDF.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnXuatHDPDF.setForeground(new java.awt.Color(255, 255, 255));
         btnXuatHDPDF.setText("Xuất hóa đơn PDF");
         btnXuatHDPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +173,7 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
             }
         });
         tableGioHang.setRowHeight(35);
+        tableGioHang.setSelectionBackground(new java.awt.Color(176, 206, 221));
         tableGioHang.setShowGrid(false);
         tableGioHang.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tableGioHang);
@@ -186,16 +190,8 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                 .addGap(6, 6, 6))
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(txtSoHD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMaHoaDon)
-                        .addGap(111, 111, 111)
-                        .addComponent(txtThoiGian)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTime))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTKD)
                             .addComponent(txtTT)
@@ -204,15 +200,24 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtKhachDua)
                             .addComponent(txtTongHoaDon)
-                            .addComponent(txtTienThua))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtTienThua))
+                        .addContainerGap(392, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtSoHD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaHoaDon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtThoiGian)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTime)
+                        .addGap(97, 97, 97))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnXuatHDPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addComponent(btnXuatHDPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,8 +248,8 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                     .addComponent(txtTT)
                     .addComponent(txtTienThua))
                 .addGap(18, 18, 18)
-                .addComponent(btnXuatHDPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addComponent(btnXuatHDPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 45, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -66,7 +66,7 @@ public class item extends javax.swing.JPanel {
                 int sl = Integer.parseInt(txtSoLuong.getText().trim());
                 if ( sl<= 0) {
                     JOptionPane.showMessageDialog(null,
-                            "Số lượng phải lớn hơn 0");
+                            "Số lượng phải lớn hơn 0!");
                     return;
                 }
                
@@ -74,7 +74,7 @@ public class item extends javax.swing.JPanel {
                 int soLuong = Integer.parseInt(txtSoLuong.getText().trim());
                 if (soLuong > soLuongTrenDB) {
                     JOptionPane.showMessageDialog(null,
-                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm");
+                            "Số lượng đã vượt quá số lượng trên kệ \n" + "Trên kệ hiện tại còn (" + soLuongTrenDB + ") sản phẩm!");
                     return;
                 }
                 item it = new item();
@@ -106,8 +106,9 @@ public class item extends javax.swing.JPanel {
 
         LbImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gao.jpg"))); // NOI18N
 
-        BtnAddProduct.setBackground(new java.awt.Color(51, 255, 51));
+        BtnAddProduct.setBackground(new java.awt.Color(67, 138, 174));
         BtnAddProduct.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        BtnAddProduct.setForeground(new java.awt.Color(255, 255, 255));
         BtnAddProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gioHang.png"))); // NOI18N
         BtnAddProduct.setText("THÊM VÀO GIỎ HÀNG");
         BtnAddProduct.addMouseListener(new java.awt.event.MouseAdapter() {

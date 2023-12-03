@@ -101,27 +101,31 @@ public class ThuKhoController {
 
          @Override
       public void mousePressed(MouseEvent e) {
+          System.out.println("chay mousePressed");
            kindSelected = kind;
-           jpnItem.setBackground(new Color(0,0,0));
-           jlbItem.setBackground(new Color(0,0,0));
+//           jpnItem.setBackground(new Color(0,0,0));
+//           jlbItem.setBackground(new Color(0,0,0));
       }
 
       @Override
       public void mouseReleased(MouseEvent e) {
+          System.out.println("chay mouseReleased");
          
       }
 
       @Override
       public void mouseEntered(MouseEvent e) {
-          jpnItem.setBackground(new Color(0,0,0));
-          jlbItem.setBackground(new Color(0,0,0));
+          System.out.println("chay mouseEntered");
+//          jpnItem.setBackground(new Color(38,84,108));
+//          jlbItem.setBackground(new Color(38,84,108));
       }
 
       @Override
       public void mouseExited(MouseEvent e) {
+          System.out.println("chay mouseExited");
           if (!kindSelected.equalsIgnoreCase(kind)) {
-                jpnItem.setBackground(new Color(51,51,51));
-                jlbItem.setBackground(new Color(51,51,51));
+//                jpnItem.setBackground(new Color(67,138,174));
+//                jlbItem.setBackground(new Color(67,138,174));
           }
       }
         
@@ -129,11 +133,11 @@ public class ThuKhoController {
     private void setChangeBackGround(String kind){
         for(DanhMucBean item: listItem){
             if(item.getKind().equalsIgnoreCase(kind)){
-                item.getJpn().setBackground(new Color(0,0,0));
-                item.getJlb().setBackground(new Color(0,0,0));
+                item.getJpn().setBackground(new Color(38,84,108));
+                item.getJlb().setBackground(new Color(38,84,108));
             } else{
-                item.getJpn().setBackground(new Color(51,51,51));
-                item.getJlb().setBackground(new Color(51,51,51));
+                item.getJpn().setBackground(new Color(67,138,174));
+                item.getJlb().setBackground(new Color(67,138,174));
             }
             
         }

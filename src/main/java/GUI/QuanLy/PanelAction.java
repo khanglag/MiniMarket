@@ -54,7 +54,9 @@ public class PanelAction extends javax.swing.JPanel {
         btnStatus = new javax.swing.JButton();
         btnWatch = new javax.swing.JButton();
 
-        btnStatus.setBackground(new java.awt.Color(102, 255, 51));
+        btnStatus.setBackground(new java.awt.Color(211, 97, 120));
+        btnStatus.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnStatus.setForeground(new java.awt.Color(255, 255, 255));
         btnStatus.setText("KHÔNG DUYỆT");
         btnStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +64,9 @@ public class PanelAction extends javax.swing.JPanel {
             }
         });
 
-        btnWatch.setBackground(new java.awt.Color(0, 153, 255));
+        btnWatch.setBackground(new java.awt.Color(67, 138, 174));
+        btnWatch.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btnWatch.setForeground(new java.awt.Color(255, 255, 255));
         btnWatch.setText("XEM");
         btnWatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,9 +79,9 @@ public class PanelAction extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
