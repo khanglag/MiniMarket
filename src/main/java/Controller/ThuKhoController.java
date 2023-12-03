@@ -41,6 +41,7 @@ public class ThuKhoController {
         root.add(new TrangChu());
         root.validate();
         root.repaint();
+        
     }
     
     public void setEvent(List<DanhMucBean> listItem){
