@@ -75,4 +75,17 @@ public class TaiKhoanBus {
         return tkDAO.searchTaiKhoan(maNV);
         
     }
+    public String kiemtraTK(String maNV) {
+        TaiKhoan_DTO dto = new TaiKhoan_DTO();
+        dto = tkDAO.searchTaiKhoan(maNV);
+        if (dto == null) {
+            return "Chưa có tài khoản";
+        }
+        if (dto.isTonTai() == true) {
+            return "Đã có tài khoản";
+        } else if (dto.isTonTai() == false) {
+            return "Tài khoản bị khoá";
+        }
+        return "Lỗi truy xuất";
+    }
 }
