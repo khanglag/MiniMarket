@@ -199,6 +199,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         btnLoad.setForeground(new java.awt.Color(255, 255, 255));
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sync.png"))); // NOI18N
         btnLoad.setText("LÀM MỚI");
+        btnLoad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadActionPerformed(evt);
@@ -209,6 +210,7 @@ public class QuanLyUser extends javax.swing.JPanel {
         btnMoKhoa.setBackground(new java.awt.Color(67, 138, 174));
         btnMoKhoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnMoKhoa.setForeground(new java.awt.Color(255, 255, 255));
+        btnMoKhoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SELECT.png"))); // NOI18N
         btnMoKhoa.setText("MỞ KHÓA TÀI KHOẢN");
         btnMoKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,7 +255,7 @@ public class QuanLyUser extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(196, 196, 196)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
