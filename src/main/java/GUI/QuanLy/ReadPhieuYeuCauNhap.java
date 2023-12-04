@@ -48,6 +48,13 @@ public class ReadPhieuYeuCauNhap extends javax.swing.JPanel {
             txtSuaSoLuong.setEnabled(false);
             txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
         }
+         if (pn.get(0).getTrangThai().equals("DA NHAP")) {
+            btnUpdate.setEnabled(false);
+            txtSuaGiaNhap.setEnabled(false);
+            txtXuatXu.setEditable(false);
+            txtSuaSoLuong.setEnabled(false);
+            txtThongTinTrangThai.setText("Phiếu đã kiểm duyệt không thể chỉnh sửa");
+        }
         if (pn.get(0).getTrangThai().equals("KHONG DUYET")) {
             btnUpdate.setEnabled(false);
             txtSuaGiaNhap.setEnabled(false);
