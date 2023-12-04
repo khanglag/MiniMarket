@@ -93,15 +93,7 @@ public class KhachHangBus {
         PhoneNumberValidator validator = new PhoneNumberValidator();
          try {
             validator.validatePhoneNumber(sdt);
-            if (dAO.ttKhachHang(sdt)) {
-                //Kiểm tra có khác hàng sử dụng số điện thoại đó chưa
-                JOptionPane.showMessageDialog(null,
-                        "Đã có khách hàng sử dụng số điện thoại: " + sdt + ". Vui lòng sử dụng số khác");
-                return false;
-            } else {
                return dAO.update(maKH,sdt, diaChi);
-
-            }
         } catch (InvalidPhoneNumberException e) {
              JOptionPane.showMessageDialog(null,e.getMessage());
         }
