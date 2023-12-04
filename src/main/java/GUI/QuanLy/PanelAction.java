@@ -32,8 +32,8 @@ public class PanelAction extends javax.swing.JPanel {
                btnStatus.setBackground(Color.YELLOW);
                btnStatus.setEnabled(true);
         } 
-         if(color == "BLUE"){
-               btnStatus.setBackground(Color.BLUE);
+         if(color == "GREEN"){
+               btnStatus.setBackground(Color.GREEN);
                btnStatus.setEnabled(false);
         } 
     }

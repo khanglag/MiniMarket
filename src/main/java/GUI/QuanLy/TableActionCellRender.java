@@ -41,7 +41,7 @@ public class TableActionCellRender extends DefaultTableCellRenderer {
              
                 break;
               case "DA NHAP":
-               action.updateStatusButton("BLUE", "Đã nhập",false);
+               action.updateStatusButton("GREEN", "Đã nhập",false);
              
                 break;
             case "CHO":
