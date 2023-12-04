@@ -338,7 +338,6 @@ CREATE TABLE `nhomhang` (
 --
 -- Đang đổ dữ liệu cho bảng `nhomhang`
 --
-
 INSERT INTO `nhomhang` (`MANH`, `TENNH`, `TONTAI`) VALUES
 ('0000001', 'Chăm sóc thú cưng', 1),
 ('0000002', 'Đồ dùng gia đình', 1),
@@ -419,8 +418,8 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TRANGTHAI`, `TONTAI`) VALUES
-('0000001', 'A038645', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA DUYET', 1),
-('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA DUYET', 1),
+('0000001', 'A038645', '2023-09-20 08:49:50', 0.08, 12, 11403720, 'DA NHAP', 1),
+('0000002', 'B041003', '2023-09-20 16:32:34', 0.08, 3, 4341600, 'DA NHAP', 1),
 ('0000003', 'B041003', '2023-11-04 08:30:00', 0.08, 1, 270000, 'KHONG DUYET', 1);
 
 -- --------------------------------------------------------
