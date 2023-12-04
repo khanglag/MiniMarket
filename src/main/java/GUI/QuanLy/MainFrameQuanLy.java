@@ -318,9 +318,9 @@ public class MainFrameQuanLy extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MÀN HÌNH QUẢN LÝ");
 
-        jPanel1.setBackground(new java.awt.Color(144, 144, 144));
+        jPanel1.setBackground(new java.awt.Color(160, 191, 213));
 
-        txtUserName.setBackground(new java.awt.Color(255, 255, 255));
+        txtUserName.setBackground(new java.awt.Color(160, 191, 213));
         txtUserName.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUserName.setText("jLabel8");
