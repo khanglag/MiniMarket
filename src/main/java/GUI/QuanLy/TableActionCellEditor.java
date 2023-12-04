@@ -47,6 +47,10 @@ public class TableActionCellEditor extends DefaultCellEditor {
                 action.updateStatusButton("GREEN", "Đã duyệt", false);
 
                 break;
+             case "DA NHAP":
+               action.updateStatusButton("BLUE", "Đã nhập",false);
+             
+                break;
             case "CHO":
                 action.updateStatusButton("YELLOW", "Chờ", true);
                 break;

@@ -396,8 +396,13 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         String sdt = txtNumberPhone.getText().trim();
+        
         if (sdt.equals("")) {
              JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng để xóa");
+            return;
+        }
+        if(sdt.equals("1")){
+            JOptionPane.showMessageDialog(null, "Đây là khách vãng lai không thể xóa");
             return;
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa?", "Xác nhận", JOptionPane.YES_NO_OPTION);
