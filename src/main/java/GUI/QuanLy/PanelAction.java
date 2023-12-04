@@ -60,7 +60,6 @@ public class PanelAction extends javax.swing.JPanel {
 
         btnStatus.setBackground(new java.awt.Color(211, 97, 120));
         btnStatus.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        btnStatus.setForeground(new java.awt.Color(255, 255, 255));
         btnStatus.setText("KHÔNG DUYỆT");
         btnStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +69,6 @@ public class PanelAction extends javax.swing.JPanel {
 
         btnWatch.setBackground(new java.awt.Color(67, 138, 174));
         btnWatch.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        btnWatch.setForeground(new java.awt.Color(255, 255, 255));
         btnWatch.setText("XEM");
         btnWatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
