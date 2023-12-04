@@ -93,7 +93,6 @@ public class QuanLyKiemHang extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(176, 206, 221));
 
-        jTablePhieuKiemHang.setForeground(new java.awt.Color(255, 255, 255));
         jTablePhieuKiemHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

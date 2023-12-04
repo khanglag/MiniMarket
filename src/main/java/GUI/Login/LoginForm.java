@@ -142,7 +142,6 @@ public class LoginForm extends javax.swing.JFrame {
         btnSubmit.setBackground(new java.awt.Color(240, 90, 118));
         btnSubmit.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/log-in.png"))); // NOI18N
         btnSubmit.setText("SIGN IN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
