@@ -499,5 +499,35 @@ public class ExcelFile {
             }
     return true;
     }
+    public boolean nhapFileExcelPN() throws FileNotFoundException, IOException{
+        String filePath=chooseFileString();
+        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+        Workbook workbook = new XSSFWorkbook(fileInputStream);
+        HangHoaBus bus=new HangHoaBus();
+        HangHoa_DTO dTO=new HangHoa_DTO();
+        Sheet sheet = workbook.getSheetAt(0); // Lấy sheet đầu tiên
+         for (Row row : sheet) {
+            if (row.getRowNum() == 0) {
+                // Bỏ qua dòng tiêu đề
+                continue;
+            }
 
+            Cell cell = row.getCell(0); // Mã Phiếu
+            String maSanPham = getStringValue(cell);
+
+            cell = row.getCell(7); // Số Lượng
+            int soLuong = getIntValue(cell);
+
+            // In thông tin từ file Excel
+            System.out.println("Mã Sản Phẩm: " + maSanPham);
+            System.out.println("Số Lượng: " + soLuong);
+            System.out.println("----------------------");  
+            dTO=bus.timHangHoa(maSanPham, "", "", "").get(0);
+            bus.tangSLSP(maSanPham, soLuong);
+        }
+
+        fileInputStream.close();
+        workbook.close();
+        return true;
+    }
 }
