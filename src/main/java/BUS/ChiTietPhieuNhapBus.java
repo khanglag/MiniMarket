@@ -101,8 +101,8 @@ public class ChiTietPhieuNhapBus {
         ExcelFile file=new ExcelFile();
         return file.xuatChiTietPhieuNhapEX(maPN, ngayDate, maNV);
     }
-    public boolean nhapPN() throws IOException{
+    public ArrayList<ChiTietPhieuNhap_DTO> nhapPN(String maPN) throws IOException{
         ExcelFile file=new ExcelFile();
-        return file.nhapFileExcelPN();
+        return file.nhapFileExcelPN(maPN);
     }
 }
