@@ -499,5 +499,53 @@ public class ExcelFile {
             }
     return true;
     }
+    public ArrayList<ChiTietPhieuNhap_DTO> nhapFileExcelPN(String maPN) throws FileNotFoundException, IOException{
+        String filePath=chooseFileString();
+        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+        Workbook workbook = new XSSFWorkbook(fileInputStream);
+        ArrayList<ChiTietPhieuNhap_DTO> ds=new ArrayList<>();
+        HangHoaBus bus=new HangHoaBus();
+        HangHoa_DTO dTO=new HangHoa_DTO();
+        dTO.setMaSP(maPN);
+        ChiTietPhieuNhap_DTO temp=new ChiTietPhieuNhap_DTO();
+        Sheet sheet = workbook.getSheetAt(0); // Lấy sheet đầu tiên
+         for (Row row : sheet) {
+            if (row.getRowNum() == 0) {
+                // Bỏ qua dòng tiêu đề
+                continue;
+            }
+            
+            Cell cell = row.getCell(0); // Mã Phiếu
+            temp.setMaHangNhap(getStringValue(cell));
+            
+            cell = row.getCell(1); // Mã Phiếu
+            temp.setTenHangNhap(getStringValue(cell));
+            
+            cell = row.getCell(2); // Mã Phiếu
+            temp.setMaNCC(getStringValue(cell));
+            
+            cell = row.getCell(3); // Mã Phiếu
+            temp.setVAT(getIntValue(cell));
+            
+            cell = row.getCell(4); // Mã Phiếu
+            temp.setXuatXu(getStringValue(cell));
+            
+            
+            cell = row.getCell(5); // Số Lượng
+            temp.setSoLuong(getIntValue(cell));
 
+            cell = row.getCell(6); // Mã Phiếu
+            temp.setDonVi(getStringValue(cell));
+            
+            cell = row.getCell(7); // Mã Phiếu
+            temp.setGiaNhap(getIntValue(cell));
+            
+            cell = row.getCell(8); // Mã Phiếu
+            temp.setTongTienNhap(getIntValue(cell));
+            ds.add(temp);
+         }
+        fileInputStream.close();
+        workbook.close();
+        return ds;
+    }
 }

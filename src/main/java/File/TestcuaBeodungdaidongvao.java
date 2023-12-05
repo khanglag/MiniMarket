@@ -4,6 +4,8 @@
  */
 package File;
 
+import BUS.ChiTietPhieuNhapBus;
+import BUS.HangHoaBus;
 import DTO.ChiTietKiemHang_DTO;
 import java.io.IOException;
 
@@ -13,10 +15,7 @@ import java.io.IOException;
  */
 public class TestcuaBeodungdaidongvao {
     public static void main(String[] args) throws IOException {
-        ExcelFile file=new ExcelFile();
-        for(ChiTietKiemHang_DTO tempChiTietKiemHang_DTO: file.nhapChiTietKiemHang())
-        {
-            System.out.println(tempChiTietKiemHang_DTO.toString());
-        }
+        ChiTietPhieuNhapBus bus=new ChiTietPhieuNhapBus();
+        bus.nhapPN();
     }
 }
