@@ -517,7 +517,7 @@ public class ExcelFile {
                 // Bỏ qua dòng tiêu đề
                 continue;
             }
-            
+            temp.setMaPhieuNhap(maPN);
             Cell cell = row.getCell(0); // Mã Phiếu
             temp.setMaHangNhap(getStringValue(cell));
             
