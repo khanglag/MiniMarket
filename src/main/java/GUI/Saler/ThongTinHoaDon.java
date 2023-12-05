@@ -273,7 +273,7 @@ public class ThongTinHoaDon extends javax.swing.JPanel {
                 Paragraph info = new Paragraph("Thông tin hóa đơn", boldFont);
                 info.setAlignment(Element.ALIGN_CENTER); // Căn giữa đoạn văn bản
                 doc.add(info);
-                String title = "Cửa hàng: " + txtTitle.getText() + " MR.FRESH " + txtChaoMung.getText();
+                String title = "Cửa hàng: " + txtTitle.getText() + " " + txtChaoMung.getText();
                 doc.add(new Paragraph(title, vietnameseFont));
                 String infoBill = txtSoHD.getText() + txtMaHoaDon.getText() + "              " + txtThoiGian.getText() + " " + txtTime.getText();
                 doc.add(new Paragraph(infoBill, vietnameseFont));

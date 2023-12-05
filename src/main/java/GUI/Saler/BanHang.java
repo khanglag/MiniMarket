@@ -645,7 +645,7 @@ public class BanHang extends javax.swing.JPanel {
             return;
         }
         if (viTri == 0) {
-            makh = "KHACHVL";
+            makh = "0000000";
         }
         int dialogResult = JOptionPane.showConfirmDialog(null, "Xác nhận thanh toán?", "Xác nhận", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.YES_OPTION) {

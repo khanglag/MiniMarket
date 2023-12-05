@@ -315,7 +315,7 @@ public class MainFrameThuKho extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(160, 191, 213));
 
-        jPanelTen.setBackground(new java.awt.Color(144, 144, 144));
+        jPanelTen.setBackground(new java.awt.Color(160, 191, 213));
 
         jLabelTen.setBackground(new java.awt.Color(144, 144, 144));
         jLabelTen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N

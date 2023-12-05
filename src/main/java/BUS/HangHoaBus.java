@@ -187,6 +187,8 @@ public class HangHoaBus {
                         erorrString += "\nSản phẩm " + hhdto.getMaSP() + " " + hhdto.getTenSP() + "đã tồn tại ";
                     } else {
                         dao.addS(hhdto.getMaSP(), hhdto.getTenSP(), hhdto.getMaNH(), hhdto.getMaNCC(), hhdto.getDonVi(), hhdto.getGiaNhap(), hhdto.getGiaBan(), hhdto.getSoLuong(), hhdto.getXuatXu(), hhdto.getAnhSP(), true);
+                         JOptionPane.showMessageDialog(null,
+                    "Thêm hàng hóa thành công");
                     }
                 }
 
