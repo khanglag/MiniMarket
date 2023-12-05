@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 13, 2023 lúc 06:50 PM
+-- Thời gian đã tạo: Th12 05, 2023 lúc 03:58 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -39,9 +39,13 @@ CREATE TABLE `chitiet_hoadon` (
 --
 
 INSERT INTO `chitiet_hoadon` (`SOHD`, `MASP`, `SOLUONG`, `TONTAI`) VALUES
-(1, '4902430556781', 12, 1),
+(1, '4902430556781', 2, 1),
 (1, '8809541033891', 3, 1),
-(2, '8835166023316', 5, 1);
+(2, '8835166023316', 5, 1),
+(3, '8936011896782', 2, 1),
+(4, '8934563138165', 2, 1),
+(4, '8934822220112', 4, 1),
+(5, '8934841903058', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +215,7 @@ INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GI
 ('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', 'NCCBIAV', 'thùng', 186300, 221300, 17, 'Việt Nam', '/images/thung12lonbiaviet.jpg', 1),
 ('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCLADY', 'bịch', 5900, 7200, 300, 'Việt Nam', '/images/suatiettrung.jpg', 1),
 ('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 112700, 153600, 10, 'Việt Nam', '/images/gao.jpg', 1),
-('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 36400, 47800, 50, 'Việt Nam', '/images/suachua.jpg', 1),
+('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 3640, 4780, 50, 'Việt Nam', '/images/suachua.jpg', 1),
 ('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 18, 'Việt Nam', '/images/btt.jpg', 1);
 
 -- --------------------------------------------------------
@@ -236,11 +240,11 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `THANHTIEN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES
-(1, 'A070103', '2023-09-19 08:00:30', '0000001', 7000, 10000, 3000, 1),
-(2, 'A140403', '2023-09-20 08:39:34', '0000001', 150000, 150000, 0, 1),
-(3, 'A140403', '2023-10-19 12:10:04', '0000001', 35400, 50000, 14600, 1),
-(4, 'A070103', '2023-10-23 17:43:51', '0000001', 980000, 1000000, 20000, 1),
-(5, 'A140403', '2023-10-30 21:03:34', '0000001', 46800, 70000, 23200, 1);
+(1, 'A070103', '2023-09-19 08:00:30', '0000001', 479400, 500000, 20600, 1),
+(2, 'A140403', '2023-09-20 08:39:34', '0000001', 178000, 200000, 22000, 1),
+(3, 'A140403', '2023-10-19 12:10:04', '0000001', 9560, 10000, 440, 1),
+(4, 'A070103', '2023-10-23 17:43:51', '0000001', 58400, 60000, 1600, 1),
+(5, 'A140403', '2023-10-30 21:03:34', '0000001', 72000, 72000, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -262,10 +266,10 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MAKH`, `TENKH`, `NGAYSINH`, `SDT`, `DIACHI`, `TONTAI`) VALUES
+('0000000', 'Khách vãng lai', '0000-00-00', '1', '', 1),
 ('0000001', 'Lê Văn Việt', '1999-09-01', '0368779041', 'Quận 8', 1),
 ('0000002', 'Đặng Văn Khoa', '2000-10-07', '0393506251', 'Quận 5', 1),
 ('0000003', 'Vũ Hà', '2003-09-07', '0336544121', 'Quận 10', 1),
-('0000000', 'Khách vãng lai', '1970-19-01', '1', '', 1),
 ('0000004', 'Dương Huy', '1995-09-07', '0377371312', 'Quận 5', 1);
 
 -- --------------------------------------------------------
@@ -338,6 +342,7 @@ CREATE TABLE `nhomhang` (
 --
 -- Đang đổ dữ liệu cho bảng `nhomhang`
 --
+
 INSERT INTO `nhomhang` (`MANH`, `TENNH`, `TONTAI`) VALUES
 ('0000001', 'Chăm sóc thú cưng', 1),
 ('0000002', 'Đồ dùng gia đình', 1),
@@ -369,11 +374,10 @@ CREATE TABLE `phanquyen` (
 --
 
 INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
+('ADMIN01', 'Admin', 1),
 ('NVBH203', 'Nhân viên bán hàng', 1),
-('ADMIN01', 'Admin',1),
 ('NVTK203', 'Nhân viên thủ kho', 1),
 ('QL20003', 'Quản lý', 1);
-
 
 -- --------------------------------------------------------
 
@@ -506,7 +510,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `TONTAI`) VALUES
-('A000001', 'xhne' , 1),
+('A000001', 'xhne', 1),
 ('A000003', 'tuoine', 1),
 ('A038645', '130613', 1),
 ('A070103', '070103', 1),
@@ -593,7 +597,7 @@ ALTER TABLE `nhomhang`
 ALTER TABLE `phanquyen`
   ADD PRIMARY KEY (`MAQUYEN`);
 
-
+--
 -- Chỉ mục cho bảng `phieukiemhang`
 --
 ALTER TABLE `phieukiemhang`
@@ -678,7 +682,6 @@ ALTER TABLE `hoadon`
 --
 ALTER TABLE `nhanvien`
   ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`MAQUYEN`) REFERENCES `phanquyen` (`MAQUYEN`);
-
 
 --
 -- Các ràng buộc cho bảng `phieukiemhang`
