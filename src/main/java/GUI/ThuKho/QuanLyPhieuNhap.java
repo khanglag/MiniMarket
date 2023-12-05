@@ -10,8 +10,11 @@ import Controller.TaiKhoanController;
 import DTO.ChiTietPhieuNhap_DTO;
 import DTO.PhieuNhap_DTO;
 import GUI.QuanLy.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -425,11 +428,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void jMenuItemTaoChiTietPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTaoChiTietPhieuNhapActionPerformed
         // TODO add your handling code here:
         int i = table.getSelectedRow();
-        if(jtfTrangThai.getText().toUpperCase().equals("Đã nhập")){
+        if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
         }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
                new ChiTietPhieuNhap(table.getModel().getValueAt(i, 0).toString()).setVisible(true);
-        }else if(jtfTrangThai.getText().toUpperCase().equals("Từ chối")){
+        }else if(jtfTrangThai.getText().toUpperCase().equals("KHONG DUYET")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
         }else{
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
@@ -467,32 +470,21 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void btnNhapExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExActionPerformed
-        // TODO add your handling code here:
-        try {
-                PhieuNhap_DTO nv = new PhieuNhap_DTO();
-                nv.setMaNV(jtfMaNhanVien.getText());
-                nv.setThoiGianLap(LocalDate.now());
-                nv.setVAT(0);
-                nv.setSoMatHang(0);
-                nv.setTongTien(0);
-                nv.setTrangThai("CHO");
-                phieuNhapBus.themPhieuNhap(nv);
-                table.repaint();
-                refreshData();
-            
-        } catch (Exception ex) {
-
-        }
-         boolean flag = false;
-        int n = list.size();
+    public void NhapEx(){
         
-        if(n==0){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn sản phẩm!");
-        }else{
+            try {
+                // TODO add your handling code here:
+
+                listEx = phieuYeuCauNhapBus.nhapPN(jtfMaPhieuNhap.getText());
+            } catch (IOException ex) {
+            }
+            double tongtien =0;
+            int n = listEx.size();
+            boolean flag = false;
             for(ChiTietPhieuNhap_DTO ctpn: listEx){
                 if(phieuYeuCauNhapBus.themCTPN(ctpn)){
                     flag = true;
+                    tongtien += ctpn.getTongTienNhap();
                 }else{
                     flag = false;
                 }
@@ -500,10 +492,27 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             if(flag){
 
                 JOptionPane.showMessageDialog(this,  "Tạo thành công!");
-                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, 0, "CHO");
-                
+                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, tongtien, "CHO");
+
+                }
+        
+    }
+    private void btnNhapExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExActionPerformed
+        int i = table.getSelectedRow();
+        if(i>=0){
+            if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
+            }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
+                   NhapEx();
+            }else if(jtfTrangThai.getText().toUpperCase().equals("KHONG DUYET")){
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
+            }else{
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
             }
+        }else{
+            JOptionPane.showMessageDialog(this,  "Bạn chưa chọn phiếu");
         }
+        
     }//GEN-LAST:event_btnNhapExActionPerformed
 
 
