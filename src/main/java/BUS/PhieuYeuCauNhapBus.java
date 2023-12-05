@@ -6,6 +6,8 @@ package BUS;
 
 import DAO.PhieuYeuCauNhapDAO;
 import DTO.ChiTietPhieuNhap_DTO;
+import File.ExcelFile;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -101,5 +103,9 @@ public class PhieuYeuCauNhapBus {
     }
     public boolean checkExist(String mapx){
         return ctnDAO.isCTPN_Existed(mapx);
+    }
+    public ArrayList<ChiTietPhieuNhap_DTO> nhapPN(String maPN) throws IOException{
+        ExcelFile file=new ExcelFile();
+        return file.nhapFileExcelPN(maPN);
     }
 }
