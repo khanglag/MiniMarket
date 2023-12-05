@@ -7,10 +7,14 @@ package GUI.ThuKho;
 import BUS.PhieuNhapBus;
 import BUS.PhieuYeuCauNhapBus;
 import Controller.TaiKhoanController;
+import DTO.ChiTietPhieuNhap_DTO;
 import DTO.PhieuNhap_DTO;
 import GUI.QuanLy.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +27,8 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     /**
      * Creates new form QuanLySanPham
      */
+    PhieuYeuCauNhapBus phieuYeuCauNhapBus = new  PhieuYeuCauNhapBus();
+    ArrayList<ChiTietPhieuNhap_DTO> listEx = new ArrayList<ChiTietPhieuNhap_DTO>();
     PhieuNhapBus phieuNhapBus = new PhieuNhapBus();
     DefaultTableModel model;
     ArrayList<PhieuNhap_DTO> list = new ArrayList<PhieuNhap_DTO>();
@@ -80,7 +86,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         btnTaoPhieuXuat = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnNhapEx = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -213,11 +219,16 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(67, 138, 174));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Excel (2).png"))); // NOI18N
-        jButton6.setText("NHẬP EXCEL");
+        btnNhapEx.setBackground(new java.awt.Color(67, 138, 174));
+        btnNhapEx.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnNhapEx.setForeground(new java.awt.Color(255, 255, 255));
+        btnNhapEx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Excel (2).png"))); // NOI18N
+        btnNhapEx.setText("NHẬP EXCEL");
+        btnNhapEx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNhapExActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(67, 138, 174));
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -282,7 +293,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 .addGap(61, 61, 61)
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNhapEx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
@@ -300,7 +311,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaoPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNhapEx, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -417,11 +428,11 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private void jMenuItemTaoChiTietPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTaoChiTietPhieuNhapActionPerformed
         // TODO add your handling code here:
         int i = table.getSelectedRow();
-        if(jtfTrangThai.getText().toUpperCase().equals("Đã nhập")){
+        if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
         }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
                new ChiTietPhieuNhap(table.getModel().getValueAt(i, 0).toString()).setVisible(true);
-        }else if(jtfTrangThai.getText().toUpperCase().equals("Từ chối")){
+        }else if(jtfTrangThai.getText().toUpperCase().equals("KHONG DUYET")){
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
         }else{
             JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
@@ -459,12 +470,79 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    public void NhapEx(){
+        
+            try {
+                // TODO add your handling code here:
+
+                listEx = phieuYeuCauNhapBus.nhapPN(jtfMaPhieuNhap.getText());
+            } catch (IOException ex) {
+            }
+            double tongtien =0;
+            int n = listEx.size();
+            boolean flag = false;
+            for(ChiTietPhieuNhap_DTO ctpn: listEx){
+                if(phieuYeuCauNhapBus.themCTPN(ctpn)){
+                    flag = true;
+                    tongtien += ctpn.getTongTienNhap();
+                }else{
+                    flag = false;
+                }
+            }
+            if(flag){
+
+                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
+                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, tongtien, "CHO");
+
+                }
+        
+    }
+    private void btnNhapExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExActionPerformed
+        int i = table.getSelectedRow();
+        if(i>=0){
+            if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
+            }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
+                   try {
+                // TODO add your handling code here:
+
+                listEx = phieuYeuCauNhapBus.nhapPN(jtfMaPhieuNhap.getText());
+            } catch (IOException ex) {
+            }
+            double tongtien =0;
+            int n = listEx.size();
+            boolean flag = false;
+            for(ChiTietPhieuNhap_DTO ctpn: listEx){
+                if(phieuYeuCauNhapBus.themCTPN(ctpn)){
+                    flag = true;
+                    tongtien += ctpn.getTongTienNhap();
+                }else{
+                    flag = false;
+                }
+            }
+            if(flag){
+
+                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
+                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, tongtien, "CHO");
+
+                }
+            }else if(jtfTrangThai.getText().toUpperCase().equals("KHONG DUYET")){
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
+            }else{
+                JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được tạo");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,  "Bạn chưa chọn phiếu");
+        }
+        
+    }//GEN-LAST:event_btnNhapExActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLamMoi;
+    private javax.swing.JButton btnNhapEx;
     private javax.swing.JButton btnTaoPhieuXuat;
     private javax.swing.JButton btnTim;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
