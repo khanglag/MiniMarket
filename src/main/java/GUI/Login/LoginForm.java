@@ -70,7 +70,6 @@ public class LoginForm extends javax.swing.JFrame {
         jpfPass = new javax.swing.JPasswordField();
         btnSubmit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,14 +175,10 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(67, 138, 174));
+        jPanel3.setBackground(new java.awt.Color(64, 128, 163));
         jPanel3.setAlignmentX(0.0F);
         jPanel3.setAlignmentY(0.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 0));
-
-        jLabel2.setFont(new java.awt.Font("Algerian", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Mr.Fresh");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mrfresh.png"))); // NOI18N
 
@@ -191,24 +186,17 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel3)))
-                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(49, 49, 49))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(78, 78, 78))
         );
 
         jPanel1.add(jPanel3);
@@ -286,7 +274,6 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

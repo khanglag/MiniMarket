@@ -181,8 +181,9 @@ public class MainJFrameAd extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(160, 191, 213));
 
-        jPanel1.setBackground(new java.awt.Color(144, 144, 144));
+        jPanel1.setBackground(new java.awt.Color(160, 191, 213));
 
+        jlbTen.setBackground(new java.awt.Color(160, 191, 213));
         jlbTen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jlbTen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbTen.setText("jLabel1");
