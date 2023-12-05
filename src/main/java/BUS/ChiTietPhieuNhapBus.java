@@ -3,6 +3,7 @@ package BUS;
 import DAO.ChiTietPhieuNhapDAO;
 import DTO.ChiTietPhieuNhap_DTO;
 import File.ExcelFile;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -99,5 +100,9 @@ public class ChiTietPhieuNhapBus {
     public boolean xuatEX(String maPN,String maNV,LocalDate ngayDate){
         ExcelFile file=new ExcelFile();
         return file.xuatChiTietPhieuNhapEX(maPN, ngayDate, maNV);
+    }
+    public ArrayList<ChiTietPhieuNhap_DTO> nhapPN(String maPN) throws IOException{
+        ExcelFile file=new ExcelFile();
+        return file.nhapFileExcelPN(maPN);
     }
 }
