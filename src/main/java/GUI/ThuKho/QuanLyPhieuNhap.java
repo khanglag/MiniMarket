@@ -503,7 +503,29 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
                 JOptionPane.showMessageDialog(this,  "Phiếu nhập đã được nhập");
             }else if(!pyc.checkExist(table.getModel().getValueAt(i, 0).toString())){
-                   NhapEx();
+                   try {
+                // TODO add your handling code here:
+
+                listEx = phieuYeuCauNhapBus.nhapPN(jtfMaPhieuNhap.getText());
+            } catch (IOException ex) {
+            }
+            double tongtien =0;
+            int n = listEx.size();
+            boolean flag = false;
+            for(ChiTietPhieuNhap_DTO ctpn: listEx){
+                if(phieuYeuCauNhapBus.themCTPN(ctpn)){
+                    flag = true;
+                    tongtien += ctpn.getTongTienNhap();
+                }else{
+                    flag = false;
+                }
+            }
+            if(flag){
+
+                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
+                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, tongtien, "CHO");
+
+                }
             }else if(jtfTrangThai.getText().toUpperCase().equals("KHONG DUYET")){
                 JOptionPane.showMessageDialog(this,  "Phiếu nhập đã bị từ chối");
             }else{
