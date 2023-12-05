@@ -261,7 +261,7 @@
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="btnLamMoi" min="-2" pref="159" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                  <Component id="jButton6" min="-2" pref="175" max="-2" attributes="0"/>
+                  <Component id="btnNhapEx" min="-2" pref="175" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                   <Component id="jButton7" min="-2" pref="172" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
@@ -282,7 +282,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnTaoPhieuXuat" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="btnLamMoi" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jButton6" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="btnNhapEx" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jButton7" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jButton8" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
@@ -334,7 +334,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLamMoiActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="btnNhapEx">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ae" green="8a" red="43" type="rgb"/>
@@ -350,6 +350,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="NH&#x1eac;P EXCEL"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNhapExActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton7">
           <Properties>
