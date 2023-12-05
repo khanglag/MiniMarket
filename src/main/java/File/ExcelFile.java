@@ -447,6 +447,9 @@ public class ExcelFile {
     private static int getIntValue(Cell cell) {
         return cell == null ? 0 : (int) cell.getNumericCellValue();
     }
+    private static double getDoubleValue(Cell cell) {
+        return cell == null ? 0 :  Double.parseDouble(cell.getStringCellValue());
+    }
     public boolean xuatPDFPX(String maPX){
         Document document = new Document();
         ChiTietPhieuXuatBus bus=new ChiTietPhieuXuatBus();
@@ -525,7 +528,7 @@ public class ExcelFile {
             temp.setMaNCC(getStringValue(cell));
             
             cell = row.getCell(3); // Mã Phiếu
-            temp.setVAT(getIntValue(cell));
+            temp.setVAT(getDoubleValue(cell));
             
             cell = row.getCell(4); // Mã Phiếu
             temp.setXuatXu(getStringValue(cell));
@@ -542,6 +545,7 @@ public class ExcelFile {
             
             cell = row.getCell(8); // Mã Phiếu
             temp.setTongTienNhap(getIntValue(cell));
+             System.out.println(temp.toString());
             ds.add(temp);
          }
         fileInputStream.close();
