@@ -266,7 +266,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MAKH`, `TENKH`, `NGAYSINH`, `SDT`, `DIACHI`, `TONTAI`) VALUES
-('0000000', 'Khách vãng lai', '0000-00-00', '1', '', 1),
+('0000000', 'Khách vãng lai', '1970-01-01', '1', '', 1),
 ('0000001', 'Lê Văn Việt', '1999-09-01', '0368779041', 'Quận 8', 1),
 ('0000002', 'Đặng Văn Khoa', '2000-10-07', '0393506251', 'Quận 5', 1),
 ('0000003', 'Vũ Hà', '2003-09-07', '0336544121', 'Quận 10', 1),

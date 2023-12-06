@@ -470,34 +470,9 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    public void NhapEx(){
-        
-            try {
-                // TODO add your handling code here:
 
-                listEx = phieuYeuCauNhapBus.nhapPN(jtfMaPhieuNhap.getText());
-            } catch (IOException ex) {
-            }
-            double tongtien =0;
-            int n = listEx.size();
-            boolean flag = false;
-            for(ChiTietPhieuNhap_DTO ctpn: listEx){
-                if(phieuYeuCauNhapBus.themCTPN(ctpn)){
-                    flag = true;
-                    tongtien += ctpn.getTongTienNhap();
-                }else{
-                    flag = false;
-                }
-            }
-            if(flag){
-
-                JOptionPane.showMessageDialog(this,  "Tạo thành công!");
-                phieuNhapBus.suaPhieuNhap(jtfMaPhieuNhap.getText(), 0.08, n, tongtien, "CHO");
-
-                }
-        
-    }
     private void btnNhapExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExActionPerformed
+
         int i = table.getSelectedRow();
         if(i>=0){
             if(jtfTrangThai.getText().toUpperCase().equals("DA NHAP")){
@@ -515,11 +490,15 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             for(ChiTietPhieuNhap_DTO ctpn: listEx){
                 if(phieuYeuCauNhapBus.themCTPN(ctpn)){
                     flag = true;
+                    System.out.println(1);
                     tongtien += ctpn.getTongTienNhap();
                 }else{
                     flag = false;
+                    System.out.println(2);
                 }
+                System.out.println(ctpn);
             }
+            System.out.println(flag);
             if(flag){
 
                 JOptionPane.showMessageDialog(this,  "Tạo thành công!");
