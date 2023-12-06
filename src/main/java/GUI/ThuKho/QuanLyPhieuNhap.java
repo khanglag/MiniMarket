@@ -88,7 +88,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         btnLamMoi = new javax.swing.JButton();
         btnNhapEx = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -241,17 +240,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(67, 138, 174));
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Print.png"))); // NOI18N
-        jButton8.setText("IN");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -296,9 +284,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                 .addComponent(btnNhapEx, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -312,8 +298,7 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                     .addComponent(btnTaoPhieuXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNhapEx, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                 .addContainerGap())
@@ -465,11 +450,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfMaNhanVienActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton8ActionPerformed
-
 
     private void btnNhapExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapExActionPerformed
 
@@ -523,7 +503,6 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
     private javax.swing.JButton btnTaoPhieuXuat;
     private javax.swing.JButton btnTim;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
